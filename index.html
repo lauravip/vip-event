@@ -54,21 +54,14 @@ body{
     height:100dvh;
     position:relative;
     overflow:hidden;
-
     background:#05080d;
-
-    box-shadow:
-        0 0 70px rgba(0,0,0,.9);
+    box-shadow:0 0 70px rgba(0,0,0,.9);
 }
 
 #gameContainer{
     position:absolute;
     inset:0;
 }
-
-/* =========================
-   TOP SHADE
-========================= */
 
 .topShade{
     position:absolute;
@@ -77,14 +70,13 @@ body{
     left:0;
     right:0;
     height:190px;
-
     pointer-events:none;
 
     background:
         linear-gradient(
             180deg,
             rgba(1,4,8,.82),
-            rgba(1,4,8,.35) 65%,
+            rgba(1,4,8,.34) 65%,
             transparent
         );
 }
@@ -96,22 +88,17 @@ body{
 .playerHud{
     position:absolute;
     z-index:30;
-
     left:12px;
     top:12px;
-
     width:205px;
 
     display:flex;
     align-items:center;
+    gap:9px;
 
     padding:8px 10px;
-
     border-radius:15px;
-
-    border:
-        1px solid
-        rgba(244,198,76,.65);
+    border:1px solid rgba(244,198,76,.65);
 
     background:
         linear-gradient(
@@ -130,19 +117,15 @@ body{
 .avatar{
     width:44px;
     height:44px;
-
     border-radius:50%;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border:
-        2px solid
-        #E4B342;
+    border:2px solid #E4B342;
 
     color:#FFD65E;
-
     font-size:12px;
     font-weight:900;
 
@@ -152,15 +135,10 @@ body{
             #25384A,
             #07101A 70%
         );
-
-    box-shadow:
-        0 0 15px
-        rgba(255,204,70,.18);
 }
 
 .playerInfo{
     flex:1;
-    padding-left:9px;
 }
 
 .playerVip{
@@ -184,25 +162,20 @@ body{
 }
 
 /* =========================
-   QUEST COUNTER
+   COUNTER
 ========================= */
 
 .counterHud{
     position:absolute;
     z-index:30;
-
     right:12px;
     top:12px;
 
     width:112px;
-
     padding:8px 9px 9px;
 
     border-radius:15px;
-
-    border:
-        1px solid
-        rgba(244,198,76,.65);
+    border:1px solid rgba(244,198,76,.65);
 
     background:
         linear-gradient(
@@ -212,10 +185,7 @@ body{
         );
 
     text-align:center;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.4);
-
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
     pointer-events:none;
 }
 
@@ -227,35 +197,27 @@ body{
 
 .counterNumber{
     margin-top:2px;
-
     color:#FFD45B;
-
     font-size:22px;
     line-height:1;
-
     font-weight:950;
 }
 
 /* =========================
-   QUEST CARD
+   QUEST
 ========================= */
 
 .questCard{
     position:absolute;
     z-index:30;
-
     top:76px;
     left:12px;
 
     width:194px;
-
     padding:11px 12px;
 
     border-radius:13px;
-
-    border:
-        1px solid
-        rgba(245,199,79,.40);
+    border:1px solid rgba(245,199,79,.40);
 
     background:
         linear-gradient(
@@ -264,27 +226,20 @@ body{
             rgba(2,8,15,.92)
         );
 
-    box-shadow:
-        0 9px 24px
-        rgba(0,0,0,.35);
-
+    box-shadow:0 9px 24px rgba(0,0,0,.35);
     pointer-events:none;
 }
 
 .questTitle{
     color:#FFD05A;
-
     font-size:8px;
     font-weight:950;
-
     letter-spacing:1.4px;
 }
 
 .questText{
     margin-top:5px;
-
     color:#BAC6D0;
-
     font-size:9px;
     line-height:1.5;
 }
@@ -294,50 +249,37 @@ body{
 }
 
 /* =========================
-   DISTANCE CHEST
+   CHEST STATUS
 ========================= */
 
 .chestHint{
     position:absolute;
     z-index:30;
-
     top:76px;
     right:12px;
 
     width:115px;
-
     padding:9px;
 
     text-align:center;
-
     border-radius:12px;
 
-    background:
-        rgba(3,11,20,.9);
-
-    border:
-        1px solid
-        rgba(245,199,79,.3);
-
+    background:rgba(3,11,20,.9);
+    border:1px solid rgba(245,199,79,.3);
     pointer-events:none;
 }
 
 .chestHint small{
     display:block;
-
     color:#74889B;
-
     font-size:6px;
     letter-spacing:1px;
 }
 
 .chestHint strong{
     display:block;
-
     margin-top:4px;
-
     color:#EFC956;
-
     font-size:8px;
 }
 
@@ -348,39 +290,26 @@ body{
 #message{
     position:absolute;
     z-index:70;
-
     left:50%;
     bottom:190px;
 
     max-width:86%;
-
     padding:9px 16px;
 
-    transform:
-        translateX(-50%)
-        translateY(10px);
-
+    transform:translateX(-50%) translateY(10px);
     opacity:0;
 
     white-space:nowrap;
-
     border-radius:999px;
 
-    border:
-        1px solid
-        rgba(245,199,79,.48);
+    border:1px solid rgba(245,199,79,.48);
 
     color:#FFE9A9;
-
     font-size:9px;
 
-    background:
-        rgba(2,8,15,.94);
+    background:rgba(2,8,15,.94);
 
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,.4);
-
+    box-shadow:0 6px 20px rgba(0,0,0,.4);
     transition:.22s;
 
     pointer-events:none;
@@ -388,10 +317,7 @@ body{
 
 #message.show{
     opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform:translateX(-50%) translateY(0);
 }
 
 /* =========================
@@ -401,7 +327,6 @@ body{
 #soundBtn{
     position:absolute;
     z-index:80;
-
     left:16px;
     bottom:172px;
 
@@ -409,19 +334,12 @@ body{
     height:38px;
 
     border-radius:50%;
+    border:1px solid rgba(245,199,79,.55);
 
-    border:
-        1px solid
-        rgba(245,199,79,.55);
-
-    background:
-        rgba(3,11,19,.82);
-
+    background:rgba(3,11,19,.82);
     color:white;
 
     cursor:pointer;
-
-    backdrop-filter:blur(5px);
 }
 
 /* =========================
@@ -431,7 +349,6 @@ body{
 #joystick{
     position:absolute;
     z-index:80;
-
     left:18px;
     bottom:24px;
 
@@ -439,7 +356,6 @@ body{
     height:130px;
 
     border-radius:50%;
-
     touch-action:none;
 }
 
@@ -448,10 +364,7 @@ body{
     inset:0;
 
     border-radius:50%;
-
-    border:
-        1px solid
-        rgba(245,199,79,.55);
+    border:1px solid rgba(245,199,79,.55);
 
     background:
         radial-gradient(
@@ -459,28 +372,18 @@ body{
             rgba(63,71,81,.42),
             rgba(4,9,14,.66)
         );
-
-    box-shadow:
-        inset 0 0 25px
-        rgba(45,170,255,.06),
-        0 8px 25px
-        rgba(0,0,0,.26);
 }
 
 .joyBase::before,
 .joyBase::after{
     content:"";
-
     position:absolute;
-
-    background:
-        rgba(255,255,255,.07);
+    background:rgba(255,255,255,.07);
 }
 
 .joyBase::before{
     width:1px;
     height:72%;
-
     left:50%;
     top:14%;
 }
@@ -488,14 +391,12 @@ body{
 .joyBase::after{
     width:72%;
     height:1px;
-
     left:14%;
     top:50%;
 }
 
 #joyKnob{
     position:absolute;
-
     width:58px;
     height:58px;
 
@@ -503,10 +404,7 @@ body{
     top:36px;
 
     border-radius:50%;
-
-    border:
-        1px solid
-        rgba(255,214,92,.75);
+    border:1px solid rgba(255,214,92,.75);
 
     background:
         radial-gradient(
@@ -516,19 +414,16 @@ body{
             #080C10
         );
 
-    box-shadow:
-        0 7px 20px rgba(0,0,0,.5),
-        inset 0 1px rgba(255,255,255,.14);
+    box-shadow:0 7px 20px rgba(0,0,0,.5);
 }
 
 /* =========================
-   ACTION BUTTONS
+   ACTIONS
 ========================= */
 
 .actions{
     position:absolute;
     z-index:80;
-
     right:18px;
     bottom:26px;
 
@@ -546,9 +441,7 @@ body{
     align-items:center;
     justify-content:center;
 
-    border:
-        2px solid
-        rgba(245,199,79,.78);
+    border:2px solid rgba(245,199,79,.78);
 
     background:
         radial-gradient(
@@ -559,17 +452,13 @@ body{
         );
 
     color:white;
-
-    box-shadow:
-        0 7px 22px
-        rgba(0,0,0,.48),
-        inset 0 0 16px
-        rgba(44,181,255,.12);
-
     cursor:pointer;
     user-select:none;
-
     touch-action:none;
+
+    box-shadow:
+        0 7px 22px rgba(0,0,0,.48),
+        inset 0 0 16px rgba(44,181,255,.12);
 }
 
 .actionBtn:active{
@@ -579,7 +468,6 @@ body{
 #interactBtn{
     width:78px;
     height:78px;
-
     right:0;
     bottom:70px;
 }
@@ -587,21 +475,17 @@ body{
 #dashBtn{
     width:61px;
     height:61px;
-
     right:88px;
     bottom:5px;
 }
 
 .actionIcon{
     font-size:24px;
-    line-height:1;
 }
 
 .actionText{
     margin-top:5px;
-
     color:#EFCB63;
-
     font-size:7px;
     font-weight:900;
 }
@@ -613,7 +497,6 @@ body{
 #intro{
     position:absolute;
     z-index:200;
-
     inset:0;
 
     display:flex;
@@ -638,14 +521,10 @@ body{
     max-width:380px;
 
     padding:27px 22px 23px;
-
     border-radius:22px;
-
     text-align:center;
 
-    border:
-        1px solid
-        rgba(245,199,79,.67);
+    border:1px solid rgba(245,199,79,.67);
 
     background:
         radial-gradient(
@@ -659,9 +538,7 @@ body{
             #03080E
         );
 
-    box-shadow:
-        0 30px 75px
-        rgba(0,0,0,.72);
+    box-shadow:0 30px 75px rgba(0,0,0,.72);
 }
 
 .flag{
@@ -670,16 +547,13 @@ body{
 
 .eventSmall{
     margin-top:5px;
-
     color:#CDAA4F;
-
     font-size:8px;
     letter-spacing:4px;
 }
 
 .introTitle{
     margin-top:6px;
-
     font-size:30px;
     font-weight:950;
 
@@ -696,54 +570,41 @@ body{
 
 .introText{
     margin-top:10px;
-
     color:#97A6B4;
-
     font-size:11px;
     line-height:1.55;
 }
 
 .rules{
     margin-top:17px;
-
     display:grid;
     grid-template-columns:repeat(3,1fr);
-
     gap:7px;
 }
 
 .rule{
     padding:10px 5px;
-
     border-radius:10px;
 
     background:#071521;
-
-    border:
-        1px solid
-        rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.05);
 
     color:#8EA2B4;
-
     font-size:8px;
 }
 
 .ruleIcon{
     display:block;
-
     margin-bottom:5px;
 
     color:#FFD35A;
-
     font-size:18px;
     font-weight:950;
 }
 
 #startBtn{
     width:100%;
-
     margin-top:18px;
-
     padding:15px;
 
     border:0;
@@ -757,10 +618,8 @@ body{
         );
 
     color:#181000;
-
     font-size:13px;
     font-weight:950;
-
     letter-spacing:.7px;
 
     cursor:pointer;
@@ -773,11 +632,9 @@ body{
 #rewardOverlay{
     position:absolute;
     z-index:220;
-
     inset:0;
 
     display:none;
-
     justify-content:center;
     align-items:center;
 
@@ -799,14 +656,10 @@ body{
     max-width:375px;
 
     padding:27px 21px 22px;
-
     border-radius:22px;
-
     text-align:center;
 
-    border:
-        1px solid
-        rgba(245,199,79,.76);
+    border:1px solid rgba(245,199,79,.76);
 
     background:
         radial-gradient(
@@ -818,15 +671,10 @@ body{
             #0B1B2B,
             #03080E
         );
-
-    box-shadow:
-        0 30px 75px
-        rgba(0,0,0,.75);
 }
 
 .rewardStatus{
     color:#48DD95;
-
     font-size:8px;
     font-weight:900;
     letter-spacing:2.8px;
@@ -834,29 +682,22 @@ body{
 
 .rewardTitle{
     margin-top:8px;
-
     color:#FFD45D;
-
     font-size:24px;
     font-weight:950;
 }
 
 .rewardImage{
-    position:relative;
-
     height:150px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     margin-top:10px;
 }
 
 #rewardChestImg{
     width:145px;
     max-height:130px;
-
     object-fit:contain;
 
     filter:
@@ -874,52 +715,39 @@ body{
 
 @keyframes chestFloat{
     from{
-        transform:
-            translateY(4px)
-            scale(.96);
+        transform:translateY(4px) scale(.96);
     }
 
     to{
-        transform:
-            translateY(-5px)
-            scale(1.03);
+        transform:translateY(-5px) scale(1.03);
     }
 }
 
 .rewardResult{
     padding:14px 10px;
-
     border-radius:12px;
 
-    border:
-        1px solid
-        rgba(245,199,79,.3);
-
+    border:1px solid rgba(245,199,79,.3);
     background:#071623;
 }
 
 .rewardResult small{
     color:#788D9E;
-
     font-size:7px;
     letter-spacing:1.2px;
 }
 
 .rewardResult strong{
     display:block;
-
     margin-top:6px;
 
     color:#FFD45A;
-
     font-size:18px;
 }
 
 #claimBtn{
     width:100%;
-
     margin-top:15px;
-
     padding:14px;
 
     border:0;
@@ -933,7 +761,6 @@ body{
         );
 
     color:#181000;
-
     font-size:13px;
     font-weight:950;
 
@@ -947,7 +774,6 @@ body{
 #loading{
     position:absolute;
     z-index:300;
-
     inset:0;
 
     display:flex;
@@ -956,7 +782,6 @@ body{
     justify-content:center;
 
     background:#02070C;
-
     color:#FFD45B;
 }
 
@@ -966,16 +791,10 @@ body{
 
     border-radius:50%;
 
-    border:
-        3px solid
-        rgba(255,255,255,.08);
+    border:3px solid rgba(255,255,255,.08);
+    border-top-color:#FFD45B;
 
-    border-top-color:
-        #FFD45B;
-
-    animation:
-        spin .8s
-        linear infinite;
+    animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
@@ -986,32 +805,9 @@ body{
 
 .loadingText{
     margin-top:12px;
-
     color:#8395A4;
-
     font-size:9px;
     letter-spacing:1.8px;
-}
-
-@media(max-width:380px){
-
-    .playerHud{
-        width:190px;
-    }
-
-    .questCard{
-        width:180px;
-    }
-
-    #joystick{
-        width:118px;
-        height:118px;
-    }
-
-    #joyKnob{
-        left:30px;
-        top:30px;
-    }
 }
 
 </style>
@@ -1025,9 +821,6 @@ body{
 
     <div class="topShade"></div>
 
-    <!-- ========================
-         HUD
-    ========================= -->
 
     <div class="playerHud">
 
@@ -1101,18 +894,10 @@ body{
     <div id="message"></div>
 
 
-    <!-- ========================
-         SOUND
-    ========================= -->
-
     <button id="soundBtn">
         🔊
     </button>
 
-
-    <!-- ========================
-         JOYSTICK
-    ========================= -->
 
     <div id="joystick">
 
@@ -1122,10 +907,6 @@ body{
 
     </div>
 
-
-    <!-- ========================
-         ACTION BUTTONS
-    ========================= -->
 
     <div class="actions">
 
@@ -1160,10 +941,6 @@ body{
 
     </div>
 
-
-    <!-- ========================
-         INTRO
-    ========================= -->
 
     <div id="intro">
 
@@ -1238,10 +1015,6 @@ body{
     </div>
 
 
-    <!-- ========================
-         REWARD
-    ========================= -->
-
     <div id="rewardOverlay">
 
         <div class="rewardCard">
@@ -1287,10 +1060,6 @@ body{
     </div>
 
 
-    <!-- ========================
-         LOADING
-    ========================= -->
-
     <div id="loading">
 
         <div class="loaderRing"></div>
@@ -1307,26 +1076,30 @@ body{
 <script>
 
 /* =========================================================
-   GLOBAL GAME DATA
+   WORLD SETTINGS
 ========================================================= */
 
 const MAP_WIDTH = 1536;
 const MAP_HEIGHT = 2048;
 
-const PLAYER_SPEED = 185;
-const DASH_SPEED = 430;
+/*
+Karakter dibuat kecil supaya cocok
+dengan map top-down.
+*/
+const PLAYER_WIDTH = 38;
+const PLAYER_HEIGHT = 58;
+
+const PLAYER_SPEED = 175;
+const DASH_SPEED = 380;
 
 let player;
-
 let goldenGroup;
-
 let chest;
 
 let cursors;
 let keys;
 
 let collected = 0;
-
 let started = false;
 
 let dashActive = false;
@@ -1338,12 +1111,11 @@ let joystickVector = {
 };
 
 let soundEnabled = true;
-
 let audioContext = null;
 
 
 /* =========================================================
-   PHASER CONFIG
+   GAME CONFIG
 ========================================================= */
 
 const config = {
@@ -1384,9 +1156,7 @@ const config = {
     render:{
 
         antialias:true,
-
         pixelArt:false,
-
         roundPixels:false
     },
 
@@ -1411,14 +1181,7 @@ new Phaser.Game(
 
 
 /* =========================================================
-   PRELOAD
-
-   FILE SESUAI FOLDER GITHUB KAMU:
-
-   asset/map.png
-   asset/karakter.png
-   asset/coin.png
-   asset/peti.png
+   LOAD FILES
 ========================================================= */
 
 function preload(){
@@ -1478,42 +1241,17 @@ function create(){
     );
 
 
-    /*
-    subtle lighting supaya map
-    tidak terlalu terang
-    */
-
-    const mapShade =
-        this.add.rectangle(
-
-            MAP_WIDTH / 2,
-            MAP_HEIGHT / 2,
-
-            MAP_WIDTH,
-            MAP_HEIGHT,
-
-            0x06111a,
-
-            .08
-        );
-
-
-    mapShade.setDepth(
-        -90
-    );
-
-
     /* =========================
-       WORLD
+       WORLD LIMIT
     ========================= */
 
     this.physics.world.setBounds(
 
-        30,
-        30,
+        40,
+        40,
 
-        MAP_WIDTH - 60,
-        MAP_HEIGHT - 60
+        MAP_WIDTH - 80,
+        MAP_HEIGHT - 80
     );
 
 
@@ -1524,33 +1262,36 @@ function create(){
     player =
         this.physics.add.sprite(
 
-            MAP_WIDTH / 2,
-            MAP_HEIGHT - 270,
+            760,
+            1760,
 
             "player"
         );
 
 
     /*
-    Karena file karakter adalah
-    portrait resolusi besar,
-    kita perkecil jadi karakter game.
+    INI BAGIAN UTAMA YANG DIPERKECIL.
     */
 
     player.setDisplaySize(
-        75,
-        118
+        PLAYER_WIDTH,
+        PLAYER_HEIGHT
     );
 
 
+    /*
+    Origin bawah supaya karakter
+    terasa berdiri di jalan.
+    */
+
     player.setOrigin(
         .5,
-        .82
+        .88
     );
 
 
     player.setDepth(
-        50
+        60
     );
 
 
@@ -1560,52 +1301,57 @@ function create(){
 
 
     /*
-    Hitbox dibuat kecil di bagian kaki
-    supaya pergerakan terasa natural.
+    Hitbox kecil hanya di area kaki.
     */
 
     player.body.setSize(
-        36,
-        36
+        18,
+        13
     );
 
 
-    player.body.setOffset(
-        (
-            player.width
-            -
-            36
-        )
-        /
-        2,
+    /*
+    Phaser masih memakai ukuran texture asli
+    untuk offset, jadi kita hitung otomatis.
+    */
 
-        player.height
-        -
-        44
+    const textureWidth =
+        player.width;
+
+
+    const textureHeight =
+        player.height;
+
+
+    player.body.setOffset(
+
+        textureWidth / 2 - 9,
+
+        textureHeight - 18
     );
 
 
     /* =========================
-       CHARACTER SHADOW
+       SHADOW
     ========================= */
 
     player.shadow =
         this.add.ellipse(
 
             player.x,
-            player.y + 16,
+            player.y + 4,
 
-            48,
-            17,
+            23,
+            8,
 
             0x000000,
 
-            .34
+            .30
         );
 
 
     player.shadow.setDepth(
-        40
+        50
     );
 
 
@@ -1629,18 +1375,19 @@ function create(){
 
         true,
 
-        .075,
-        .075
+        .07,
+        .07
     );
 
 
     /*
-    Zoom 1 supaya map terlihat
-    cukup dekat di HP.
+    Kamera dibuat sedikit lebih jauh.
+    Semakin kecil angka ini,
+    semakin luas map yang terlihat.
     */
 
     this.cameras.main.setZoom(
-        1
+        .78
     );
 
 
@@ -1652,30 +1399,25 @@ function create(){
         this.physics.add.group();
 
 
-    /*
-    Posisi 9 coin tersebar di map.
-    Bisa kamu ubah nanti.
-    */
-
     const coinLocations = [
 
         [330,1770],
 
-        [840,1750],
+        [730,1710],
 
-        [1220,1620],
+        [1190,1630],
 
-        [1160,1310],
+        [1190,1320],
 
-        [710,1260],
+        [760,1250],
 
-        [310,1100],
+        [310,1090],
 
-        [430,730],
+        [410,735],
 
-        [1030,720],
+        [1050,720],
 
-        [770,370]
+        [760,370]
 
     ];
 
@@ -1703,26 +1445,25 @@ function create(){
     chest =
         this.physics.add.image(
 
-            1170,
-            350,
+            1165,
+            355,
 
             "chest"
         );
 
 
+    /*
+    Peti diperkecil supaya sesuai map.
+    */
+
     chest.setDisplaySize(
-        105,
-        90
+        60,
+        52
     );
 
 
     chest.setDepth(
-        30
-    );
-
-
-    chest.setImmovable(
-        true
+        35
     );
 
 
@@ -1730,25 +1471,31 @@ function create(){
         true;
 
 
-    /* chest glow */
+    chest.opened =
+        false;
+
+
+    /* =========================
+       CHEST GLOW
+    ========================= */
 
     chest.glow =
         this.add.ellipse(
 
             chest.x,
-            chest.y + 20,
+            chest.y + 7,
 
-            145,
-            68,
+            74,
+            28,
 
             0xFFD24E,
 
-            .10
+            .11
         );
 
 
     chest.glow.setDepth(
-        20
+        25
     );
 
 
@@ -1764,7 +1511,7 @@ function create(){
 
         alpha:{
             from:.05,
-            to:.20
+            to:.19
         },
 
         scale:{
@@ -1784,7 +1531,7 @@ function create(){
 
 
     /* =========================
-       COLLECT COLLISION
+       COLLECT
     ========================= */
 
     this.physics.add.overlap(
@@ -1854,7 +1601,7 @@ function create(){
 
 
     /* =========================
-       READY
+       LOADING OFF
     ========================= */
 
     document
@@ -1881,19 +1628,19 @@ function createCoin(
         scene.add.ellipse(
 
             x,
-            y + 8,
+            y + 5,
 
-            80,
-            40,
+            42,
+            18,
 
             0xFFD43C,
 
-            .16
+            .14
         );
 
 
     glow.setDepth(
-        15
+        20
     );
 
 
@@ -1912,14 +1659,18 @@ function createCoin(
         );
 
 
+    /*
+    Coin juga diperkecil.
+    */
+
     coin.setDisplaySize(
-        55,
-        55
+        28,
+        28
     );
 
 
     coin.setDepth(
-        25
+        30
     );
 
 
@@ -1932,23 +1683,13 @@ function createCoin(
     );
 
 
-    /*
-    Coin melayang
-    */
-
     scene.tweens.add({
 
         targets:
             coin,
 
         y:
-            y - 10,
-
-        scaleX:
-            1.06,
-
-        scaleY:
-            1.06,
+            y - 7,
 
         duration:
             850,
@@ -1964,18 +1705,14 @@ function createCoin(
     });
 
 
-    /*
-    Glow ikut pulse
-    */
-
     scene.tweens.add({
 
         targets:
             glow,
 
         alpha:{
-            from:.08,
-            to:.25
+            from:.06,
+            to:.22
         },
 
         scale:{
@@ -2014,14 +1751,15 @@ function update(){
 
 
     /*
-    Shadow selalu ikut karakter
+    Shadow selalu mengikuti kaki.
     */
 
     player.shadow.x =
         player.x;
 
+
     player.shadow.y =
-        player.y + 13;
+        player.y + 2;
 
 
     if(
@@ -2040,19 +1778,17 @@ function update(){
     let moveX =
         joystickVector.x;
 
+
     let moveY =
         joystickVector.y;
 
-
-    /* =========================
-       KEYBOARD
-    ========================= */
 
     if(
         cursors.left.isDown
         ||
         keys.A.isDown
     ){
+
         moveX -= 1;
     }
 
@@ -2062,6 +1798,7 @@ function update(){
         ||
         keys.D.isDown
     ){
+
         moveX += 1;
     }
 
@@ -2071,6 +1808,7 @@ function update(){
         ||
         keys.W.isDown
     ){
+
         moveY -= 1;
     }
 
@@ -2080,14 +1818,10 @@ function update(){
         ||
         keys.S.isDown
     ){
+
         moveY += 1;
     }
 
-
-    /*
-    Normalisasi supaya diagonal
-    tidak lebih cepat.
-    */
 
     const length =
         Math.hypot(
@@ -2101,12 +1835,11 @@ function update(){
     ){
 
         moveX /= length;
-
         moveY /= length;
     }
 
 
-    const currentSpeed =
+    const speed =
         dashActive
         ?
         DASH_SPEED
@@ -2116,19 +1849,15 @@ function update(){
 
     player.setVelocity(
 
-        moveX
-        *
-        currentSpeed,
+        moveX * speed,
 
-        moveY
-        *
-        currentSpeed
+        moveY * speed
     );
 
 
-    /* =========================
-       CHARACTER DIRECTION
-    ========================= */
+    /*
+    Balik kiri-kanan.
+    */
 
     if(
         Math.abs(
@@ -2144,48 +1873,49 @@ function update(){
     }
 
 
-    /* =========================
-       SIMPLE WALK ANIMATION
-    ========================= */
+    /*
+    Animasi jalan kecil.
+    */
 
     if(
         length > .08
     ){
 
-        const bob =
+        const walk =
             Math.sin(
                 performance.now()
                 *
-                .015
+                .016
             );
 
 
         player.rotation =
-            bob
+            walk
             *
-            .018;
+            .015;
 
 
         player.setScale(
 
+            1,
             1
             +
             Math.abs(
-                bob
+                walk
             )
             *
-            .012
+            .018
         );
 
 
         player.shadow.scaleX =
-            .94
+            .92
             +
             Math.abs(
-                bob
+                walk
             )
             *
-            .05;
+            .06;
     }
     else{
 
@@ -2193,11 +1923,12 @@ function update(){
             Phaser.Math.Linear(
                 player.rotation,
                 0,
-                .18
+                .20
             );
 
 
         player.setScale(
+            1,
             1
         );
 
@@ -2207,7 +1938,7 @@ function update(){
     }
 
 
-    updateChestHint();
+    updateChestStatus();
 }
 
 
@@ -2242,16 +1973,13 @@ function collectCoin(
         collected;
 
 
-    /* =========================
-       FX
-    ========================= */
-
     const scene =
         coin.scene;
 
 
     const x =
         coin.x;
+
 
     const y =
         coin.y;
@@ -2265,9 +1993,9 @@ function collectCoin(
     }
 
 
-    /*
-    Flash ring
-    */
+    /* =========================
+       FLASH
+    ========================= */
 
     const ring =
         scene.add.circle(
@@ -2275,16 +2003,16 @@ function collectCoin(
             x,
             y,
 
-            22,
+            12,
 
             0xFFD84F,
 
-            .5
+            .55
         );
 
 
     ring.setDepth(
-        80
+        90
     );
 
 
@@ -2299,13 +2027,13 @@ function collectCoin(
             ring,
 
         scale:
-            4,
+            3.2,
 
         alpha:
             0,
 
         duration:
-            450,
+            400,
 
         onComplete:()=>{
 
@@ -2314,15 +2042,15 @@ function collectCoin(
     });
 
 
-    /*
-    Floating +1
-    */
+    /* =========================
+       +1
+    ========================= */
 
     const plus =
         scene.add.text(
 
             x,
-            y - 25,
+            y - 15,
 
             "+1",
 
@@ -2332,7 +2060,7 @@ function collectCoin(
                     "Arial",
 
                 fontSize:
-                    "25px",
+                    "16px",
 
                 fontStyle:
                     "bold",
@@ -2344,7 +2072,7 @@ function collectCoin(
                     "#6F4800",
 
                 strokeThickness:
-                    4
+                    3
             }
         );
 
@@ -2365,13 +2093,13 @@ function collectCoin(
             plus,
 
         y:
-            y - 85,
+            y - 55,
 
         alpha:
             0,
 
         duration:
-            800,
+            700,
 
         onComplete:()=>{
 
@@ -2380,17 +2108,13 @@ function collectCoin(
     });
 
 
-    /*
-    Coin scale-out
-    */
-
     scene.tweens.add({
 
         targets:
             coin,
 
         scale:
-            2,
+            1.7,
 
         alpha:
             0,
@@ -2407,8 +2131,9 @@ function collectCoin(
 
     playCollectSound();
 
+
     vibrate(
-        25
+        20
     );
 
 
@@ -2421,10 +2146,6 @@ function collectCoin(
         "/9"
     );
 
-
-    /* =========================
-       ALL COINS COMPLETE
-    ========================= */
 
     if(
         collected === 9
@@ -2451,13 +2172,9 @@ function collectCoin(
             "#51E098";
 
 
-        /*
-        chest stronger glow
-        */
-
         chest.glow.setFillStyle(
             0xFFD443,
-            .32
+            .30
         );
 
 
@@ -2467,10 +2184,10 @@ function collectCoin(
                 chest,
 
             scaleX:
-                1.12,
+                1.15,
 
             scaleY:
-                1.12,
+                1.15,
 
             duration:
                 300,
@@ -2492,16 +2209,16 @@ function collectCoin(
                 "9/9 lengkap! Cari peti hadiah."
             );
 
-        },700);
+        },600);
     }
 }
 
 
 /* =========================================================
-   CHEST HINT
+   CHEST STATUS
 ========================================================= */
 
-function updateChestHint(){
+function updateChestStatus(){
 
     if(
         !chest
@@ -2537,6 +2254,7 @@ function updateChestHint(){
         label.textContent =
             "TERKUNCI";
 
+
         label.style.color =
             "#EFC956";
 
@@ -2545,13 +2263,12 @@ function updateChestHint(){
 
 
     if(
-        distance
-        <
-        125
+        distance < 95
     ){
 
         label.textContent =
             "TEKAN INTERACT";
+
 
         label.style.color =
             "#51E09A";
@@ -2561,6 +2278,7 @@ function updateChestHint(){
 
         label.textContent =
             "TERBUKA";
+
 
         label.style.color =
             "#51E09A";
@@ -2599,12 +2317,13 @@ function interact(
 
 
     if(
-        distance > 130
+        distance > 100
     ){
 
         showMessage(
             "Dekati peti hadiah terlebih dahulu."
         );
+
 
         playErrorSound();
 
@@ -2625,10 +2344,12 @@ function interact(
             "/9 Golden 9"
         );
 
+
         playErrorSound();
 
+
         vibrate(
-            [35,35,35]
+            [30,30,30]
         );
 
         return;
@@ -2678,10 +2399,6 @@ function openChest(
     );
 
 
-    /*
-    Screen flash
-    */
-
     scene.cameras.main.flash(
 
         500,
@@ -2692,17 +2409,13 @@ function openChest(
     );
 
 
-    /*
-    Chest explosion glow
-    */
-
     const burst =
         scene.add.circle(
 
             chest.x,
             chest.y,
 
-            40,
+            22,
 
             0xFFD24A,
 
@@ -2726,13 +2439,13 @@ function openChest(
             burst,
 
         scale:
-            6,
+            5,
 
         alpha:
             0,
 
         duration:
-            700,
+            650,
 
         onComplete:()=>{
 
@@ -2741,20 +2454,16 @@ function openChest(
     });
 
 
-    /*
-    chest pop
-    */
-
     scene.tweens.add({
 
         targets:
             chest,
 
         scaleX:
-            1.28,
+            1.3,
 
         scaleY:
-            1.28,
+            1.3,
 
         duration:
             280,
@@ -2811,18 +2520,14 @@ function doDash(
     );
 
 
-    /*
-    Blue circle trail
-    */
-
     const trail =
         scene.add.ellipse(
 
             player.x,
             player.y,
 
-            70,
-            36,
+            32,
+            14,
 
             0x43C9FF,
 
@@ -2831,7 +2536,7 @@ function doDash(
 
 
     trail.setDepth(
-        30
+        45
     );
 
 
@@ -2846,13 +2551,13 @@ function doDash(
             trail,
 
         scale:
-            2.3,
+            2.2,
 
         alpha:
             0,
 
         duration:
-            320,
+            300,
 
         onComplete:()=>{
 
@@ -2866,7 +2571,7 @@ function doDash(
         dashActive =
             false;
 
-    },260);
+    },240);
 
 
     setTimeout(()=>{
@@ -2874,7 +2579,7 @@ function doDash(
         dashReady =
             true;
 
-    },900);
+    },850);
 }
 
 
@@ -2944,9 +2649,7 @@ function updateJoystick(
 
 
     if(
-        distance
-        >
-        maxDistance
+        distance > maxDistance
     ){
 
         dx =
@@ -3049,6 +2752,7 @@ joystick.addEventListener(
         joyActive =
             false;
 
+
         resetJoystick();
     }
 );
@@ -3063,13 +2767,14 @@ joystick.addEventListener(
         joyActive =
             false;
 
+
         resetJoystick();
     }
 );
 
 
 /* =========================================================
-   ACTION BUTTONS
+   BUTTONS
 ========================================================= */
 
 document
@@ -3210,7 +2915,7 @@ document
                 +
                 "Ini masih versi demo. "
                 +
-                "Nanti tombol KLAIM HADIAH bisa diarahkan "
+                "Nanti tombol ini bisa diarahkan "
                 +
                 "ke Admin VIP atau sistem claim."
             );
@@ -3280,7 +2985,7 @@ function vibrate(
 
 
 /* =========================================================
-   WEB AUDIO
+   AUDIO
 ========================================================= */
 
 function initAudio(){
