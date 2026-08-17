@@ -1,1 +1,965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VIP Mini Game</title>
 
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    background:#020611;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+}
+
+.game-wrapper{
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 10%,rgba(0,112,255,.23),transparent 33%),
+        linear-gradient(180deg,#020611,#061329 55%,#020611);
+    position:relative;
+    padding:16px 14px 28px;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:14px;
+}
+
+.crown{
+    font-size:30px;
+    filter:drop-shadow(0 0 10px #ffc400);
+}
+
+.vip{
+    font-size:16px;
+    letter-spacing:5px;
+    color:#ffd45b;
+    font-weight:900;
+}
+
+.title{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:1px;
+    background:linear-gradient(#fff,#82d8ff,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+    text-shadow:0 0 18px rgba(38,160,255,.35);
+}
+
+.subtitle{
+    margin-top:6px;
+    font-size:13px;
+    color:#d6e5ff;
+}
+
+/* INFO BAR */
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    border:1px solid rgba(255,205,70,.7);
+    background:rgba(3,12,29,.87);
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+
+.info-box{
+    padding:10px 4px;
+    text-align:center;
+    border-right:1px solid rgba(255,255,255,.1);
+}
+
+.info-box:last-child{
+    border-right:0;
+}
+
+.info-label{
+    display:block;
+    font-size:9px;
+    color:#8ea8c7;
+    margin-bottom:4px;
+}
+
+.info-value{
+    font-size:15px;
+    font-weight:bold;
+    color:#ffd35b;
+}
+
+#time{
+    color:#49caff;
+}
+
+/* PLAY AREA */
+.play-area{
+    position:relative;
+    height:480px;
+    overflow:hidden;
+    border-radius:18px;
+    border:1px solid rgba(255,206,72,.7);
+    background:
+        radial-gradient(circle at 50% 100%,rgba(0,115,255,.27),transparent 40%),
+        radial-gradient(circle at 30% 20%,rgba(0,153,255,.1),transparent 25%),
+        linear-gradient(#020713,#04152e);
+    box-shadow:
+        inset 0 0 35px rgba(0,102,255,.13),
+        0 0 25px rgba(0,0,0,.8);
+    touch-action:none;
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,#fff 1px,transparent 1px),
+        radial-gradient(circle,#51adff 1px,transparent 1px);
+    background-size:43px 43px,71px 71px;
+    opacity:.18;
+}
+
+/* START OVERLAY */
+.overlay{
+    position:absolute;
+    z-index:20;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(1,5,14,.76);
+    backdrop-filter:blur(3px);
+}
+
+.start-card{
+    width:83%;
+    border:1px solid rgba(255,204,66,.75);
+    border-radius:20px;
+    background:linear-gradient(180deg,#07162c,#030812);
+    padding:25px 20px;
+    text-align:center;
+    box-shadow:
+        0 0 30px rgba(0,0,0,.8),
+        inset 0 0 20px rgba(0,112,255,.1);
+}
+
+.start-icon{
+    font-size:55px;
+    filter:drop-shadow(0 0 15px #008cff);
+}
+
+.start-card h2{
+    color:#ffd45c;
+    margin:12px 0 8px;
+}
+
+.start-card p{
+    font-size:13px;
+    line-height:1.55;
+    color:#bacbe0;
+}
+
+.start-btn{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:900;
+    font-size:17px;
+    color:#171000;
+    background:linear-gradient(#fff0a5,#ffc72e,#c78900);
+    box-shadow:0 0 20px rgba(255,193,0,.35);
+}
+
+/* SCORE */
+.score-bar{
+    position:absolute;
+    top:12px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:6;
+    padding:8px 20px;
+    border:1px solid rgba(69,190,255,.7);
+    background:rgba(0,10,28,.86);
+    border-radius:999px;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.score-bar b{
+    color:#55c8ff;
+    font-size:18px;
+}
+
+/* DIAMOND */
+.diamond{
+    position:absolute;
+    width:42px;
+    height:42px;
+    z-index:4;
+    user-select:none;
+    pointer-events:none;
+    filter:
+        drop-shadow(0 0 7px #48bdff)
+        drop-shadow(0 0 15px rgba(0,135,255,.7));
+}
+
+.diamond::before{
+    content:"💎";
+    font-size:38px;
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* BASKET */
+.basket{
+    position:absolute;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    width:110px;
+    height:60px;
+    z-index:8;
+    border-radius:12px 12px 28px 28px;
+    border:4px solid #e7b633;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #101827 0,
+            #101827 9px,
+            #27344a 10px,
+            #27344a 16px
+        );
+    box-shadow:
+        0 0 18px rgba(0,140,255,.5),
+        inset 0 -15px 18px rgba(0,0,0,.55);
+}
+
+.basket::before{
+    content:"💎";
+    position:absolute;
+    left:50%;
+    top:8px;
+    transform:translateX(-50%);
+    font-size:29px;
+}
+
+.basket::after{
+    content:"";
+    position:absolute;
+    left:-5px;
+    right:-5px;
+    top:-9px;
+    height:9px;
+    border-radius:999px;
+    background:linear-gradient(90deg,#9b6700,#ffdc61,#9b6700);
+}
+
+.move-hint{
+    position:absolute;
+    bottom:94px;
+    width:100%;
+    text-align:center;
+    color:#9cb8d7;
+    font-size:11px;
+    z-index:5;
+    transition:.3s;
+}
+
+/* PARTICLE */
+.spark{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#59cfff;
+    box-shadow:0 0 10px #009cff;
+    z-index:10;
+    pointer-events:none;
+    animation:spark .55s forwards;
+}
+
+@keyframes spark{
+    to{
+        transform:translate(var(--x),var(--y)) scale(.1);
+        opacity:0;
+    }
+}
+
+/* RESULT */
+.result-overlay{
+    position:absolute;
+    z-index:30;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(1,5,15,.92);
+    padding:20px;
+}
+
+.result-card{
+    width:100%;
+    border-radius:20px;
+    text-align:center;
+    padding:26px 18px;
+    border:1px solid #d9ac35;
+    background:
+        radial-gradient(circle at 50% 0%,rgba(255,195,0,.18),transparent 35%),
+        linear-gradient(#08152a,#020711);
+    box-shadow:0 0 30px rgba(255,193,0,.15);
+}
+
+.result-small{
+    color:#56ca87;
+    font-weight:bold;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.result-card h2{
+    margin:7px 0;
+    color:#ffd45d;
+    font-size:27px;
+}
+
+.final-score{
+    font-size:54px;
+    color:#51c7ff;
+    font-weight:900;
+    margin:9px 0;
+}
+
+.reward-box{
+    margin:15px auto;
+    padding:13px;
+    border-radius:12px;
+    background:#071a31;
+    border:1px solid rgba(73,191,255,.4);
+}
+
+.reward-label{
+    color:#8aa4c3;
+    font-size:11px;
+}
+
+#reward{
+    display:block;
+    color:#ffd45a;
+    margin-top:5px;
+    font-size:21px;
+    font-weight:900;
+}
+
+.again-btn{
+    margin-top:8px;
+    width:100%;
+    padding:13px;
+    border-radius:11px;
+    border:0;
+    background:linear-gradient(#ffe889,#ffc329,#ad7400);
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* REWARD GUIDE */
+.reward-guide{
+    margin-top:15px;
+}
+
+.reward-title{
+    text-align:center;
+    color:#f6cf62;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.reward-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.reward{
+    padding:10px 5px;
+    min-height:90px;
+    background:#071426;
+    border:1px solid rgba(255,202,55,.35);
+    border-radius:12px;
+    text-align:center;
+}
+
+.reward .emoji{
+    font-size:27px;
+}
+
+.reward b{
+    display:block;
+    color:#fff;
+    font-size:11px;
+    margin:5px 0 3px;
+}
+
+.reward span{
+    font-size:10px;
+    color:#ffd25a;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    color:#536b87;
+    font-size:9px;
+    margin-top:15px;
+}
+
+@media(max-width:380px){
+    .play-area{
+        height:440px;
+    }
+
+    .title{
+        font-size:26px;
+    }
+
+    .basket{
+        width:100px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <div class="header">
+        <div class="crown">♛</div>
+        <div class="vip">VIP MINI GAME</div>
+        <div class="title">DIAMOND CATCH</div>
+        <div class="subtitle">
+            Tangkap diamond sebelum waktu habis
+        </div>
+    </div>
+
+    <div class="info">
+        <div class="info-box">
+            <span class="info-label">ID MEMBER</span>
+            <span class="info-value">VIP****27</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">KESEMPATAN</span>
+            <span class="info-value">1x</span>
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">WAKTU</span>
+            <span class="info-value" id="time">15</span>
+        </div>
+    </div>
+
+    <div class="play-area" id="playArea">
+
+        <div class="stars"></div>
+
+        <div class="score-bar">
+            💎 Diamond:
+            <b id="score">0</b>
+        </div>
+
+        <div class="move-hint" id="moveHint">
+            ← Geser basket ke kiri / kanan →
+        </div>
+
+        <div class="basket" id="basket"></div>
+
+        <div class="overlay" id="startOverlay">
+            <div class="start-card">
+                <div class="start-icon">💎</div>
+
+                <h2>1 Kesempatan VIP</h2>
+
+                <p>
+                    Tangkap diamond sebanyak mungkin.<br>
+                    Cukup geser basket ke kiri atau kanan.
+                </p>
+
+                <button class="start-btn" onclick="startGame()">
+                    MULAI MAIN
+                </button>
+            </div>
+        </div>
+
+        <div class="result-overlay" id="resultOverlay">
+            <div class="result-card">
+
+                <div class="result-small">
+                    PERMAINAN SELESAI
+                </div>
+
+                <h2>HASIL KAMU</h2>
+
+                <div class="final-score" id="finalScore">
+                    0
+                </div>
+
+                <div>💎 DIAMOND</div>
+
+                <div class="reward-box">
+                    <span class="reward-label">
+                        REWARD TERBUKA
+                    </span>
+
+                    <span id="reward">
+                        -
+                    </span>
+                </div>
+
+                <button class="again-btn" onclick="resetDemo()">
+                    MAIN ULANG DEMO
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="reward-guide">
+
+        <div class="reward-title">
+            CONTOH REWARD
+        </div>
+
+        <div class="reward-grid">
+
+            <div class="reward">
+                <div class="emoji">🪙</div>
+                <b>5 Diamond</b>
+                <span>10 VIP Point</span>
+            </div>
+
+            <div class="reward">
+                <div class="emoji">💎</div>
+                <b>10 Diamond</b>
+                <span>Bonus VIP</span>
+            </div>
+
+            <div class="reward">
+                <div class="emoji">🎁</div>
+                <b>15+ Diamond</b>
+                <span>Mystery Gift</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        VIP EVENT • MINI GAME DEMO
+    </div>
+
+</div>
+
+<script>
+const playArea = document.getElementById("playArea");
+const basket = document.getElementById("basket");
+const scoreText = document.getElementById("score");
+const timeText = document.getElementById("time");
+
+const startOverlay = document.getElementById("startOverlay");
+const resultOverlay = document.getElementById("resultOverlay");
+
+const finalScore = document.getElementById("finalScore");
+const rewardText = document.getElementById("reward");
+const moveHint = document.getElementById("moveHint");
+
+let score = 0;
+let timeLeft = 15;
+
+let gameActive = false;
+let diamondTimer;
+let countdownTimer;
+
+let basketX = 0;
+
+function setBasketCenter(){
+
+    const areaWidth = playArea.clientWidth;
+    const basketWidth = basket.offsetWidth;
+
+    basketX = (areaWidth - basketWidth) / 2;
+
+    basket.style.left = basketX + "px";
+    basket.style.transform = "none";
+}
+
+window.addEventListener("load", setBasketCenter);
+window.addEventListener("resize", setBasketCenter);
+
+
+/* START GAME */
+
+function startGame(){
+
+    score = 0;
+    timeLeft = 15;
+
+    scoreText.innerText = score;
+    timeText.innerText = timeLeft;
+
+    startOverlay.style.display = "none";
+    resultOverlay.style.display = "none";
+
+    gameActive = true;
+
+    setBasketCenter();
+
+    diamondTimer = setInterval(createDiamond, 650);
+
+    countdownTimer = setInterval(()=>{
+
+        timeLeft--;
+
+        timeText.innerText = timeLeft;
+
+        if(timeLeft <= 0){
+            endGame();
+        }
+
+    },1000);
+
+    setTimeout(()=>{
+        moveHint.style.opacity = ".25";
+    },2500);
+}
+
+
+/* CREATE DIAMOND */
+
+function createDiamond(){
+
+    if(!gameActive) return;
+
+    const diamond = document.createElement("div");
+
+    diamond.className = "diamond";
+
+    const size = 35 + Math.random()*14;
+
+    diamond.style.width = size+"px";
+    diamond.style.height = size+"px";
+
+    const maxX =
+        playArea.clientWidth - size - 10;
+
+    const startX =
+        5 + Math.random()*maxX;
+
+    diamond.style.left = startX+"px";
+    diamond.style.top = "-55px";
+
+    playArea.appendChild(diamond);
+
+    const speed =
+        2.4 + Math.random()*2.2;
+
+    let y = -55;
+
+    function fall(){
+
+        if(!gameActive){
+
+            diamond.remove();
+            return;
+
+        }
+
+        y += speed;
+
+        diamond.style.top = y+"px";
+
+        const diamondRect =
+            diamond.getBoundingClientRect();
+
+        const basketRect =
+            basket.getBoundingClientRect();
+
+        if(
+            diamondRect.bottom >= basketRect.top + 10 &&
+            diamondRect.top <= basketRect.bottom &&
+            diamondRect.right >= basketRect.left &&
+            diamondRect.left <= basketRect.right
+        ){
+
+            score++;
+
+            scoreText.innerText = score;
+
+            createSpark(
+                diamondRect.left,
+                diamondRect.top
+            );
+
+            diamond.remove();
+
+            return;
+        }
+
+        if(y > playArea.clientHeight){
+
+            diamond.remove();
+            return;
+        }
+
+        requestAnimationFrame(fall);
+    }
+
+    requestAnimationFrame(fall);
+}
+
+
+/* SPARK EFFECT */
+
+function createSpark(x,y){
+
+    const area =
+        playArea.getBoundingClientRect();
+
+    for(let i=0;i<7;i++){
+
+        const s =
+            document.createElement("div");
+
+        s.className="spark";
+
+        s.style.left =
+            (x-area.left+20)+"px";
+
+        s.style.top =
+            (y-area.top+20)+"px";
+
+        s.style.setProperty(
+            "--x",
+            ((Math.random()-.5)*80)+"px"
+        );
+
+        s.style.setProperty(
+            "--y",
+            ((Math.random()-.5)*80)+"px"
+        );
+
+        playArea.appendChild(s);
+
+        setTimeout(()=>s.remove(),600);
+    }
+}
+
+
+/* MOVE BASKET */
+
+function moveBasket(clientX){
+
+    if(!gameActive) return;
+
+    const rect =
+        playArea.getBoundingClientRect();
+
+    const width =
+        basket.offsetWidth;
+
+    let x =
+        clientX - rect.left - width/2;
+
+    if(x < 0) x = 0;
+
+    if(x > rect.width-width)
+        x = rect.width-width;
+
+    basketX = x;
+
+    basket.style.left =
+        basketX+"px";
+
+    basket.style.transform =
+        "none";
+}
+
+
+/* TOUCH */
+
+playArea.addEventListener(
+    "touchmove",
+    function(e){
+
+        if(!gameActive) return;
+
+        e.preventDefault();
+
+        const touch =
+            e.touches[0];
+
+        moveBasket(
+            touch.clientX
+        );
+
+    },
+    {passive:false}
+);
+
+playArea.addEventListener(
+    "touchstart",
+    function(e){
+
+        if(!gameActive) return;
+
+        const touch =
+            e.touches[0];
+
+        moveBasket(
+            touch.clientX
+        );
+    }
+);
+
+
+/* MOUSE */
+
+let mouseDown=false;
+
+playArea.addEventListener(
+    "mousedown",
+    function(e){
+
+        mouseDown=true;
+        moveBasket(e.clientX);
+
+    }
+);
+
+window.addEventListener(
+    "mouseup",
+    function(){
+        mouseDown=false;
+    }
+);
+
+playArea.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(mouseDown){
+            moveBasket(
+                e.clientX
+            );
+        }
+    }
+);
+
+
+/* END GAME */
+
+function endGame(){
+
+    if(!gameActive) return;
+
+    gameActive=false;
+
+    clearInterval(
+        diamondTimer
+    );
+
+    clearInterval(
+        countdownTimer
+    );
+
+    document
+        .querySelectorAll(".diamond")
+        .forEach(d=>d.remove());
+
+    finalScore.innerText =
+        score;
+
+    let reward;
+
+    if(score >= 15){
+
+        reward =
+        "🎁 MYSTERY GIFT";
+
+    }
+    else if(score >= 10){
+
+        reward =
+        "💎 BONUS VIP";
+
+    }
+    else if(score >= 5){
+
+        reward =
+        "🪙 10 VIP POINT";
+
+    }
+    else{
+
+        reward =
+        "⭐ BONUS PARTISIPASI";
+    }
+
+    rewardText.innerText =
+        reward;
+
+    resultOverlay.style.display =
+        "flex";
+}
+
+
+/* RESET DEMO */
+
+function resetDemo(){
+
+    resultOverlay.style.display =
+        "none";
+
+    startOverlay.style.display =
+        "flex";
+
+    moveHint.style.opacity="1";
+
+    timeLeft=15;
+    score=0;
+
+    timeText.innerText=15;
+    scoreText.innerText=0;
+
+    setBasketCenter();
+}
+</script>
+
+</body>
+</html>
