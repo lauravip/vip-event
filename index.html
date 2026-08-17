@@ -15,15 +15,6 @@ viewport-fit=cover">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.90.0/phaser.min.js"></script>
 
 <style>
-
-:root{
-    --gold:#F3C64C;
-    --gold2:#FFE28A;
-    --dark:#05080d;
-    --panel:#081522;
-    --blue:#43C8FF;
-}
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -31,31 +22,27 @@ viewport-fit=cover">
     -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
     background:#020407;
     font-family:Arial,Helvetica,sans-serif;
     touch-action:none;
-    overscroll-behavior:none;
 }
 
 body{
     display:flex;
     justify-content:center;
-    align-items:center;
 }
 
 #gameShell{
+    position:relative;
     width:100%;
     max-width:520px;
     height:100dvh;
-    position:relative;
     overflow:hidden;
-    background:#05080d;
-    box-shadow:0 0 70px rgba(0,0,0,.9);
+    background:#04080d;
 }
 
 #gameContainer{
@@ -63,26 +50,8 @@ body{
     inset:0;
 }
 
-.topShade{
-    position:absolute;
-    z-index:15;
-    top:0;
-    left:0;
-    right:0;
-    height:185px;
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(1,4,8,.82),
-            rgba(1,4,8,.34) 65%,
-            transparent
-        );
-}
-
 /* =========================
-   PLAYER HUD
+   HUD
 ========================= */
 
 .playerHud{
@@ -91,52 +60,29 @@ body{
     left:12px;
     top:12px;
     width:205px;
-
     display:flex;
     align-items:center;
     gap:9px;
-
     padding:8px 10px;
     border-radius:15px;
     border:1px solid rgba(244,198,76,.65);
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(8,20,34,.95),
-            rgba(2,8,15,.94)
-        );
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.4),
-        inset 0 1px rgba(255,255,255,.05);
-
+    background:linear-gradient(180deg,rgba(8,20,34,.95),rgba(2,8,15,.94));
+    box-shadow:0 10px 25px rgba(0,0,0,.42);
     pointer-events:none;
 }
 
 .avatar{
     width:44px;
     height:44px;
-
     border-radius:50%;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border:2px solid #E4B342;
-
     color:#FFD65E;
-
     font-size:12px;
     font-weight:900;
-
-    background:
-        radial-gradient(
-            circle,
-            #25384A,
-            #07101A 70%
-        );
+    background:radial-gradient(circle,#25384A,#07101A 70%);
 }
 
 .playerInfo{
@@ -163,77 +109,42 @@ body{
     margin-top:2px;
 }
 
-/* =========================
-   COUNTER
-========================= */
-
 .counterHud{
     position:absolute;
     z-index:30;
     right:12px;
     top:12px;
-
     width:112px;
-    padding:8px 9px 9px;
-
+    padding:8px;
     border-radius:15px;
     border:1px solid rgba(244,198,76,.65);
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(8,20,34,.95),
-            rgba(2,8,15,.94)
-        );
-
+    background:linear-gradient(180deg,rgba(8,20,34,.95),rgba(2,8,15,.94));
     text-align:center;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
-
     pointer-events:none;
 }
 
 .counterLabel{
-    font-size:7px;
-    letter-spacing:1.4px;
     color:#8094A7;
+    font-size:7px;
+    letter-spacing:1.3px;
 }
 
 .counterNumber{
-    margin-top:2px;
     color:#FFD45B;
     font-size:22px;
-    line-height:1;
     font-weight:950;
 }
-
-/* =========================
-   QUEST CARD
-========================= */
 
 .questCard{
     position:absolute;
     z-index:30;
-
     top:76px;
     left:12px;
-
     width:194px;
-
-    padding:11px 12px;
-
+    padding:10px 12px;
     border-radius:13px;
     border:1px solid rgba(245,199,79,.40);
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(5,17,29,.94),
-            rgba(2,8,15,.92)
-        );
-
-    box-shadow:0 9px 24px rgba(0,0,0,.35);
-
+    background:rgba(3,11,20,.92);
     pointer-events:none;
 }
 
@@ -241,7 +152,7 @@ body{
     color:#FFD05A;
     font-size:8px;
     font-weight:950;
-    letter-spacing:1.4px;
+    letter-spacing:1.3px;
 }
 
 .questText{
@@ -255,28 +166,17 @@ body{
     color:#FFD45E;
 }
 
-/* =========================
-   CHEST
-========================= */
-
 .chestHint{
     position:absolute;
     z-index:30;
-
     top:76px;
     right:12px;
-
     width:115px;
-
     padding:9px;
-
-    text-align:center;
-
     border-radius:12px;
-
-    background:rgba(3,11,20,.9);
     border:1px solid rgba(245,199,79,.3);
-
+    background:rgba(3,11,20,.9);
+    text-align:center;
     pointer-events:none;
 }
 
@@ -284,7 +184,6 @@ body{
     display:block;
     color:#74889B;
     font-size:6px;
-    letter-spacing:1px;
 }
 
 .chestHint strong{
@@ -301,69 +200,25 @@ body{
 #message{
     position:absolute;
     z-index:70;
-
     left:50%;
     bottom:190px;
-
     max-width:86%;
-
-    padding:9px 16px;
-
-    transform:
-        translateX(-50%)
-        translateY(10px);
-
-    opacity:0;
-
-    white-space:nowrap;
-
+    padding:9px 15px;
     border-radius:999px;
-
     border:1px solid rgba(245,199,79,.48);
-
+    background:rgba(2,8,15,.94);
     color:#FFE9A9;
     font-size:9px;
-
-    background:rgba(2,8,15,.94);
-
-    box-shadow:0 6px 20px rgba(0,0,0,.4);
-
-    transition:.22s;
-
+    white-space:nowrap;
+    opacity:0;
+    transform:translateX(-50%) translateY(10px);
+    transition:.2s;
     pointer-events:none;
 }
 
 #message.show{
     opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-/* =========================
-   SOUND
-========================= */
-
-#soundBtn{
-    position:absolute;
-    z-index:80;
-
-    left:16px;
-    bottom:172px;
-
-    width:38px;
-    height:38px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(245,199,79,.55);
-
-    background:rgba(3,11,19,.82);
-
-    color:white;
-
-    cursor:pointer;
+    transform:translateX(-50%) translateY(0);
 }
 
 /* =========================
@@ -373,32 +228,20 @@ body{
 #joystick{
     position:absolute;
     z-index:80;
-
     left:18px;
     bottom:24px;
-
-    width:130px;
-    height:130px;
-
+    width:126px;
+    height:126px;
     border-radius:50%;
-
     touch-action:none;
 }
 
 .joyBase{
     position:absolute;
     inset:0;
-
     border-radius:50%;
-
     border:1px solid rgba(245,199,79,.55);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(63,71,81,.42),
-            rgba(4,9,14,.66)
-        );
+    background:radial-gradient(circle,rgba(63,71,81,.42),rgba(4,9,14,.68));
 }
 
 .joyBase::before,
@@ -411,7 +254,6 @@ body{
 .joyBase::before{
     width:1px;
     height:72%;
-
     left:50%;
     top:14%;
 }
@@ -419,79 +261,47 @@ body{
 .joyBase::after{
     width:72%;
     height:1px;
-
-    left:14%;
     top:50%;
+    left:14%;
 }
 
 #joyKnob{
     position:absolute;
-
-    width:58px;
-    height:58px;
-
-    left:36px;
-    top:36px;
-
+    width:56px;
+    height:56px;
+    left:35px;
+    top:35px;
     border-radius:50%;
-
     border:1px solid rgba(255,214,92,.75);
-
-    background:
-        radial-gradient(
-            circle at 38% 28%,
-            #66727E,
-            #202833 62%,
-            #080C10
-        );
-
-    box-shadow:0 7px 20px rgba(0,0,0,.5);
+    background:radial-gradient(circle at 38% 28%,#66727E,#202833 62%,#080C10);
 }
 
 /* =========================
-   ACTIONS
+   ACTION BUTTONS
 ========================= */
 
 .actions{
     position:absolute;
     z-index:80;
-
     right:18px;
     bottom:26px;
-
-    width:170px;
-    height:165px;
+    width:165px;
+    height:160px;
 }
 
 .actionBtn{
     position:absolute;
-
     border-radius:50%;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
     border:2px solid rgba(245,199,79,.78);
-
-    background:
-        radial-gradient(
-            circle at 40% 28%,
-            #17344E,
-            #07131E 65%,
-            #020609
-        );
-
+    background:radial-gradient(circle at 40% 28%,#17344E,#07131E 65%,#020609);
     color:white;
-
-    cursor:pointer;
     user-select:none;
+    cursor:pointer;
     touch-action:none;
-
-    box-shadow:
-        0 7px 22px rgba(0,0,0,.48),
-        inset 0 0 16px rgba(44,181,255,.12);
 }
 
 .actionBtn:active{
@@ -499,31 +309,41 @@ body{
 }
 
 #interactBtn{
-    width:78px;
-    height:78px;
-
+    width:76px;
+    height:76px;
     right:0;
-    bottom:70px;
+    bottom:68px;
 }
 
 #dashBtn{
-    width:61px;
-    height:61px;
-
-    right:88px;
-    bottom:5px;
+    width:60px;
+    height:60px;
+    right:87px;
+    bottom:4px;
 }
 
 .actionIcon{
-    font-size:24px;
+    font-size:23px;
 }
 
 .actionText{
-    margin-top:5px;
-
+    margin-top:4px;
     color:#EFCB63;
     font-size:7px;
     font-weight:900;
+}
+
+#soundBtn{
+    position:absolute;
+    z-index:80;
+    left:16px;
+    bottom:165px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid rgba(245,199,79,.55);
+    background:rgba(3,11,19,.82);
+    color:white;
 }
 
 /* =========================
@@ -533,150 +353,79 @@ body{
 #intro{
     position:absolute;
     z-index:200;
-
     inset:0;
-
     display:flex;
-    align-items:center;
     justify-content:center;
-
+    align-items:center;
     padding:22px;
-
-    background:
-        radial-gradient(
-            circle at 50% 28%,
-            rgba(0,150,220,.16),
-            transparent 35%
-        ),
-        rgba(2,5,8,.95);
-
-    backdrop-filter:blur(8px);
+    background:rgba(2,5,8,.95);
+    backdrop-filter:blur(7px);
 }
 
 .introCard{
     width:100%;
-    max-width:380px;
-
-    padding:27px 22px 23px;
-
+    max-width:375px;
+    padding:26px 21px;
     border-radius:22px;
-
-    text-align:center;
-
     border:1px solid rgba(245,199,79,.67);
-
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(245,199,79,.16),
-            transparent 37%
-        ),
-        linear-gradient(
-            180deg,
-            #0A1927,
-            #03080E
-        );
-
-    box-shadow:0 30px 75px rgba(0,0,0,.72);
-}
-
-.flag{
-    font-size:31px;
+        radial-gradient(circle at 50% 0%,rgba(245,199,79,.16),transparent 37%),
+        linear-gradient(180deg,#0A1927,#03080E);
+    text-align:center;
 }
 
 .eventSmall{
-    margin-top:5px;
-
     color:#CDAA4F;
-
     font-size:8px;
     letter-spacing:4px;
 }
 
 .introTitle{
     margin-top:6px;
-
     font-size:30px;
     font-weight:950;
-
-    background:
-        linear-gradient(
-            #FFF8D7,
-            #F2C44B,
-            #9B6307
-        );
-
-    -webkit-background-clip:text;
-    color:transparent;
+    color:#FFD45B;
 }
 
 .introText{
-    margin-top:10px;
-
+    margin-top:9px;
     color:#97A6B4;
-
     font-size:11px;
     line-height:1.55;
 }
 
 .rules{
-    margin-top:17px;
-
+    margin-top:16px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-
     gap:7px;
 }
 
 .rule{
     padding:10px 5px;
-
     border-radius:10px;
-
     background:#071521;
-
     border:1px solid rgba(255,255,255,.05);
-
     color:#8EA2B4;
-
     font-size:8px;
 }
 
-.ruleIcon{
+.rule strong{
     display:block;
-
     margin-bottom:5px;
-
     color:#FFD35A;
-
     font-size:18px;
-    font-weight:950;
 }
 
 #startBtn{
     width:100%;
-
     margin-top:18px;
-
     padding:15px;
-
     border:0;
     border-radius:12px;
-
-    background:
-        linear-gradient(
-            #FFF2AA,
-            #F2C54B,
-            #A76C06
-        );
-
+    background:linear-gradient(#FFF2AA,#F2C54B,#A76C06);
     color:#181000;
-
-    font-size:13px;
     font-weight:950;
-
-    letter-spacing:.7px;
-
     cursor:pointer;
 }
 
@@ -687,159 +436,72 @@ body{
 #rewardOverlay{
     position:absolute;
     z-index:220;
-
     inset:0;
-
     display:none;
-
     justify-content:center;
     align-items:center;
-
     padding:22px;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,195,34,.17),
-            transparent 42%
-        ),
-        rgba(1,5,8,.96);
-
-    backdrop-filter:blur(7px);
+    background:rgba(1,5,8,.96);
 }
 
 .rewardCard{
     width:100%;
-    max-width:375px;
-
-    padding:27px 21px 22px;
-
+    max-width:365px;
+    padding:26px 20px;
     border-radius:22px;
-
-    text-align:center;
-
     border:1px solid rgba(245,199,79,.76);
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255,209,64,.2),
-            transparent 37%
-        ),
-        linear-gradient(
-            #0B1B2B,
-            #03080E
-        );
+    background:linear-gradient(#0B1B2B,#03080E);
+    text-align:center;
 }
 
 .rewardStatus{
     color:#48DD95;
-
     font-size:8px;
     font-weight:900;
-
-    letter-spacing:2.8px;
+    letter-spacing:2.5px;
 }
 
 .rewardTitle{
     margin-top:8px;
-
     color:#FFD45D;
-
-    font-size:24px;
+    font-size:23px;
     font-weight:950;
 }
 
-.rewardImage{
-    height:150px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    margin-top:10px;
-}
-
 #rewardChestImg{
-    width:145px;
-    max-height:130px;
-
-    object-fit:contain;
-
-    filter:
-        drop-shadow(
-            0 0 18px
-            rgba(255,201,44,.75)
-        );
-
-    animation:
-        chestFloat
-        1.3s
-        ease-in-out
-        infinite alternate;
-}
-
-@keyframes chestFloat{
-    from{
-        transform:translateY(4px) scale(.96);
-    }
-
-    to{
-        transform:translateY(-5px) scale(1.03);
-    }
+    width:140px;
+    margin:18px auto;
+    filter:drop-shadow(0 0 18px rgba(255,201,44,.75));
 }
 
 .rewardResult{
-    padding:14px 10px;
-
+    padding:14px;
     border-radius:12px;
-
     border:1px solid rgba(245,199,79,.3);
-
     background:#071623;
 }
 
 .rewardResult small{
     color:#788D9E;
-
     font-size:7px;
-    letter-spacing:1.2px;
 }
 
 .rewardResult strong{
     display:block;
-
-    margin-top:6px;
-
+    margin-top:5px;
     color:#FFD45A;
-
     font-size:18px;
 }
 
 #claimBtn{
     width:100%;
-
     margin-top:15px;
-
     padding:14px;
-
     border:0;
-
     border-radius:11px;
-
-    background:
-        linear-gradient(
-            #FFF0A0,
-            #F1C247,
-            #A66B06
-        );
-
+    background:linear-gradient(#FFF0A0,#F1C247,#A66B06);
     color:#181000;
-
-    font-size:13px;
     font-weight:950;
-
-    cursor:pointer;
 }
 
 /* =========================
@@ -849,48 +511,54 @@ body{
 #loading{
     position:absolute;
     z-index:300;
-
     inset:0;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
     background:#02070C;
-
-    color:#FFD45B;
 }
 
 .loaderRing{
     width:48px;
     height:48px;
-
     border-radius:50%;
-
     border:3px solid rgba(255,255,255,.08);
-
     border-top-color:#FFD45B;
-
     animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+    to{transform:rotate(360deg);}
 }
 
-.loadingText{
-    margin-top:12px;
+#loadingPercent{
+    margin-top:13px;
+    color:#FFD45B;
+    font-size:15px;
+    font-weight:900;
+}
 
+#loadingText{
+    margin-top:6px;
     color:#8395A4;
-
     font-size:9px;
-
-    letter-spacing:1.8px;
+    letter-spacing:1.4px;
 }
 
+#errorBox{
+    display:none;
+    width:82%;
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #a84343;
+    color:#ffc1c1;
+    background:#270909;
+    font-size:10px;
+    line-height:1.5;
+    text-align:center;
+}
 </style>
 </head>
 
@@ -900,136 +568,64 @@ body{
 
     <div id="gameContainer"></div>
 
-    <div class="topShade"></div>
-
-
     <div class="playerHud">
-
-        <div class="avatar">
-            9.9
-        </div>
+        <div class="avatar">9.9</div>
 
         <div class="playerInfo">
-
-            <div class="playerVip">
-                VIP EVENT
-            </div>
-
-            <div class="playerName">
-                Anak Nusantara
-            </div>
-
-            <div class="playerSub">
-                Jelajah Kota Indonesia
-            </div>
-
+            <div class="playerVip">VIP EVENT</div>
+            <div class="playerName">Anak Nusantara</div>
+            <div class="playerSub">Jelajah Kota Indonesia</div>
         </div>
-
     </div>
 
-
     <div class="counterHud">
-
-        <div class="counterLabel">
-            GOLDEN 9
-        </div>
-
+        <div class="counterLabel">GOLDEN 9</div>
         <div class="counterNumber">
             <span id="coinCount">0</span>/9
         </div>
-
     </div>
-
 
     <div class="questCard">
-
-        <div class="questTitle">
-            QUEST 9.9
-        </div>
+        <div class="questTitle">QUEST 9.9</div>
 
         <div class="questText">
-
             Jelajahi kota dan temukan
             <strong>9 Golden 9</strong>.
-
             Setelah lengkap, cari peti hadiah.
-
         </div>
-
     </div>
-
 
     <div class="chestHint">
-
-        <small>
-            ROYAL CHEST
-        </small>
-
-        <strong id="chestStatus">
-            TERKUNCI
-        </strong>
-
+        <small>ROYAL CHEST</small>
+        <strong id="chestStatus">TERKUNCI</strong>
     </div>
-
 
     <div id="message"></div>
 
-
-    <button id="soundBtn">
-        🔊
-    </button>
-
+    <button id="soundBtn">🔊</button>
 
     <div id="joystick">
-
         <div class="joyBase"></div>
-
         <div id="joyKnob"></div>
-
     </div>
-
 
     <div class="actions">
 
-        <div
-        class="actionBtn"
-        id="interactBtn">
-
-            <div class="actionIcon">
-                ✋
-            </div>
-
-            <div class="actionText">
-                INTERACT
-            </div>
-
+        <div class="actionBtn" id="interactBtn">
+            <div class="actionIcon">✋</div>
+            <div class="actionText">INTERACT</div>
         </div>
 
-
-        <div
-        class="actionBtn"
-        id="dashBtn">
-
-            <div class="actionIcon">
-                ⚡
-            </div>
-
-            <div class="actionText">
-                DASH
-            </div>
-
+        <div class="actionBtn" id="dashBtn">
+            <div class="actionIcon">⚡</div>
+            <div class="actionText">DASH</div>
         </div>
 
     </div>
-
 
     <div id="intro">
 
         <div class="introCard">
-
-            <div class="flag">
-                🇮🇩
-            </div>
 
             <div class="eventSmall">
                 SPECIAL EVENT 9.9
@@ -1040,61 +636,35 @@ body{
             </div>
 
             <div class="introText">
-
-                Mainkan karakter chibi,
-                keliling kota Indonesia
-                dan kumpulkan seluruh
-                Golden 9 untuk membuka
-                Mystery Chest.
-
+                Gerakkan karakter chibi keliling kota Indonesia,
+                cari 9 Golden 9, lalu buka peti hadiah.
             </div>
-
 
             <div class="rules">
 
                 <div class="rule">
-
-                    <span class="ruleIcon">
-                        ◉
-                    </span>
-
+                    <strong>◉</strong>
                     Jalan bebas
-
                 </div>
 
-
                 <div class="rule">
-
-                    <span class="ruleIcon">
-                        9
-                    </span>
-
+                    <strong>9</strong>
                     Cari 9 item
-
                 </div>
 
-
                 <div class="rule">
-
-                    <span class="ruleIcon">
-                        🎁
-                    </span>
-
+                    <strong>🎁</strong>
                     Buka peti
-
                 </div>
 
             </div>
-
 
             <button id="startBtn">
                 MULAI JELAJAH
             </button>
 
         </div>
-
     </div>
-
 
     <div id="rewardOverlay">
 
@@ -1108,134 +678,117 @@ body{
                 HADIAH 9.9 TERBUKA
             </div>
 
-
-            <div class="rewardImage">
-
-                <img
-                id="rewardChestImg"
-                src="asset/peti.png"
-                alt="Peti hadiah">
-
-            </div>
-
+            <img
+            id="rewardChestImg"
+            src="asset/peti.png"
+            alt="Peti">
 
             <div class="rewardResult">
-
-                <small>
-                    REWARD MEMBER
-                </small>
-
-                <strong>
-                    MYSTERY REWARD 9.9
-                </strong>
-
+                <small>REWARD MEMBER</small>
+                <strong>MYSTERY REWARD 9.9</strong>
             </div>
-
 
             <button id="claimBtn">
                 KLAIM HADIAH
             </button>
 
         </div>
-
     </div>
-
 
     <div id="loading">
 
         <div class="loaderRing"></div>
 
-        <div class="loadingText">
-            MEMUAT KOTA 9.9
+        <div id="loadingPercent">
+            0%
         </div>
+
+        <div id="loadingText">
+            MEMUAT ASSET GAME
+        </div>
+
+        <div id="errorBox"></div>
 
     </div>
 
 </div>
 
-
 <script>
 
-/* =========================================================
-   GAME SETTINGS
-========================================================= */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
 const MAP_WIDTH = 1536;
 const MAP_HEIGHT = 2048;
 
 /*
-PLAYER DIPERKECIL LAGI
-supaya lebih sesuai skala jalan,
-motor dan rumah pada map.
+Ukuran tampilan karakter di dunia game.
+Sekarang TIDAK akan berubah kembali menjadi ukuran asli.
 */
-const PLAYER_WIDTH = 9;
-const PLAYER_HEIGHT = 14;
+const PLAYER_DISPLAY_W = 42;
+const PLAYER_DISPLAY_H = 66;
 
-const PLAYER_SPEED = 165;
-const DASH_SPEED = 330;
+const COIN_DISPLAY = 24;
 
-/*
-Asset lain ikut dibuat proporsional.
-*/
-const COIN_SIZE = 18;
+const CHEST_W = 54;
+const CHEST_H = 46;
 
-const CHEST_WIDTH = 38;
-const CHEST_HEIGHT = 32;
+const WALK_SPEED = 165;
+const DASH_SPEED = 320;
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let player;
-let goldenGroup;
 let chest;
+let coins;
 
 let cursors;
 let keys;
 
+let baseScaleX = 1;
+let baseScaleY = 1;
+
 let collected = 0;
+
 let started = false;
 
 let dashActive = false;
 let dashReady = true;
 
-let joystickVector = {
+let joy = {
     x:0,
     y:0
 };
 
+let audioCtx = null;
 let soundEnabled = true;
 
-let audioContext = null;
 
-
-/* =========================================================
-   PHASER
-========================================================= */
+/* =====================================================
+   PHASER CONFIG
+===================================================== */
 
 const config = {
 
-    type:
-        Phaser.AUTO,
+    type:Phaser.AUTO,
 
-    parent:
-        "gameContainer",
+    parent:"gameContainer",
 
-    backgroundColor:
-        "#071017",
+    backgroundColor:"#061019",
 
     scale:{
-
-        mode:
-            Phaser.Scale.RESIZE,
-
-        autoCenter:
-            Phaser.Scale.CENTER_BOTH
+        mode:Phaser.Scale.RESIZE,
+        autoCenter:Phaser.Scale.CENTER_BOTH
     },
 
     physics:{
-
-        default:
-            "arcade",
+        default:"arcade",
 
         arcade:{
-
             gravity:{
                 y:0
             },
@@ -1245,57 +798,92 @@ const config = {
     },
 
     render:{
-
         antialias:true,
-
-        pixelArt:false,
-
-        roundPixels:false
+        pixelArt:false
     },
 
     scene:{
-
-        preload:
-            preload,
-
-        create:
-            create,
-
-        update:
-            update
+        preload:preload,
+        create:create,
+        update:update
     }
 };
 
 
 const game =
-new Phaser.Game(
-    config
-);
+new Phaser.Game(config);
 
 
-/* =========================================================
+/* =====================================================
    PRELOAD
-========================================================= */
+===================================================== */
 
 function preload(){
+
+    const loadingPercent =
+    document.getElementById("loadingPercent");
+
+    const loadingText =
+    document.getElementById("loadingText");
+
+    const errorBox =
+    document.getElementById("errorBox");
+
+
+    this.load.on(
+        "progress",
+
+        function(value){
+
+            loadingPercent.textContent =
+            Math.round(value * 100) + "%";
+        }
+    );
+
+
+    this.load.on(
+        "fileprogress",
+
+        function(file){
+
+            loadingText.textContent =
+            "MEMUAT " + file.key.toUpperCase();
+        }
+    );
+
+
+    this.load.on(
+        "loaderror",
+
+        function(file){
+
+            errorBox.style.display =
+            "block";
+
+            errorBox.innerHTML =
+            "Gagal memuat:<br><b>"
+            +
+            file.src
+            +
+            "</b><br>Periksa nama file di folder asset.";
+        }
+    );
+
 
     this.load.image(
         "map",
         "asset/map.png"
     );
 
-
     this.load.image(
         "player",
         "asset/karakter.png"
     );
 
-
     this.load.image(
         "coin",
         "asset/coin.png"
     );
-
 
     this.load.image(
         "chest",
@@ -1304,404 +892,296 @@ function preload(){
 }
 
 
-/* =========================================================
+/* =====================================================
    CREATE
-========================================================= */
+===================================================== */
 
 function create(){
 
-    const scene =
-        this;
+    const scene = this;
 
 
-    /* =========================
-       MAP
-    ========================= */
+    /* MAP */
 
     const map =
-        this.add.image(
-
-            MAP_WIDTH / 2,
-            MAP_HEIGHT / 2,
-
-            "map"
-        );
-
+    this.add.image(
+        MAP_WIDTH / 2,
+        MAP_HEIGHT / 2,
+        "map"
+    );
 
     map.setDisplaySize(
+        MAP_WIDTH,
+        MAP_HEIGHT
+    );
 
+    map.setDepth(-100);
+
+
+    this.physics.world.setBounds(
+        0,
+        0,
         MAP_WIDTH,
         MAP_HEIGHT
     );
 
 
-    map.setDepth(
-        -100
-    );
-
-
-    /* =========================
-       WORLD
-    ========================= */
-
-    this.physics.world.setBounds(
-
-        30,
-        30,
-
-        MAP_WIDTH - 60,
-        MAP_HEIGHT - 60
-    );
-
-
-    /* =========================
-       PLAYER
-    ========================= */
+    /* PLAYER */
 
     player =
-        this.physics.add.sprite(
-
-            760,
-            1760,
-
-            "player"
-        );
-
-
-    /*
-    PLAYER SANGAT KECIL.
-    */
-
-    player.setDisplaySize(
-
-        PLAYER_WIDTH,
-        PLAYER_HEIGHT
+    this.physics.add.sprite(
+        760,
+        1760,
+        "player"
     );
 
 
     /*
-    Titik pijakan karakter
-    di dekat telapak kaki.
+    PENTING:
+    ukuran karakter dibuat berdasarkan ukuran texture asli.
+
+    Kita simpan skalanya agar saat berjalan,
+    scale tidak pernah kembali ke 1.
     */
+
+    baseScaleX =
+    PLAYER_DISPLAY_W / player.width;
+
+    baseScaleY =
+    PLAYER_DISPLAY_H / player.height;
+
+
+    player.setScale(
+        baseScaleX,
+        baseScaleY
+    );
+
 
     player.setOrigin(
-
         .5,
-        .96
+        .92
     );
 
 
-    player.setDepth(
-        60
-    );
+    player.setDepth(50);
 
-
-    player.setCollideWorldBounds(
-        true
-    );
-
-
-    /* =========================
-       HITBOX
-    ========================= */
-
-    player.body.setSize(
-
-        4,
-        3
-    );
+    player.setCollideWorldBounds(true);
 
 
     /*
-    Pakai texture asli
-    untuk menentukan posisi kaki.
+    Hitbox hanya bagian bawah karakter.
     */
 
-    player.body.setOffset(
-
-        player.width / 2 - 2,
-
-        player.height - 4
+    player.body.setSize(
+        player.width * .34,
+        player.height * .10
     );
 
 
-    /* =========================
-       SHADOW
-    ========================= */
+    player.body.setOffset(
+        player.width * .33,
+        player.height * .86
+    );
+
+
+    /* SHADOW */
 
     player.shadow =
-        this.add.ellipse(
-
-            player.x,
-            player.y + .5,
-
-            6,
-            2.5,
-
-            0x000000,
-
-            .22
-        );
-
-
-    player.shadow.setDepth(
-        50
+    this.add.ellipse(
+        player.x,
+        player.y + 2,
+        28,
+        9,
+        0x000000,
+        .28
     );
 
+    player.shadow.setDepth(40);
 
-    /* =========================
-       CAMERA
-    ========================= */
+
+    /* CAMERA */
 
     this.cameras.main.setBounds(
-
         0,
         0,
-
         MAP_WIDTH,
         MAP_HEIGHT
     );
 
 
     this.cameras.main.startFollow(
-
         player,
-
         true,
-
-        .06,
-        .06
+        .08,
+        .08
     );
 
 
-    /*
-    Map terlihat cukup luas.
-    */
-
-    this.cameras.main.setZoom(
-        .68
-    );
+    this.cameras.main.setZoom(.72);
 
 
-    /* =========================
-       COINS
-    ========================= */
+    /* COINS */
 
-    goldenGroup =
-        this.physics.add.group();
+    coins =
+    this.physics.add.group();
 
 
-    const coinLocations = [
+    const coinPositions = [
 
-        [325,1760],
-
+        [330,1760],
         [720,1715],
-
         [1190,1620],
-
         [1180,1320],
-
         [750,1240],
-
         [300,1090],
-
         [410,735],
-
         [1050,720],
-
         [760,365]
 
     ];
 
 
-    coinLocations.forEach(
-
-        location => {
+    coinPositions.forEach(
+        function(position){
 
             createCoin(
-
                 scene,
-
-                location[0],
-
-                location[1]
+                position[0],
+                position[1]
             );
         }
     );
 
 
-    /* =========================
-       CHEST
-    ========================= */
+    /* CHEST */
 
     chest =
-        this.physics.add.image(
-
-            1165,
-            355,
-
-            "chest"
-        );
+    this.physics.add.image(
+        1165,
+        355,
+        "chest"
+    );
 
 
     chest.setDisplaySize(
-
-        CHEST_WIDTH,
-        CHEST_HEIGHT
+        CHEST_W,
+        CHEST_H
     );
 
 
-    chest.setDepth(
-        35
-    );
+    chest.setDepth(30);
 
+    chest.locked = true;
+    chest.opened = false;
 
-    chest.locked =
-        true;
-
-
-    chest.opened =
-        false;
-
-
-    /* =========================
-       CHEST GLOW
-    ========================= */
 
     chest.glow =
-        this.add.ellipse(
-
-            chest.x,
-            chest.y + 4,
-
-            48,
-            17,
-
-            0xFFD24E,
-
-            .11
-        );
-
-
-    chest.glow.setDepth(
-        25
+    this.add.ellipse(
+        chest.x,
+        chest.y + 6,
+        72,
+        24,
+        0xffd24e,
+        .10
     );
 
 
-    chest.glow.setBlendMode(
+    chest.glow
+    .setDepth(20)
+    .setBlendMode(
         Phaser.BlendModes.ADD
     );
 
 
     this.tweens.add({
 
-        targets:
-            chest.glow,
+        targets:chest.glow,
 
         alpha:{
-            from:.04,
-            to:.18
+            from:.05,
+            to:.20
         },
 
         scale:{
-            from:.88,
+            from:.9,
             to:1.15
         },
 
-        duration:
-            1200,
+        duration:1100,
 
-        yoyo:
-            true,
+        yoyo:true,
 
-        repeat:
-            -1
+        repeat:-1
     });
 
 
-    /* =========================
-       COIN COLLISION
-    ========================= */
+    /* COLLISION */
 
     this.physics.add.overlap(
-
         player,
-
-        goldenGroup,
-
+        coins,
         collectCoin,
-
         null,
-
-        scene
+        this
     );
 
 
-    /* =========================
-       KEYBOARD
-    ========================= */
+    /* KEYBOARD */
 
     cursors =
-        this.input.keyboard
-        .createCursorKeys();
+    this.input.keyboard.createCursorKeys();
 
 
     keys =
-        this.input.keyboard.addKeys({
+    this.input.keyboard.addKeys({
 
-            W:
-                Phaser.Input.Keyboard.KeyCodes.W,
+        W:
+        Phaser.Input.Keyboard.KeyCodes.W,
 
-            A:
-                Phaser.Input.Keyboard.KeyCodes.A,
+        A:
+        Phaser.Input.Keyboard.KeyCodes.A,
 
-            S:
-                Phaser.Input.Keyboard.KeyCodes.S,
+        S:
+        Phaser.Input.Keyboard.KeyCodes.S,
 
-            D:
-                Phaser.Input.Keyboard.KeyCodes.D
-        });
+        D:
+        Phaser.Input.Keyboard.KeyCodes.D
+
+    });
 
 
     this.input.keyboard.on(
-
         "keydown-SHIFT",
 
-        ()=>{
+        function(){
 
-            doDash(
-                scene
-            );
+            doDash(scene);
         }
     );
 
 
     this.input.keyboard.on(
-
         "keydown-E",
 
-        ()=>{
+        function(){
 
-            interact(
-                scene
-            );
+            interact(scene);
         }
     );
 
 
-    document
-        .getElementById(
-            "loading"
-        )
-        .style
-        .display =
-        "none";
+    /* LOADING FINISH */
+
+    document.getElementById(
+        "loading"
+    ).style.display =
+    "none";
 }
 
 
-/* =========================================================
+/* =====================================================
    CREATE COIN
-========================================================= */
+===================================================== */
 
 function createCoin(
     scene,
@@ -1710,95 +1190,65 @@ function createCoin(
 ){
 
     const glow =
-        scene.add.ellipse(
-
-            x,
-            y + 2,
-
-            25,
-            10,
-
-            0xFFD43C,
-
-            .13
-        );
-
-
-    glow.setDepth(
-        20
+    scene.add.ellipse(
+        x,
+        y + 4,
+        34,
+        13,
+        0xffd43c,
+        .14
     );
 
 
-    glow.setBlendMode(
+    glow
+    .setDepth(15)
+    .setBlendMode(
         Phaser.BlendModes.ADD
     );
 
 
     const coin =
-        scene.physics.add.image(
-
-            x,
-            y,
-
-            "coin"
-        );
+    scene.physics.add.image(
+        x,
+        y,
+        "coin"
+    );
 
 
     coin.setDisplaySize(
-
-        COIN_SIZE,
-        COIN_SIZE
+        COIN_DISPLAY,
+        COIN_DISPLAY
     );
 
 
-    coin.setDepth(
-        30
-    );
+    coin.setDepth(25);
 
+    coin.collectGlow = glow;
 
-    coin.collectGlow =
-        glow;
-
-
-    coin.body.setCircle(
-        coin.body.width / 2
-    );
-
-
-    /* =========================
-       FLOATING COIN
-    ========================= */
 
     scene.tweens.add({
 
-        targets:
-            coin,
+        targets:coin,
 
-        y:
-            y - 4,
+        y:y - 5,
 
-        duration:
-            900,
+        duration:850,
 
-        yoyo:
-            true,
+        yoyo:true,
 
-        repeat:
-            -1,
+        repeat:-1,
 
-        ease:
-            "Sine.easeInOut"
+        ease:"Sine.easeInOut"
     });
 
 
     scene.tweens.add({
 
-        targets:
-            glow,
+        targets:glow,
 
         alpha:{
             from:.05,
-            to:.18
+            to:.20
         },
 
         scale:{
@@ -1806,51 +1256,36 @@ function createCoin(
             to:1.15
         },
 
-        duration:
-            900,
+        duration:850,
 
-        yoyo:
-            true,
+        yoyo:true,
 
-        repeat:
-            -1
+        repeat:-1
     });
 
 
-    goldenGroup.add(
-        coin
-    );
+    coins.add(coin);
 }
 
 
-/* =========================================================
+/* =====================================================
    UPDATE
-========================================================= */
+===================================================== */
 
 function update(){
 
-    if(
-        !player
-    ){
+    if(!player){
         return;
     }
 
 
-    /* =========================
-       SHADOW
-    ========================= */
-
-    player.shadow.x =
-        player.x;
+    player.shadow.setPosition(
+        player.x,
+        player.y + 2
+    );
 
 
-    player.shadow.y =
-        player.y + .5;
-
-
-    if(
-        !started
-    ){
+    if(!started){
 
         player.setVelocity(
             0,
@@ -1861,25 +1296,16 @@ function update(){
     }
 
 
-    let moveX =
-        joystickVector.x;
+    let x = joy.x;
+    let y = joy.y;
 
-
-    let moveY =
-        joystickVector.y;
-
-
-    /* =========================
-       KEYBOARD
-    ========================= */
 
     if(
         cursors.left.isDown
         ||
         keys.A.isDown
     ){
-
-        moveX -= 1;
+        x -= 1;
     }
 
 
@@ -1888,8 +1314,7 @@ function update(){
         ||
         keys.D.isDown
     ){
-
-        moveX += 1;
+        x += 1;
     }
 
 
@@ -1898,8 +1323,7 @@ function update(){
         ||
         keys.W.isDown
     ){
-
-        moveY -= 1;
+        y -= 1;
     }
 
 
@@ -1908,132 +1332,117 @@ function update(){
         ||
         keys.S.isDown
     ){
-
-        moveY += 1;
+        y += 1;
     }
 
 
-    /* =========================
-       NORMALIZE
-    ========================= */
-
     const length =
-        Math.hypot(
-
-            moveX,
-            moveY
-        );
+    Math.hypot(x,y);
 
 
-    if(
-        length > 1
-    ){
+    if(length > 1){
 
-        moveX /= length;
-
-        moveY /= length;
+        x /= length;
+        y /= length;
     }
 
 
     const speed =
-        dashActive
-        ?
-        DASH_SPEED
-        :
-        PLAYER_SPEED;
+    dashActive
+    ?
+    DASH_SPEED
+    :
+    WALK_SPEED;
 
 
     player.setVelocity(
-
-        moveX * speed,
-
-        moveY * speed
+        x * speed,
+        y * speed
     );
 
 
-    /* =========================
-       DIRECTION
-    ========================= */
-
     if(
-        Math.abs(
-            moveX
-        )
-        >
-        .12
+        Math.abs(x) > .12
     ){
 
         player.setFlipX(
-            moveX < 0
+            x < 0
         );
     }
 
 
-    /* =========================
-       WALK MOTION
-    ========================= */
+    /*
+    WALK ANIMATION
 
-    if(
-        length > .08
-    ){
+    PENTING:
+    Tidak pernah setScale(1,1).
+    Semua animasi berdasarkan baseScale.
+    */
 
-        const walk =
-            Math.sin(
+    if(length > .08){
 
-                performance.now()
-                *
-                .019
-            );
+        const bob =
+        Math.sin(
+            performance.now()
+            *
+            .018
+        );
 
 
         player.rotation =
-            walk
-            *
-            .012;
+        bob * .012;
 
 
         player.setScale(
 
-            1,
-
-            1
-            +
-            Math.abs(
-                walk
-            )
+            baseScaleX
             *
-            .012
+            (
+                1
+                +
+                Math.abs(bob)
+                *
+                .012
+            ),
+
+            baseScaleY
+            *
+            (
+                1
+                +
+                Math.abs(bob)
+                *
+                .018
+            )
         );
 
 
         player.shadow.scaleX =
-            .93
-            +
-            Math.abs(
-                walk
-            )
-            *
-            .05;
+        .94
+        +
+        Math.abs(bob)
+        *
+        .05;
+
     }
     else{
 
         player.rotation =
-            Phaser.Math.Linear(
-
-                player.rotation,
-                0,
-                .22
-            );
+        Phaser.Math.Linear(
+            player.rotation,
+            0,
+            .20
+        );
 
 
         player.setScale(
-            1,
-            1
+            baseScaleX,
+            baseScaleY
         );
 
 
         player.shadow.scaleX =
-            1;
+        1;
     }
 
 
@@ -2041,203 +1450,93 @@ function update(){
 }
 
 
-/* =========================================================
+/* =====================================================
    COLLECT COIN
-========================================================= */
+===================================================== */
 
 function collectCoin(
     playerObject,
     coin
 ){
 
-    if(
-        coin.collected
-    ){
+    if(coin.collected){
         return;
     }
 
 
-    coin.collected =
-        true;
-
+    coin.collected = true;
 
     collected++;
 
 
-    document
-        .getElementById(
-            "coinCount"
-        )
-        .textContent =
-        collected;
+    document.getElementById(
+        "coinCount"
+    ).textContent =
+    collected;
 
 
-    const scene =
-        coin.scene;
-
-
-    const x =
-        coin.x;
-
-
-    const y =
-        coin.y;
-
-
-    if(
-        coin.collectGlow
-    ){
+    if(coin.collectGlow){
 
         coin.collectGlow.destroy();
     }
 
 
-    /* =========================
-       FLASH RING
-    ========================= */
+    const scene =
+    coin.scene;
+
 
     const ring =
-        scene.add.circle(
-
-            x,
-            y,
-
-            8,
-
-            0xFFD84F,
-
-            .55
-        );
-
-
-    ring.setDepth(
-        90
+    scene.add.circle(
+        coin.x,
+        coin.y,
+        10,
+        0xffd84f,
+        .55
     );
 
 
-    ring.setBlendMode(
+    ring
+    .setDepth(90)
+    .setBlendMode(
         Phaser.BlendModes.ADD
     );
 
 
     scene.tweens.add({
 
-        targets:
-            ring,
+        targets:ring,
 
-        scale:
-            2.8,
+        scale:3,
 
-        alpha:
-            0,
+        alpha:0,
 
-        duration:
-            380,
+        duration:400,
 
-        onComplete:()=>{
+        onComplete:function(){
 
             ring.destroy();
         }
-    );
-
-
-    /* =========================
-       +1
-    ========================= */
-
-    const plus =
-        scene.add.text(
-
-            x,
-            y - 10,
-
-            "+1",
-
-            {
-
-                fontFamily:
-                    "Arial",
-
-                fontSize:
-                    "12px",
-
-                fontStyle:
-                    "bold",
-
-                color:
-                    "#FFE064",
-
-                stroke:
-                    "#6F4800",
-
-                strokeThickness:
-                    2
-            }
-        );
-
-
-    plus.setOrigin(
-        .5
-    );
-
-
-    plus.setDepth(
-        100
-    );
+    });
 
 
     scene.tweens.add({
 
-        targets:
-            plus,
+        targets:coin,
 
-        y:
-            y - 38,
+        alpha:0,
 
-        alpha:
-            0,
+        duration:180,
 
-        duration:
-            650,
-
-        onComplete:()=>{
-
-            plus.destroy();
-        }
-    );
-
-
-    /* =========================
-       COIN DISAPPEAR
-    ========================= */
-
-    scene.tweens.add({
-
-        targets:
-            coin,
-
-        scale:
-            1.5,
-
-        alpha:
-            0,
-
-        duration:
-            170,
-
-        onComplete:()=>{
+        onComplete:function(){
 
             coin.destroy();
         }
-    );
+    });
 
 
     playCollectSound();
 
-
-    vibrate(
-        20
-    );
+    vibrate(20);
 
 
     showMessage(
@@ -2250,156 +1549,114 @@ function collectCoin(
     );
 
 
-    /* =========================
-       QUEST COMPLETE
-    ========================= */
-
-    if(
-        collected === 9
-    ){
+    if(collected === 9){
 
         chest.locked =
-            false;
+        false;
 
 
-        document
-            .getElementById(
-                "chestStatus"
-            )
-            .textContent =
-            "TERBUKA";
-
-
-        document
-            .getElementById(
-                "chestStatus"
-            )
-            .style
-            .color =
-            "#51E098";
-
-
-        chest.glow.setFillStyle(
-
-            0xFFD443,
-
-            .30
-        );
-
-
-        scene.tweens.add({
-
-            targets:
-                chest,
-
-            scaleX:
-                1.14,
-
-            scaleY:
-                1.14,
-
-            duration:
-                300,
-
-            yoyo:
-                true,
-
-            repeat:
-                2
-        });
-
-
-        playMissionSound();
-
-
-        setTimeout(()=>{
-
-            showMessage(
-                "9/9 lengkap! Cari peti hadiah."
-            );
-
-        },600);
-    }
-}
-
-
-/* =========================================================
-   CHEST STATUS
-========================================================= */
-
-function updateChestStatus(){
-
-    if(
-        !chest
-        ||
-        !player
-    ){
-        return;
-    }
-
-
-    const distance =
-        Phaser.Math.Distance.Between(
-
-            player.x,
-            player.y,
-
-            chest.x,
-            chest.y
-        );
-
-
-    const label =
+        const status =
         document.getElementById(
             "chestStatus"
         );
 
 
+        status.textContent =
+        "TERBUKA";
+
+
+        status.style.color =
+        "#51E098";
+
+
+        chest.glow.setFillStyle(
+            0xffd443,
+            .30
+        );
+
+
+        playMissionSound();
+
+
+        setTimeout(
+            function(){
+
+                showMessage(
+                    "9/9 lengkap! Cari peti hadiah."
+                );
+
+            },
+            600
+        );
+    }
+}
+
+
+/* =====================================================
+   CHEST
+===================================================== */
+
+function updateChestStatus(){
+
     if(
-        chest.locked
+        !player
+        ||
+        !chest
     ){
+        return;
+    }
 
-        label.textContent =
-            "TERKUNCI";
+
+    const status =
+    document.getElementById(
+        "chestStatus"
+    );
 
 
-        label.style.color =
-            "#EFC956";
+    if(chest.locked){
+
+        status.textContent =
+        "TERKUNCI";
+
+        status.style.color =
+        "#EFC956";
 
         return;
     }
 
 
-    if(
-        distance < 65
-    ){
+    const distance =
+    Phaser.Math.Distance.Between(
+        player.x,
+        player.y,
+        chest.x,
+        chest.y
+    );
 
-        label.textContent =
-            "TEKAN INTERACT";
 
+    if(distance < 85){
 
-        label.style.color =
-            "#51E09A";
+        status.textContent =
+        "TEKAN INTERACT";
+
     }
     else{
 
-        label.textContent =
-            "TERBUKA";
-
-
-        label.style.color =
-            "#51E09A";
+        status.textContent =
+        "TERBUKA";
     }
+
+
+    status.style.color =
+    "#51E09A";
 }
 
 
-/* =========================================================
+/* =====================================================
    INTERACT
-========================================================= */
+===================================================== */
 
-function interact(
-    scene
-){
+function interact(scene){
 
     if(
         !started
@@ -2413,24 +1670,19 @@ function interact(
 
 
     const distance =
-        Phaser.Math.Distance.Between(
-
-            player.x,
-            player.y,
-
-            chest.x,
-            chest.y
-        );
+    Phaser.Math.Distance.Between(
+        player.x,
+        player.y,
+        chest.x,
+        chest.y
+    );
 
 
-    if(
-        distance > 70
-    ){
+    if(distance > 90){
 
         showMessage(
-            "Dekati peti hadiah terlebih dahulu."
+            "Dekati peti hadiah."
         );
-
 
         playErrorSound();
 
@@ -2438,9 +1690,7 @@ function interact(
     }
 
 
-    if(
-        collected < 9
-    ){
+    if(collected < 9){
 
         showMessage(
 
@@ -2448,48 +1698,33 @@ function interact(
             +
             collected
             +
-            "/9 Golden 9"
+            "/9"
         );
-
 
         playErrorSound();
 
-
-        vibrate(
-            [30,30,30]
-        );
-
         return;
     }
 
 
-    openChest(
-        scene
-    );
+    openChest(scene);
 }
 
 
-/* =========================================================
+/* =====================================================
    OPEN CHEST
-========================================================= */
+===================================================== */
 
-function openChest(
-    scene
-){
+function openChest(scene){
 
-    if(
-        chest.opened
-    ){
+    if(chest.opened){
         return;
     }
 
 
-    chest.opened =
-        true;
+    chest.opened = true;
 
-
-    started =
-        false;
+    started = false;
 
 
     player.setVelocity(
@@ -2501,106 +1736,33 @@ function openChest(
     playRewardSound();
 
 
-    vibrate(
-        [35,40,70]
-    );
-
-
     scene.cameras.main.flash(
-
-        500,
-
+        450,
         255,
         216,
         80
     );
 
 
-    const burst =
-        scene.add.circle(
+    setTimeout(
+        function(){
 
-            chest.x,
-            chest.y,
-
-            14,
-
-            0xFFD24A,
-
-            .65
-        );
-
-
-    burst.setDepth(
-        100
-    );
-
-
-    burst.setBlendMode(
-        Phaser.BlendModes.ADD
-    );
-
-
-    scene.tweens.add({
-
-        targets:
-            burst,
-
-        scale:
-            4.5,
-
-        alpha:
-            0,
-
-        duration:
-            650,
-
-        onComplete:()=>{
-
-            burst.destroy();
-        }
-    );
-
-
-    scene.tweens.add({
-
-        targets:
-            chest,
-
-        scaleX:
-            1.28,
-
-        scaleY:
-            1.28,
-
-        duration:
-            280,
-
-        yoyo:
-            true
-    });
-
-
-    setTimeout(()=>{
-
-        document
-            .getElementById(
+            document.getElementById(
                 "rewardOverlay"
-            )
-            .style
-            .display =
+            ).style.display =
             "flex";
 
-    },650);
+        },
+        500
+    );
 }
 
 
-/* =========================================================
+/* =====================================================
    DASH
-========================================================= */
+===================================================== */
 
-function doDash(
-    scene
-){
+function doDash(scene){
 
     if(
         !started
@@ -2611,88 +1773,72 @@ function doDash(
     }
 
 
-    dashReady =
-        false;
-
-
-    dashActive =
-        true;
+    dashReady = false;
+    dashActive = true;
 
 
     playDashSound();
 
 
-    vibrate(
-        20
-    );
-
-
     const trail =
-        scene.add.ellipse(
-
-            player.x,
-            player.y,
-
-            16,
-            7,
-
-            0x43C9FF,
-
-            .22
-        );
-
-
-    trail.setDepth(
-        45
+    scene.add.ellipse(
+        player.x,
+        player.y,
+        26,
+        10,
+        0x43c9ff,
+        .22
     );
 
 
-    trail.setBlendMode(
+    trail
+    .setDepth(45)
+    .setBlendMode(
         Phaser.BlendModes.ADD
     );
 
 
     scene.tweens.add({
 
-        targets:
-            trail,
+        targets:trail,
 
-        scale:
-            2,
+        scale:2,
 
-        alpha:
-            0,
+        alpha:0,
 
-        duration:
-            260,
+        duration:260,
 
-        onComplete:()=>{
+        onComplete:function(){
 
             trail.destroy();
         }
     });
 
 
-    setTimeout(()=>{
+    setTimeout(
+        function(){
 
-        dashActive =
-            false;
+            dashActive = false;
 
-    },220);
+        },
+        220
+    );
 
 
-    setTimeout(()=>{
+    setTimeout(
+        function(){
 
-        dashReady =
-            true;
+            dashReady = true;
 
-    },820);
+        },
+        850
+    );
 }
 
 
-/* =========================================================
+/* =====================================================
    JOYSTICK
-========================================================= */
+===================================================== */
 
 const joystick =
 document.getElementById(
@@ -2700,14 +1846,13 @@ document.getElementById(
 );
 
 
-const joyKnob =
+const knob =
 document.getElementById(
     "joyKnob"
 );
 
 
-let joyActive =
-false;
+let joyActive = false;
 
 
 function updateJoystick(
@@ -2716,107 +1861,85 @@ function updateJoystick(
 ){
 
     const rect =
-        joystick
-        .getBoundingClientRect();
+    joystick.getBoundingClientRect();
 
 
     const centerX =
-        rect.left
-        +
-        rect.width / 2;
+    rect.left
+    +
+    rect.width / 2;
 
 
     const centerY =
-        rect.top
-        +
-        rect.height / 2;
+    rect.top
+    +
+    rect.height / 2;
 
 
     let dx =
-        clientX
-        -
-        centerX;
+    clientX - centerX;
 
 
     let dy =
-        clientY
-        -
-        centerY;
+    clientY - centerY;
 
 
-    const maxDistance =
-        36;
+    const max =
+    35;
 
 
-    const distance =
-        Math.hypot(
-
-            dx,
-            dy
-        );
+    const length =
+    Math.hypot(dx,dy);
 
 
-    if(
-        distance > maxDistance
-    ){
+    if(length > max){
 
         dx =
-            dx
-            /
-            distance
-            *
-            maxDistance;
-
+        dx / length * max;
 
         dy =
-            dy
-            /
-            distance
-            *
-            maxDistance;
+        dy / length * max;
     }
 
 
-    joyKnob.style.transform =
-        `translate(${dx}px,${dy}px)`;
+    knob.style.transform =
+    "translate("
+    +
+    dx
+    +
+    "px,"
+    +
+    dy
+    +
+    "px)";
 
 
-    joystickVector.x =
-        dx
-        /
-        maxDistance;
+    joy.x =
+    dx / max;
 
 
-    joystickVector.y =
-        dy
-        /
-        maxDistance;
+    joy.y =
+    dy / max;
 }
 
 
 function resetJoystick(){
 
-    joystickVector.x =
-        0;
+    joy.x = 0;
+    joy.y = 0;
 
 
-    joystickVector.y =
-        0;
-
-
-    joyKnob.style.transform =
-        "translate(0px,0px)";
+    knob.style.transform =
+    "translate(0px,0px)";
 }
 
 
 joystick.addEventListener(
-
     "pointerdown",
 
-    event=>{
+    function(event){
 
-        joyActive =
-            true;
+        joyActive = true;
 
 
         joystick.setPointerCapture(
@@ -2833,14 +1956,11 @@ joystick.addEventListener(
 
 
 joystick.addEventListener(
-
     "pointermove",
 
-    event=>{
+    function(event){
 
-        if(
-            joyActive
-        ){
+        if(joyActive){
 
             updateJoystick(
                 event.clientX,
@@ -2852,14 +1972,11 @@ joystick.addEventListener(
 
 
 joystick.addEventListener(
-
     "pointerup",
 
-    ()=>{
+    function(){
 
-        joyActive =
-            false;
-
+        joyActive = false;
 
         resetJoystick();
     }
@@ -2867,188 +1984,132 @@ joystick.addEventListener(
 
 
 joystick.addEventListener(
-
     "pointercancel",
 
-    ()=>{
+    function(){
 
-        joyActive =
-            false;
-
+        joyActive = false;
 
         resetJoystick();
     }
 );
 
 
-/* =========================================================
-   ACTION BUTTONS
-========================================================= */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
-document
-    .getElementById(
-        "dashBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "dashBtn"
+).addEventListener(
+    "pointerdown",
 
-        "pointerdown",
+    function(){
 
-        ()=>{
-
-            const scene =
-                game.scene
-                .getScenes(
-                    true
-                )[0];
+        const scene =
+        game.scene
+        .getScenes(true)[0];
 
 
-            if(scene){
+        if(scene){
 
-                doDash(
-                    scene
-                );
-            }
+            doDash(scene);
         }
-    );
+    }
+);
 
 
-document
-    .getElementById(
-        "interactBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "interactBtn"
+).addEventListener(
+    "pointerdown",
 
-        "pointerdown",
+    function(){
 
-        ()=>{
-
-            const scene =
-                game.scene
-                .getScenes(
-                    true
-                )[0];
+        const scene =
+        game.scene
+        .getScenes(true)[0];
 
 
-            if(scene){
+        if(scene){
 
-                interact(
-                    scene
-                );
-            }
+            interact(scene);
         }
-    );
+    }
+);
 
 
-/* =========================================================
+/* =====================================================
    START
-========================================================= */
+===================================================== */
 
-document
-    .getElementById(
-        "startBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "startBtn"
+).addEventListener(
+    "click",
 
-        "click",
+    function(){
 
-        ()=>{
-
-            initAudio();
+        initAudio();
 
 
-            if(
-                audioContext
-                &&
-                audioContext.state
-                ===
-                "suspended"
-            ){
-
-                audioContext.resume();
-            }
+        document.getElementById(
+            "intro"
+        ).style.display =
+        "none";
 
 
-            document
-                .getElementById(
-                    "intro"
-                )
-                .style
-                .display =
-                "none";
+        started = true;
 
 
-            started =
-                true;
+        playMissionSound();
 
 
-            playMissionSound();
+        showMessage(
+            "Quest dimulai • Temukan 9 Golden 9"
+        );
+    }
+);
 
 
-            showMessage(
-                "Quest dimulai • Temukan 9 Golden 9"
-            );
-        }
-    );
-
-
-/* =========================================================
+/* =====================================================
    CLAIM
-========================================================= */
+===================================================== */
 
-document
-    .getElementById(
-        "claimBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "claimBtn"
+).addEventListener(
+    "click",
 
-        "click",
+    function(){
 
-        ()=>{
-
-            initAudio();
-
-
-            playCollectSound();
+        alert(
+            "Mystery Reward 9.9 berhasil dibuka."
+        );
+    }
+);
 
 
-            alert(
-
-                "EVENT 9.9\n\n"
-                +
-                "Mystery Reward berhasil dibuka.\n\n"
-                +
-                "Ini masih versi demo. "
-                +
-                "Nanti tombol KLAIM HADIAH bisa diarahkan "
-                +
-                "ke Admin VIP atau sistem claim."
-            );
-        }
-    );
-
-
-/* =========================================================
+/* =====================================================
    MESSAGE
-========================================================= */
+===================================================== */
 
 let messageTimer;
 
 
-function showMessage(
-    text
-){
+function showMessage(text){
 
-    const message =
-        document.getElementById(
-            "message"
-        );
+    const box =
+    document.getElementById(
+        "message"
+    );
 
 
-    message.textContent =
-        text;
+    box.textContent =
+    text;
 
 
-    message.classList.add(
+    box.classList.add(
         "show"
     );
 
@@ -3059,27 +2120,26 @@ function showMessage(
 
 
     messageTimer =
-        setTimeout(()=>{
+    setTimeout(
+        function(){
 
-            message.classList.remove(
+            box.classList.remove(
                 "show"
             );
 
-        },1900);
+        },
+        1900
+    );
 }
 
 
-/* =========================================================
+/* =====================================================
    VIBRATION
-========================================================= */
+===================================================== */
 
-function vibrate(
-    pattern
-){
+function vibrate(pattern){
 
-    if(
-        navigator.vibrate
-    ){
+    if(navigator.vibrate){
 
         navigator.vibrate(
             pattern
@@ -3088,31 +2148,27 @@ function vibrate(
 }
 
 
-/* =========================================================
+/* =====================================================
    AUDIO
-========================================================= */
+===================================================== */
 
 function initAudio(){
 
-    if(
-        audioContext
-    ){
+    if(audioCtx){
         return;
     }
 
 
     const AudioContext =
-        window.AudioContext
-        ||
-        window.webkitAudioContext;
+    window.AudioContext
+    ||
+    window.webkitAudioContext;
 
 
-    if(
-        AudioContext
-    ){
+    if(AudioContext){
 
-        audioContext =
-            new AudioContext();
+        audioCtx =
+        new AudioContext();
     }
 }
 
@@ -3120,79 +2176,77 @@ function initAudio(){
 function tone(
     frequency,
     duration,
-    volume=.04,
-    type="sine",
-    delay=0
+    volume,
+    type,
+    delay
 ){
 
     if(
-        !soundEnabled
+        !audioCtx
         ||
-        !audioContext
+        !soundEnabled
     ){
         return;
     }
 
 
+    volume =
+    volume || .04;
+
+
+    type =
+    type || "sine";
+
+
+    delay =
+    delay || 0;
+
+
     const oscillator =
-        audioContext
-        .createOscillator();
+    audioCtx.createOscillator();
 
 
     const gain =
-        audioContext
-        .createGain();
+    audioCtx.createGain();
 
 
     oscillator.type =
-        type;
+    type;
 
 
     oscillator.frequency.value =
-        frequency;
+    frequency;
 
 
-    const now =
-        audioContext.currentTime
-        +
-        delay;
+    const start =
+    audioCtx.currentTime
+    +
+    delay;
 
 
     gain.gain.setValueAtTime(
         volume,
-        now
+        start
     );
 
 
     gain.gain.exponentialRampToValueAtTime(
-
         .001,
-
-        now
-        +
-        duration
+        start + duration
     );
 
 
-    oscillator.connect(
-        gain
-    );
-
+    oscillator.connect(gain);
 
     gain.connect(
-        audioContext.destination
+        audioCtx.destination
     );
 
 
-    oscillator.start(
-        now
-    );
-
+    oscillator.start(start);
 
     oscillator.stop(
-        now
-        +
-        duration
+        start + duration
     );
 }
 
@@ -3200,28 +2254,17 @@ function tone(
 function playCollectSound(){
 
     tone(
-        660,
-        .10,
-        .055,
-        "sine"
+        650,
+        .1,
+        .05
     );
 
-
     tone(
-        900,
+        950,
         .14,
-        .045,
+        .04,
         "triangle",
-        .055
-    );
-
-
-    tone(
-        1200,
-        .20,
-        .035,
-        "sine",
-        .12
+        .06
     );
 }
 
@@ -3231,17 +2274,15 @@ function playDashSound(){
     tone(
         180,
         .18,
-        .04,
-        "sine"
+        .04
     );
-
 
     tone(
         520,
-        .11,
-        .035,
+        .10,
+        .03,
         "triangle",
-        .04
+        .05
     );
 }
 
@@ -3249,19 +2290,10 @@ function playDashSound(){
 function playErrorSound(){
 
     tone(
-        180,
+        170,
         .14,
-        .055,
+        .05,
         "square"
-    );
-
-
-    tone(
-        130,
-        .16,
-        .045,
-        "square",
-        .07
     );
 }
 
@@ -3275,18 +2307,16 @@ function playMissionSound(){
         "triangle"
     );
 
-
     tone(
-        650,
+        660,
         .18,
         .04,
         "triangle",
         .10
     );
 
-
     tone(
-        870,
+        880,
         .25,
         .04,
         "triangle",
@@ -3304,7 +2334,6 @@ function playRewardSound(){
         "triangle"
     );
 
-
     tone(
         660,
         .20,
@@ -3313,59 +2342,42 @@ function playRewardSound(){
         .11
     );
 
-
     tone(
         880,
-        .24,
-        .055,
+        .25,
+        .05,
         "triangle",
-        .25
-    );
-
-
-    tone(
-        1180,
-        .55,
-        .045,
-        "sine",
-        .42
+        .24
     );
 }
 
 
-/* =========================================================
+/* =====================================================
    SOUND BUTTON
-========================================================= */
+===================================================== */
 
-document
-    .getElementById(
-        "soundBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "soundBtn"
+).addEventListener(
+    "click",
 
-        "click",
+    function(){
 
-        ()=>{
-
-            initAudio();
+        initAudio();
 
 
-            soundEnabled =
-                !soundEnabled;
+        soundEnabled =
+        !soundEnabled;
 
 
-            document
-                .getElementById(
-                    "soundBtn"
-                )
-                .textContent =
-                soundEnabled
-                ?
-                "🔊"
-                :
-                "🔇";
-        }
-    );
+        this.textContent =
+        soundEnabled
+        ?
+        "🔊"
+        :
+        "🔇";
+    }
+);
 
 </script>
 
