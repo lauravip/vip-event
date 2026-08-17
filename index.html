@@ -15,7 +15,6 @@ viewport-fit=cover">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.90.0/phaser.min.js"></script>
 
 <style>
-
 :root{
     --gold:#F3C64C;
     --gold2:#FFE28A;
@@ -63,13 +62,17 @@ body{
     inset:0;
 }
 
+/* =========================
+   TOP SHADE
+========================= */
+
 .topShade{
     position:absolute;
     z-index:15;
     top:0;
     left:0;
     right:0;
-    height:190px;
+    height:185px;
     pointer-events:none;
 
     background:
@@ -88,8 +91,10 @@ body{
 .playerHud{
     position:absolute;
     z-index:30;
+
     left:12px;
     top:12px;
+
     width:205px;
 
     display:flex;
@@ -97,6 +102,7 @@ body{
     gap:9px;
 
     padding:8px 10px;
+
     border-radius:15px;
     border:1px solid rgba(244,198,76,.65);
 
@@ -117,6 +123,7 @@ body{
 .avatar{
     width:44px;
     height:44px;
+
     border-radius:50%;
 
     display:flex;
@@ -126,6 +133,7 @@ body{
     border:2px solid #E4B342;
 
     color:#FFD65E;
+
     font-size:12px;
     font-weight:900;
 
@@ -168,10 +176,12 @@ body{
 .counterHud{
     position:absolute;
     z-index:30;
+
     right:12px;
     top:12px;
 
     width:112px;
+
     padding:8px 9px 9px;
 
     border-radius:15px;
@@ -185,7 +195,9 @@ body{
         );
 
     text-align:center;
+
     box-shadow:0 10px 30px rgba(0,0,0,.4);
+
     pointer-events:none;
 }
 
@@ -204,16 +216,18 @@ body{
 }
 
 /* =========================
-   QUEST
+   QUEST CARD
 ========================= */
 
 .questCard{
     position:absolute;
     z-index:30;
+
     top:76px;
     left:12px;
 
     width:194px;
+
     padding:11px 12px;
 
     border-radius:13px;
@@ -227,6 +241,7 @@ body{
         );
 
     box-shadow:0 9px 24px rgba(0,0,0,.35);
+
     pointer-events:none;
 }
 
@@ -255,31 +270,41 @@ body{
 .chestHint{
     position:absolute;
     z-index:30;
+
     top:76px;
     right:12px;
 
     width:115px;
+
     padding:9px;
 
     text-align:center;
+
     border-radius:12px;
 
     background:rgba(3,11,20,.9);
+
     border:1px solid rgba(245,199,79,.3);
+
     pointer-events:none;
 }
 
 .chestHint small{
     display:block;
+
     color:#74889B;
+
     font-size:6px;
     letter-spacing:1px;
 }
 
 .chestHint strong{
     display:block;
+
     margin-top:4px;
+
     color:#EFC956;
+
     font-size:8px;
 }
 
@@ -290,26 +315,34 @@ body{
 #message{
     position:absolute;
     z-index:70;
+
     left:50%;
     bottom:190px;
 
     max-width:86%;
+
     padding:9px 16px;
 
-    transform:translateX(-50%) translateY(10px);
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
     opacity:0;
 
     white-space:nowrap;
+
     border-radius:999px;
 
     border:1px solid rgba(245,199,79,.48);
 
     color:#FFE9A9;
+
     font-size:9px;
 
     background:rgba(2,8,15,.94);
 
     box-shadow:0 6px 20px rgba(0,0,0,.4);
+
     transition:.22s;
 
     pointer-events:none;
@@ -317,7 +350,10 @@ body{
 
 #message.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0);
+
+    transform:
+        translateX(-50%)
+        translateY(0);
 }
 
 /* =========================
@@ -327,6 +363,7 @@ body{
 #soundBtn{
     position:absolute;
     z-index:80;
+
     left:16px;
     bottom:172px;
 
@@ -334,9 +371,11 @@ body{
     height:38px;
 
     border-radius:50%;
+
     border:1px solid rgba(245,199,79,.55);
 
     background:rgba(3,11,19,.82);
+
     color:white;
 
     cursor:pointer;
@@ -349,6 +388,7 @@ body{
 #joystick{
     position:absolute;
     z-index:80;
+
     left:18px;
     bottom:24px;
 
@@ -356,6 +396,7 @@ body{
     height:130px;
 
     border-radius:50%;
+
     touch-action:none;
 }
 
@@ -364,6 +405,7 @@ body{
     inset:0;
 
     border-radius:50%;
+
     border:1px solid rgba(245,199,79,.55);
 
     background:
@@ -378,12 +420,14 @@ body{
 .joyBase::after{
     content:"";
     position:absolute;
+
     background:rgba(255,255,255,.07);
 }
 
 .joyBase::before{
     width:1px;
     height:72%;
+
     left:50%;
     top:14%;
 }
@@ -391,12 +435,14 @@ body{
 .joyBase::after{
     width:72%;
     height:1px;
+
     left:14%;
     top:50%;
 }
 
 #joyKnob{
     position:absolute;
+
     width:58px;
     height:58px;
 
@@ -404,6 +450,7 @@ body{
     top:36px;
 
     border-radius:50%;
+
     border:1px solid rgba(255,214,92,.75);
 
     background:
@@ -424,6 +471,7 @@ body{
 .actions{
     position:absolute;
     z-index:80;
+
     right:18px;
     bottom:26px;
 
@@ -452,8 +500,11 @@ body{
         );
 
     color:white;
+
     cursor:pointer;
+
     user-select:none;
+
     touch-action:none;
 
     box-shadow:
@@ -468,6 +519,7 @@ body{
 #interactBtn{
     width:78px;
     height:78px;
+
     right:0;
     bottom:70px;
 }
@@ -475,6 +527,7 @@ body{
 #dashBtn{
     width:61px;
     height:61px;
+
     right:88px;
     bottom:5px;
 }
@@ -485,7 +538,9 @@ body{
 
 .actionText{
     margin-top:5px;
+
     color:#EFCB63;
+
     font-size:7px;
     font-weight:900;
 }
@@ -497,6 +552,7 @@ body{
 #intro{
     position:absolute;
     z-index:200;
+
     inset:0;
 
     display:flex;
@@ -521,7 +577,9 @@ body{
     max-width:380px;
 
     padding:27px 22px 23px;
+
     border-radius:22px;
+
     text-align:center;
 
     border:1px solid rgba(245,199,79,.67);
@@ -547,13 +605,16 @@ body{
 
 .eventSmall{
     margin-top:5px;
+
     color:#CDAA4F;
+
     font-size:8px;
     letter-spacing:4px;
 }
 
 .introTitle{
     margin-top:6px;
+
     font-size:30px;
     font-weight:950;
 
@@ -565,46 +626,58 @@ body{
         );
 
     -webkit-background-clip:text;
+
     color:transparent;
 }
 
 .introText{
     margin-top:10px;
+
     color:#97A6B4;
+
     font-size:11px;
     line-height:1.55;
 }
 
 .rules{
     margin-top:17px;
+
     display:grid;
     grid-template-columns:repeat(3,1fr);
+
     gap:7px;
 }
 
 .rule{
     padding:10px 5px;
+
     border-radius:10px;
 
     background:#071521;
+
     border:1px solid rgba(255,255,255,.05);
 
     color:#8EA2B4;
+
     font-size:8px;
 }
 
 .ruleIcon{
     display:block;
+
     margin-bottom:5px;
 
     color:#FFD35A;
+
     font-size:18px;
     font-weight:950;
 }
 
 #startBtn{
     width:100%;
+
     margin-top:18px;
+
     padding:15px;
 
     border:0;
@@ -618,8 +691,10 @@ body{
         );
 
     color:#181000;
+
     font-size:13px;
     font-weight:950;
+
     letter-spacing:.7px;
 
     cursor:pointer;
@@ -632,9 +707,11 @@ body{
 #rewardOverlay{
     position:absolute;
     z-index:220;
+
     inset:0;
 
     display:none;
+
     justify-content:center;
     align-items:center;
 
@@ -656,7 +733,9 @@ body{
     max-width:375px;
 
     padding:27px 21px 22px;
+
     border-radius:22px;
+
     text-align:center;
 
     border:1px solid rgba(245,199,79,.76);
@@ -675,29 +754,37 @@ body{
 
 .rewardStatus{
     color:#48DD95;
+
     font-size:8px;
     font-weight:900;
+
     letter-spacing:2.8px;
 }
 
 .rewardTitle{
     margin-top:8px;
+
     color:#FFD45D;
+
     font-size:24px;
     font-weight:950;
 }
 
 .rewardImage{
     height:150px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     margin-top:10px;
 }
 
 #rewardChestImg{
     width:145px;
+
     max-height:130px;
+
     object-fit:contain;
 
     filter:
@@ -715,42 +802,55 @@ body{
 
 @keyframes chestFloat{
     from{
-        transform:translateY(4px) scale(.96);
+        transform:
+            translateY(4px)
+            scale(.96);
     }
 
     to{
-        transform:translateY(-5px) scale(1.03);
+        transform:
+            translateY(-5px)
+            scale(1.03);
     }
 }
 
 .rewardResult{
     padding:14px 10px;
+
     border-radius:12px;
 
     border:1px solid rgba(245,199,79,.3);
+
     background:#071623;
 }
 
 .rewardResult small{
     color:#788D9E;
+
     font-size:7px;
+
     letter-spacing:1.2px;
 }
 
 .rewardResult strong{
     display:block;
+
     margin-top:6px;
 
     color:#FFD45A;
+
     font-size:18px;
 }
 
 #claimBtn{
     width:100%;
+
     margin-top:15px;
+
     padding:14px;
 
     border:0;
+
     border-radius:11px;
 
     background:
@@ -761,6 +861,7 @@ body{
         );
 
     color:#181000;
+
     font-size:13px;
     font-weight:950;
 
@@ -774,6 +875,7 @@ body{
 #loading{
     position:absolute;
     z-index:300;
+
     inset:0;
 
     display:flex;
@@ -782,6 +884,7 @@ body{
     justify-content:center;
 
     background:#02070C;
+
     color:#FFD45B;
 }
 
@@ -792,6 +895,7 @@ body{
     border-radius:50%;
 
     border:3px solid rgba(255,255,255,.08);
+
     border-top-color:#FFD45B;
 
     animation:spin .8s linear infinite;
@@ -805,8 +909,11 @@ body{
 
 .loadingText{
     margin-top:12px;
+
     color:#8395A4;
+
     font-size:9px;
+
     letter-spacing:1.8px;
 }
 
@@ -820,7 +927,6 @@ body{
     <div id="gameContainer"></div>
 
     <div class="topShade"></div>
-
 
     <div class="playerHud">
 
@@ -1076,21 +1182,26 @@ body{
 <script>
 
 /* =========================================================
-   WORLD SETTINGS
+   SETTINGS
 ========================================================= */
 
 const MAP_WIDTH = 1536;
 const MAP_HEIGHT = 2048;
 
 /*
-Karakter dibuat kecil supaya cocok
-dengan map top-down.
+Ukuran karakter dibuat kecil agar cocok dengan
+skala jalan dan bangunan pada map.
 */
-const PLAYER_WIDTH = 38;
-const PLAYER_HEIGHT = 58;
+const PLAYER_WIDTH = 18;
+const PLAYER_HEIGHT = 27;
 
-const PLAYER_SPEED = 175;
-const DASH_SPEED = 380;
+const PLAYER_SPEED = 170;
+const DASH_SPEED = 355;
+
+const COIN_SIZE = 24;
+
+const CHEST_WIDTH = 52;
+const CHEST_HEIGHT = 44;
 
 let player;
 let goldenGroup;
@@ -1115,7 +1226,7 @@ let audioContext = null;
 
 
 /* =========================================================
-   GAME CONFIG
+   PHASER CONFIG
 ========================================================= */
 
 const config = {
@@ -1156,7 +1267,9 @@ const config = {
     render:{
 
         antialias:true,
+
         pixelArt:false,
+
         roundPixels:false
     },
 
@@ -1181,7 +1294,7 @@ new Phaser.Game(
 
 
 /* =========================================================
-   LOAD FILES
+   PRELOAD
 ========================================================= */
 
 function preload(){
@@ -1218,9 +1331,7 @@ function create(){
         this;
 
 
-    /* =========================
-       MAP
-    ========================= */
+    /* MAP */
 
     const map =
         this.add.image(
@@ -1241,23 +1352,19 @@ function create(){
     );
 
 
-    /* =========================
-       WORLD LIMIT
-    ========================= */
+    /* WORLD */
 
     this.physics.world.setBounds(
 
-        40,
-        40,
+        30,
+        30,
 
-        MAP_WIDTH - 80,
-        MAP_HEIGHT - 80
+        MAP_WIDTH - 60,
+        MAP_HEIGHT - 60
     );
 
 
-    /* =========================
-       PLAYER
-    ========================= */
+    /* PLAYER */
 
     player =
         this.physics.add.sprite(
@@ -1269,24 +1376,15 @@ function create(){
         );
 
 
-    /*
-    INI BAGIAN UTAMA YANG DIPERKECIL.
-    */
-
     player.setDisplaySize(
         PLAYER_WIDTH,
         PLAYER_HEIGHT
     );
 
 
-    /*
-    Origin bawah supaya karakter
-    terasa berdiri di jalan.
-    */
-
     player.setOrigin(
         .5,
-        .88
+        .94
     );
 
 
@@ -1301,19 +1399,14 @@ function create(){
 
 
     /*
-    Hitbox kecil hanya di area kaki.
+    Hitbox hanya di area kaki.
     */
 
     player.body.setSize(
-        18,
-        13
+        8,
+        6
     );
 
-
-    /*
-    Phaser masih memakai ukuran texture asli
-    untuk offset, jadi kita hitung otomatis.
-    */
 
     const textureWidth =
         player.width;
@@ -1325,28 +1418,26 @@ function create(){
 
     player.body.setOffset(
 
-        textureWidth / 2 - 9,
+        textureWidth / 2 - 4,
 
-        textureHeight - 18
+        textureHeight - 8
     );
 
 
-    /* =========================
-       SHADOW
-    ========================= */
+    /* SHADOW */
 
     player.shadow =
         this.add.ellipse(
 
             player.x,
-            player.y + 4,
+            player.y + 1,
 
-            23,
-            8,
+            11,
+            4,
 
             0x000000,
 
-            .30
+            .25
         );
 
 
@@ -1355,9 +1446,7 @@ function create(){
     );
 
 
-    /* =========================
-       CAMERA
-    ========================= */
+    /* CAMERA */
 
     this.cameras.main.setBounds(
 
@@ -1375,25 +1464,22 @@ function create(){
 
         true,
 
-        .07,
-        .07
+        .06,
+        .06
     );
 
 
     /*
-    Kamera dibuat sedikit lebih jauh.
-    Semakin kecil angka ini,
-    semakin luas map yang terlihat.
+    Kamera dibuat lebih jauh agar proporsi map
+    dan karakter terasa seperti game top-down.
     */
 
     this.cameras.main.setZoom(
-        .78
+        .66
     );
 
 
-    /* =========================
-       COINS
-    ========================= */
+    /* COINS */
 
     goldenGroup =
         this.physics.add.group();
@@ -1401,46 +1487,44 @@ function create(){
 
     const coinLocations = [
 
-        [330,1770],
+        [325,1760],
 
-        [730,1710],
+        [720,1715],
 
-        [1190,1630],
+        [1190,1620],
 
-        [1190,1320],
+        [1180,1320],
 
-        [760,1250],
+        [750,1240],
 
-        [310,1090],
+        [300,1090],
 
         [410,735],
 
         [1050,720],
 
-        [760,370]
+        [760,365]
 
     ];
 
 
     coinLocations.forEach(
 
-        position => {
+        location => {
 
             createCoin(
 
                 scene,
 
-                position[0],
+                location[0],
 
-                position[1]
+                location[1]
             );
         }
     );
 
 
-    /* =========================
-       CHEST
-    ========================= */
+    /* CHEST */
 
     chest =
         this.physics.add.image(
@@ -1452,13 +1536,9 @@ function create(){
         );
 
 
-    /*
-    Peti diperkecil supaya sesuai map.
-    */
-
     chest.setDisplaySize(
-        60,
-        52
+        CHEST_WIDTH,
+        CHEST_HEIGHT
     );
 
 
@@ -1475,18 +1555,16 @@ function create(){
         false;
 
 
-    /* =========================
-       CHEST GLOW
-    ========================= */
+    /* CHEST GLOW */
 
     chest.glow =
         this.add.ellipse(
 
             chest.x,
-            chest.y + 7,
+            chest.y + 5,
 
-            74,
-            28,
+            64,
+            22,
 
             0xFFD24E,
 
@@ -1511,7 +1589,7 @@ function create(){
 
         alpha:{
             from:.05,
-            to:.19
+            to:.18
         },
 
         scale:{
@@ -1530,9 +1608,7 @@ function create(){
     });
 
 
-    /* =========================
-       COLLECT
-    ========================= */
+    /* COLLECT */
 
     this.physics.add.overlap(
 
@@ -1548,9 +1624,7 @@ function create(){
     );
 
 
-    /* =========================
-       KEYBOARD
-    ========================= */
+    /* KEYBOARD */
 
     cursors =
         this.input.keyboard
@@ -1600,10 +1674,6 @@ function create(){
     );
 
 
-    /* =========================
-       LOADING OFF
-    ========================= */
-
     document
         .getElementById(
             "loading"
@@ -1628,10 +1698,10 @@ function createCoin(
         scene.add.ellipse(
 
             x,
-            y + 5,
+            y + 3,
 
-            42,
-            18,
+            32,
+            13,
 
             0xFFD43C,
 
@@ -1659,13 +1729,9 @@ function createCoin(
         );
 
 
-    /*
-    Coin juga diperkecil.
-    */
-
     coin.setDisplaySize(
-        28,
-        28
+        COIN_SIZE,
+        COIN_SIZE
     );
 
 
@@ -1689,7 +1755,7 @@ function createCoin(
             coin,
 
         y:
-            y - 7,
+            y - 5,
 
         duration:
             850,
@@ -1712,12 +1778,12 @@ function createCoin(
 
         alpha:{
             from:.06,
-            to:.22
+            to:.20
         },
 
         scale:{
-            from:.8,
-            to:1.2
+            from:.85,
+            to:1.15
         },
 
         duration:
@@ -1750,16 +1816,12 @@ function update(){
     }
 
 
-    /*
-    Shadow selalu mengikuti kaki.
-    */
-
     player.shadow.x =
         player.x;
 
 
     player.shadow.y =
-        player.y + 2;
+        player.y + 1;
 
 
     if(
@@ -1835,6 +1897,7 @@ function update(){
     ){
 
         moveX /= length;
+
         moveY /= length;
     }
 
@@ -1856,7 +1919,7 @@ function update(){
 
 
     /*
-    Balik kiri-kanan.
+    Balik karakter kalau bergerak kiri / kanan.
     */
 
     if(
@@ -1874,7 +1937,7 @@ function update(){
 
 
     /*
-    Animasi jalan kecil.
+    Fake walking motion untuk karakter 1 frame.
     */
 
     if(
@@ -1885,14 +1948,14 @@ function update(){
             Math.sin(
                 performance.now()
                 *
-                .016
+                .018
             );
 
 
         player.rotation =
             walk
             *
-            .015;
+            .012;
 
 
         player.setScale(
@@ -1904,7 +1967,7 @@ function update(){
                 walk
             )
             *
-            .018
+            .014
         );
 
 
@@ -1923,7 +1986,7 @@ function update(){
             Phaser.Math.Linear(
                 player.rotation,
                 0,
-                .20
+                .22
             );
 
 
@@ -1993,9 +2056,7 @@ function collectCoin(
     }
 
 
-    /* =========================
-       FLASH
-    ========================= */
+    /* FLASH */
 
     const ring =
         scene.add.circle(
@@ -2003,7 +2064,7 @@ function collectCoin(
             x,
             y,
 
-            12,
+            10,
 
             0xFFD84F,
 
@@ -2027,7 +2088,7 @@ function collectCoin(
             ring,
 
         scale:
-            3.2,
+            3,
 
         alpha:
             0,
@@ -2042,15 +2103,13 @@ function collectCoin(
     });
 
 
-    /* =========================
-       +1
-    ========================= */
+    /* +1 */
 
     const plus =
         scene.add.text(
 
             x,
-            y - 15,
+            y - 12,
 
             "+1",
 
@@ -2060,7 +2119,7 @@ function collectCoin(
                     "Arial",
 
                 fontSize:
-                    "16px",
+                    "14px",
 
                 fontStyle:
                     "bold",
@@ -2093,7 +2152,7 @@ function collectCoin(
             plus,
 
         y:
-            y - 55,
+            y - 48,
 
         alpha:
             0,
@@ -2114,7 +2173,7 @@ function collectCoin(
             coin,
 
         scale:
-            1.7,
+            1.6,
 
         alpha:
             0,
@@ -2126,7 +2185,7 @@ function collectCoin(
 
             coin.destroy();
         }
-    });
+    );
 
 
     playCollectSound();
@@ -2184,10 +2243,10 @@ function collectCoin(
                 chest,
 
             scaleX:
-                1.15,
+                1.14,
 
             scaleY:
-                1.15,
+                1.14,
 
             duration:
                 300,
@@ -2263,7 +2322,7 @@ function updateChestStatus(){
 
 
     if(
-        distance < 95
+        distance < 80
     ){
 
         label.textContent =
@@ -2272,7 +2331,6 @@ function updateChestStatus(){
 
         label.style.color =
             "#51E09A";
-
     }
     else{
 
@@ -2317,7 +2375,7 @@ function interact(
 
 
     if(
-        distance > 100
+        distance > 85
     ){
 
         showMessage(
@@ -2415,7 +2473,7 @@ function openChest(
             chest.x,
             chest.y,
 
-            22,
+            18,
 
             0xFFD24A,
 
@@ -2460,10 +2518,10 @@ function openChest(
             chest,
 
         scaleX:
-            1.3,
+            1.28,
 
         scaleY:
-            1.3,
+            1.28,
 
         duration:
             280,
@@ -2526,12 +2584,12 @@ function doDash(
             player.x,
             player.y,
 
-            32,
-            14,
+            24,
+            10,
 
             0x43C9FF,
 
-            .25
+            .24
         );
 
 
@@ -2551,13 +2609,13 @@ function doDash(
             trail,
 
         scale:
-            2.2,
+            2.1,
 
         alpha:
             0,
 
         duration:
-            300,
+            280,
 
         onComplete:()=>{
 
@@ -2571,7 +2629,7 @@ function doDash(
         dashActive =
             false;
 
-    },240);
+    },230);
 
 
     setTimeout(()=>{
@@ -2774,7 +2832,7 @@ joystick.addEventListener(
 
 
 /* =========================================================
-   BUTTONS
+   BUTTON EVENTS
 ========================================================= */
 
 document
@@ -2794,9 +2852,7 @@ document
                 )[0];
 
 
-            if(
-                scene
-            ){
+            if(scene){
 
                 doDash(
                     scene
@@ -2823,9 +2879,7 @@ document
                 )[0];
 
 
-            if(
-                scene
-            ){
+            if(scene){
 
                 interact(
                     scene
@@ -2915,7 +2969,7 @@ document
                 +
                 "Ini masih versi demo. "
                 +
-                "Nanti tombol ini bisa diarahkan "
+                "Nanti tombol KLAIM HADIAH bisa diarahkan "
                 +
                 "ke Admin VIP atau sistem claim."
             );
