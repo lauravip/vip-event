@@ -15,6 +15,7 @@ viewport-fit=cover">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.90.0/phaser.min.js"></script>
 
 <style>
+
 :root{
     --gold:#F3C64C;
     --gold2:#FFE28A;
@@ -62,10 +63,6 @@ body{
     inset:0;
 }
 
-/* =========================
-   TOP SHADE
-========================= */
-
 .topShade{
     position:absolute;
     z-index:15;
@@ -91,10 +88,8 @@ body{
 .playerHud{
     position:absolute;
     z-index:30;
-
     left:12px;
     top:12px;
-
     width:205px;
 
     display:flex;
@@ -102,7 +97,6 @@ body{
     gap:9px;
 
     padding:8px 10px;
-
     border-radius:15px;
     border:1px solid rgba(244,198,76,.65);
 
@@ -176,12 +170,10 @@ body{
 .counterHud{
     position:absolute;
     z-index:30;
-
     right:12px;
     top:12px;
 
     width:112px;
-
     padding:8px 9px 9px;
 
     border-radius:15px;
@@ -264,7 +256,7 @@ body{
 }
 
 /* =========================
-   CHEST STATUS
+   CHEST
 ========================= */
 
 .chestHint{
@@ -283,7 +275,6 @@ body{
     border-radius:12px;
 
     background:rgba(3,11,20,.9);
-
     border:1px solid rgba(245,199,79,.3);
 
     pointer-events:none;
@@ -291,20 +282,15 @@ body{
 
 .chestHint small{
     display:block;
-
     color:#74889B;
-
     font-size:6px;
     letter-spacing:1px;
 }
 
 .chestHint strong{
     display:block;
-
     margin-top:4px;
-
     color:#EFC956;
-
     font-size:8px;
 }
 
@@ -336,7 +322,6 @@ body{
     border:1px solid rgba(245,199,79,.48);
 
     color:#FFE9A9;
-
     font-size:9px;
 
     background:rgba(2,8,15,.94);
@@ -420,7 +405,6 @@ body{
 .joyBase::after{
     content:"";
     position:absolute;
-
     background:rgba(255,255,255,.07);
 }
 
@@ -502,9 +486,7 @@ body{
     color:white;
 
     cursor:pointer;
-
     user-select:none;
-
     touch-action:none;
 
     box-shadow:
@@ -540,7 +522,6 @@ body{
     margin-top:5px;
 
     color:#EFCB63;
-
     font-size:7px;
     font-weight:900;
 }
@@ -626,7 +607,6 @@ body{
         );
 
     -webkit-background-clip:text;
-
     color:transparent;
 }
 
@@ -782,7 +762,6 @@ body{
 
 #rewardChestImg{
     width:145px;
-
     max-height:130px;
 
     object-fit:contain;
@@ -802,15 +781,11 @@ body{
 
 @keyframes chestFloat{
     from{
-        transform:
-            translateY(4px)
-            scale(.96);
+        transform:translateY(4px) scale(.96);
     }
 
     to{
-        transform:
-            translateY(-5px)
-            scale(1.03);
+        transform:translateY(-5px) scale(1.03);
     }
 }
 
@@ -828,7 +803,6 @@ body{
     color:#788D9E;
 
     font-size:7px;
-
     letter-spacing:1.2px;
 }
 
@@ -927,6 +901,7 @@ body{
     <div id="gameContainer"></div>
 
     <div class="topShade"></div>
+
 
     <div class="playerHud">
 
@@ -1182,26 +1157,30 @@ body{
 <script>
 
 /* =========================================================
-   SETTINGS
+   GAME SETTINGS
 ========================================================= */
 
 const MAP_WIDTH = 1536;
 const MAP_HEIGHT = 2048;
 
 /*
-Ukuran karakter dibuat kecil agar cocok dengan
-skala jalan dan bangunan pada map.
+PLAYER DIPERKECIL LAGI
+supaya lebih sesuai skala jalan,
+motor dan rumah pada map.
 */
-const PLAYER_WIDTH = 18;
-const PLAYER_HEIGHT = 27;
+const PLAYER_WIDTH = 9;
+const PLAYER_HEIGHT = 14;
 
-const PLAYER_SPEED = 170;
-const DASH_SPEED = 355;
+const PLAYER_SPEED = 165;
+const DASH_SPEED = 330;
 
-const COIN_SIZE = 24;
+/*
+Asset lain ikut dibuat proporsional.
+*/
+const COIN_SIZE = 18;
 
-const CHEST_WIDTH = 52;
-const CHEST_HEIGHT = 44;
+const CHEST_WIDTH = 38;
+const CHEST_HEIGHT = 32;
 
 let player;
 let goldenGroup;
@@ -1222,11 +1201,12 @@ let joystickVector = {
 };
 
 let soundEnabled = true;
+
 let audioContext = null;
 
 
 /* =========================================================
-   PHASER CONFIG
+   PHASER
 ========================================================= */
 
 const config = {
@@ -1304,15 +1284,18 @@ function preload(){
         "asset/map.png"
     );
 
+
     this.load.image(
         "player",
         "asset/karakter.png"
     );
 
+
     this.load.image(
         "coin",
         "asset/coin.png"
     );
+
 
     this.load.image(
         "chest",
@@ -1331,17 +1314,22 @@ function create(){
         this;
 
 
-    /* MAP */
+    /* =========================
+       MAP
+    ========================= */
 
     const map =
         this.add.image(
+
             MAP_WIDTH / 2,
             MAP_HEIGHT / 2,
+
             "map"
         );
 
 
     map.setDisplaySize(
+
         MAP_WIDTH,
         MAP_HEIGHT
     );
@@ -1352,7 +1340,9 @@ function create(){
     );
 
 
-    /* WORLD */
+    /* =========================
+       WORLD
+    ========================= */
 
     this.physics.world.setBounds(
 
@@ -1364,7 +1354,9 @@ function create(){
     );
 
 
-    /* PLAYER */
+    /* =========================
+       PLAYER
+    ========================= */
 
     player =
         this.physics.add.sprite(
@@ -1376,15 +1368,26 @@ function create(){
         );
 
 
+    /*
+    PLAYER SANGAT KECIL.
+    */
+
     player.setDisplaySize(
+
         PLAYER_WIDTH,
         PLAYER_HEIGHT
     );
 
 
+    /*
+    Titik pijakan karakter
+    di dekat telapak kaki.
+    */
+
     player.setOrigin(
+
         .5,
-        .94
+        .96
     );
 
 
@@ -1398,46 +1401,46 @@ function create(){
     );
 
 
-    /*
-    Hitbox hanya di area kaki.
-    */
+    /* =========================
+       HITBOX
+    ========================= */
 
     player.body.setSize(
-        8,
-        6
+
+        4,
+        3
     );
 
 
-    const textureWidth =
-        player.width;
-
-
-    const textureHeight =
-        player.height;
-
+    /*
+    Pakai texture asli
+    untuk menentukan posisi kaki.
+    */
 
     player.body.setOffset(
 
-        textureWidth / 2 - 4,
+        player.width / 2 - 2,
 
-        textureHeight - 8
+        player.height - 4
     );
 
 
-    /* SHADOW */
+    /* =========================
+       SHADOW
+    ========================= */
 
     player.shadow =
         this.add.ellipse(
 
             player.x,
-            player.y + 1,
+            player.y + .5,
 
-            11,
-            4,
+            6,
+            2.5,
 
             0x000000,
 
-            .25
+            .22
         );
 
 
@@ -1446,7 +1449,9 @@ function create(){
     );
 
 
-    /* CAMERA */
+    /* =========================
+       CAMERA
+    ========================= */
 
     this.cameras.main.setBounds(
 
@@ -1470,16 +1475,17 @@ function create(){
 
 
     /*
-    Kamera dibuat lebih jauh agar proporsi map
-    dan karakter terasa seperti game top-down.
+    Map terlihat cukup luas.
     */
 
     this.cameras.main.setZoom(
-        .66
+        .68
     );
 
 
-    /* COINS */
+    /* =========================
+       COINS
+    ========================= */
 
     goldenGroup =
         this.physics.add.group();
@@ -1524,7 +1530,9 @@ function create(){
     );
 
 
-    /* CHEST */
+    /* =========================
+       CHEST
+    ========================= */
 
     chest =
         this.physics.add.image(
@@ -1537,6 +1545,7 @@ function create(){
 
 
     chest.setDisplaySize(
+
         CHEST_WIDTH,
         CHEST_HEIGHT
     );
@@ -1555,16 +1564,18 @@ function create(){
         false;
 
 
-    /* CHEST GLOW */
+    /* =========================
+       CHEST GLOW
+    ========================= */
 
     chest.glow =
         this.add.ellipse(
 
             chest.x,
-            chest.y + 5,
+            chest.y + 4,
 
-            64,
-            22,
+            48,
+            17,
 
             0xFFD24E,
 
@@ -1588,12 +1599,12 @@ function create(){
             chest.glow,
 
         alpha:{
-            from:.05,
+            from:.04,
             to:.18
         },
 
         scale:{
-            from:.85,
+            from:.88,
             to:1.15
         },
 
@@ -1608,7 +1619,9 @@ function create(){
     });
 
 
-    /* COLLECT */
+    /* =========================
+       COIN COLLISION
+    ========================= */
 
     this.physics.add.overlap(
 
@@ -1624,7 +1637,9 @@ function create(){
     );
 
 
-    /* KEYBOARD */
+    /* =========================
+       KEYBOARD
+    ========================= */
 
     cursors =
         this.input.keyboard
@@ -1698,14 +1713,14 @@ function createCoin(
         scene.add.ellipse(
 
             x,
-            y + 3,
+            y + 2,
 
-            32,
-            13,
+            25,
+            10,
 
             0xFFD43C,
 
-            .14
+            .13
         );
 
 
@@ -1730,6 +1745,7 @@ function createCoin(
 
 
     coin.setDisplaySize(
+
         COIN_SIZE,
         COIN_SIZE
     );
@@ -1749,16 +1765,20 @@ function createCoin(
     );
 
 
+    /* =========================
+       FLOATING COIN
+    ========================= */
+
     scene.tweens.add({
 
         targets:
             coin,
 
         y:
-            y - 5,
+            y - 4,
 
         duration:
-            850,
+            900,
 
         yoyo:
             true,
@@ -1777,8 +1797,8 @@ function createCoin(
             glow,
 
         alpha:{
-            from:.06,
-            to:.20
+            from:.05,
+            to:.18
         },
 
         scale:{
@@ -1787,7 +1807,7 @@ function createCoin(
         },
 
         duration:
-            850,
+            900,
 
         yoyo:
             true,
@@ -1816,12 +1836,16 @@ function update(){
     }
 
 
+    /* =========================
+       SHADOW
+    ========================= */
+
     player.shadow.x =
         player.x;
 
 
     player.shadow.y =
-        player.y + 1;
+        player.y + .5;
 
 
     if(
@@ -1844,6 +1868,10 @@ function update(){
     let moveY =
         joystickVector.y;
 
+
+    /* =========================
+       KEYBOARD
+    ========================= */
 
     if(
         cursors.left.isDown
@@ -1885,8 +1913,13 @@ function update(){
     }
 
 
+    /* =========================
+       NORMALIZE
+    ========================= */
+
     const length =
         Math.hypot(
+
             moveX,
             moveY
         );
@@ -1918,9 +1951,9 @@ function update(){
     );
 
 
-    /*
-    Balik karakter kalau bergerak kiri / kanan.
-    */
+    /* =========================
+       DIRECTION
+    ========================= */
 
     if(
         Math.abs(
@@ -1936,9 +1969,9 @@ function update(){
     }
 
 
-    /*
-    Fake walking motion untuk karakter 1 frame.
-    */
+    /* =========================
+       WALK MOTION
+    ========================= */
 
     if(
         length > .08
@@ -1946,9 +1979,10 @@ function update(){
 
         const walk =
             Math.sin(
+
                 performance.now()
                 *
-                .018
+                .019
             );
 
 
@@ -1961,29 +1995,31 @@ function update(){
         player.setScale(
 
             1,
+
             1
             +
             Math.abs(
                 walk
             )
             *
-            .014
+            .012
         );
 
 
         player.shadow.scaleX =
-            .92
+            .93
             +
             Math.abs(
                 walk
             )
             *
-            .06;
+            .05;
     }
     else{
 
         player.rotation =
             Phaser.Math.Linear(
+
                 player.rotation,
                 0,
                 .22
@@ -2056,7 +2092,9 @@ function collectCoin(
     }
 
 
-    /* FLASH */
+    /* =========================
+       FLASH RING
+    ========================= */
 
     const ring =
         scene.add.circle(
@@ -2064,7 +2102,7 @@ function collectCoin(
             x,
             y,
 
-            10,
+            8,
 
             0xFFD84F,
 
@@ -2088,28 +2126,30 @@ function collectCoin(
             ring,
 
         scale:
-            3,
+            2.8,
 
         alpha:
             0,
 
         duration:
-            400,
+            380,
 
         onComplete:()=>{
 
             ring.destroy();
         }
-    });
+    );
 
 
-    /* +1 */
+    /* =========================
+       +1
+    ========================= */
 
     const plus =
         scene.add.text(
 
             x,
-            y - 12,
+            y - 10,
 
             "+1",
 
@@ -2119,7 +2159,7 @@ function collectCoin(
                     "Arial",
 
                 fontSize:
-                    "14px",
+                    "12px",
 
                 fontStyle:
                     "bold",
@@ -2131,7 +2171,7 @@ function collectCoin(
                     "#6F4800",
 
                 strokeThickness:
-                    3
+                    2
             }
         );
 
@@ -2152,20 +2192,24 @@ function collectCoin(
             plus,
 
         y:
-            y - 48,
+            y - 38,
 
         alpha:
             0,
 
         duration:
-            700,
+            650,
 
         onComplete:()=>{
 
             plus.destroy();
         }
-    });
+    );
 
+
+    /* =========================
+       COIN DISAPPEAR
+    ========================= */
 
     scene.tweens.add({
 
@@ -2173,13 +2217,13 @@ function collectCoin(
             coin,
 
         scale:
-            1.6,
+            1.5,
 
         alpha:
             0,
 
         duration:
-            180,
+            170,
 
         onComplete:()=>{
 
@@ -2205,6 +2249,10 @@ function collectCoin(
         "/9"
     );
 
+
+    /* =========================
+       QUEST COMPLETE
+    ========================= */
 
     if(
         collected === 9
@@ -2232,7 +2280,9 @@ function collectCoin(
 
 
         chest.glow.setFillStyle(
+
             0xFFD443,
+
             .30
         );
 
@@ -2300,8 +2350,7 @@ function updateChestStatus(){
 
 
     const label =
-        document
-        .getElementById(
+        document.getElementById(
             "chestStatus"
         );
 
@@ -2322,7 +2371,7 @@ function updateChestStatus(){
 
 
     if(
-        distance < 80
+        distance < 65
     ){
 
         label.textContent =
@@ -2375,7 +2424,7 @@ function interact(
 
 
     if(
-        distance > 85
+        distance > 70
     ){
 
         showMessage(
@@ -2473,7 +2522,7 @@ function openChest(
             chest.x,
             chest.y,
 
-            18,
+            14,
 
             0xFFD24A,
 
@@ -2497,7 +2546,7 @@ function openChest(
             burst,
 
         scale:
-            5,
+            4.5,
 
         alpha:
             0,
@@ -2509,7 +2558,7 @@ function openChest(
 
             burst.destroy();
         }
-    });
+    );
 
 
     scene.tweens.add({
@@ -2584,12 +2633,12 @@ function doDash(
             player.x,
             player.y,
 
-            24,
-            10,
+            16,
+            7,
 
             0x43C9FF,
 
-            .24
+            .22
         );
 
 
@@ -2609,13 +2658,13 @@ function doDash(
             trail,
 
         scale:
-            2.1,
+            2,
 
         alpha:
             0,
 
         duration:
-            280,
+            260,
 
         onComplete:()=>{
 
@@ -2629,7 +2678,7 @@ function doDash(
         dashActive =
             false;
 
-    },230);
+    },220);
 
 
     setTimeout(()=>{
@@ -2637,7 +2686,7 @@ function doDash(
         dashReady =
             true;
 
-    },850);
+    },820);
 }
 
 
@@ -2701,6 +2750,7 @@ function updateJoystick(
 
     const distance =
         Math.hypot(
+
             dx,
             dy
         );
@@ -2832,7 +2882,7 @@ joystick.addEventListener(
 
 
 /* =========================================================
-   BUTTON EVENTS
+   ACTION BUTTONS
 ========================================================= */
 
 document
