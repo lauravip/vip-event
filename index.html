@@ -3,35 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Royal Quest 9.9 - Enhanced Edition</title>
+<title>Royal Quest 9.9 - Full Visual</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
 <style>
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-    html,body{width:100%;height:100%;overflow:hidden;background:#02050a;font-family:sans-serif;color:white;touch-action:none;display:flex;justify-content:center;align-items:center;}
+    html,body{width:100%;height:100%;overflow:hidden;background:#02050a;font-family:Arial,sans-serif;color:white;touch-action:none;display:flex;justify-content:center;align-items:center;}
     #gameShell{position:relative;width:100%;max-width:500px;height:100vh;max-height:920px;overflow:hidden;background:#05080d;box-shadow:0 0 70px rgba(0,0,0,.85);}
-    #gameContainer{position:absolute;inset:0;}
     
-    /* UI ELEMENTS */
+    /* TOP HUD */
     #topHud{position:absolute;z-index:50;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;pointer-events:none;}
     .player-card{width:205px;padding:8px;display:flex;align-items:center;gap:9px;border-radius:14px;background:linear-gradient(180deg,rgba(8,17,29,.96),rgba(2,6,12,.92));border:1px solid rgba(238,190,65,.65);}
-    .avatar{width:40px;height:40px;border-radius:50%;border:2px solid #e4b844;overflow:hidden;background:radial-gradient(circle,#3e4c5c,#0a1019);display:flex;align-items:center;justify-content:center;font-size:18px;}
-    .hp{margin-top:6px;height:6px;border-radius:99px;background:#151d24;overflow:hidden;}
-    .hp-fill{width:100%;height:100%;background:linear-gradient(90deg,#42c769,#87ea79);}
-    .quest-mini{width:100px;padding:8px;border-radius:13px;text-align:center;border:1px solid rgba(238,190,65,.65);background:rgba(8,17,29,.95);}
-    .counter{color:#ffd65c;font-size:18px;font-weight:900;}
-    
-    #miniMap{position:absolute;z-index:50;top:75px;right:10px;width:90px;height:90px;border-radius:12px;border:1px solid rgba(238,190,65,.45);background:rgba(2,7,14,.9);overflow:hidden;}
-    .map-dot{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffd24e;}
+    .avatar{width:44px;height:44px;border-radius:50%;border:2px solid #e4b844;background:radial-gradient(circle,#3e4c5c,#0a1019);display:flex;align-items:center;justify-content:center;font-size:18px;}
+    .hp{margin-top:6px;height:7px;border-radius:999px;overflow:hidden;background:#151d24;}
+    .hp-fill{width:100%;height:100%;background:linear-gradient(90deg,#42c769,#87ea79);box-shadow:0 0 8px rgba(65,224,110,.5);}
+    .quest-mini{width:115px;padding:8px;border-radius:13px;text-align:center;border:1px solid rgba(238,190,65,.65);background:rgba(8,17,29,.95);}
+    .counter{margin-top:3px;color:#ffd65c;font-size:21px;font-weight:900;}
 
-    #joystick{position:absolute;z-index:80;left:25px;bottom:25px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);}
-    #joyKnob{position:absolute;width:50px;height:50px;left:35px;top:35px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #555, #111);border:2px solid #ffd65c;}
+    /* JOYSTICK */
+    #joystick{position:absolute;z-index:80;left:25px;bottom:35px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,0.03);border:1px solid rgba(238,190,65,0.2);}
+    #joyKnob{position:absolute;width:60px;height:60px;left:35px;top:35px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #555, #111);border:2px solid #ffd65c;box-shadow:0 5px 15px rgba(0,0,0,0.5);}
 
-    .action-btn{position:absolute;z-index:80;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,#17344d,#02060a);border:2px solid #efc246;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:bold;cursor:pointer;}
-    #interactBtn{right:20px;bottom:100px;}
-    #dashBtn{right:100px;bottom:30px;width:60px;height:60px;}
+    /* ACTION BUTTONS */
+    .action{position:absolute;z-index:80;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;background:radial-gradient(circle at 40% 30%,#17344d,#02060a);border:2px solid #efc246;box-shadow:0 6px 20px rgba(0,0,0,0.5);}
+    #interactBtn{width:75px;height:75px;right:20px;bottom:110px;}
+    #dashBtn{width:65px;height:65px;right:105px;bottom:40px;}
+    .action-label{font-size:8px;font-weight:bold;color:#f1cc63;margin-top:2px;}
 
-    #intro{position:absolute;inset:0;z-index:100;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;}
-    .btn-start{margin-top:20px;padding:15px 40px;background:linear-gradient(#ffe082,#b28900);border:none;border-radius:10px;font-weight:bold;cursor:pointer;}
+    /* MESSAGES */
+    #msg{position:absolute;z-index:100;bottom:200px;left:50%;transform:translateX(-50%);padding:10px 20px;background:rgba(0,0,0,0.85);border:1px solid #ffd65c;border-radius:20px;font-size:12px;color:#fff;display:none;}
+
+    /* INTRO & REWARD */
+    #intro, #reward{position:absolute;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;}
+    .card{padding:25px;border-radius:20px;border:1px solid #ffd65c;background:#0b1724;}
+    button{margin-top:20px;padding:15px 30px;background:linear-gradient(#ffe082,#b28900);border:none;border-radius:10px;font-weight:bold;width:100%;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -43,158 +47,88 @@
         <div class="player-card">
             <div class="avatar">🇮🇩</div>
             <div style="flex:1">
-                <div style="font-size:8px;color:#ffd65f">VIP 9.9</div>
-                <div style="font-size:11px;font-weight:bold">Anak Nusantara</div>
+                <div style="font-size:7px;letter-spacing:1px;color:#ffd65f">VIP EVENT 9.9</div>
+                <div style="font-size:12px;font-weight:900">Anak Nusantara</div>
                 <div class="hp"><div class="hp-fill"></div></div>
             </div>
         </div>
         <div class="quest-mini">
-            <div style="font-size:7px">GOLDEN 9</div>
+            <small style="font-size:7px;color:#8192a2">GOLDEN 9</small>
             <div class="counter"><span id="count">0</span>/9</div>
         </div>
     </div>
 
-    <div id="miniMap">
-        <div style="position:absolute;width:100%;height:100%;background:#111">
-             <div style="position:absolute;left:48%;top:0;width:4px;height:100%;background:#333"></div>
-             <div id="mapPlayer" style="position:absolute;width:6px;height:6px;background:#00d2ff;border-radius:50%;left:45px;top:45px;"></div>
+    <div id="msg">Pesan Muncul di sini</div>
+
+    <div id="joystick"><div id="joyKnob"></div></div>
+    <div id="interactBtn" class="action">
+        <span style="font-size:24px">✋</span>
+        <div class="action-label">INTERACT</div>
+    </div>
+    <div id="dashBtn" class="action">
+        <span style="font-size:20px">⚡</span>
+        <div class="action-label">DASH</div>
+    </div>
+
+    <div id="intro">
+        <div class="card">
+            <h1 style="color:#ffd65c;font-size:28px">JELAJAH KOTA 9.9</h1>
+            <p style="color:#96a4b2;margin:15px 0;font-size:14px">Jelajahi kota, temukan 9 Golden 9, dan klaim hadiah rahasiamu!</p>
+            <button onclick="startGame()">MULAI PETUALANGAN</button>
         </div>
     </div>
 
-    <div id="joystick"><div id="joyKnob"></div></div>
-    <div id="interactBtn" class="action-btn"><div>✋</div>INTERACT</div>
-    <div id="dashBtn" class="action-btn"><div>⚡</div>DASH</div>
-
-    <div id="intro">
-        <div>
-            <h1 style="color:#ffd65c">JELAJAH KOTA 9.9</h1>
-            <p style="font-size:12px;margin:10px 0;color:#ccc">Temukan 9 item emas di sekitar kota Indonesia.<br>Gunakan Joystick untuk jalan.</p>
-            <button class="btn-start" onclick="startGame()">MULAI JELAJAH</button>
+    <div id="reward" style="display:none">
+        <div class="card">
+            <h2 style="color:#42db91">MISI BERHASIL!</h2>
+            <div style="font-size:50px;margin:20px">🎁</div>
+            <p>Kamu telah membuka Peti Hadiah 9.9</p>
+            <button onclick="location.reload()">KLAIM HADIAH</button>
         </div>
     </div>
 </div>
 
 <script>
-const WORLD_W = 1600, WORLD_H = 1600;
+const WORLD_W = 1600, WORLD_H = 1900;
 let player, joystickVector = {x:0, y:0}, gameStarted = false, goldenCount = 0;
 
 const config = {
     type: Phaser.AUTO,
     parent: 'gameContainer',
     width: 500, height: 920,
-    physics: { default: 'arcade' },
+    physics: { default: 'arcade', arcade: { gravity: { y: 0 } } },
     scene: { preload, create, update }
 };
 
 const game = new Phaser.Game(config);
 
-function preload() {} // Tidak pakai asset luar
+function preload() {
+    // MEMUAT GAMBAR (PASTIKAN FILE ADA DI FOLDER assets/)
+    this.load.image('city', 'assets/kota-indonesia.jpg');
+    this.load.image('player', 'assets/karakter.png');
+    this.load.image('angkot', 'assets/angkot.png');
+    this.load.image('golden', 'assets/golden9.png');
+    this.load.image('chest', 'assets/chest.png');
+}
 
 function create() {
+    const scene = this;
     this.physics.world.setBounds(0, 0, WORLD_W, WORLD_H);
 
-    // 1. LANTAI / GROUND TEXTURE
-    let graphics = this.add.graphics();
-    graphics.fillStyle(0x222222, 1);
-    graphics.fillRect(0, 0, WORLD_W, WORLD_H);
-    
-    // Grid jalanan agar terasa bergerak
-    graphics.lineStyle(2, 0x2a2a2a, 1);
-    for(let i=0; i<WORLD_W; i+=80) graphics.lineBetween(i, 0, i, WORLD_H);
-    for(let i=0; i<WORLD_H; i+=80) graphics.lineBetween(0, i, WORLD_W, i);
-
-    // Aspal Utama
-    this.add.rectangle(WORLD_W/2, WORLD_H/2, 400, WORLD_H, 0x1a1a1a).setDepth(-10);
-    this.add.rectangle(WORLD_W/2, WORLD_H/2, 10, WORLD_H, 0xfff0a0, 0.3).setDepth(-9); // Garis jalan
-
-    // 2. BANGUNAN & WARUNG (PROCEDURAL)
-    const spots = [
-        {x: 200, y: 300, w: 180, h: 150, c: 0x3e2723, t: "WARUNG NASI"},
-        {x: 1400, y: 600, w: 180, h: 150, c: 0x1b5e20, t: "TOKO KOPI"},
-        {x: 200, y: 1000, w: 180, h: 200, c: 0x01579b, t: "MART"},
-        {x: 1400, y: 1300, w: 180, h: 150, c: 0xbf360c, t: "BENGKEL"}
-    ];
-
-    spots.forEach(s => {
-        this.add.rectangle(s.x, s.y, s.w, s.h, s.c).setStrokeStyle(4, 0xffd65c);
-        this.add.text(s.x, s.y - s.h/2 - 15, s.t, {fontSize: '14px', weight: 'bold'}).setOrigin(0.5);
-    });
-
-    // 3. POHON
-    for(let i=0; i<20; i++) {
-        let tx = Phaser.Math.Between(50, WORLD_W-50);
-        let ty = Phaser.Math.Between(50, WORLD_H-50);
-        if(Math.abs(tx - WORLD_W/2) > 250) { // Jangan di tengah jalan
-            this.add.circle(tx, ty, 20, 0x1b5e20);
-            this.add.circle(tx, ty-10, 15, 0x2e7d32);
-        }
+    // 1. BACKGROUND (CITY MAP)
+    if (this.textures.exists('city')) {
+        let map = this.add.image(WORLD_W/2, WORLD_H/2, 'city');
+        map.setDisplaySize(WORLD_W, WORLD_H);
+    } else {
+        // Fallback jika gambar tidak ditemukan
+        this.add.rectangle(WORLD_W/2, WORLD_H/2, WORLD_W, WORLD_H, 0x222222);
     }
 
-    // 4. KARAKTER (Batik Style)
-    player = this.physics.add.container(WORLD_W/2, WORLD_H - 200);
-    let pBody = this.add.rectangle(0, 0, 40, 60, 0x111111).setStrokeStyle(2, 0xffd65c);
-    let pHead = this.add.circle(0, -45, 18, 0xdbad87);
-    let pCap = this.add.rectangle(0, -55, 22, 10, 0x000000); // Peci
-    let pPatch = this.add.rectangle(10, -10, 10, 6, 0xff0000); // Bendera Kecil
-    player.add([pBody, pHead, pCap, pPatch]);
-    this.physics.add.existing(player);
-    player.body.setCollideWorldBounds(true);
+    // 2. PLAYER SPRITE
+    player = this.physics.add.sprite(800, 1600, 'player');
+    player.setCollideWorldBounds(true);
+    player.setDisplaySize(80, 130); // Sesuaikan ukuran
+    player.setDepth(10);
 
-    // 5. GOLDEN ITEMS
-    this.goldens = this.physics.add.group();
-    const goldLocations = [[300,300], [1300,500], [800,400], [400,800], [1200,900], [700,1200], [200,1400], [1400,100], [800,800]];
-    goldLocations.forEach(loc => {
-        let g = this.add.circle(loc[0], loc[1], 15, 0xffd65c);
-        this.add.text(loc[0], loc[1], "9", {fontSize:'16px', color:'#000', weight:'bold'}).setOrigin(0.5);
-        this.goldens.add(g);
-        this.tweens.add({ targets: g, y: loc[1]-10, duration: 600, yoyo: true, repeat: -1 });
-    });
-
-    this.physics.add.overlap(player, this.goldens, (p, g) => {
-        g.destroy();
-        goldenCount++;
-        document.getElementById('count').innerText = goldenCount;
-        if(goldenCount === 9) alert("Misi Selesai! Cari Peti di utara.");
-    });
-
-    this.cameras.main.startFollow(player, true, 0.1, 0.1);
-    this.cameras.main.setZoom(1.2);
-}
-
-function update() {
-    if(!gameStarted) return;
-    const speed = 200;
-    player.body.setVelocity(joystickVector.x * speed, joystickVector.y * speed);
-    
-    // Update Minimap
-    let mapX = (player.x / WORLD_W) * 90;
-    let mapY = (player.y / WORLD_H) * 90;
-    document.getElementById('mapPlayer').style.left = mapX + 'px';
-    document.getElementById('mapPlayer').style.top = mapY + 'px';
-}
-
-// JOYSTICK LOGIC
-const joy = document.getElementById('joystick');
-const knob = document.getElementById('joyKnob');
-joy.addEventListener('touchmove', e => {
-    let rect = joy.getBoundingClientRect();
-    let x = e.touches[0].clientX - (rect.left + rect.width/2);
-    let y = e.touches[0].clientY - (rect.top + rect.height/2);
-    let dist = Math.sqrt(x*x + y*y);
-    let max = 40;
-    if(dist > max) { x *= max/dist; y *= max/dist; }
-    knob.style.transform = `translate(${x}px, ${y}px)`;
-    joystickVector = { x: x/max, y: y/max };
-});
-joy.addEventListener('touchend', () => {
-    knob.style.transform = `translate(0,0)`;
-    joystickVector = {x:0, y:0};
-});
-
-function startGame() {
-    document.getElementById('intro').style.display = 'none';
-    gameStarted = true;
-}
-</script>
-</body>
-</html>
+    // 3. GOLDEN ITEMS GROUP
+    this.goldens = thi
