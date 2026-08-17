@@ -31,14 +31,13 @@ body{
     width:100%;
     max-width:480px;
     min-height:100vh;
-    background:
-        radial-gradient(circle at 50% 10%,rgba(0,112,255,.23),transparent 33%),
-        linear-gradient(180deg,#020611,#061329 55%,#020611);
-    position:relative;
     padding:16px 14px 28px;
+    position:relative;
+    background:
+        radial-gradient(circle at 50% 10%,rgba(0,112,255,.22),transparent 33%),
+        linear-gradient(180deg,#020611,#061329 55%,#020611);
 }
 
-/* HEADER */
 .header{
     text-align:center;
     margin-bottom:14px;
@@ -50,7 +49,7 @@ body{
 }
 
 .vip{
-    font-size:16px;
+    font-size:15px;
     letter-spacing:5px;
     color:#ffd45b;
     font-weight:900;
@@ -72,7 +71,6 @@ body{
     color:#d6e5ff;
 }
 
-/* INFO BAR */
 .info{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
@@ -110,13 +108,13 @@ body{
     color:#49caff;
 }
 
-/* PLAY AREA */
 .play-area{
     position:relative;
     height:480px;
     overflow:hidden;
     border-radius:18px;
     border:1px solid rgba(255,206,72,.7);
+    touch-action:none;
     background:
         radial-gradient(circle at 50% 100%,rgba(0,115,255,.27),transparent 40%),
         radial-gradient(circle at 30% 20%,rgba(0,153,255,.1),transparent 25%),
@@ -124,83 +122,27 @@ body{
     box-shadow:
         inset 0 0 35px rgba(0,102,255,.13),
         0 0 25px rgba(0,0,0,.8);
-    touch-action:none;
 }
 
 .stars{
     position:absolute;
     inset:0;
+    opacity:.18;
     background-image:
         radial-gradient(circle,#fff 1px,transparent 1px),
         radial-gradient(circle,#51adff 1px,transparent 1px);
     background-size:43px 43px,71px 71px;
-    opacity:.18;
 }
 
-/* START OVERLAY */
-.overlay{
-    position:absolute;
-    z-index:20;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(1,5,14,.76);
-    backdrop-filter:blur(3px);
-}
-
-.start-card{
-    width:83%;
-    border:1px solid rgba(255,204,66,.75);
-    border-radius:20px;
-    background:linear-gradient(180deg,#07162c,#030812);
-    padding:25px 20px;
-    text-align:center;
-    box-shadow:
-        0 0 30px rgba(0,0,0,.8),
-        inset 0 0 20px rgba(0,112,255,.1);
-}
-
-.start-icon{
-    font-size:55px;
-    filter:drop-shadow(0 0 15px #008cff);
-}
-
-.start-card h2{
-    color:#ffd45c;
-    margin:12px 0 8px;
-}
-
-.start-card p{
-    font-size:13px;
-    line-height:1.55;
-    color:#bacbe0;
-}
-
-.start-btn{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:900;
-    font-size:17px;
-    color:#171000;
-    background:linear-gradient(#fff0a5,#ffc72e,#c78900);
-    box-shadow:0 0 20px rgba(255,193,0,.35);
-}
-
-/* SCORE */
 .score-bar{
     position:absolute;
     top:12px;
     left:50%;
     transform:translateX(-50%);
-    z-index:6;
-    padding:8px 20px;
+    z-index:8;
+    padding:8px 16px;
     border:1px solid rgba(69,190,255,.7);
-    background:rgba(0,10,28,.86);
+    background:rgba(0,10,28,.88);
     border-radius:999px;
     font-size:13px;
     white-space:nowrap;
@@ -211,30 +153,31 @@ body{
     font-size:18px;
 }
 
-/* DIAMOND */
-.diamond{
+.game-item{
     position:absolute;
-    width:42px;
-    height:42px;
     z-index:4;
     user-select:none;
     pointer-events:none;
+}
+
+.diamond::before{
+    content:"💎";
+    font-size:39px;
+    display:block;
     filter:
         drop-shadow(0 0 7px #48bdff)
         drop-shadow(0 0 15px rgba(0,135,255,.7));
 }
 
-.diamond::before{
-    content:"💎";
-    font-size:38px;
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.bomb::before{
+    content:"💣";
+    font-size:39px;
+    display:block;
+    filter:
+        drop-shadow(0 0 6px #ff3b3b)
+        drop-shadow(0 0 12px rgba(255,0,0,.6));
 }
 
-/* BASKET */
 .basket{
     position:absolute;
     bottom:24px;
@@ -289,7 +232,66 @@ body{
     transition:.3s;
 }
 
-/* PARTICLE */
+.overlay{
+    position:absolute;
+    z-index:20;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(1,5,14,.78);
+    backdrop-filter:blur(3px);
+}
+
+.start-card{
+    width:84%;
+    border:1px solid rgba(255,204,66,.75);
+    border-radius:20px;
+    background:linear-gradient(180deg,#07162c,#030812);
+    padding:25px 20px;
+    text-align:center;
+    box-shadow:
+        0 0 30px rgba(0,0,0,.8),
+        inset 0 0 20px rgba(0,112,255,.1);
+}
+
+.start-icon{
+    font-size:55px;
+    filter:drop-shadow(0 0 15px #008cff);
+}
+
+.start-card h2{
+    color:#ffd45c;
+    margin:12px 0 8px;
+}
+
+.start-card p{
+    font-size:13px;
+    line-height:1.6;
+    color:#bacbe0;
+}
+
+.warning{
+    display:block;
+    color:#ff8a8a;
+    margin-top:7px;
+    font-weight:bold;
+}
+
+.start-btn{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:900;
+    font-size:17px;
+    color:#171000;
+    background:linear-gradient(#fff0a5,#ffc72e,#c78900);
+    box-shadow:0 0 20px rgba(255,193,0,.35);
+}
+
 .spark{
     position:absolute;
     width:7px;
@@ -302,6 +304,11 @@ body{
     animation:spark .55s forwards;
 }
 
+.spark.red{
+    background:#ff5656;
+    box-shadow:0 0 10px #ff0000;
+}
+
 @keyframes spark{
     to{
         transform:translate(var(--x),var(--y)) scale(.1);
@@ -309,7 +316,41 @@ body{
     }
 }
 
-/* RESULT */
+.float-text{
+    position:absolute;
+    z-index:15;
+    font-size:22px;
+    font-weight:900;
+    pointer-events:none;
+    animation:floatUp .8s forwards;
+    text-shadow:0 0 12px currentColor;
+}
+
+.plus{
+    color:#58d1ff;
+}
+
+.minus{
+    color:#ff5959;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) scale(.8);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+        transform:translateY(-10px) scale(1.1);
+    }
+
+    100%{
+        transform:translateY(-65px) scale(1);
+        opacity:0;
+    }
+}
+
 .result-overlay{
     position:absolute;
     z-index:30;
@@ -317,7 +358,7 @@ body{
     display:none;
     align-items:center;
     justify-content:center;
-    background:rgba(1,5,15,.92);
+    background:rgba(1,5,15,.94);
     padding:20px;
 }
 
@@ -386,7 +427,6 @@ body{
     cursor:pointer;
 }
 
-/* REWARD GUIDE */
 .reward-guide{
     margin-top:15px;
 }
@@ -430,7 +470,13 @@ body{
     color:#ffd25a;
 }
 
-/* FOOTER */
+.game-note{
+    margin-top:10px;
+    text-align:center;
+    font-size:10px;
+    color:#7189a5;
+}
+
 .footer{
     text-align:center;
     color:#536b87;
@@ -463,11 +509,12 @@ body{
         <div class="vip">VIP MINI GAME</div>
         <div class="title">DIAMOND CATCH</div>
         <div class="subtitle">
-            Tangkap diamond sebelum waktu habis
+            Tangkap diamond • Hindari bom
         </div>
     </div>
 
     <div class="info">
+
         <div class="info-box">
             <span class="info-label">ID MEMBER</span>
             <span class="info-value">VIP****27</span>
@@ -482,6 +529,7 @@ body{
             <span class="info-label">WAKTU</span>
             <span class="info-value" id="time">15</span>
         </div>
+
     </div>
 
     <div class="play-area" id="playArea">
@@ -489,7 +537,7 @@ body{
         <div class="stars"></div>
 
         <div class="score-bar">
-            💎 Diamond:
+            💎 Skor:
             <b id="score">0</b>
         </div>
 
@@ -500,23 +548,32 @@ body{
         <div class="basket" id="basket"></div>
 
         <div class="overlay" id="startOverlay">
+
             <div class="start-card">
+
                 <div class="start-icon">💎</div>
 
-                <h2>1 Kesempatan VIP</h2>
+                <h2>Diamond Catch</h2>
 
                 <p>
                     Tangkap diamond sebanyak mungkin.<br>
-                    Cukup geser basket ke kiri atau kanan.
+                    Setiap 💎 menambah <b>+1</b> skor.
+
+                    <span class="warning">
+                        Hindari 💣 karena skor berkurang -2.
+                    </span>
                 </p>
 
                 <button class="start-btn" onclick="startGame()">
                     MULAI MAIN
                 </button>
+
             </div>
+
         </div>
 
         <div class="result-overlay" id="resultOverlay">
+
             <div class="result-card">
 
                 <div class="result-small">
@@ -529,9 +586,12 @@ body{
                     0
                 </div>
 
-                <div>💎 DIAMOND</div>
+                <div>
+                    💎 SKOR AKHIR
+                </div>
 
                 <div class="reward-box">
+
                     <span class="reward-label">
                         REWARD TERBUKA
                     </span>
@@ -539,6 +599,7 @@ body{
                     <span id="reward">
                         -
                     </span>
+
                 </div>
 
                 <button class="again-btn" onclick="resetDemo()">
@@ -546,6 +607,7 @@ body{
                 </button>
 
             </div>
+
         </div>
 
     </div>
@@ -553,29 +615,33 @@ body{
     <div class="reward-guide">
 
         <div class="reward-title">
-            CONTOH REWARD
+            REWARD
         </div>
 
         <div class="reward-grid">
 
             <div class="reward">
                 <div class="emoji">🪙</div>
-                <b>5 Diamond</b>
+                <b>Skor 5–7</b>
                 <span>10 VIP Point</span>
             </div>
 
             <div class="reward">
                 <div class="emoji">💎</div>
-                <b>10 Diamond</b>
+                <b>Skor 8–10</b>
                 <span>Bonus VIP</span>
             </div>
 
             <div class="reward">
                 <div class="emoji">🎁</div>
-                <b>15+ Diamond</b>
+                <b>Skor 11–12</b>
                 <span>Mystery Gift</span>
             </div>
 
+        </div>
+
+        <div class="game-note">
+            Maksimal 12 diamond tersedia dalam satu permainan.
         </div>
 
     </div>
@@ -587,333 +653,725 @@ body{
 </div>
 
 <script>
-const playArea = document.getElementById("playArea");
-const basket = document.getElementById("basket");
-const scoreText = document.getElementById("score");
-const timeText = document.getElementById("time");
 
-const startOverlay = document.getElementById("startOverlay");
-const resultOverlay = document.getElementById("resultOverlay");
+const playArea =
+document.getElementById("playArea");
 
-const finalScore = document.getElementById("finalScore");
-const rewardText = document.getElementById("reward");
-const moveHint = document.getElementById("moveHint");
+const basket =
+document.getElementById("basket");
+
+const scoreText =
+document.getElementById("score");
+
+const timeText =
+document.getElementById("time");
+
+const startOverlay =
+document.getElementById("startOverlay");
+
+const resultOverlay =
+document.getElementById("resultOverlay");
+
+const finalScore =
+document.getElementById("finalScore");
+
+const rewardText =
+document.getElementById("reward");
+
+const moveHint =
+document.getElementById("moveHint");
+
 
 let score = 0;
 let timeLeft = 15;
 
 let gameActive = false;
+
 let diamondTimer;
+let bombTimer;
 let countdownTimer;
 
 let basketX = 0;
 
+let totalDiamondsSpawned = 0;
+
+const maxDiamonds = 12;
+
+
+/* =============================
+   BASKET POSITION
+============================= */
+
 function setBasketCenter(){
 
-    const areaWidth = playArea.clientWidth;
-    const basketWidth = basket.offsetWidth;
+    const areaWidth =
+    playArea.clientWidth;
 
-    basketX = (areaWidth - basketWidth) / 2;
+    const basketWidth =
+    basket.offsetWidth;
 
-    basket.style.left = basketX + "px";
-    basket.style.transform = "none";
+    basketX =
+    (areaWidth - basketWidth) / 2;
+
+    basket.style.left =
+    basketX + "px";
+
+    basket.style.transform =
+    "none";
 }
 
-window.addEventListener("load", setBasketCenter);
-window.addEventListener("resize", setBasketCenter);
+window.addEventListener(
+    "load",
+    setBasketCenter
+);
+
+window.addEventListener(
+    "resize",
+    setBasketCenter
+);
 
 
-/* START GAME */
+/* =============================
+   START GAME
+============================= */
 
 function startGame(){
 
     score = 0;
+
     timeLeft = 15;
 
-    scoreText.innerText = score;
-    timeText.innerText = timeLeft;
+    totalDiamondsSpawned = 0;
 
-    startOverlay.style.display = "none";
-    resultOverlay.style.display = "none";
+    scoreText.innerText =
+    score;
+
+    timeText.innerText =
+    timeLeft;
+
+    startOverlay.style.display =
+    "none";
+
+    resultOverlay.style.display =
+    "none";
+
+    moveHint.style.opacity =
+    "1";
 
     gameActive = true;
 
     setBasketCenter();
 
-    diamondTimer = setInterval(createDiamond, 650);
 
-    countdownTimer = setInterval(()=>{
+    /* Diamond muncul */
+
+    diamondTimer =
+    setInterval(
+        createDiamond,
+        900
+    );
+
+
+    /* Bom muncul lebih jarang */
+
+    bombTimer =
+    setInterval(
+        createBomb,
+        2300
+    );
+
+
+    /* Countdown */
+
+    countdownTimer =
+    setInterval(()=>{
 
         timeLeft--;
 
-        timeText.innerText = timeLeft;
+        timeText.innerText =
+        timeLeft;
 
         if(timeLeft <= 0){
+
             endGame();
+
         }
 
     },1000);
 
+
     setTimeout(()=>{
-        moveHint.style.opacity = ".25";
+
+        moveHint.style.opacity =
+        ".25";
+
     },2500);
 }
 
 
-/* CREATE DIAMOND */
+/* =============================
+   CREATE DIAMOND
+============================= */
 
 function createDiamond(){
 
-    if(!gameActive) return;
+    if(!gameActive){
+        return;
+    }
 
-    const diamond = document.createElement("div");
+    if(
+        totalDiamondsSpawned >=
+        maxDiamonds
+    ){
+        return;
+    }
 
-    diamond.className = "diamond";
+    totalDiamondsSpawned++;
 
-    const size = 35 + Math.random()*14;
+    createFallingItem(
+        "diamond",
+        false
+    );
+}
 
-    diamond.style.width = size+"px";
-    diamond.style.height = size+"px";
+
+/* =============================
+   CREATE BOMB
+============================= */
+
+function createBomb(){
+
+    if(!gameActive){
+        return;
+    }
+
+    /*
+    hanya sebagian kesempatan
+    bom benar-benar muncul
+    */
+
+    if(Math.random() > .70){
+        return;
+    }
+
+    createFallingItem(
+        "bomb",
+        true
+    );
+}
+
+
+/* =============================
+   CREATE FALLING ITEM
+============================= */
+
+function createFallingItem(
+    type,
+    isBomb
+){
+
+    const item =
+    document.createElement("div");
+
+    item.className =
+    "game-item " + type;
+
+
+    const size =
+    isBomb
+    ? 40
+    : 38 + Math.random()*8;
+
+
+    item.style.width =
+    size+"px";
+
+    item.style.height =
+    size+"px";
+
 
     const maxX =
-        playArea.clientWidth - size - 10;
+    playArea.clientWidth
+    - size
+    - 10;
+
 
     const startX =
-        5 + Math.random()*maxX;
+    5 + Math.random()*maxX;
 
-    diamond.style.left = startX+"px";
-    diamond.style.top = "-55px";
 
-    playArea.appendChild(diamond);
+    item.style.left =
+    startX+"px";
+
+    item.style.top =
+    "-55px";
+
+
+    playArea.appendChild(item);
+
+
+    /*
+    Bom sedikit lebih cepat
+    */
 
     const speed =
-        2.4 + Math.random()*2.2;
+    isBomb
+    ? 3.6 + Math.random()*1.8
+    : 3 + Math.random()*2.2;
+
 
     let y = -55;
+
 
     function fall(){
 
         if(!gameActive){
 
-            diamond.remove();
+            item.remove();
             return;
-
         }
+
 
         y += speed;
 
-        diamond.style.top = y+"px";
+        item.style.top =
+        y+"px";
 
-        const diamondRect =
-            diamond.getBoundingClientRect();
+
+        const itemRect =
+        item.getBoundingClientRect();
+
 
         const basketRect =
-            basket.getBoundingClientRect();
+        basket.getBoundingClientRect();
+
 
         if(
-            diamondRect.bottom >= basketRect.top + 10 &&
-            diamondRect.top <= basketRect.bottom &&
-            diamondRect.right >= basketRect.left &&
-            diamondRect.left <= basketRect.right
+
+            itemRect.bottom
+            >=
+            basketRect.top + 10
+
+            &&
+
+            itemRect.top
+            <=
+            basketRect.bottom
+
+            &&
+
+            itemRect.right
+            >=
+            basketRect.left
+
+            &&
+
+            itemRect.left
+            <=
+            basketRect.right
+
         ){
 
-            score++;
+            if(isBomb){
 
-            scoreText.innerText = score;
+                score -= 2;
 
-            createSpark(
-                diamondRect.left,
-                diamondRect.top
-            );
+                if(score < 0){
+                    score = 0;
+                }
 
-            diamond.remove();
+                createSpark(
+                    itemRect.left,
+                    itemRect.top,
+                    true
+                );
+
+                createFloatText(
+                    "-2",
+                    itemRect.left,
+                    itemRect.top,
+                    true
+                );
+
+            }
+            else{
+
+                score++;
+
+                createSpark(
+                    itemRect.left,
+                    itemRect.top,
+                    false
+                );
+
+                createFloatText(
+                    "+1",
+                    itemRect.left,
+                    itemRect.top,
+                    false
+                );
+
+            }
+
+
+            scoreText.innerText =
+            score;
+
+
+            item.remove();
 
             return;
         }
 
-        if(y > playArea.clientHeight){
 
-            diamond.remove();
+        if(
+            y >
+            playArea.clientHeight
+        ){
+
+            item.remove();
+
             return;
         }
 
-        requestAnimationFrame(fall);
+
+        requestAnimationFrame(
+            fall
+        );
     }
 
-    requestAnimationFrame(fall);
+
+    requestAnimationFrame(
+        fall
+    );
 }
 
 
-/* SPARK EFFECT */
+/* =============================
+   SPARK EFFECT
+============================= */
 
-function createSpark(x,y){
+function createSpark(
+    x,
+    y,
+    red
+){
 
     const area =
-        playArea.getBoundingClientRect();
+    playArea.getBoundingClientRect();
 
-    for(let i=0;i<7;i++){
+
+    for(
+        let i=0;
+        i<7;
+        i++
+    ){
 
         const s =
-            document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-        s.className="spark";
+        s.className =
+        red
+        ? "spark red"
+        : "spark";
+
 
         s.style.left =
-            (x-area.left+20)+"px";
+        (x-area.left+20)
+        +"px";
+
 
         s.style.top =
-            (y-area.top+20)+"px";
+        (y-area.top+20)
+        +"px";
+
 
         s.style.setProperty(
             "--x",
-            ((Math.random()-.5)*80)+"px"
+            ((Math.random()-.5)*80)
+            +"px"
         );
+
 
         s.style.setProperty(
             "--y",
-            ((Math.random()-.5)*80)+"px"
+            ((Math.random()-.5)*80)
+            +"px"
         );
+
 
         playArea.appendChild(s);
 
-        setTimeout(()=>s.remove(),600);
+
+        setTimeout(
+            ()=>s.remove(),
+            600
+        );
     }
 }
 
 
-/* MOVE BASKET */
+/* =============================
+   +1 / -2 TEXT
+============================= */
 
-function moveBasket(clientX){
+function createFloatText(
+    text,
+    x,
+    y,
+    minus
+){
 
-    if(!gameActive) return;
+    const area =
+    playArea.getBoundingClientRect();
 
-    const rect =
-        playArea.getBoundingClientRect();
 
-    const width =
-        basket.offsetWidth;
+    const floating =
+    document.createElement(
+        "div"
+    );
 
-    let x =
-        clientX - rect.left - width/2;
 
-    if(x < 0) x = 0;
+    floating.className =
+    minus
+    ? "float-text minus"
+    : "float-text plus";
 
-    if(x > rect.width-width)
-        x = rect.width-width;
 
-    basketX = x;
+    floating.innerText =
+    text;
 
-    basket.style.left =
-        basketX+"px";
 
-    basket.style.transform =
-        "none";
+    floating.style.left =
+    (x-area.left+10)
+    +"px";
+
+
+    floating.style.top =
+    (y-area.top)
+    +"px";
+
+
+    playArea.appendChild(
+        floating
+    );
+
+
+    setTimeout(
+        ()=>floating.remove(),
+        850
+    );
 }
 
 
-/* TOUCH */
+/* =============================
+   MOVE BASKET
+============================= */
+
+function moveBasket(
+    clientX
+){
+
+    if(!gameActive){
+        return;
+    }
+
+
+    const rect =
+    playArea.getBoundingClientRect();
+
+
+    const width =
+    basket.offsetWidth;
+
+
+    let x =
+    clientX
+    - rect.left
+    - width/2;
+
+
+    if(x < 0){
+        x = 0;
+    }
+
+
+    if(
+        x >
+        rect.width-width
+    ){
+
+        x =
+        rect.width-width;
+
+    }
+
+
+    basketX =
+    x;
+
+
+    basket.style.left =
+    basketX+"px";
+
+
+    basket.style.transform =
+    "none";
+}
+
+
+/* =============================
+   TOUCH CONTROL
+============================= */
 
 playArea.addEventListener(
     "touchmove",
     function(e){
 
-        if(!gameActive) return;
+        if(!gameActive){
+            return;
+        }
 
         e.preventDefault();
 
         const touch =
-            e.touches[0];
+        e.touches[0];
 
         moveBasket(
             touch.clientX
         );
 
     },
-    {passive:false}
+    {
+        passive:false
+    }
 );
+
 
 playArea.addEventListener(
     "touchstart",
     function(e){
 
-        if(!gameActive) return;
+        if(!gameActive){
+            return;
+        }
 
         const touch =
-            e.touches[0];
+        e.touches[0];
 
         moveBasket(
             touch.clientX
         );
+
     }
 );
 
 
-/* MOUSE */
+/* =============================
+   MOUSE CONTROL
+============================= */
 
-let mouseDown=false;
+let mouseDown =
+false;
+
 
 playArea.addEventListener(
     "mousedown",
     function(e){
 
-        mouseDown=true;
-        moveBasket(e.clientX);
+        mouseDown =
+        true;
+
+        moveBasket(
+            e.clientX
+        );
 
     }
 );
+
 
 window.addEventListener(
     "mouseup",
     function(){
-        mouseDown=false;
+
+        mouseDown =
+        false;
+
     }
 );
+
 
 playArea.addEventListener(
     "mousemove",
     function(e){
 
         if(mouseDown){
+
             moveBasket(
                 e.clientX
             );
+
         }
+
     }
 );
 
 
-/* END GAME */
+/* =============================
+   END GAME
+============================= */
 
 function endGame(){
 
-    if(!gameActive) return;
+    if(!gameActive){
+        return;
+    }
 
-    gameActive=false;
+
+    gameActive =
+    false;
+
 
     clearInterval(
         diamondTimer
     );
 
+
+    clearInterval(
+        bombTimer
+    );
+
+
     clearInterval(
         countdownTimer
     );
 
+
     document
-        .querySelectorAll(".diamond")
-        .forEach(d=>d.remove());
+    .querySelectorAll(
+        ".game-item"
+    )
+    .forEach(
+        item=>item.remove()
+    );
+
 
     finalScore.innerText =
-        score;
+    score;
+
 
     let reward;
 
-    if(score >= 15){
+
+    if(score >= 11){
 
         reward =
         "🎁 MYSTERY GIFT";
 
     }
-    else if(score >= 10){
+    else if(score >= 8){
 
         reward =
         "💎 BONUS VIP";
@@ -929,36 +1387,60 @@ function endGame(){
 
         reward =
         "⭐ BONUS PARTISIPASI";
+
     }
 
+
     rewardText.innerText =
-        reward;
+    reward;
+
 
     resultOverlay.style.display =
-        "flex";
+    "flex";
 }
 
 
-/* RESET DEMO */
+/* =============================
+   RESET DEMO
+============================= */
 
 function resetDemo(){
 
     resultOverlay.style.display =
-        "none";
+    "none";
+
 
     startOverlay.style.display =
-        "flex";
+    "flex";
 
-    moveHint.style.opacity="1";
 
-    timeLeft=15;
-    score=0;
+    moveHint.style.opacity =
+    "1";
 
-    timeText.innerText=15;
-    scoreText.innerText=0;
+
+    score =
+    0;
+
+
+    timeLeft =
+    15;
+
+
+    totalDiamondsSpawned =
+    0;
+
+
+    timeText.innerText =
+    15;
+
+
+    scoreText.innerText =
+    0;
+
 
     setBasketCenter();
 }
+
 </script>
 
 </body>
