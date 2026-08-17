@@ -12,7 +12,6 @@ user-scalable=no">
 <title>VIP Private Game</title>
 
 <style>
-
 :root{
     --gold:#f3c64f;
     --goldLight:#ffe58a;
@@ -22,7 +21,6 @@ user-scalable=no">
     --blueDark:#076bb4;
 
     --red:#ff4968;
-
     --green:#40dda0;
 
     --bg:#01050c;
@@ -33,25 +31,15 @@ user-scalable=no">
     box-sizing:border-box;
     margin:0;
     padding:0;
-
     -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
-
+html,body{
     width:100%;
     min-height:100%;
-
     background:#01040a;
-
-    font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+    font-family:Arial,Helvetica,sans-serif;
     color:#fff;
-
     overflow-x:hidden;
 }
 
@@ -61,41 +49,17 @@ body{
 }
 
 .app{
-
     position:relative;
-
     width:100%;
     max-width:500px;
-
     min-height:100vh;
-
     overflow:hidden;
-
-    padding:
-    14px
-    13px
-    28px;
+    padding:14px 13px 28px;
 
     background:
-
-    radial-gradient(
-        circle at 50% -5%,
-        rgba(0,150,255,.23),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 50% 100%,
-        rgba(255,200,60,.10),
-        transparent 32%
-    ),
-
-    linear-gradient(
-        180deg,
-        #020611,
-        #04101d 45%,
-        #01040a
-    );
+        radial-gradient(circle at 50% -5%,rgba(0,150,255,.23),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(255,200,60,.10),transparent 32%),
+        linear-gradient(180deg,#020611,#04101d 45%,#01040a);
 }
 
 /* ===========================
@@ -103,54 +67,32 @@ body{
 =========================== */
 
 .header{
-
     position:relative;
-
     text-align:center;
-
-    padding:
-    5px 0 13px;
+    padding:5px 0 13px;
 }
 
 .crown{
-
     font-size:24px;
-
     color:var(--goldLight);
-
-    filter:
-    drop-shadow(
-        0 0 9px
-        rgba(255,205,70,.75)
-    );
+    filter:drop-shadow(0 0 9px rgba(255,205,70,.75));
 }
 
 .private-label{
-
     margin-top:1px;
-
     font-size:8px;
-
     letter-spacing:4px;
-
     color:#d2ae4d;
-
     font-weight:900;
 }
 
 .title{
-
     margin-top:4px;
-
     font-size:29px;
-
     line-height:1;
-
     font-weight:950;
 
-    background:
-
-    linear-gradient(
+    background:linear-gradient(
         180deg,
         #fff8d8,
         #f4c94d 46%,
@@ -158,113 +100,73 @@ body{
     );
 
     -webkit-background-clip:text;
-
     color:transparent;
 
-    filter:
-    drop-shadow(
+    filter:drop-shadow(
         0 0 12px
         rgba(245,200,70,.16)
     );
 }
 
 .subtitle{
-
     margin-top:7px;
-
     font-size:10px;
-
     color:#7f97b0;
 }
 
-
-/* SOUND BUTTON */
-
 .sound-btn{
-
     position:absolute;
-
     right:4px;
-
     top:8px;
 
     width:37px;
     height:37px;
 
     border-radius:50%;
+    border:1px solid rgba(245,200,70,.35);
 
-    border:
-    1px solid
-    rgba(245,200,70,.35);
-
-    background:
-    rgba(6,17,31,.8);
-
+    background:rgba(6,17,31,.8);
     color:#f4d16c;
 
     font-size:16px;
-
     cursor:pointer;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    box-shadow:
-    inset 0 1px
-    rgba(255,255,255,.05);
 }
-
 
 /* ===========================
    HUD
 =========================== */
 
 .hud{
-
     display:grid;
-
-    grid-template-columns:
-    1.3fr .75fr .75fr;
-
+    grid-template-columns:1.3fr .75fr .75fr;
     overflow:hidden;
-
     margin-bottom:11px;
 
     border-radius:13px;
+    border:1px solid rgba(245,199,79,.35);
 
-    border:
-    1px solid
-    rgba(245,199,79,.35);
-
-    background:
-
-    linear-gradient(
+    background:linear-gradient(
         180deg,
         rgba(9,22,39,.96),
         rgba(3,9,18,.96)
     );
 
-    box-shadow:
-    0 14px 35px
-    rgba(0,0,0,.45);
+    box-shadow:0 14px 35px rgba(0,0,0,.45);
 }
 
 .hud-box{
-
     min-height:57px;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
     justify-content:center;
 
-    border-right:
-    1px solid
-    rgba(255,255,255,.06);
+    border-right:1px solid rgba(255,255,255,.06);
 }
 
 .hud-box:last-child{
@@ -272,268 +174,284 @@ body{
 }
 
 .hud-label{
-
     font-size:7px;
-
     letter-spacing:1.3px;
-
     color:#617b95;
-
     font-weight:800;
 }
 
 .hud-value{
-
     margin-top:4px;
-
     font-size:14px;
-
     color:#f4cd62;
-
     font-weight:950;
 }
 
 #timer{
-
     font-size:19px;
-
     color:#52cbff;
 }
-
 
 /* ===========================
    ARENA
 =========================== */
 
 .arena{
-
     position:relative;
-
     height:515px;
-
     overflow:hidden;
 
     border-radius:21px;
-
-    border:
-    1px solid
-    rgba(245,199,79,.47);
+    border:1px solid rgba(245,199,79,.47);
 
     touch-action:none;
 
     background:
-
-    radial-gradient(
-        circle at 50% 95%,
-        rgba(0,148,255,.22),
-        transparent 34%
-    ),
-
-    radial-gradient(
-        circle at 18% 22%,
-        rgba(36,190,255,.06),
-        transparent 20%
-    ),
-
-    linear-gradient(
-        180deg,
-        #020713,
-        #031326 55%,
-        #020713
-    );
+        radial-gradient(circle at 50% 88%,rgba(0,148,255,.18),transparent 28%),
+        radial-gradient(circle at 50% 12%,rgba(255,211,87,.07),transparent 35%),
+        linear-gradient(180deg,#020713 0%,#041427 52%,#020713 100%);
 
     box-shadow:
-
-    inset 0 0 60px
-    rgba(0,95,170,.08),
-
-    0 20px 60px
-    rgba(0,0,0,.55);
+        inset 0 0 60px rgba(0,95,170,.08),
+        0 20px 60px rgba(0,0,0,.55);
 }
 
-.arena::before{
+/* background decor */
 
-    content:"";
-
+.bg-vault,
+.bg-light,
+.bg-grid,
+.bg-particles{
     position:absolute;
-
-    inset:0;
-
-    opacity:.25;
-
     pointer-events:none;
+}
+
+.bg-vault{
+    width:330px;
+    height:330px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-51%);
+    border-radius:50%;
+
+    z-index:1;
+    opacity:.92;
 
     background:
+        radial-gradient(circle,
+            transparent 47%,
+            rgba(88,202,255,.13) 48%,
+            rgba(88,202,255,.04) 51%,
+            transparent 52%),
 
-    linear-gradient(
-        90deg,
-        transparent 49.7%,
-        rgba(67,195,255,.04) 50%,
-        transparent 50.3%
-    ),
+        radial-gradient(circle,
+            transparent 61%,
+            rgba(255,208,92,.11) 62%,
+            rgba(255,208,92,.035) 65%,
+            transparent 66%),
 
-    linear-gradient(
-        transparent 49.7%,
-        rgba(67,195,255,.025) 50%,
-        transparent 50.3%
-    );
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(80,198,255,.08) 0deg 4deg,
+            transparent 4deg 15deg
+        ),
 
-    background-size:
-    100% 70px,
-    70px 100%;
+        radial-gradient(circle at center,
+            rgba(56,197,255,.09),
+            rgba(6,22,40,.03) 45%,
+            transparent 72%);
+
+    box-shadow:
+        0 0 50px rgba(52,192,255,.08),
+        inset 0 0 40px rgba(255,208,92,.04);
+
+    animation:vaultPulse 5s ease-in-out infinite alternate;
 }
 
-.stars{
+@keyframes vaultPulse{
+    from{
+        transform:translate(-50%,-51%) scale(.98);
+        opacity:.75;
+    }
 
-    position:absolute;
+    to{
+        transform:translate(-50%,-51%) scale(1.03);
+        opacity:1;
+    }
+}
 
+.bg-light{
+    top:0;
+    bottom:0;
+    width:130px;
+    z-index:1;
+    opacity:.45;
+    filter:blur(2px);
+}
+
+.bg-light.left{
+    left:-25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(42,190,255,.05) 35%,
+            rgba(42,190,255,.13) 70%,
+            transparent
+        );
+
+    transform:skewX(-14deg);
+}
+
+.bg-light.right{
+    right:-25px;
+
+    background:
+        linear-gradient(
+            270deg,
+            transparent,
+            rgba(255,205,80,.04) 35%,
+            rgba(255,205,80,.10) 70%,
+            transparent
+        );
+
+    transform:skewX(14deg);
+}
+
+.bg-grid{
     inset:0;
-
-    opacity:.19;
-
-    pointer-events:none;
+    z-index:1;
+    opacity:.11;
 
     background-image:
+        linear-gradient(rgba(92,201,255,.16) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(92,201,255,.16) 1px,transparent 1px);
 
-    radial-gradient(
-        circle,
-        #fff 1px,
-        transparent 1.4px
-    ),
+    background-size:44px 44px;
 
-    radial-gradient(
-        circle,
-        #52c8ff 1px,
-        transparent 1.4px
-    );
-
-    background-size:
-    61px 61px,
-    89px 89px;
-
-    background-position:
-    4px 7px,
-    29px 44px;
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0,0,0,.9) 15%,
+            rgba(0,0,0,.9) 85%,
+            transparent
+        );
 }
 
+.bg-particles{
+    inset:0;
+    z-index:1;
+    opacity:.45;
+
+    background-image:
+        radial-gradient(circle at 14% 22%,rgba(255,215,120,.65) 0 2px,transparent 3px),
+        radial-gradient(circle at 78% 18%,rgba(92,201,255,.75) 0 2px,transparent 3px),
+        radial-gradient(circle at 22% 72%,rgba(92,201,255,.55) 0 2px,transparent 3px),
+        radial-gradient(circle at 85% 63%,rgba(255,215,120,.55) 0 2px,transparent 3px),
+        radial-gradient(circle at 60% 35%,rgba(92,201,255,.45) 0 1.5px,transparent 3px),
+        radial-gradient(circle at 40% 18%,rgba(255,215,120,.45) 0 1.5px,transparent 3px);
+
+    animation:floatParticles 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatParticles{
+    from{
+        transform:translateY(0);
+        opacity:.35;
+    }
+
+    to{
+        transform:translateY(9px);
+        opacity:.58;
+    }
+}
 
 /* ===========================
    SCORE / COMBO
 =========================== */
 
 .top-status{
-
     position:absolute;
-
     z-index:18;
-
     top:11px;
-
     left:11px;
     right:11px;
 
     display:flex;
-
-    justify-content:
-    space-between;
+    justify-content:space-between;
 }
 
 .score-pill,
 .combo-pill{
-
     min-width:93px;
-
-    padding:
-    7px 13px;
+    padding:7px 13px;
 
     border-radius:999px;
 
-    background:
-    rgba(1,10,24,.86);
+    background:rgba(1,10,24,.86);
+    backdrop-filter:blur(4px);
 
-    backdrop-filter:
-    blur(4px);
-
-    border:
-    1px solid
-    rgba(64,190,255,.35);
+    border:1px solid rgba(64,190,255,.35);
 
     font-size:9px;
-
     letter-spacing:.7px;
-
     color:#708ba5;
 }
 
 .score-pill strong{
-
     margin-left:6px;
-
     font-size:18px;
-
     color:#55ceff;
 }
 
 .combo-pill{
-
     text-align:center;
-
-    border-color:
-    rgba(245,199,79,.25);
+    border-color:rgba(245,199,79,.25);
 }
 
 .combo-pill b{
-
     margin-left:4px;
-
     color:#8297ab;
 }
 
 .combo-pill.active{
-
     color:#f5ca59;
-
-    border-color:
-    rgba(245,199,79,.75);
+    border-color:rgba(245,199,79,.75);
 
     box-shadow:
-    0 0 18px
-    rgba(245,199,79,.13);
+        0 0 18px
+        rgba(245,199,79,.13);
 }
 
 .combo-pill.active b{
     color:#ffe06d;
 }
 
-
 /* ===========================
    CRYSTAL
 =========================== */
 
 .crystal{
-
     position:absolute;
-
     z-index:10;
 
     width:42px;
     height:50px;
 
     pointer-events:none;
-
     transform-origin:center;
 }
 
 .crystal-core{
-
     position:absolute;
-
     width:100%;
     height:100%;
 
-    clip-path:
-
-    polygon(
+    clip-path:polygon(
         50% 0%,
         88% 24%,
         74% 70%,
@@ -543,41 +461,27 @@ body{
     );
 
     background:
-
-    linear-gradient(
-        135deg,
-        #e7fbff 0%,
-        #72ddff 16%,
-        #19aaf4 34%,
-        #0066be 58%,
-        #52d8ff 82%,
-        #e7fbff 100%
-    );
+        linear-gradient(
+            135deg,
+            #e7fbff 0%,
+            #72ddff 16%,
+            #19aaf4 34%,
+            #0066be 58%,
+            #52d8ff 82%,
+            #e7fbff 100%
+        );
 
     filter:
-
-    drop-shadow(
-        0 0 5px
-        #38c5ff
-    )
-
-    drop-shadow(
-        0 0 12px
-        rgba(0,145,255,.75)
-    );
+        drop-shadow(0 0 5px #38c5ff)
+        drop-shadow(0 0 12px rgba(0,145,255,.75));
 }
 
 .crystal-core::before{
-
     content:"";
-
     position:absolute;
-
     inset:3px;
 
-    clip-path:
-
-    polygon(
+    clip-path:polygon(
         50% 3%,
         82% 27%,
         68% 68%,
@@ -587,310 +491,443 @@ body{
     );
 
     background:
-
-    linear-gradient(
-        90deg,
-        rgba(255,255,255,.58),
-        transparent 27%,
-        rgba(0,35,100,.25),
-        rgba(255,255,255,.32),
-        transparent
-    );
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.58),
+            transparent 27%,
+            rgba(0,35,100,.25),
+            rgba(255,255,255,.32),
+            transparent
+        );
 }
 
 .crystal-core::after{
-
     content:"";
-
     position:absolute;
 
     top:7px;
     bottom:7px;
-
     left:49%;
 
     width:1px;
 
-    background:
-    rgba(255,255,255,.55);
+    background:rgba(255,255,255,.55);
 
-    transform:
-    rotate(5deg);
+    transform:rotate(5deg);
 }
 
-
-/* RED */
-
-.crystal.red
-.crystal-core{
-
+.crystal.red .crystal-core{
     background:
-
-    linear-gradient(
-        135deg,
-        #ffe7eb,
-        #ff7087 18%,
-        #e92349 40%,
-        #70071d 66%,
-        #ff4969 86%,
-        #ffe2e8
-    );
+        linear-gradient(
+            135deg,
+            #ffe7eb,
+            #ff7087 18%,
+            #e92349 40%,
+            #70071d 66%,
+            #ff4969 86%,
+            #ffe2e8
+        );
 
     filter:
-
-    drop-shadow(
-        0 0 6px
-        #ff4968
-    )
-
-    drop-shadow(
-        0 0 14px
-        rgba(255,40,75,.65)
-    );
+        drop-shadow(0 0 6px #ff4968)
+        drop-shadow(0 0 14px rgba(255,40,75,.65));
 }
 
-
-/* GOLD */
-
-.crystal.gold
-.crystal-core{
-
+.crystal.gold .crystal-core{
     background:
-
-    linear-gradient(
-        135deg,
-        #fffbd5,
-        #ffe66d 18%,
-        #f1b417 40%,
-        #986000 67%,
-        #ffd95a 86%,
-        #fff9ce
-    );
+        linear-gradient(
+            135deg,
+            #fffbd5,
+            #ffe66d 18%,
+            #f1b417 40%,
+            #986000 67%,
+            #ffd95a 86%,
+            #fff9ce
+        );
 
     filter:
-
-    drop-shadow(
-        0 0 6px
-        #ffd75d
-    )
-
-    drop-shadow(
-        0 0 15px
-        rgba(255,200,50,.8)
-    );
+        drop-shadow(0 0 6px #ffd75d)
+        drop-shadow(0 0 15px rgba(255,200,50,.8));
 }
-
-
-/* LIGHT TRAIL */
 
 .trail{
-
     position:absolute;
-
     z-index:-1;
 
     left:50%;
-
     top:-58px;
 
     width:16px;
     height:70px;
 
-    transform:
-    translateX(-50%);
-
-    filter:
-    blur(5px);
+    transform:translateX(-50%);
+    filter:blur(5px);
 
     background:
-
-    linear-gradient(
-        180deg,
-        transparent,
-        rgba(65,203,255,.07),
-        rgba(65,203,255,.45)
-    );
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(65,203,255,.07),
+            rgba(65,203,255,.45)
+        );
 }
 
 .red .trail{
-
     background:
-
-    linear-gradient(
-        180deg,
-        transparent,
-        rgba(255,70,100,.05),
-        rgba(255,70,100,.42)
-    );
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(255,70,100,.05),
+            rgba(255,70,100,.42)
+        );
 }
 
 .gold .trail{
-
     background:
-
-    linear-gradient(
-        180deg,
-        transparent,
-        rgba(255,210,75,.06),
-        rgba(255,210,75,.45)
-    );
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(255,210,75,.06),
+            rgba(255,210,75,.45)
+        );
 }
 
-
 /* ===========================
-   COLLECTOR
+   REALISTIC COLLECTOR
 =========================== */
 
 .collector-wrap{
-
     position:absolute;
-
     z-index:15;
 
-    bottom:26px;
-
+    bottom:24px;
     left:50%;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
 
-    width:135px;
-    height:78px;
+    width:160px;
+    height:96px;
 }
 
-.collector-glow{
-
+.collector-shadow{
     position:absolute;
 
-    width:165px;
-    height:35px;
-
-    bottom:-12px;
-
     left:50%;
+    bottom:-10px;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
+
+    width:165px;
+    height:30px;
 
     border-radius:50%;
 
-    filter:
-    blur(5px);
-
     background:
+        radial-gradient(
+            ellipse,
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.08) 60%,
+            transparent 75%
+        );
 
-    radial-gradient(
-        ellipse,
-        rgba(50,195,255,.5),
-        rgba(12,95,190,.12) 48%,
-        transparent 70%
-    );
+    filter:blur(4px);
 }
 
-.collector{
-
+.collector-glow{
     position:absolute;
 
-    inset:0;
+    left:50%;
+    bottom:-2px;
 
-    overflow:hidden;
+    transform:translateX(-50%);
 
-    border-radius:
-    12px 12px
-    31px 31px;
+    width:145px;
+    height:22px;
 
-    border:
-    2px solid
-    #c99b28;
-
-    border-top:
-    5px solid
-    #ffe073;
+    border-radius:50%;
 
     background:
+        radial-gradient(
+            ellipse,
+            rgba(58,205,255,.42),
+            rgba(25,115,195,.10) 55%,
+            transparent 72%
+        );
 
-    linear-gradient(
-        180deg,
-        #202a38,
-        #080e18 72%
-    );
-
-    box-shadow:
-
-    0 0 22px
-    rgba(22,155,255,.28),
-
-    inset 0 -20px 24px
-    rgba(0,0,0,.72),
-
-    inset 0 1px
-    rgba(255,255,255,.2);
+    filter:blur(5px);
 }
 
-.collector::before{
+.collector-body{
+    position:absolute;
+    inset:0;
 
+    border-radius:18px 18px 38px 38px;
+    overflow:visible;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2b3747 0%,
+            #121c29 36%,
+            #050a11 100%
+        );
+
+    border:2px solid #c99824;
+
+    box-shadow:
+        0 0 20px rgba(20,150,255,.20),
+        inset 0 2px 1px rgba(255,255,255,.16),
+        inset 0 -18px 22px rgba(0,0,0,.72);
+}
+
+.collector-body::before{
+    content:"";
+    position:absolute;
+
+    inset:3px 8px 8px;
+
+    border-radius:14px 14px 28px 28px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.04);
+
+    pointer-events:none;
+}
+
+.collector-rim{
+    position:absolute;
+
+    left:5px;
+    right:5px;
+    top:-5px;
+
+    height:20px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff4b0 0%,
+            #f7ce5d 27%,
+            #c78b16 69%,
+            #805000 100%
+        );
+
+    box-shadow:
+        0 2px 10px rgba(255,205,70,.25),
+        inset 0 1px 0 rgba(255,255,255,.72),
+        inset 0 -2px 2px rgba(78,44,0,.45);
+
+    z-index:5;
+}
+
+.collector-rim::after{
     content:"";
 
     position:absolute;
 
     left:9px;
     right:9px;
+    bottom:2px;
 
-    top:10px;
-
-    height:15px;
+    height:5px;
 
     border-radius:50%;
 
-    border:
-    1px solid
-    rgba(74,201,255,.5);
-
     background:
-
-    radial-gradient(
-        ellipse,
-        rgba(65,190,255,.24),
-        rgba(1,17,34,.9)
-    );
-
-    box-shadow:
-
-    inset 0 0 12px
-    rgba(72,201,255,.55);
+        rgba(57,38,4,.35);
 }
 
-.collector-logo{
+.collector-inner{
+    position:absolute;
+
+    left:12px;
+    right:12px;
+    top:9px;
+
+    height:29px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(84,217,255,.38) 0%,
+            rgba(19,65,106,.72) 38%,
+            rgba(3,11,20,.98) 78%
+        );
+
+    border:
+        1px solid
+        rgba(78,205,255,.42);
+
+    box-shadow:
+        inset 0 0 16px rgba(85,205,255,.58),
+        0 0 12px rgba(34,165,255,.16);
+
+    z-index:4;
+}
+
+.collector-inner::after{
+    content:"";
 
     position:absolute;
 
-    top:36px;
-
     left:50%;
+    top:50%;
 
     transform:
-    translateX(-50%);
+        translate(-50%,-50%);
 
-    color:#f4c950;
+    width:70px;
+    height:12px;
 
-    font-weight:950;
+    border-radius:50%;
 
-    font-size:13px;
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(115,225,255,.20),
+            transparent 70%
+        );
 
+    filter:blur(3px);
+}
+
+.collector-grid{
+    position:absolute;
+
+    left:14px;
+    right:14px;
+    top:28px;
+    bottom:10px;
+
+    border-radius:8px 8px 26px 26px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,.02) 0,
+            rgba(255,255,255,.02) 10px,
+            rgba(0,0,0,.16) 10px,
+            rgba(0,0,0,.16) 12px
+        ),
+
+        repeating-linear-gradient(
+            180deg,
+            rgba(255,255,255,.02) 0,
+            rgba(255,255,255,.02) 8px,
+            rgba(0,0,0,.18) 8px,
+            rgba(0,0,0,.18) 10px
+        ),
+
+        linear-gradient(
+            180deg,
+            #1d2734,
+            #080d14
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
+    box-shadow:
+        inset 0 -12px 18px rgba(0,0,0,.45);
+
+    z-index:2;
+}
+
+.collector-side{
+    position:absolute;
+
+    top:32px;
+
+    width:20px;
+    height:37px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f3cd66 0%,
+            #a06c0a 55%,
+            #5e3900 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.45),
+        0 3px 10px rgba(0,0,0,.25);
+
+    z-index:1;
+}
+
+.collector-side.left{
+    left:-9px;
+    transform:rotate(-12deg);
+}
+
+.collector-side.right{
+    right:-9px;
+    transform:rotate(12deg);
+}
+
+.collector-front-plate{
+    position:absolute;
+
+    left:50%;
+    bottom:10px;
+
+    transform:translateX(-50%);
+
+    min-width:56px;
+    height:25px;
+
+    padding:0 12px;
+
+    border-radius:999px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #101e31 0%,
+            #07101a 100%
+        );
+
+    border:
+        1px solid
+        rgba(245,199,79,.65);
+
+    box-shadow:
+        0 0 8px rgba(255,203,80,.10),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    z-index:6;
+}
+
+.collector-front-plate span{
+    font-size:11px;
+    font-weight:900;
     letter-spacing:2px;
 
+    color:#f4cb57;
+
     text-shadow:
-    0 0 8px
-    rgba(245,199,79,.5);
+        0 0 8px
+        rgba(244,203,87,.35);
 }
 
 .guide{
-
     position:absolute;
-
     z-index:12;
 
-    bottom:111px;
+    bottom:124px;
 
     left:0;
     right:0;
@@ -898,7 +935,6 @@ body{
     text-align:center;
 
     font-size:9px;
-
     color:#6d88a2;
 
     transition:.3s;
@@ -908,161 +944,114 @@ body{
     color:#e5bc4d;
 }
 
-
 /* ===========================
    INTRO
 =========================== */
 
 .overlay{
-
     position:absolute;
-
     z-index:60;
 
     inset:0;
 
     display:flex;
-
     justify-content:center;
     align-items:center;
 
     padding:22px;
 
     background:
+        radial-gradient(circle at 50% 25%,rgba(0,145,255,.13),transparent 35%),
+        rgba(1,5,12,.95);
 
-    radial-gradient(
-        circle at 50% 25%,
-        rgba(0,145,255,.13),
-        transparent 35%
-    ),
-
-    rgba(1,5,12,.95);
-
-    backdrop-filter:
-    blur(5px);
+    backdrop-filter:blur(5px);
 }
 
 .access-card{
-
     position:relative;
-
     width:100%;
-
     max-width:365px;
 
     overflow:hidden;
-
     text-align:center;
 
-    padding:
-    29px
-    22px
-    24px;
+    padding:29px 22px 24px;
 
     border-radius:21px;
 
     border:
-    1px solid
-    rgba(245,199,79,.58);
+        1px solid
+        rgba(245,199,79,.58);
 
     background:
-
-    radial-gradient(
-        circle at 50% 0%,
-        rgba(245,199,79,.13),
-        transparent 35%
-    ),
-
-    linear-gradient(
-        180deg,
-        #09172a,
-        #030913
-    );
+        radial-gradient(circle at 50% 0%,rgba(245,199,79,.13),transparent 35%),
+        linear-gradient(180deg,#09172a,#030913);
 
     box-shadow:
-    0 30px 70px
-    rgba(0,0,0,.72);
+        0 30px 70px
+        rgba(0,0,0,.72);
 }
 
 .access-logo{
-
     width:78px;
     height:78px;
 
-    margin:
-    0 auto 16px;
+    margin:0 auto 16px;
 
     border-radius:50%;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border:
-    1px solid
-    rgba(245,199,79,.65);
+        1px solid
+        rgba(245,199,79,.65);
 
     background:
-
-    radial-gradient(
-        circle,
-        #253448,
-        #07101d 70%
-    );
+        radial-gradient(
+            circle,
+            #253448,
+            #07101d 70%
+        );
 
     box-shadow:
-
-    0 0 30px
-    rgba(245,199,79,.14),
-
-    inset 0 0 18px
-    rgba(255,255,255,.03);
+        0 0 30px rgba(245,199,79,.14),
+        inset 0 0 18px rgba(255,255,255,.03);
 
     color:#ffd667;
 
     font-size:20px;
-
     font-weight:950;
-
     letter-spacing:2px;
 }
 
 .access-status{
-
     color:#48dda0;
 
     font-size:8px;
-
     font-weight:900;
-
     letter-spacing:2.8px;
 }
 
 .access-card h2{
-
     margin-top:7px;
 
     font-size:23px;
-
     color:#f5d069;
 }
 
 .access-card p{
-
     margin-top:8px;
 
     font-size:11px;
-
     line-height:1.55;
 
     color:#8da2b8;
 }
 
 .rules{
-
     display:flex;
-
     justify-content:center;
 
     gap:10px;
@@ -1071,7 +1060,6 @@ body{
 }
 
 .rule{
-
     min-width:85px;
 
     padding:9px 6px;
@@ -1079,17 +1067,15 @@ body{
     border-radius:10px;
 
     background:
-    rgba(6,18,34,.9);
+        rgba(6,18,34,.9);
 
     border:
-    1px solid
-    rgba(255,255,255,.06);
+        1px solid
+        rgba(255,255,255,.06);
 }
 
 .rule strong{
-
     display:block;
-
     font-size:17px;
 }
 
@@ -1102,18 +1088,14 @@ body{
 }
 
 .rule span{
-
     display:block;
-
     margin-top:3px;
 
     font-size:7px;
-
     color:#678096;
 }
 
 .primary-btn{
-
     width:100%;
 
     margin-top:18px;
@@ -1121,7 +1103,6 @@ body{
     padding:15px;
 
     border:0;
-
     border-radius:12px;
 
     cursor:pointer;
@@ -1129,50 +1110,38 @@ body{
     color:#181000;
 
     font-size:13px;
-
     letter-spacing:.8px;
-
     font-weight:950;
 
     background:
-
-    linear-gradient(
-        180deg,
-        #fff3a9,
-        #f3c54b 48%,
-        #ad7308
-    );
+        linear-gradient(
+            180deg,
+            #fff3a9,
+            #f3c54b 48%,
+            #ad7308
+        );
 
     box-shadow:
-
-    0 0 24px
-    rgba(245,199,79,.17),
-
-    inset 0 1px
-    rgba(255,255,255,.65);
+        0 0 24px rgba(245,199,79,.17),
+        inset 0 1px rgba(255,255,255,.65);
 }
 
 .private-note{
-
     margin-top:11px;
 
     font-size:7px;
-
     color:#4e6982;
 
     letter-spacing:1.4px;
 }
-
 
 /* ===========================
    COUNTDOWN
 =========================== */
 
 .countdown-layer{
-
     position:absolute;
-
-    z-index:55;
+    z-index:70;
 
     inset:0;
 
@@ -1182,16 +1151,14 @@ body{
     justify-content:center;
 
     background:
-    rgba(0,5,13,.76);
+        rgba(0,5,13,.76);
 
     backdrop-filter:
-    blur(2px);
+        blur(2px);
 }
 
 .countdown-number{
-
     font-size:91px;
-
     line-height:1;
 
     color:#ffd75d;
@@ -1199,23 +1166,16 @@ body{
     font-weight:950;
 
     text-shadow:
-
-    0 0 20px
-    rgba(255,210,70,.55),
-
-    0 0 55px
-    rgba(245,190,35,.25);
+        0 0 20px rgba(255,210,70,.55),
+        0 0 55px rgba(245,190,35,.25);
 }
 
-
 /* ===========================
-   PARTICLES
+   FX
 =========================== */
 
 .particle{
-
     position:absolute;
-
     z-index:30;
 
     width:6px;
@@ -1226,48 +1186,38 @@ body{
     pointer-events:none;
 
     box-shadow:
-    0 0 10px
-    currentColor;
+        0 0 10px
+        currentColor;
 
     animation:
-    burst .65s forwards;
+        burst .65s forwards;
 }
 
 @keyframes burst{
-
     to{
-
         transform:
-
-        translate(
-            var(--x),
-            var(--y)
-        )
-
-        scale(.1);
+            translate(var(--x),var(--y))
+            scale(.1);
 
         opacity:0;
     }
 }
 
 .float-score{
-
     position:absolute;
-
     z-index:32;
 
     font-size:22px;
-
     font-weight:950;
 
     pointer-events:none;
 
     text-shadow:
-    0 0 14px
-    currentColor;
+        0 0 14px
+        currentColor;
 
     animation:
-    rise .75s forwards;
+        rise .75s forwards;
 }
 
 .float-score.blue{
@@ -1283,138 +1233,99 @@ body{
 }
 
 @keyframes rise{
-
     0%{
-        transform:
-        translateY(0)
-        scale(.6);
-
+        transform:translateY(0) scale(.6);
         opacity:0;
     }
 
     25%{
-        transform:
-        translateY(-8px)
-        scale(1.15);
-
+        transform:translateY(-8px) scale(1.15);
         opacity:1;
     }
 
     100%{
-        transform:
-        translateY(-65px);
-
+        transform:translateY(-65px);
         opacity:0;
     }
 }
 
-
-/* FLASH */
-
 .flash{
-
     position:absolute;
-
     z-index:25;
 
     inset:0;
 
     pointer-events:none;
-
     opacity:0;
 }
 
 .flash.blue{
-
     background:
+        radial-gradient(
+            circle,
+            rgba(70,205,255,.28),
+            transparent 53%
+        );
 
-    radial-gradient(
-        circle,
-        rgba(70,205,255,.28),
-        transparent 53%
-    );
-
-    animation:
-    flashAnim .22s;
+    animation:flashAnim .22s;
 }
 
 .flash.red{
-
     background:
+        radial-gradient(
+            circle,
+            rgba(255,65,95,.28),
+            transparent 53%
+        );
 
-    radial-gradient(
-        circle,
-        rgba(255,65,95,.28),
-        transparent 53%
-    );
-
-    animation:
-    flashAnim .24s;
+    animation:flashAnim .24s;
 }
 
 .flash.gold{
-
     background:
+        radial-gradient(
+            circle,
+            rgba(255,210,70,.33),
+            transparent 53%
+        );
 
-    radial-gradient(
-        circle,
-        rgba(255,210,70,.33),
-        transparent 53%
-    );
-
-    animation:
-    flashAnim .28s;
+    animation:flashAnim .28s;
 }
 
 @keyframes flashAnim{
-
     0%{opacity:0}
-
     45%{opacity:1}
-
     100%{opacity:0}
 }
 
-
-/* SHAKE */
-
 .shake{
-    animation:
-    shake .25s;
+    animation:shake .25s;
 }
 
 @keyframes shake{
-
     0%,100%{
-        transform:
-        translateX(0);
+        transform:translateX(0);
     }
 
     25%{
-        transform:
-        translateX(-5px);
+        transform:translateX(-5px);
     }
 
     50%{
-        transform:
-        translateX(4px);
+        transform:translateX(4px);
     }
 
     75%{
-        transform:
-        translateX(-2px);
+        transform:translateX(-2px);
     }
 }
-
 
 /* ===========================
    RESULT
 =========================== */
 
 .result-overlay{
-
     position:absolute;
-
     z-index:80;
 
     inset:0;
@@ -1427,161 +1338,117 @@ body{
     padding:20px;
 
     background:
-
-    radial-gradient(
-        circle at 50% 27%,
-        rgba(245,199,79,.14),
-        transparent 34%
-    ),
-
-    rgba(1,5,12,.96);
+        radial-gradient(circle at 50% 27%,rgba(245,199,79,.14),transparent 34%),
+        rgba(1,5,12,.96);
 }
 
 .result-card{
-
     width:100%;
-
     max-width:370px;
 
     text-align:center;
 
-    padding:
-    27px
-    20px
-    22px;
+    padding:27px 20px 22px;
 
     border-radius:21px;
 
     border:
-    1px solid
-    rgba(245,199,79,.64);
+        1px solid
+        rgba(245,199,79,.64);
 
     background:
-
-    radial-gradient(
-        circle at 50% 0%,
-        rgba(245,199,79,.17),
-        transparent 35%
-    ),
-
-    linear-gradient(
-        180deg,
-        #09182b,
-        #030912
-    );
+        radial-gradient(circle at 50% 0%,rgba(245,199,79,.17),transparent 35%),
+        linear-gradient(180deg,#09182b,#030912);
 
     box-shadow:
-
-    0 30px 75px
-    rgba(0,0,0,.75);
+        0 30px 75px
+        rgba(0,0,0,.75);
 }
 
 .result-status{
-
     color:#49dfa1;
 
     font-size:8px;
-
     letter-spacing:2.7px;
-
     font-weight:900;
 }
 
 .result-card h2{
-
     margin-top:7px;
 
     font-size:23px;
-
     color:#f6d168;
 }
 
 .score-ring{
-
     width:112px;
     height:112px;
 
-    margin:
-    18px auto 11px;
+    margin:18px auto 11px;
 
     border-radius:50%;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
     justify-content:center;
 
     border:
-    1px solid
-    rgba(66,198,255,.52);
+        1px solid
+        rgba(66,198,255,.52);
 
     background:
-
-    radial-gradient(
-        circle,
-        rgba(31,168,250,.20),
-        rgba(4,13,25,.94) 65%
-    );
+        radial-gradient(
+            circle,
+            rgba(31,168,250,.20),
+            rgba(4,13,25,.94) 65%
+        );
 
     box-shadow:
-
-    0 0 35px
-    rgba(25,165,245,.18),
-
-    inset 0 0 26px
-    rgba(65,196,255,.13);
+        0 0 35px rgba(25,165,245,.18),
+        inset 0 0 26px rgba(65,196,255,.13);
 }
 
 .score-ring strong{
-
     font-size:40px;
-
     line-height:1;
 
     color:#5ad0ff;
 }
 
 .score-ring span{
-
     margin-top:6px;
 
     font-size:7px;
-
     letter-spacing:1.3px;
 
     color:#688097;
 }
 
 .reward-box{
-
     position:relative;
 
     overflow:hidden;
 
     margin-top:14px;
 
-    padding:
-    18px 11px;
+    padding:18px 11px;
 
     border-radius:14px;
 
     border:
-    1px solid
-    rgba(245,199,79,.32);
+        1px solid
+        rgba(245,199,79,.32);
 
     background:
-
-    linear-gradient(
-        180deg,
-        #091d36,
-        #061325
-    );
+        linear-gradient(
+            180deg,
+            #091d36,
+            #061325
+        );
 }
 
 .reward-box::before{
-
     content:"";
 
     position:absolute;
@@ -1590,38 +1457,30 @@ body{
     height:100px;
 
     top:-65px;
-
     left:50%;
 
-    transform:
-    translateX(-50%);
+    transform:translateX(-50%);
 
     background:
-
-    radial-gradient(
-        ellipse,
-        rgba(255,207,68,.38),
-        transparent 70%
-    );
+        radial-gradient(
+            ellipse,
+            rgba(255,207,68,.38),
+            transparent 70%
+        );
 }
 
 .reward-label{
-
     position:relative;
-
     z-index:2;
 
     color:#7389a0;
 
     font-size:7px;
-
     letter-spacing:1.7px;
 }
 
 .reward-name{
-
     position:relative;
-
     z-index:2;
 
     display:block;
@@ -1631,25 +1490,20 @@ body{
     color:#ffd760;
 
     font-size:19px;
-
     font-weight:950;
 }
 
 .reward-desc{
-
     position:relative;
-
     z-index:2;
 
     margin-top:5px;
 
     font-size:9px;
-
     color:#8ca1b6;
 }
 
 .claim-btn{
-
     width:100%;
 
     margin-top:16px;
@@ -1657,28 +1511,23 @@ body{
     padding:14px;
 
     border:0;
-
     border-radius:12px;
 
     background:
-
-    linear-gradient(
-        #fff0a1,
-        #f4c74e,
-        #a96d08
-    );
+        linear-gradient(
+            #fff0a1,
+            #f4c74e,
+            #a96d08
+        );
 
     font-size:13px;
-
     color:#181000;
-
     font-weight:950;
 
     cursor:pointer;
 }
 
 .demo-btn{
-
     margin-top:10px;
 
     border:0;
@@ -1686,19 +1535,16 @@ body{
     background:none;
 
     color:#657e95;
-
     font-size:9px;
 
     cursor:pointer;
 }
-
 
 /* ===========================
    REWARD PREVIEW
 =========================== */
 
 .reward-preview-panel{
-
     margin-top:14px;
 
     border-radius:14px;
@@ -1706,64 +1552,55 @@ body{
     padding:12px;
 
     background:
-    rgba(5,14,28,.72);
+        rgba(5,14,28,.72);
 
     border:
-    1px solid
-    rgba(245,199,79,.15);
+        1px solid
+        rgba(245,199,79,.15);
 }
 
 .preview-title{
-
     text-align:center;
 
     font-size:8px;
-
     color:#cbaa54;
-
     letter-spacing:2.4px;
 
     margin-bottom:10px;
 }
 
 .preview-grid{
-
     display:grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+        repeat(3,1fr);
 
     gap:7px;
 }
 
 .preview{
-
     min-height:70px;
 
     border-radius:10px;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
     justify-content:center;
 
     background:
-
-    linear-gradient(
-        180deg,
-        #071528,
-        #040c17
-    );
+        linear-gradient(
+            180deg,
+            #071528,
+            #040c17
+        );
 
     border:
-    1px solid
-    rgba(255,255,255,.05);
+        1px solid
+        rgba(255,255,255,.05);
 }
 
 .preview-shape{
-
     width:25px;
     height:25px;
 
@@ -1771,76 +1608,67 @@ body{
 }
 
 .preview-shape.diamond{
-
     clip-path:
-
-    polygon(
-        50% 0,
-        100% 35%,
-        72% 100%,
-        28% 100%,
-        0 35%
-    );
+        polygon(
+            50% 0,
+            100% 35%,
+            72% 100%,
+            28% 100%,
+            0 35%
+        );
 
     background:
-
-    linear-gradient(
-        135deg,
-        #e0f9ff,
-        #3fc5ff,
-        #075eaf,
-        #8ae8ff
-    );
+        linear-gradient(
+            135deg,
+            #e0f9ff,
+            #3fc5ff,
+            #075eaf,
+            #8ae8ff
+        );
 
     filter:
-    drop-shadow(
-        0 0 6px
-        rgba(60,200,255,.6)
-    );
+        drop-shadow(
+            0 0 6px
+            rgba(60,200,255,.6)
+        );
 }
 
 .preview-shape.gold{
-
     clip-path:
-
-    polygon(
-        50% 0,
-        100% 35%,
-        72% 100%,
-        28% 100%,
-        0 35%
-    );
+        polygon(
+            50% 0,
+            100% 35%,
+            72% 100%,
+            28% 100%,
+            0 35%
+        );
 
     background:
-
-    linear-gradient(
-        135deg,
-        #fffbd7,
-        #ffd85c,
-        #a96d00,
-        #ffe978
-    );
+        linear-gradient(
+            135deg,
+            #fffbd7,
+            #ffd85c,
+            #a96d00,
+            #ffe978
+        );
 
     filter:
-    drop-shadow(
-        0 0 6px
-        rgba(245,200,60,.6)
-    );
+        drop-shadow(
+            0 0 6px
+            rgba(245,200,60,.6)
+        );
 }
 
 .preview-shape.mystery{
-
     border-radius:7px;
 
     border:
-    1px solid
-    #ca9b28;
+        1px solid
+        #ca9b28;
 
-    background:
-    #101828;
+    background:#101828;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -1854,23 +1682,17 @@ body{
 }
 
 .preview b{
-
     font-size:8px;
-
     color:#dce6ef;
 }
 
 .preview span{
-
     margin-top:3px;
-
     font-size:7px;
-
     color:#61788f;
 }
 
 .footer{
-
     padding-top:13px;
 
     text-align:center;
@@ -1878,13 +1700,10 @@ body{
     color:#30485e;
 
     font-size:7px;
-
     letter-spacing:1.5px;
 }
 
-
 @media(max-width:380px){
-
     .arena{
         height:480px;
     }
@@ -1892,8 +1711,12 @@ body{
     .title{
         font-size:25px;
     }
-}
 
+    .collector-wrap{
+        width:148px;
+        height:91px;
+    }
+}
 </style>
 </head>
 
@@ -1928,11 +1751,9 @@ body{
 
 </header>
 
-
 <section class="hud">
 
     <div class="hud-box">
-
         <span class="hud-label">
             MEMBER ACCESS
         </span>
@@ -1940,11 +1761,9 @@ body{
         <span class="hud-value">
             VIP****27
         </span>
-
     </div>
 
     <div class="hud-box">
-
         <span class="hud-label">
             CHANCE
         </span>
@@ -1952,11 +1771,9 @@ body{
         <span class="hud-value">
             1X
         </span>
-
     </div>
 
     <div class="hud-box">
-
         <span class="hud-label">
             TIME
         </span>
@@ -1966,34 +1783,32 @@ body{
         id="timer">
             15
         </span>
-
     </div>
 
 </section>
-
 
 <main
 class="arena"
 id="arena">
 
-    <div class="stars"></div>
+    <div class="bg-vault"></div>
+    <div class="bg-light left"></div>
+    <div class="bg-light right"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-particles"></div>
 
     <div
     class="flash"
     id="flash">
     </div>
 
-
     <div class="top-status">
 
         <div class="score-pill">
-
             CRYSTAL
-
             <strong id="score">
                 0
             </strong>
-
         </div>
 
         <div
@@ -2010,36 +1825,41 @@ id="arena">
 
     </div>
 
-
     <div
     class="guide"
     id="guide">
 
         <span>←</span>
-
         Geser collector
-
         <span>→</span>
 
     </div>
-
 
     <div
     class="collector-wrap"
     id="collector">
 
+        <div class="collector-shadow"></div>
         <div class="collector-glow"></div>
 
-        <div class="collector">
+        <div class="collector-body">
 
-            <div class="collector-logo">
-                VIP
+            <div class="collector-rim"></div>
+
+            <div class="collector-inner"></div>
+
+            <div class="collector-grid"></div>
+
+            <div class="collector-side left"></div>
+            <div class="collector-side right"></div>
+
+            <div class="collector-front-plate">
+                <span>VIP</span>
             </div>
 
         </div>
 
     </div>
-
 
     <!-- INTRO -->
 
@@ -2066,11 +1886,9 @@ id="arena">
                 Hindari Red Crystal untuk menjaga skor kamu.
             </p>
 
-
             <div class="rules">
 
                 <div class="rule good">
-
                     <strong>
                         +1
                     </strong>
@@ -2078,12 +1896,9 @@ id="arena">
                     <span>
                         BLUE CRYSTAL
                     </span>
-
                 </div>
 
-
                 <div class="rule bad">
-
                     <strong>
                         -2
                     </strong>
@@ -2091,11 +1906,9 @@ id="arena">
                     <span>
                         RED CRYSTAL
                     </span>
-
                 </div>
 
             </div>
-
 
             <button
             class="primary-btn"
@@ -2105,17 +1918,13 @@ id="arena">
 
             </button>
 
-
             <div class="private-note">
-
                 EXCLUSIVE MEMBER ACCESS
-
             </div>
 
         </div>
 
     </div>
-
 
     <!-- COUNTDOWN -->
 
@@ -2133,7 +1942,6 @@ id="arena">
 
     </div>
 
-
     <!-- RESULT -->
 
     <div
@@ -2143,18 +1951,12 @@ id="arena">
         <div class="result-card">
 
             <div class="result-status">
-
                 PRIVATE SESSION COMPLETE
-
             </div>
 
-
             <h2>
-
                 VIP REWARD UNLOCKED
-
             </h2>
-
 
             <div class="score-ring">
 
@@ -2168,15 +1970,11 @@ id="arena">
 
             </div>
 
-
             <div class="reward-box">
 
                 <div class="reward-label">
-
                     YOUR PRIVATE REWARD
-
                 </div>
-
 
                 <span
                 class="reward-name"
@@ -2185,7 +1983,6 @@ id="arena">
                     -
 
                 </span>
-
 
                 <div
                 class="reward-desc"
@@ -2197,7 +1994,6 @@ id="arena">
 
             </div>
 
-
             <button
             class="claim-btn"
             onclick="claimReward()">
@@ -2205,7 +2001,6 @@ id="arena">
                 CLAIM MY REWARD
 
             </button>
-
 
             <button
             class="demo-btn"
@@ -2221,15 +2016,11 @@ id="arena">
 
 </main>
 
-
 <section class="reward-preview-panel">
 
     <div class="preview-title">
-
         POSSIBLE VIP REWARD
-
     </div>
-
 
     <div class="preview-grid">
 
@@ -2249,7 +2040,6 @@ id="arena">
 
         </div>
 
-
         <div class="preview">
 
             <div
@@ -2265,7 +2055,6 @@ id="arena">
             </span>
 
         </div>
-
 
         <div class="preview">
 
@@ -2287,20 +2076,16 @@ id="arena">
 
 </section>
 
-
 <div class="footer">
-
     PRIVATE VIP EVENT • MEMBER ACCESS
-
 </div>
 
 </div>
-
 
 <script>
 
 /* =========================================
-   GAME ELEMENTS
+   ELEMENTS
 ========================================= */
 
 const arena =
@@ -2353,49 +2138,37 @@ document.getElementById("soundButton");
 
 
 /* =========================================
-   GAME SETTINGS
+   SETTINGS
 ========================================= */
 
 const GAME_TIME = 15;
-
 const MAX_BLUE = 12;
 
 let score = 0;
-
-let timeLeft =
-GAME_TIME;
+let timeLeft = GAME_TIME;
 
 let blueSpawned = 0;
 
 let gameActive = false;
 
 let streak = 0;
-
 let combo = 1;
 
 let collectorX = 0;
 
 let blueInterval;
-
 let redInterval;
-
 let goldInterval;
-
 let timerInterval;
 
 
 /* =========================================
-   WEB AUDIO ENGINE
+   AUDIO
 ========================================= */
 
 let audioContext = null;
-
 let soundEnabled = true;
-
 let ambientTimer = null;
-
-
-/* START AUDIO ENGINE */
 
 function initAudio(){
 
@@ -2404,19 +2177,17 @@ function initAudio(){
     }
 
     const AudioContext =
-    window.AudioContext ||
-    window.webkitAudioContext;
+        window.AudioContext ||
+        window.webkitAudioContext;
 
     if(!AudioContext){
         return;
     }
 
     audioContext =
-    new AudioContext();
+        new AudioContext();
 }
 
-
-/* SIMPLE TONE */
 
 function playTone(
     frequency,
@@ -2434,18 +2205,15 @@ function playTone(
     }
 
     const osc =
-    audioContext.createOscillator();
+        audioContext.createOscillator();
 
     const gain =
-    audioContext.createGain();
+        audioContext.createGain();
 
-
-    osc.type =
-    type;
+    osc.type = type;
 
     osc.frequency.value =
-    frequency;
-
+        frequency;
 
     gain.gain.setValueAtTime(
         0,
@@ -2466,19 +2234,12 @@ function playTone(
         + duration
     );
 
-
     osc.connect(gain);
-
-    gain.connect(
-        audioContext.destination
-    );
-
+    gain.connect(audioContext.destination);
 
     osc.start(
-        audioContext.currentTime
-        + delay
+        audioContext.currentTime + delay
     );
-
 
     osc.stop(
         audioContext.currentTime
@@ -2489,16 +2250,9 @@ function playTone(
 }
 
 
-/* ENTER SOUND */
-
 function soundEnter(){
 
-    playTone(
-        320,
-        .15,
-        .07,
-        "sine"
-    );
+    playTone(320,.15,.07,"sine");
 
     playTone(
         480,
@@ -2518,8 +2272,6 @@ function soundEnter(){
 }
 
 
-/* COUNTDOWN */
-
 function soundCountdown(){
 
     playTone(
@@ -2530,8 +2282,6 @@ function soundCountdown(){
     );
 }
 
-
-/* GO */
 
 function soundGo(){
 
@@ -2552,8 +2302,6 @@ function soundGo(){
 }
 
 
-/* BLUE CRYSTAL */
-
 function soundBlue(){
 
     playTone(
@@ -2572,8 +2320,6 @@ function soundBlue(){
     );
 }
 
-
-/* GOLD */
 
 function soundGold(){
 
@@ -2602,8 +2348,6 @@ function soundGold(){
 }
 
 
-/* RED */
-
 function soundRed(){
 
     playTone(
@@ -2623,8 +2367,6 @@ function soundRed(){
 }
 
 
-/* COMBO */
-
 function soundCombo(){
 
     playTone(
@@ -2643,8 +2385,6 @@ function soundCombo(){
     );
 }
 
-
-/* REWARD FANFARE */
 
 function soundReward(){
 
@@ -2681,9 +2421,7 @@ function soundReward(){
 }
 
 
-/* =========================================
-   AMBIENCE
-========================================= */
+/* ambience */
 
 function startAmbient(){
 
@@ -2696,26 +2434,25 @@ function startAmbient(){
         return;
     }
 
-
     ambientTimer =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        playTone(
-            90,
-            1.3,
-            .015,
-            "sine"
-        );
+            playTone(
+                90,
+                1.3,
+                .015,
+                "sine"
+            );
 
-        playTone(
-            135,
-            .9,
-            .009,
-            "sine",
-            .22
-        );
+            playTone(
+                135,
+                .9,
+                .009,
+                "sine",
+                .22
+            );
 
-    },1800);
+        },1800);
 }
 
 
@@ -2732,20 +2469,15 @@ function stopAmbient(){
 }
 
 
-/* =========================================
-   SOUND TOGGLE
-========================================= */
-
 function toggleSound(){
 
     soundEnabled =
-    !soundEnabled;
+        !soundEnabled;
 
     soundButton.textContent =
-    soundEnabled
-    ? "🔊"
-    : "🔇";
-
+        soundEnabled
+        ? "🔊"
+        : "🔇";
 
     if(!soundEnabled){
 
@@ -2755,7 +2487,6 @@ function toggleSound(){
     else if(gameActive){
 
         initAudio();
-
         startAmbient();
     }
 }
@@ -2767,9 +2498,7 @@ function toggleSound(){
 
 function vibrate(pattern){
 
-    if(
-        navigator.vibrate
-    ){
+    if(navigator.vibrate){
 
         navigator.vibrate(
             pattern
@@ -2779,35 +2508,31 @@ function vibrate(pattern){
 
 
 /* =========================================
-   CENTER COLLECTOR
+   COLLECTOR POSITION
 ========================================= */
 
 function centerCollector(){
 
     const arenaWidth =
-    arena.clientWidth;
+        arena.clientWidth;
 
     const collectorWidth =
-    collector.offsetWidth;
-
+        collector.offsetWidth;
 
     collectorX =
-
-    (
-        arenaWidth
-        -
-        collectorWidth
-    )
-
-    / 2;
-
+        (
+            arenaWidth
+            -
+            collectorWidth
+        )
+        /
+        2;
 
     collector.style.left =
-    collectorX + "px";
-
+        collectorX + "px";
 
     collector.style.transform =
-    "none";
+        "none";
 }
 
 
@@ -2831,85 +2556,69 @@ function enterGame(){
 
     initAudio();
 
-
     if(
         audioContext &&
         audioContext.state
         ===
         "suspended"
     ){
-
         audioContext.resume();
     }
 
-
     soundEnter();
 
-
     intro.style.display =
-    "none";
-
+        "none";
 
     countdownLayer.style.display =
-    "flex";
-
+        "flex";
 
     let number = 3;
 
-
     countdownNumber.textContent =
-    number;
-
+        number;
 
     soundCountdown();
 
-
     const count =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        number--;
+            number--;
 
+            if(number > 0){
 
-        if(number > 0){
+                countdownNumber.textContent =
+                    number;
 
-            countdownNumber.textContent =
-            number;
+                soundCountdown();
 
-            soundCountdown();
+            }
+            else{
 
-        }
-        else{
+                clearInterval(count);
 
-            clearInterval(
-                count
-            );
-
-
-            countdownNumber.textContent =
-            "GO!";
-
-
-            countdownNumber.style.color =
-            "#59d2ff";
-
-
-            soundGo();
-
-
-            setTimeout(()=>{
-
-                countdownLayer.style.display =
-                "none";
+                countdownNumber.textContent =
+                    "GO!";
 
                 countdownNumber.style.color =
-                "#ffd75d";
+                    "#59d2ff";
 
-                startGame();
+                soundGo();
 
-            },650);
-        }
+                setTimeout(()=>{
 
-    },800);
+                    countdownLayer.style.display =
+                        "none";
+
+                    countdownNumber.style.color =
+                        "#ffd75d";
+
+                    startGame();
+
+                },650);
+            }
+
+        },800);
 }
 
 
@@ -2922,134 +2631,114 @@ function startGame(){
     score = 0;
 
     timeLeft =
-    GAME_TIME;
+        GAME_TIME;
 
     blueSpawned = 0;
 
     streak = 0;
-
     combo = 1;
 
     gameActive = true;
 
-
     scoreElement.textContent =
-    score;
-
+        score;
 
     timerElement.textContent =
-    timeLeft;
-
+        timeLeft;
 
     timerElement.style.color =
-    "#52cbff";
-
+        "#52cbff";
 
     comboText.textContent =
-    "x1";
-
+        "x1";
 
     comboPill.classList.remove(
         "active"
     );
 
-
     guide.style.opacity =
-    "1";
-
+        "1";
 
     centerCollector();
-
 
     startAmbient();
 
 
-    /* BLUE */
-
     blueInterval =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        spawnBlue();
+            spawnBlue();
 
-    },950);
+        },950);
 
-
-    /* RED */
 
     redInterval =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        if(
-            Math.random()
-            <
-            .60
-        ){
+            if(
+                Math.random()
+                <
+                .60
+            ){
 
-            createCrystal(
-                "red"
-            );
-        }
+                createCrystal(
+                    "red"
+                );
+            }
 
-    },2200);
+        },2200);
 
-
-    /* GOLD */
 
     goldInterval =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        if(
-            Math.random()
-            <
-            .30
-        ){
+            if(
+                Math.random()
+                <
+                .30
+            ){
 
-            createCrystal(
-                "gold"
-            );
-        }
+                createCrystal(
+                    "gold"
+                );
+            }
 
-    },4500);
+        },4500);
 
-
-    /* TIMER */
 
     timerInterval =
-    setInterval(()=>{
+        setInterval(()=>{
 
-        timeLeft--;
+            timeLeft--;
 
+            timerElement.textContent =
+                timeLeft;
 
-        timerElement.textContent =
-        timeLeft;
+            if(timeLeft <= 5){
 
+                timerElement.style.color =
+                    "#ffd05e";
 
-        if(timeLeft <= 5){
+                playTone(
+                    350,
+                    .06,
+                    .025,
+                    "square"
+                );
+            }
 
-            timerElement.style.color =
-            "#ffd05e";
+            if(timeLeft <= 0){
 
-            playTone(
-                350,
-                .06,
-                .025,
-                "square"
-            );
-        }
+                endGame();
+            }
 
-
-        if(timeLeft <= 0){
-
-            endGame();
-        }
-
-    },1000);
+        },1000);
 
 
     setTimeout(()=>{
 
         guide.style.opacity =
-        ".20";
+            ".20";
 
     },2700);
 }
@@ -3065,7 +2754,6 @@ function spawnBlue(){
         return;
     }
 
-
     if(
         blueSpawned
         >=
@@ -3074,9 +2762,7 @@ function spawnBlue(){
         return;
     }
 
-
     blueSpawned++;
-
 
     createCrystal(
         "blue"
@@ -3094,16 +2780,13 @@ function createCrystal(type){
         return;
     }
 
-
     const crystal =
-    document.createElement(
-        "div"
-    );
-
+        document.createElement(
+            "div"
+        );
 
     crystal.className =
-    "crystal";
-
+        "crystal";
 
     if(type !== "blue"){
 
@@ -3112,82 +2795,71 @@ function createCrystal(type){
         );
     }
 
-
     crystal.innerHTML =
-    `
+        `
         <div class="trail"></div>
         <div class="crystal-core"></div>
-    `;
+        `;
 
-
-    const size =
-    42;
-
+    const size = 42;
 
     const maxX =
-    arena.clientWidth
-    -
-    size
-    -
-    10;
-
+        arena.clientWidth
+        -
+        size
+        -
+        10;
 
     const x =
-    5
-    +
-    Math.random()
-    *
-    maxX;
-
+        5
+        +
+        Math.random()
+        *
+        maxX;
 
     crystal.style.left =
-    x + "px";
-
+        x + "px";
 
     crystal.style.top =
-    "-75px";
-
+        "-75px";
 
     arena.appendChild(
         crystal
     );
 
-
     let y =
-    -75;
-
+        -75;
 
     let speed;
-
 
     if(type === "red"){
 
         speed =
-        4.2
-        +
-        Math.random()
-        *
-        1.4;
+            4.2
+            +
+            Math.random()
+            *
+            1.4;
 
     }
     else if(type === "gold"){
 
         speed =
-        4
-        +
-        Math.random()
-        *
-        1.2;
+            4
+            +
+            Math.random()
+            *
+            1.2;
 
     }
     else{
 
         speed =
-        3
-        +
-        Math.random()
-        *
-        1.5;
+            3
+            +
+            Math.random()
+            *
+            1.5;
     }
 
 
@@ -3200,60 +2872,49 @@ function createCrystal(type){
             return;
         }
 
-
         y += speed;
 
-
         crystal.style.top =
-        y + "px";
-
+            y + "px";
 
         const crystalRect =
-        crystal
-        .getBoundingClientRect();
-
+            crystal.getBoundingClientRect();
 
         const collectorRect =
-        collector
-        .getBoundingClientRect();
-
+            collector.getBoundingClientRect();
 
         const caught =
 
-        crystalRect.bottom
-        >=
-        collectorRect.top + 12
+            crystalRect.bottom
+            >=
+            collectorRect.top + 12
 
-        &&
+            &&
 
-        crystalRect.top
-        <=
-        collectorRect.bottom
+            crystalRect.top
+            <=
+            collectorRect.bottom
 
-        &&
+            &&
 
-        crystalRect.right
-        >=
-        collectorRect.left + 8
+            crystalRect.right
+            >=
+            collectorRect.left + 8
 
-        &&
+            &&
 
-        crystalRect.left
-        <=
-        collectorRect.right - 8;
+            crystalRect.left
+            <=
+            collectorRect.right - 8;
 
 
         if(caught){
 
             crystalCaught(
-
                 type,
-
                 crystalRect.left,
-
                 crystalRect.top
             );
-
 
             crystal.remove();
 
@@ -3269,7 +2930,6 @@ function createCrystal(type){
 
             crystal.remove();
 
-
             if(
                 type
                 ===
@@ -3279,16 +2939,13 @@ function createCrystal(type){
                 resetCombo();
             }
 
-
             return;
         }
-
 
         requestAnimationFrame(
             fall
         );
     }
-
 
     requestAnimationFrame(
         fall
@@ -3297,7 +2954,7 @@ function createCrystal(type){
 
 
 /* =========================================
-   CRYSTAL CAUGHT
+   CATCH
 ========================================= */
 
 function crystalCaught(
@@ -3310,30 +2967,24 @@ function crystalCaught(
 
         score -= 2;
 
-
         if(score < 0){
 
             score = 0;
         }
 
-
         resetCombo();
 
-
         soundRed();
-
 
         vibrate(
             [60,35,80]
         );
-
 
         createParticles(
             x,
             y,
             "#ff516d"
         );
-
 
         showFloat(
             "-2",
@@ -3342,19 +2993,15 @@ function crystalCaught(
             "red"
         );
 
-
         flashEffect(
             "red"
         );
-
 
         arena.classList.remove(
             "shake"
         );
 
-
         void arena.offsetWidth;
-
 
         arena.classList.add(
             "shake"
@@ -3370,14 +3017,11 @@ function crystalCaught(
 
         updateCombo();
 
-
         soundGold();
-
 
         vibrate(
             35
         );
-
 
         createParticles(
             x,
@@ -3385,14 +3029,12 @@ function crystalCaught(
             "#ffd75d"
         );
 
-
         showFloat(
             "+2",
             x,
             y,
             "gold"
         );
-
 
         flashEffect(
             "gold"
@@ -3406,15 +3048,7 @@ function crystalCaught(
 
         updateCombo();
 
-
-        let gain =
-        1;
-
-
-        /*
-        combo memberi peluang
-        bonus +2
-        */
+        let gain = 1;
 
         if(
             combo >= 2
@@ -3427,24 +3061,19 @@ function crystalCaught(
             gain = 2;
         }
 
-
         score += gain;
 
-
         soundBlue();
-
 
         vibrate(
             18
         );
-
 
         createParticles(
             x,
             y,
             "#58cfff"
         );
-
 
         showFloat(
             "+" + gain,
@@ -3453,15 +3082,13 @@ function crystalCaught(
             "blue"
         );
 
-
         flashEffect(
             "blue"
         );
     }
 
-
     scoreElement.textContent =
-    score;
+        score;
 }
 
 
@@ -3472,8 +3099,7 @@ function crystalCaught(
 function updateCombo(){
 
     const oldCombo =
-    combo;
-
+        combo;
 
     if(streak >= 7){
 
@@ -3490,10 +3116,8 @@ function updateCombo(){
         combo = 1;
     }
 
-
     comboText.textContent =
-    "x" + combo;
-
+        "x" + combo;
 
     if(combo > 1){
 
@@ -3508,7 +3132,6 @@ function updateCombo(){
             "active"
         );
     }
-
 
     if(
         combo
@@ -3528,13 +3151,10 @@ function updateCombo(){
 function resetCombo(){
 
     streak = 0;
-
     combo = 1;
 
-
     comboText.textContent =
-    "x1";
-
+        "x1";
 
     comboPill.classList.remove(
         "active"
@@ -3553,8 +3173,7 @@ function createParticles(
 ){
 
     const rect =
-    arena.getBoundingClientRect();
-
+        arena.getBoundingClientRect();
 
     for(
         let i = 0;
@@ -3563,51 +3182,43 @@ function createParticles(
     ){
 
         const particle =
-        document.createElement(
-            "div"
-        );
-
+            document.createElement(
+                "div"
+            );
 
         particle.className =
-        "particle";
-
+            "particle";
 
         particle.style.color =
-        color;
-
+            color;
 
         particle.style.background =
-        color;
-
+            color;
 
         particle.style.left =
-        (
-            x
-            -
-            rect.left
+            (
+                x
+                -
+                rect.left
+                +
+                20
+            )
             +
-            20
-        )
-        +
-        "px";
-
+            "px";
 
         particle.style.top =
-        (
-            y
-            -
-            rect.top
+            (
+                y
+                -
+                rect.top
+                +
+                20
+            )
             +
-            20
-        )
-        +
-        "px";
-
+            "px";
 
         particle.style.setProperty(
-
             "--x",
-
             (
                 (
                     Math.random()
@@ -3620,12 +3231,9 @@ function createParticles(
             +
             "px"
         );
-
 
         particle.style.setProperty(
-
             "--y",
-
             (
                 (
                     Math.random()
@@ -3638,12 +3246,10 @@ function createParticles(
             +
             "px"
         );
-
 
         arena.appendChild(
             particle
         );
-
 
         setTimeout(()=>{
 
@@ -3666,51 +3272,44 @@ function showFloat(
 ){
 
     const rect =
-    arena.getBoundingClientRect();
-
+        arena.getBoundingClientRect();
 
     const floating =
-    document.createElement(
-        "div"
-    );
-
+        document.createElement(
+            "div"
+        );
 
     floating.className =
-    "float-score "
-    +
-    type;
-
+        "float-score "
+        +
+        type;
 
     floating.textContent =
-    text;
-
+        text;
 
     floating.style.left =
-    (
-        x
-        -
-        rect.left
+        (
+            x
+            -
+            rect.left
+            +
+            10
+        )
         +
-        10
-    )
-    +
-    "px";
-
+        "px";
 
     floating.style.top =
-    (
-        y
-        -
-        rect.top
-    )
-    +
-    "px";
-
+        (
+            y
+            -
+            rect.top
+        )
+        +
+        "px";
 
     arena.appendChild(
         floating
     );
-
 
     setTimeout(()=>{
 
@@ -3727,16 +3326,14 @@ function showFloat(
 function flashEffect(type){
 
     flash.className =
-    "flash";
-
+        "flash";
 
     void flash.offsetWidth;
 
-
     flash.className =
-    "flash "
-    +
-    type;
+        "flash "
+        +
+        type;
 }
 
 
@@ -3752,34 +3349,23 @@ function moveCollector(
         return;
     }
 
-
     const rect =
-    arena
-    .getBoundingClientRect();
-
+        arena.getBoundingClientRect();
 
     const width =
-    collector.offsetWidth;
-
+        collector.offsetWidth;
 
     let x =
-
-    clientX
-
-    -
-
-    rect.left
-
-    -
-
-    width / 2;
-
+        clientX
+        -
+        rect.left
+        -
+        width / 2;
 
     if(x < 2){
 
         x = 2;
     }
-
 
     if(
         x
@@ -3792,26 +3378,23 @@ function moveCollector(
     ){
 
         x =
-        rect.width
-        -
-        width
-        -
-        2;
+            rect.width
+            -
+            width
+            -
+            2;
     }
 
-
     collectorX =
-    x;
-
+        x;
 
     collector.style.left =
-    collectorX
-    +
-    "px";
-
+        collectorX
+        +
+        "px";
 
     collector.style.transform =
-    "none";
+        "none";
 }
 
 
@@ -3826,7 +3409,6 @@ arena.addEventListener(
         if(!gameActive){
             return;
         }
-
 
         moveCollector(
             e.touches[0]
@@ -3851,9 +3433,7 @@ arena.addEventListener(
             return;
         }
 
-
         e.preventDefault();
-
 
         moveCollector(
             e.touches[0]
@@ -3871,7 +3451,7 @@ arena.addEventListener(
 /* MOUSE */
 
 let mouseDown =
-false;
+    false;
 
 
 arena.addEventListener(
@@ -3884,10 +3464,8 @@ arena.addEventListener(
             return;
         }
 
-
         mouseDown =
-        true;
-
+            true;
 
         moveCollector(
             e.clientX
@@ -3904,7 +3482,7 @@ window.addEventListener(
     function(){
 
         mouseDown =
-        false;
+            false;
 
     }
 );
@@ -3937,107 +3515,90 @@ function endGame(){
         return;
     }
 
-
     gameActive =
-    false;
-
+        false;
 
     clearInterval(
         blueInterval
     );
 
-
     clearInterval(
         redInterval
     );
-
 
     clearInterval(
         goldInterval
     );
 
-
     clearInterval(
         timerInterval
     );
 
-
     stopAmbient();
 
-
     document
-    .querySelectorAll(
-        ".crystal"
-    )
-    .forEach(
-        item => item.remove()
-    );
-
+        .querySelectorAll(
+            ".crystal"
+        )
+        .forEach(
+            item => item.remove()
+        );
 
     timerElement.textContent =
-    "0";
-
+        "0";
 
     finalScore.textContent =
-    score;
-
+        score;
 
     let name;
-
     let desc;
-
 
     if(score >= 12){
 
         name =
-        "ROYAL MYSTERY REWARD";
+            "ROYAL MYSTERY REWARD";
 
         desc =
-        "High-tier VIP reward berhasil terbuka.";
+            "High-tier VIP reward berhasil terbuka.";
 
     }
     else if(score >= 8){
 
         name =
-        "VIP EXCLUSIVE REWARD";
+            "VIP EXCLUSIVE REWARD";
 
         desc =
-        "Exclusive member reward berhasil terbuka.";
+            "Exclusive member reward berhasil terbuka.";
 
     }
     else if(score >= 5){
 
         name =
-        "VIP POINT REWARD";
+            "VIP POINT REWARD";
 
         desc =
-        "VIP reward kamu sudah siap diklaim.";
+            "VIP reward kamu sudah siap diklaim.";
 
     }
     else{
 
         name =
-        "PRIVATE MEMBER REWARD";
+            "PRIVATE MEMBER REWARD";
 
         desc =
-        "Reward partisipasi khusus member berhasil terbuka.";
+            "Reward partisipasi khusus member berhasil terbuka.";
     }
 
-
     rewardName.textContent =
-    name;
-
+        name;
 
     rewardDesc.textContent =
-    desc;
-
+        desc;
 
     result.style.display =
-    "flex";
-
+        "flex";
 
     soundReward();
-
 
     vibrate(
         [40,50,40,50,100]
@@ -4053,14 +3614,12 @@ function claimReward(){
 
     initAudio();
 
-
     playTone(
         750,
         .12,
         .06,
         "triangle"
     );
-
 
     playTone(
         1050,
@@ -4070,9 +3629,7 @@ function claimReward(){
         .08
     );
 
-
     alert(
-
         "VIP Reward\n\n"
         +
         "Ini masih versi demo.\n"
@@ -4090,55 +3647,35 @@ function resetDemo(){
 
     stopAmbient();
 
-
     result.style.display =
-    "none";
-
+        "none";
 
     intro.style.display =
-    "flex";
+        "flex";
 
+    score = 0;
+    timeLeft = GAME_TIME;
 
-    score =
-    0;
+    blueSpawned = 0;
 
-
-    timeLeft =
-    GAME_TIME;
-
-
-    blueSpawned =
-    0;
-
-
-    streak =
-    0;
-
-
-    combo =
-    1;
-
+    streak = 0;
+    combo = 1;
 
     scoreElement.textContent =
-    "0";
-
+        "0";
 
     timerElement.textContent =
-    GAME_TIME;
-
+        GAME_TIME;
 
     timerElement.style.color =
-    "#52cbff";
-
+        "#52cbff";
 
     comboText.textContent =
-    "x1";
-
+        "x1";
 
     comboPill.classList.remove(
         "active"
     );
-
 
     centerCollector();
 }
