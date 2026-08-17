@@ -2,133 +2,3563 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Royal Quest 9.9 - Full Visual</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no,
+viewport-fit=cover">
+
+<title>Jelajah Kota 9.9</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.90.0/phaser.min.js"></script>
+
 <style>
-    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-    html,body{width:100%;height:100%;overflow:hidden;background:#02050a;font-family:Arial,sans-serif;color:white;touch-action:none;display:flex;justify-content:center;align-items:center;}
-    #gameShell{position:relative;width:100%;max-width:500px;height:100vh;max-height:920px;overflow:hidden;background:#05080d;box-shadow:0 0 70px rgba(0,0,0,.85);}
-    
-    /* TOP HUD */
-    #topHud{position:absolute;z-index:50;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;pointer-events:none;}
-    .player-card{width:205px;padding:8px;display:flex;align-items:center;gap:9px;border-radius:14px;background:linear-gradient(180deg,rgba(8,17,29,.96),rgba(2,6,12,.92));border:1px solid rgba(238,190,65,.65);}
-    .avatar{width:44px;height:44px;border-radius:50%;border:2px solid #e4b844;background:radial-gradient(circle,#3e4c5c,#0a1019);display:flex;align-items:center;justify-content:center;font-size:18px;}
-    .hp{margin-top:6px;height:7px;border-radius:999px;overflow:hidden;background:#151d24;}
-    .hp-fill{width:100%;height:100%;background:linear-gradient(90deg,#42c769,#87ea79);box-shadow:0 0 8px rgba(65,224,110,.5);}
-    .quest-mini{width:115px;padding:8px;border-radius:13px;text-align:center;border:1px solid rgba(238,190,65,.65);background:rgba(8,17,29,.95);}
-    .counter{margin-top:3px;color:#ffd65c;font-size:21px;font-weight:900;}
 
-    /* JOYSTICK */
-    #joystick{position:absolute;z-index:80;left:25px;bottom:35px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,0.03);border:1px solid rgba(238,190,65,0.2);}
-    #joyKnob{position:absolute;width:60px;height:60px;left:35px;top:35px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #555, #111);border:2px solid #ffd65c;box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+:root{
+    --gold:#F3C64C;
+    --gold2:#FFE28A;
+    --dark:#05080d;
+    --panel:#081522;
+    --blue:#43C8FF;
+}
 
-    /* ACTION BUTTONS */
-    .action{position:absolute;z-index:80;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;background:radial-gradient(circle at 40% 30%,#17344d,#02060a);border:2px solid #efc246;box-shadow:0 6px 20px rgba(0,0,0,0.5);}
-    #interactBtn{width:75px;height:75px;right:20px;bottom:110px;}
-    #dashBtn{width:65px;height:65px;right:105px;bottom:40px;}
-    .action-label{font-size:8px;font-weight:bold;color:#f1cc63;margin-top:2px;}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
 
-    /* MESSAGES */
-    #msg{position:absolute;z-index:100;bottom:200px;left:50%;transform:translateX(-50%);padding:10px 20px;background:rgba(0,0,0,0.85);border:1px solid #ffd65c;border-radius:20px;font-size:12px;color:#fff;display:none;}
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020407;
+    font-family:Arial,Helvetica,sans-serif;
+    touch-action:none;
+    overscroll-behavior:none;
+}
 
-    /* INTRO & REWARD */
-    #intro, #reward{position:absolute;inset:0;z-index:200;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;}
-    .card{padding:25px;border-radius:20px;border:1px solid #ffd65c;background:#0b1724;}
-    button{margin-top:20px;padding:15px 30px;background:linear-gradient(#ffe082,#b28900);border:none;border-radius:10px;font-weight:bold;width:100%;cursor:pointer;}
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#gameShell{
+    width:100%;
+    max-width:520px;
+    height:100dvh;
+    position:relative;
+    overflow:hidden;
+
+    background:#05080d;
+
+    box-shadow:
+        0 0 70px rgba(0,0,0,.9);
+}
+
+#gameContainer{
+    position:absolute;
+    inset:0;
+}
+
+/* =========================
+   TOP SHADE
+========================= */
+
+.topShade{
+    position:absolute;
+    z-index:15;
+    top:0;
+    left:0;
+    right:0;
+    height:190px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(1,4,8,.82),
+            rgba(1,4,8,.35) 65%,
+            transparent
+        );
+}
+
+/* =========================
+   PLAYER HUD
+========================= */
+
+.playerHud{
+    position:absolute;
+    z-index:30;
+
+    left:12px;
+    top:12px;
+
+    width:205px;
+
+    display:flex;
+    align-items:center;
+
+    padding:8px 10px;
+
+    border-radius:15px;
+
+    border:
+        1px solid
+        rgba(244,198,76,.65);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8,20,34,.95),
+            rgba(2,8,15,.94)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.05);
+
+    pointer-events:none;
+}
+
+.avatar{
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:
+        2px solid
+        #E4B342;
+
+    color:#FFD65E;
+
+    font-size:12px;
+    font-weight:900;
+
+    background:
+        radial-gradient(
+            circle,
+            #25384A,
+            #07101A 70%
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(255,204,70,.18);
+}
+
+.playerInfo{
+    flex:1;
+    padding-left:9px;
+}
+
+.playerVip{
+    color:#EFC44F;
+    font-size:7px;
+    letter-spacing:1.6px;
+    font-weight:900;
+}
+
+.playerName{
+    color:white;
+    font-size:12px;
+    font-weight:900;
+    margin-top:2px;
+}
+
+.playerSub{
+    color:#71889D;
+    font-size:7px;
+    margin-top:2px;
+}
+
+/* =========================
+   QUEST COUNTER
+========================= */
+
+.counterHud{
+    position:absolute;
+    z-index:30;
+
+    right:12px;
+    top:12px;
+
+    width:112px;
+
+    padding:8px 9px 9px;
+
+    border-radius:15px;
+
+    border:
+        1px solid
+        rgba(244,198,76,.65);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8,20,34,.95),
+            rgba(2,8,15,.94)
+        );
+
+    text-align:center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4);
+
+    pointer-events:none;
+}
+
+.counterLabel{
+    font-size:7px;
+    letter-spacing:1.4px;
+    color:#8094A7;
+}
+
+.counterNumber{
+    margin-top:2px;
+
+    color:#FFD45B;
+
+    font-size:22px;
+    line-height:1;
+
+    font-weight:950;
+}
+
+/* =========================
+   QUEST CARD
+========================= */
+
+.questCard{
+    position:absolute;
+    z-index:30;
+
+    top:76px;
+    left:12px;
+
+    width:194px;
+
+    padding:11px 12px;
+
+    border-radius:13px;
+
+    border:
+        1px solid
+        rgba(245,199,79,.40);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,17,29,.94),
+            rgba(2,8,15,.92)
+        );
+
+    box-shadow:
+        0 9px 24px
+        rgba(0,0,0,.35);
+
+    pointer-events:none;
+}
+
+.questTitle{
+    color:#FFD05A;
+
+    font-size:8px;
+    font-weight:950;
+
+    letter-spacing:1.4px;
+}
+
+.questText{
+    margin-top:5px;
+
+    color:#BAC6D0;
+
+    font-size:9px;
+    line-height:1.5;
+}
+
+.questText strong{
+    color:#FFD45E;
+}
+
+/* =========================
+   DISTANCE CHEST
+========================= */
+
+.chestHint{
+    position:absolute;
+    z-index:30;
+
+    top:76px;
+    right:12px;
+
+    width:115px;
+
+    padding:9px;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    background:
+        rgba(3,11,20,.9);
+
+    border:
+        1px solid
+        rgba(245,199,79,.3);
+
+    pointer-events:none;
+}
+
+.chestHint small{
+    display:block;
+
+    color:#74889B;
+
+    font-size:6px;
+    letter-spacing:1px;
+}
+
+.chestHint strong{
+    display:block;
+
+    margin-top:4px;
+
+    color:#EFC956;
+
+    font-size:8px;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+#message{
+    position:absolute;
+    z-index:70;
+
+    left:50%;
+    bottom:190px;
+
+    max-width:86%;
+
+    padding:9px 16px;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
+    opacity:0;
+
+    white-space:nowrap;
+
+    border-radius:999px;
+
+    border:
+        1px solid
+        rgba(245,199,79,.48);
+
+    color:#FFE9A9;
+
+    font-size:9px;
+
+    background:
+        rgba(2,8,15,.94);
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.4);
+
+    transition:.22s;
+
+    pointer-events:none;
+}
+
+#message.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* =========================
+   SOUND
+========================= */
+
+#soundBtn{
+    position:absolute;
+    z-index:80;
+
+    left:16px;
+    bottom:172px;
+
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(245,199,79,.55);
+
+    background:
+        rgba(3,11,19,.82);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(5px);
+}
+
+/* =========================
+   JOYSTICK
+========================= */
+
+#joystick{
+    position:absolute;
+    z-index:80;
+
+    left:18px;
+    bottom:24px;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    touch-action:none;
+}
+
+.joyBase{
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(245,199,79,.55);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(63,71,81,.42),
+            rgba(4,9,14,.66)
+        );
+
+    box-shadow:
+        inset 0 0 25px
+        rgba(45,170,255,.06),
+        0 8px 25px
+        rgba(0,0,0,.26);
+}
+
+.joyBase::before,
+.joyBase::after{
+    content:"";
+
+    position:absolute;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+.joyBase::before{
+    width:1px;
+    height:72%;
+
+    left:50%;
+    top:14%;
+}
+
+.joyBase::after{
+    width:72%;
+    height:1px;
+
+    left:14%;
+    top:50%;
+}
+
+#joyKnob{
+    position:absolute;
+
+    width:58px;
+    height:58px;
+
+    left:36px;
+    top:36px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,214,92,.75);
+
+    background:
+        radial-gradient(
+            circle at 38% 28%,
+            #66727E,
+            #202833 62%,
+            #080C10
+        );
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.14);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions{
+    position:absolute;
+    z-index:80;
+
+    right:18px;
+    bottom:26px;
+
+    width:170px;
+    height:165px;
+}
+
+.actionBtn{
+    position:absolute;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    border:
+        2px solid
+        rgba(245,199,79,.78);
+
+    background:
+        radial-gradient(
+            circle at 40% 28%,
+            #17344E,
+            #07131E 65%,
+            #020609
+        );
+
+    color:white;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.48),
+        inset 0 0 16px
+        rgba(44,181,255,.12);
+
+    cursor:pointer;
+    user-select:none;
+
+    touch-action:none;
+}
+
+.actionBtn:active{
+    transform:scale(.92);
+}
+
+#interactBtn{
+    width:78px;
+    height:78px;
+
+    right:0;
+    bottom:70px;
+}
+
+#dashBtn{
+    width:61px;
+    height:61px;
+
+    right:88px;
+    bottom:5px;
+}
+
+.actionIcon{
+    font-size:24px;
+    line-height:1;
+}
+
+.actionText{
+    margin-top:5px;
+
+    color:#EFCB63;
+
+    font-size:7px;
+    font-weight:900;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    position:absolute;
+    z-index:200;
+
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 28%,
+            rgba(0,150,220,.16),
+            transparent 35%
+        ),
+        rgba(2,5,8,.95);
+
+    backdrop-filter:blur(8px);
+}
+
+.introCard{
+    width:100%;
+    max-width:380px;
+
+    padding:27px 22px 23px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(245,199,79,.67);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(245,199,79,.16),
+            transparent 37%
+        ),
+        linear-gradient(
+            180deg,
+            #0A1927,
+            #03080E
+        );
+
+    box-shadow:
+        0 30px 75px
+        rgba(0,0,0,.72);
+}
+
+.flag{
+    font-size:31px;
+}
+
+.eventSmall{
+    margin-top:5px;
+
+    color:#CDAA4F;
+
+    font-size:8px;
+    letter-spacing:4px;
+}
+
+.introTitle{
+    margin-top:6px;
+
+    font-size:30px;
+    font-weight:950;
+
+    background:
+        linear-gradient(
+            #FFF8D7,
+            #F2C44B,
+            #9B6307
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.introText{
+    margin-top:10px;
+
+    color:#97A6B4;
+
+    font-size:11px;
+    line-height:1.55;
+}
+
+.rules{
+    margin-top:17px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:7px;
+}
+
+.rule{
+    padding:10px 5px;
+
+    border-radius:10px;
+
+    background:#071521;
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
+    color:#8EA2B4;
+
+    font-size:8px;
+}
+
+.ruleIcon{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#FFD35A;
+
+    font-size:18px;
+    font-weight:950;
+}
+
+#startBtn{
+    width:100%;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border:0;
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            #FFF2AA,
+            #F2C54B,
+            #A76C06
+        );
+
+    color:#181000;
+
+    font-size:13px;
+    font-weight:950;
+
+    letter-spacing:.7px;
+
+    cursor:pointer;
+}
+
+/* =========================
+   REWARD
+========================= */
+
+#rewardOverlay{
+    position:absolute;
+    z-index:220;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,195,34,.17),
+            transparent 42%
+        ),
+        rgba(1,5,8,.96);
+
+    backdrop-filter:blur(7px);
+}
+
+.rewardCard{
+    width:100%;
+    max-width:375px;
+
+    padding:27px 21px 22px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(245,199,79,.76);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,209,64,.2),
+            transparent 37%
+        ),
+        linear-gradient(
+            #0B1B2B,
+            #03080E
+        );
+
+    box-shadow:
+        0 30px 75px
+        rgba(0,0,0,.75);
+}
+
+.rewardStatus{
+    color:#48DD95;
+
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:2.8px;
+}
+
+.rewardTitle{
+    margin-top:8px;
+
+    color:#FFD45D;
+
+    font-size:24px;
+    font-weight:950;
+}
+
+.rewardImage{
+    position:relative;
+
+    height:150px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-top:10px;
+}
+
+#rewardChestImg{
+    width:145px;
+    max-height:130px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(255,201,44,.75)
+        );
+
+    animation:
+        chestFloat
+        1.3s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes chestFloat{
+    from{
+        transform:
+            translateY(4px)
+            scale(.96);
+    }
+
+    to{
+        transform:
+            translateY(-5px)
+            scale(1.03);
+    }
+}
+
+.rewardResult{
+    padding:14px 10px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(245,199,79,.3);
+
+    background:#071623;
+}
+
+.rewardResult small{
+    color:#788D9E;
+
+    font-size:7px;
+    letter-spacing:1.2px;
+}
+
+.rewardResult strong{
+    display:block;
+
+    margin-top:6px;
+
+    color:#FFD45A;
+
+    font-size:18px;
+}
+
+#claimBtn{
+    width:100%;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border:0;
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            #FFF0A0,
+            #F1C247,
+            #A66B06
+        );
+
+    color:#181000;
+
+    font-size:13px;
+    font-weight:950;
+
+    cursor:pointer;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+    position:absolute;
+    z-index:300;
+
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:#02070C;
+
+    color:#FFD45B;
+}
+
+.loaderRing{
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    border:
+        3px solid
+        rgba(255,255,255,.08);
+
+    border-top-color:
+        #FFD45B;
+
+    animation:
+        spin .8s
+        linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.loadingText{
+    margin-top:12px;
+
+    color:#8395A4;
+
+    font-size:9px;
+    letter-spacing:1.8px;
+}
+
+@media(max-width:380px){
+
+    .playerHud{
+        width:190px;
+    }
+
+    .questCard{
+        width:180px;
+    }
+
+    #joystick{
+        width:118px;
+        height:118px;
+    }
+
+    #joyKnob{
+        left:30px;
+        top:30px;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
 <div id="gameShell">
+
     <div id="gameContainer"></div>
 
-    <div id="topHud">
-        <div class="player-card">
-            <div class="avatar">🇮🇩</div>
-            <div style="flex:1">
-                <div style="font-size:7px;letter-spacing:1px;color:#ffd65f">VIP EVENT 9.9</div>
-                <div style="font-size:12px;font-weight:900">Anak Nusantara</div>
-                <div class="hp"><div class="hp-fill"></div></div>
+    <div class="topShade"></div>
+
+    <!-- ========================
+         HUD
+    ========================= -->
+
+    <div class="playerHud">
+
+        <div class="avatar">
+            9.9
+        </div>
+
+        <div class="playerInfo">
+
+            <div class="playerVip">
+                VIP EVENT
             </div>
+
+            <div class="playerName">
+                Anak Nusantara
+            </div>
+
+            <div class="playerSub">
+                Jelajah Kota Indonesia
+            </div>
+
         </div>
-        <div class="quest-mini">
-            <small style="font-size:7px;color:#8192a2">GOLDEN 9</small>
-            <div class="counter"><span id="count">0</span>/9</div>
-        </div>
+
     </div>
 
-    <div id="msg">Pesan Muncul di sini</div>
 
-    <div id="joystick"><div id="joyKnob"></div></div>
-    <div id="interactBtn" class="action">
-        <span style="font-size:24px">✋</span>
-        <div class="action-label">INTERACT</div>
+    <div class="counterHud">
+
+        <div class="counterLabel">
+            GOLDEN 9
+        </div>
+
+        <div class="counterNumber">
+            <span id="coinCount">0</span>/9
+        </div>
+
     </div>
-    <div id="dashBtn" class="action">
-        <span style="font-size:20px">⚡</span>
-        <div class="action-label">DASH</div>
+
+
+    <div class="questCard">
+
+        <div class="questTitle">
+            QUEST 9.9
+        </div>
+
+        <div class="questText">
+
+            Jelajahi kota dan temukan
+            <strong>9 Golden 9</strong>.
+
+            Setelah lengkap, cari peti hadiah.
+
+        </div>
+
     </div>
+
+
+    <div class="chestHint">
+
+        <small>
+            ROYAL CHEST
+        </small>
+
+        <strong id="chestStatus">
+            TERKUNCI
+        </strong>
+
+    </div>
+
+
+    <div id="message"></div>
+
+
+    <!-- ========================
+         SOUND
+    ========================= -->
+
+    <button id="soundBtn">
+        🔊
+    </button>
+
+
+    <!-- ========================
+         JOYSTICK
+    ========================= -->
+
+    <div id="joystick">
+
+        <div class="joyBase"></div>
+
+        <div id="joyKnob"></div>
+
+    </div>
+
+
+    <!-- ========================
+         ACTION BUTTONS
+    ========================= -->
+
+    <div class="actions">
+
+        <div
+        class="actionBtn"
+        id="interactBtn">
+
+            <div class="actionIcon">
+                ✋
+            </div>
+
+            <div class="actionText">
+                INTERACT
+            </div>
+
+        </div>
+
+
+        <div
+        class="actionBtn"
+        id="dashBtn">
+
+            <div class="actionIcon">
+                ⚡
+            </div>
+
+            <div class="actionText">
+                DASH
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================
+         INTRO
+    ========================= -->
 
     <div id="intro">
-        <div class="card">
-            <h1 style="color:#ffd65c;font-size:28px">JELAJAH KOTA 9.9</h1>
-            <p style="color:#96a4b2;margin:15px 0;font-size:14px">Jelajahi kota, temukan 9 Golden 9, dan klaim hadiah rahasiamu!</p>
-            <button onclick="startGame()">MULAI PETUALANGAN</button>
+
+        <div class="introCard">
+
+            <div class="flag">
+                🇮🇩
+            </div>
+
+            <div class="eventSmall">
+                SPECIAL EVENT 9.9
+            </div>
+
+            <div class="introTitle">
+                JELAJAH KOTA
+            </div>
+
+            <div class="introText">
+
+                Mainkan karakter chibi,
+                keliling kota Indonesia
+                dan kumpulkan seluruh
+                Golden 9 untuk membuka
+                Mystery Chest.
+
+            </div>
+
+
+            <div class="rules">
+
+                <div class="rule">
+
+                    <span class="ruleIcon">
+                        ◉
+                    </span>
+
+                    Jalan bebas
+
+                </div>
+
+
+                <div class="rule">
+
+                    <span class="ruleIcon">
+                        9
+                    </span>
+
+                    Cari 9 item
+
+                </div>
+
+
+                <div class="rule">
+
+                    <span class="ruleIcon">
+                        🎁
+                    </span>
+
+                    Buka peti
+
+                </div>
+
+            </div>
+
+
+            <button id="startBtn">
+                MULAI JELAJAH
+            </button>
+
         </div>
+
     </div>
 
-    <div id="reward" style="display:none">
-        <div class="card">
-            <h2 style="color:#42db91">MISI BERHASIL!</h2>
-            <div style="font-size:50px;margin:20px">🎁</div>
-            <p>Kamu telah membuka Peti Hadiah 9.9</p>
-            <button onclick="location.reload()">KLAIM HADIAH</button>
+
+    <!-- ========================
+         REWARD
+    ========================= -->
+
+    <div id="rewardOverlay">
+
+        <div class="rewardCard">
+
+            <div class="rewardStatus">
+                MISSION COMPLETE
+            </div>
+
+            <div class="rewardTitle">
+                HADIAH 9.9 TERBUKA
+            </div>
+
+
+            <div class="rewardImage">
+
+                <img
+                id="rewardChestImg"
+                src="asset/peti.png"
+                alt="Peti hadiah">
+
+            </div>
+
+
+            <div class="rewardResult">
+
+                <small>
+                    REWARD MEMBER
+                </small>
+
+                <strong>
+                    MYSTERY REWARD 9.9
+                </strong>
+
+            </div>
+
+
+            <button id="claimBtn">
+                KLAIM HADIAH
+            </button>
+
         </div>
+
     </div>
+
+
+    <!-- ========================
+         LOADING
+    ========================= -->
+
+    <div id="loading">
+
+        <div class="loaderRing"></div>
+
+        <div class="loadingText">
+            MEMUAT KOTA 9.9
+        </div>
+
+    </div>
+
 </div>
 
-<script>
-const WORLD_W = 1600, WORLD_H = 1900;
-let player, joystickVector = {x:0, y:0}, gameStarted = false, goldenCount = 0;
 
-const config = {
-    type: Phaser.AUTO,
-    parent: 'gameContainer',
-    width: 500, height: 920,
-    physics: { default: 'arcade', arcade: { gravity: { y: 0 } } },
-    scene: { preload, create, update }
+<script>
+
+/* =========================================================
+   GLOBAL GAME DATA
+========================================================= */
+
+const MAP_WIDTH = 1536;
+const MAP_HEIGHT = 2048;
+
+const PLAYER_SPEED = 185;
+const DASH_SPEED = 430;
+
+let player;
+
+let goldenGroup;
+
+let chest;
+
+let cursors;
+let keys;
+
+let collected = 0;
+
+let started = false;
+
+let dashActive = false;
+let dashReady = true;
+
+let joystickVector = {
+    x:0,
+    y:0
 };
 
-const game = new Phaser.Game(config);
+let soundEnabled = true;
 
-function preload() {
-    // MEMUAT GAMBAR (PASTIKAN FILE ADA DI FOLDER assets/)
-    this.load.image('city', 'assets/kota-indonesia.jpg');
-    this.load.image('player', 'assets/karakter.png');
-    this.load.image('angkot', 'assets/angkot.png');
-    this.load.image('golden', 'assets/golden9.png');
-    this.load.image('chest', 'assets/chest.png');
+let audioContext = null;
+
+
+/* =========================================================
+   PHASER CONFIG
+========================================================= */
+
+const config = {
+
+    type:
+        Phaser.AUTO,
+
+    parent:
+        "gameContainer",
+
+    backgroundColor:
+        "#071017",
+
+    scale:{
+
+        mode:
+            Phaser.Scale.RESIZE,
+
+        autoCenter:
+            Phaser.Scale.CENTER_BOTH
+    },
+
+    physics:{
+
+        default:
+            "arcade",
+
+        arcade:{
+
+            gravity:{
+                y:0
+            },
+
+            debug:false
+        }
+    },
+
+    render:{
+
+        antialias:true,
+
+        pixelArt:false,
+
+        roundPixels:false
+    },
+
+    scene:{
+
+        preload:
+            preload,
+
+        create:
+            create,
+
+        update:
+            update
+    }
+};
+
+
+const game =
+new Phaser.Game(
+    config
+);
+
+
+/* =========================================================
+   PRELOAD
+
+   FILE SESUAI FOLDER GITHUB KAMU:
+
+   asset/map.png
+   asset/karakter.png
+   asset/coin.png
+   asset/peti.png
+========================================================= */
+
+function preload(){
+
+    this.load.image(
+        "map",
+        "asset/map.png"
+    );
+
+    this.load.image(
+        "player",
+        "asset/karakter.png"
+    );
+
+    this.load.image(
+        "coin",
+        "asset/coin.png"
+    );
+
+    this.load.image(
+        "chest",
+        "asset/peti.png"
+    );
 }
 
-function create() {
-    const scene = this;
-    this.physics.world.setBounds(0, 0, WORLD_W, WORLD_H);
 
-    // 1. BACKGROUND (CITY MAP)
-    if (this.textures.exists('city')) {
-        let map = this.add.image(WORLD_W/2, WORLD_H/2, 'city');
-        map.setDisplaySize(WORLD_W, WORLD_H);
-    } else {
-        // Fallback jika gambar tidak ditemukan
-        this.add.rectangle(WORLD_W/2, WORLD_H/2, WORLD_W, WORLD_H, 0x222222);
+/* =========================================================
+   CREATE
+========================================================= */
+
+function create(){
+
+    const scene =
+        this;
+
+
+    /* =========================
+       MAP
+    ========================= */
+
+    const map =
+        this.add.image(
+            MAP_WIDTH / 2,
+            MAP_HEIGHT / 2,
+            "map"
+        );
+
+
+    map.setDisplaySize(
+        MAP_WIDTH,
+        MAP_HEIGHT
+    );
+
+
+    map.setDepth(
+        -100
+    );
+
+
+    /*
+    subtle lighting supaya map
+    tidak terlalu terang
+    */
+
+    const mapShade =
+        this.add.rectangle(
+
+            MAP_WIDTH / 2,
+            MAP_HEIGHT / 2,
+
+            MAP_WIDTH,
+            MAP_HEIGHT,
+
+            0x06111a,
+
+            .08
+        );
+
+
+    mapShade.setDepth(
+        -90
+    );
+
+
+    /* =========================
+       WORLD
+    ========================= */
+
+    this.physics.world.setBounds(
+
+        30,
+        30,
+
+        MAP_WIDTH - 60,
+        MAP_HEIGHT - 60
+    );
+
+
+    /* =========================
+       PLAYER
+    ========================= */
+
+    player =
+        this.physics.add.sprite(
+
+            MAP_WIDTH / 2,
+            MAP_HEIGHT - 270,
+
+            "player"
+        );
+
+
+    /*
+    Karena file karakter adalah
+    portrait resolusi besar,
+    kita perkecil jadi karakter game.
+    */
+
+    player.setDisplaySize(
+        75,
+        118
+    );
+
+
+    player.setOrigin(
+        .5,
+        .82
+    );
+
+
+    player.setDepth(
+        50
+    );
+
+
+    player.setCollideWorldBounds(
+        true
+    );
+
+
+    /*
+    Hitbox dibuat kecil di bagian kaki
+    supaya pergerakan terasa natural.
+    */
+
+    player.body.setSize(
+        36,
+        36
+    );
+
+
+    player.body.setOffset(
+        (
+            player.width
+            -
+            36
+        )
+        /
+        2,
+
+        player.height
+        -
+        44
+    );
+
+
+    /* =========================
+       CHARACTER SHADOW
+    ========================= */
+
+    player.shadow =
+        this.add.ellipse(
+
+            player.x,
+            player.y + 16,
+
+            48,
+            17,
+
+            0x000000,
+
+            .34
+        );
+
+
+    player.shadow.setDepth(
+        40
+    );
+
+
+    /* =========================
+       CAMERA
+    ========================= */
+
+    this.cameras.main.setBounds(
+
+        0,
+        0,
+
+        MAP_WIDTH,
+        MAP_HEIGHT
+    );
+
+
+    this.cameras.main.startFollow(
+
+        player,
+
+        true,
+
+        .075,
+        .075
+    );
+
+
+    /*
+    Zoom 1 supaya map terlihat
+    cukup dekat di HP.
+    */
+
+    this.cameras.main.setZoom(
+        1
+    );
+
+
+    /* =========================
+       COINS
+    ========================= */
+
+    goldenGroup =
+        this.physics.add.group();
+
+
+    /*
+    Posisi 9 coin tersebar di map.
+    Bisa kamu ubah nanti.
+    */
+
+    const coinLocations = [
+
+        [330,1770],
+
+        [840,1750],
+
+        [1220,1620],
+
+        [1160,1310],
+
+        [710,1260],
+
+        [310,1100],
+
+        [430,730],
+
+        [1030,720],
+
+        [770,370]
+
+    ];
+
+
+    coinLocations.forEach(
+
+        position => {
+
+            createCoin(
+
+                scene,
+
+                position[0],
+
+                position[1]
+            );
+        }
+    );
+
+
+    /* =========================
+       CHEST
+    ========================= */
+
+    chest =
+        this.physics.add.image(
+
+            1170,
+            350,
+
+            "chest"
+        );
+
+
+    chest.setDisplaySize(
+        105,
+        90
+    );
+
+
+    chest.setDepth(
+        30
+    );
+
+
+    chest.setImmovable(
+        true
+    );
+
+
+    chest.locked =
+        true;
+
+
+    /* chest glow */
+
+    chest.glow =
+        this.add.ellipse(
+
+            chest.x,
+            chest.y + 20,
+
+            145,
+            68,
+
+            0xFFD24E,
+
+            .10
+        );
+
+
+    chest.glow.setDepth(
+        20
+    );
+
+
+    chest.glow.setBlendMode(
+        Phaser.BlendModes.ADD
+    );
+
+
+    this.tweens.add({
+
+        targets:
+            chest.glow,
+
+        alpha:{
+            from:.05,
+            to:.20
+        },
+
+        scale:{
+            from:.85,
+            to:1.15
+        },
+
+        duration:
+            1200,
+
+        yoyo:
+            true,
+
+        repeat:
+            -1
+    });
+
+
+    /* =========================
+       COLLECT COLLISION
+    ========================= */
+
+    this.physics.add.overlap(
+
+        player,
+
+        goldenGroup,
+
+        collectCoin,
+
+        null,
+
+        scene
+    );
+
+
+    /* =========================
+       KEYBOARD
+    ========================= */
+
+    cursors =
+        this.input.keyboard
+        .createCursorKeys();
+
+
+    keys =
+        this.input.keyboard.addKeys({
+
+            W:
+                Phaser.Input.Keyboard.KeyCodes.W,
+
+            A:
+                Phaser.Input.Keyboard.KeyCodes.A,
+
+            S:
+                Phaser.Input.Keyboard.KeyCodes.S,
+
+            D:
+                Phaser.Input.Keyboard.KeyCodes.D
+        });
+
+
+    this.input.keyboard.on(
+
+        "keydown-SHIFT",
+
+        ()=>{
+
+            doDash(
+                scene
+            );
+        }
+    );
+
+
+    this.input.keyboard.on(
+
+        "keydown-E",
+
+        ()=>{
+
+            interact(
+                scene
+            );
+        }
+    );
+
+
+    /* =========================
+       READY
+    ========================= */
+
+    document
+        .getElementById(
+            "loading"
+        )
+        .style
+        .display =
+        "none";
+}
+
+
+/* =========================================================
+   CREATE COIN
+========================================================= */
+
+function createCoin(
+    scene,
+    x,
+    y
+){
+
+    const glow =
+        scene.add.ellipse(
+
+            x,
+            y + 8,
+
+            80,
+            40,
+
+            0xFFD43C,
+
+            .16
+        );
+
+
+    glow.setDepth(
+        15
+    );
+
+
+    glow.setBlendMode(
+        Phaser.BlendModes.ADD
+    );
+
+
+    const coin =
+        scene.physics.add.image(
+
+            x,
+            y,
+
+            "coin"
+        );
+
+
+    coin.setDisplaySize(
+        55,
+        55
+    );
+
+
+    coin.setDepth(
+        25
+    );
+
+
+    coin.collectGlow =
+        glow;
+
+
+    coin.body.setCircle(
+        coin.body.width / 2
+    );
+
+
+    /*
+    Coin melayang
+    */
+
+    scene.tweens.add({
+
+        targets:
+            coin,
+
+        y:
+            y - 10,
+
+        scaleX:
+            1.06,
+
+        scaleY:
+            1.06,
+
+        duration:
+            850,
+
+        yoyo:
+            true,
+
+        repeat:
+            -1,
+
+        ease:
+            "Sine.easeInOut"
+    });
+
+
+    /*
+    Glow ikut pulse
+    */
+
+    scene.tweens.add({
+
+        targets:
+            glow,
+
+        alpha:{
+            from:.08,
+            to:.25
+        },
+
+        scale:{
+            from:.8,
+            to:1.2
+        },
+
+        duration:
+            850,
+
+        yoyo:
+            true,
+
+        repeat:
+            -1
+    });
+
+
+    goldenGroup.add(
+        coin
+    );
+}
+
+
+/* =========================================================
+   UPDATE
+========================================================= */
+
+function update(){
+
+    if(
+        !player
+    ){
+        return;
     }
 
-    // 2. PLAYER SPRITE
-    player = this.physics.add.sprite(800, 1600, 'player');
-    player.setCollideWorldBounds(true);
-    player.setDisplaySize(80, 130); // Sesuaikan ukuran
-    player.setDepth(10);
 
-    // 3. GOLDEN ITEMS GROUP
-    this.goldens = thi
+    /*
+    Shadow selalu ikut karakter
+    */
+
+    player.shadow.x =
+        player.x;
+
+    player.shadow.y =
+        player.y + 13;
+
+
+    if(
+        !started
+    ){
+
+        player.setVelocity(
+            0,
+            0
+        );
+
+        return;
+    }
+
+
+    let moveX =
+        joystickVector.x;
+
+    let moveY =
+        joystickVector.y;
+
+
+    /* =========================
+       KEYBOARD
+    ========================= */
+
+    if(
+        cursors.left.isDown
+        ||
+        keys.A.isDown
+    ){
+        moveX -= 1;
+    }
+
+
+    if(
+        cursors.right.isDown
+        ||
+        keys.D.isDown
+    ){
+        moveX += 1;
+    }
+
+
+    if(
+        cursors.up.isDown
+        ||
+        keys.W.isDown
+    ){
+        moveY -= 1;
+    }
+
+
+    if(
+        cursors.down.isDown
+        ||
+        keys.S.isDown
+    ){
+        moveY += 1;
+    }
+
+
+    /*
+    Normalisasi supaya diagonal
+    tidak lebih cepat.
+    */
+
+    const length =
+        Math.hypot(
+            moveX,
+            moveY
+        );
+
+
+    if(
+        length > 1
+    ){
+
+        moveX /= length;
+
+        moveY /= length;
+    }
+
+
+    const currentSpeed =
+        dashActive
+        ?
+        DASH_SPEED
+        :
+        PLAYER_SPEED;
+
+
+    player.setVelocity(
+
+        moveX
+        *
+        currentSpeed,
+
+        moveY
+        *
+        currentSpeed
+    );
+
+
+    /* =========================
+       CHARACTER DIRECTION
+    ========================= */
+
+    if(
+        Math.abs(
+            moveX
+        )
+        >
+        .12
+    ){
+
+        player.setFlipX(
+            moveX < 0
+        );
+    }
+
+
+    /* =========================
+       SIMPLE WALK ANIMATION
+    ========================= */
+
+    if(
+        length > .08
+    ){
+
+        const bob =
+            Math.sin(
+                performance.now()
+                *
+                .015
+            );
+
+
+        player.rotation =
+            bob
+            *
+            .018;
+
+
+        player.setScale(
+
+            1
+            +
+            Math.abs(
+                bob
+            )
+            *
+            .012
+        );
+
+
+        player.shadow.scaleX =
+            .94
+            +
+            Math.abs(
+                bob
+            )
+            *
+            .05;
+    }
+    else{
+
+        player.rotation =
+            Phaser.Math.Linear(
+                player.rotation,
+                0,
+                .18
+            );
+
+
+        player.setScale(
+            1
+        );
+
+
+        player.shadow.scaleX =
+            1;
+    }
+
+
+    updateChestHint();
+}
+
+
+/* =========================================================
+   COLLECT COIN
+========================================================= */
+
+function collectCoin(
+    playerObject,
+    coin
+){
+
+    if(
+        coin.collected
+    ){
+        return;
+    }
+
+
+    coin.collected =
+        true;
+
+
+    collected++;
+
+
+    document
+        .getElementById(
+            "coinCount"
+        )
+        .textContent =
+        collected;
+
+
+    /* =========================
+       FX
+    ========================= */
+
+    const scene =
+        coin.scene;
+
+
+    const x =
+        coin.x;
+
+    const y =
+        coin.y;
+
+
+    if(
+        coin.collectGlow
+    ){
+
+        coin.collectGlow.destroy();
+    }
+
+
+    /*
+    Flash ring
+    */
+
+    const ring =
+        scene.add.circle(
+
+            x,
+            y,
+
+            22,
+
+            0xFFD84F,
+
+            .5
+        );
+
+
+    ring.setDepth(
+        80
+    );
+
+
+    ring.setBlendMode(
+        Phaser.BlendModes.ADD
+    );
+
+
+    scene.tweens.add({
+
+        targets:
+            ring,
+
+        scale:
+            4,
+
+        alpha:
+            0,
+
+        duration:
+            450,
+
+        onComplete:()=>{
+
+            ring.destroy();
+        }
+    });
+
+
+    /*
+    Floating +1
+    */
+
+    const plus =
+        scene.add.text(
+
+            x,
+            y - 25,
+
+            "+1",
+
+            {
+
+                fontFamily:
+                    "Arial",
+
+                fontSize:
+                    "25px",
+
+                fontStyle:
+                    "bold",
+
+                color:
+                    "#FFE064",
+
+                stroke:
+                    "#6F4800",
+
+                strokeThickness:
+                    4
+            }
+        );
+
+
+    plus.setOrigin(
+        .5
+    );
+
+
+    plus.setDepth(
+        100
+    );
+
+
+    scene.tweens.add({
+
+        targets:
+            plus,
+
+        y:
+            y - 85,
+
+        alpha:
+            0,
+
+        duration:
+            800,
+
+        onComplete:()=>{
+
+            plus.destroy();
+        }
+    });
+
+
+    /*
+    Coin scale-out
+    */
+
+    scene.tweens.add({
+
+        targets:
+            coin,
+
+        scale:
+            2,
+
+        alpha:
+            0,
+
+        duration:
+            180,
+
+        onComplete:()=>{
+
+            coin.destroy();
+        }
+    });
+
+
+    playCollectSound();
+
+    vibrate(
+        25
+    );
+
+
+    showMessage(
+
+        "Golden 9 ditemukan • "
+        +
+        collected
+        +
+        "/9"
+    );
+
+
+    /* =========================
+       ALL COINS COMPLETE
+    ========================= */
+
+    if(
+        collected === 9
+    ){
+
+        chest.locked =
+            false;
+
+
+        document
+            .getElementById(
+                "chestStatus"
+            )
+            .textContent =
+            "TERBUKA";
+
+
+        document
+            .getElementById(
+                "chestStatus"
+            )
+            .style
+            .color =
+            "#51E098";
+
+
+        /*
+        chest stronger glow
+        */
+
+        chest.glow.setFillStyle(
+            0xFFD443,
+            .32
+        );
+
+
+        scene.tweens.add({
+
+            targets:
+                chest,
+
+            scaleX:
+                1.12,
+
+            scaleY:
+                1.12,
+
+            duration:
+                300,
+
+            yoyo:
+                true,
+
+            repeat:
+                2
+        });
+
+
+        playMissionSound();
+
+
+        setTimeout(()=>{
+
+            showMessage(
+                "9/9 lengkap! Cari peti hadiah."
+            );
+
+        },700);
+    }
+}
+
+
+/* =========================================================
+   CHEST HINT
+========================================================= */
+
+function updateChestHint(){
+
+    if(
+        !chest
+        ||
+        !player
+    ){
+        return;
+    }
+
+
+    const distance =
+        Phaser.Math.Distance.Between(
+
+            player.x,
+            player.y,
+
+            chest.x,
+            chest.y
+        );
+
+
+    const label =
+        document
+        .getElementById(
+            "chestStatus"
+        );
+
+
+    if(
+        chest.locked
+    ){
+
+        label.textContent =
+            "TERKUNCI";
+
+        label.style.color =
+            "#EFC956";
+
+        return;
+    }
+
+
+    if(
+        distance
+        <
+        125
+    ){
+
+        label.textContent =
+            "TEKAN INTERACT";
+
+        label.style.color =
+            "#51E09A";
+
+    }
+    else{
+
+        label.textContent =
+            "TERBUKA";
+
+        label.style.color =
+            "#51E09A";
+    }
+}
+
+
+/* =========================================================
+   INTERACT
+========================================================= */
+
+function interact(
+    scene
+){
+
+    if(
+        !started
+        ||
+        !player
+        ||
+        !chest
+    ){
+        return;
+    }
+
+
+    const distance =
+        Phaser.Math.Distance.Between(
+
+            player.x,
+            player.y,
+
+            chest.x,
+            chest.y
+        );
+
+
+    if(
+        distance > 130
+    ){
+
+        showMessage(
+            "Dekati peti hadiah terlebih dahulu."
+        );
+
+        playErrorSound();
+
+        return;
+    }
+
+
+    if(
+        collected < 9
+    ){
+
+        showMessage(
+
+            "Peti terkunci • "
+            +
+            collected
+            +
+            "/9 Golden 9"
+        );
+
+        playErrorSound();
+
+        vibrate(
+            [35,35,35]
+        );
+
+        return;
+    }
+
+
+    openChest(
+        scene
+    );
+}
+
+
+/* =========================================================
+   OPEN CHEST
+========================================================= */
+
+function openChest(
+    scene
+){
+
+    if(
+        chest.opened
+    ){
+        return;
+    }
+
+
+    chest.opened =
+        true;
+
+
+    started =
+        false;
+
+
+    player.setVelocity(
+        0,
+        0
+    );
+
+
+    playRewardSound();
+
+
+    vibrate(
+        [35,40,70]
+    );
+
+
+    /*
+    Screen flash
+    */
+
+    scene.cameras.main.flash(
+
+        500,
+
+        255,
+        216,
+        80
+    );
+
+
+    /*
+    Chest explosion glow
+    */
+
+    const burst =
+        scene.add.circle(
+
+            chest.x,
+            chest.y,
+
+            40,
+
+            0xFFD24A,
+
+            .65
+        );
+
+
+    burst.setDepth(
+        100
+    );
+
+
+    burst.setBlendMode(
+        Phaser.BlendModes.ADD
+    );
+
+
+    scene.tweens.add({
+
+        targets:
+            burst,
+
+        scale:
+            6,
+
+        alpha:
+            0,
+
+        duration:
+            700,
+
+        onComplete:()=>{
+
+            burst.destroy();
+        }
+    });
+
+
+    /*
+    chest pop
+    */
+
+    scene.tweens.add({
+
+        targets:
+            chest,
+
+        scaleX:
+            1.28,
+
+        scaleY:
+            1.28,
+
+        duration:
+            280,
+
+        yoyo:
+            true
+    });
+
+
+    setTimeout(()=>{
+
+        document
+            .getElementById(
+                "rewardOverlay"
+            )
+            .style
+            .display =
+            "flex";
+
+    },650);
+}
+
+
+/* =========================================================
+   DASH
+========================================================= */
+
+function doDash(
+    scene
+){
+
+    if(
+        !started
+        ||
+        !dashReady
+    ){
+        return;
+    }
+
+
+    dashReady =
+        false;
+
+
+    dashActive =
+        true;
+
+
+    playDashSound();
+
+
+    vibrate(
+        20
+    );
+
+
+    /*
+    Blue circle trail
+    */
+
+    const trail =
+        scene.add.ellipse(
+
+            player.x,
+            player.y,
+
+            70,
+            36,
+
+            0x43C9FF,
+
+            .25
+        );
+
+
+    trail.setDepth(
+        30
+    );
+
+
+    trail.setBlendMode(
+        Phaser.BlendModes.ADD
+    );
+
+
+    scene.tweens.add({
+
+        targets:
+            trail,
+
+        scale:
+            2.3,
+
+        alpha:
+            0,
+
+        duration:
+            320,
+
+        onComplete:()=>{
+
+            trail.destroy();
+        }
+    });
+
+
+    setTimeout(()=>{
+
+        dashActive =
+            false;
+
+    },260);
+
+
+    setTimeout(()=>{
+
+        dashReady =
+            true;
+
+    },900);
+}
+
+
+/* =========================================================
+   JOYSTICK
+========================================================= */
+
+const joystick =
+document.getElementById(
+    "joystick"
+);
+
+
+const joyKnob =
+document.getElementById(
+    "joyKnob"
+);
+
+
+let joyActive =
+false;
+
+
+function updateJoystick(
+    clientX,
+    clientY
+){
+
+    const rect =
+        joystick
+        .getBoundingClientRect();
+
+
+    const centerX =
+        rect.left
+        +
+        rect.width / 2;
+
+
+    const centerY =
+        rect.top
+        +
+        rect.height / 2;
+
+
+    let dx =
+        clientX
+        -
+        centerX;
+
+
+    let dy =
+        clientY
+        -
+        centerY;
+
+
+    const maxDistance =
+        36;
+
+
+    const distance =
+        Math.hypot(
+            dx,
+            dy
+        );
+
+
+    if(
+        distance
+        >
+        maxDistance
+    ){
+
+        dx =
+            dx
+            /
+            distance
+            *
+            maxDistance;
+
+
+        dy =
+            dy
+            /
+            distance
+            *
+            maxDistance;
+    }
+
+
+    joyKnob.style.transform =
+        `translate(${dx}px,${dy}px)`;
+
+
+    joystickVector.x =
+        dx
+        /
+        maxDistance;
+
+
+    joystickVector.y =
+        dy
+        /
+        maxDistance;
+}
+
+
+function resetJoystick(){
+
+    joystickVector.x =
+        0;
+
+
+    joystickVector.y =
+        0;
+
+
+    joyKnob.style.transform =
+        "translate(0px,0px)";
+}
+
+
+joystick.addEventListener(
+
+    "pointerdown",
+
+    event=>{
+
+        joyActive =
+            true;
+
+
+        joystick.setPointerCapture(
+            event.pointerId
+        );
+
+
+        updateJoystick(
+            event.clientX,
+            event.clientY
+        );
+    }
+);
+
+
+joystick.addEventListener(
+
+    "pointermove",
+
+    event=>{
+
+        if(
+            joyActive
+        ){
+
+            updateJoystick(
+                event.clientX,
+                event.clientY
+            );
+        }
+    }
+);
+
+
+joystick.addEventListener(
+
+    "pointerup",
+
+    ()=>{
+
+        joyActive =
+            false;
+
+        resetJoystick();
+    }
+);
+
+
+joystick.addEventListener(
+
+    "pointercancel",
+
+    ()=>{
+
+        joyActive =
+            false;
+
+        resetJoystick();
+    }
+);
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+document
+    .getElementById(
+        "dashBtn"
+    )
+    .addEventListener(
+
+        "pointerdown",
+
+        ()=>{
+
+            const scene =
+                game.scene
+                .getScenes(
+                    true
+                )[0];
+
+
+            if(
+                scene
+            ){
+
+                doDash(
+                    scene
+                );
+            }
+        }
+    );
+
+
+document
+    .getElementById(
+        "interactBtn"
+    )
+    .addEventListener(
+
+        "pointerdown",
+
+        ()=>{
+
+            const scene =
+                game.scene
+                .getScenes(
+                    true
+                )[0];
+
+
+            if(
+                scene
+            ){
+
+                interact(
+                    scene
+                );
+            }
+        }
+    );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document
+    .getElementById(
+        "startBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        ()=>{
+
+            initAudio();
+
+
+            if(
+                audioContext
+                &&
+                audioContext.state
+                ===
+                "suspended"
+            ){
+
+                audioContext.resume();
+            }
+
+
+            document
+                .getElementById(
+                    "intro"
+                )
+                .style
+                .display =
+                "none";
+
+
+            started =
+                true;
+
+
+            playMissionSound();
+
+
+            showMessage(
+                "Quest dimulai • Temukan 9 Golden 9"
+            );
+        }
+    );
+
+
+/* =========================================================
+   CLAIM
+========================================================= */
+
+document
+    .getElementById(
+        "claimBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        ()=>{
+
+            initAudio();
+
+
+            playCollectSound();
+
+
+            alert(
+
+                "EVENT 9.9\n\n"
+                +
+                "Mystery Reward berhasil dibuka.\n\n"
+                +
+                "Ini masih versi demo. "
+                +
+                "Nanti tombol KLAIM HADIAH bisa diarahkan "
+                +
+                "ke Admin VIP atau sistem claim."
+            );
+        }
+    );
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+let messageTimer;
+
+
+function showMessage(
+    text
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimer
+    );
+
+
+    messageTimer =
+        setTimeout(()=>{
+
+            message.classList.remove(
+                "show"
+            );
+
+        },1900);
+}
+
+
+/* =========================================================
+   VIBRATION
+========================================================= */
+
+function vibrate(
+    pattern
+){
+
+    if(
+        navigator.vibrate
+    ){
+
+        navigator.vibrate(
+            pattern
+        );
+    }
+}
+
+
+/* =========================================================
+   WEB AUDIO
+========================================================= */
+
+function initAudio(){
+
+    if(
+        audioContext
+    ){
+        return;
+    }
+
+
+    const AudioContext =
+        window.AudioContext
+        ||
+        window.webkitAudioContext;
+
+
+    if(
+        AudioContext
+    ){
+
+        audioContext =
+            new AudioContext();
+    }
+}
+
+
+function tone(
+    frequency,
+    duration,
+    volume=.04,
+    type="sine",
+    delay=0
+){
+
+    if(
+        !soundEnabled
+        ||
+        !audioContext
+    ){
+        return;
+    }
+
+
+    const oscillator =
+        audioContext
+        .createOscillator();
+
+
+    const gain =
+        audioContext
+        .createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency.value =
+        frequency;
+
+
+    const now =
+        audioContext.currentTime
+        +
+        delay;
+
+
+    gain.gain.setValueAtTime(
+        volume,
+        now
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+
+        .001,
+
+        now
+        +
+        duration
+    );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(
+        now
+    );
+
+
+    oscillator.stop(
+        now
+        +
+        duration
+    );
+}
+
+
+function playCollectSound(){
+
+    tone(
+        660,
+        .10,
+        .055,
+        "sine"
+    );
+
+
+    tone(
+        900,
+        .14,
+        .045,
+        "triangle",
+        .055
+    );
+
+
+    tone(
+        1200,
+        .20,
+        .035,
+        "sine",
+        .12
+    );
+}
+
+
+function playDashSound(){
+
+    tone(
+        180,
+        .18,
+        .04,
+        "sine"
+    );
+
+
+    tone(
+        520,
+        .11,
+        .035,
+        "triangle",
+        .04
+    );
+}
+
+
+function playErrorSound(){
+
+    tone(
+        180,
+        .14,
+        .055,
+        "square"
+    );
+
+
+    tone(
+        130,
+        .16,
+        .045,
+        "square",
+        .07
+    );
+}
+
+
+function playMissionSound(){
+
+    tone(
+        440,
+        .15,
+        .04,
+        "triangle"
+    );
+
+
+    tone(
+        650,
+        .18,
+        .04,
+        "triangle",
+        .10
+    );
+
+
+    tone(
+        870,
+        .25,
+        .04,
+        "triangle",
+        .22
+    );
+}
+
+
+function playRewardSound(){
+
+    tone(
+        440,
+        .18,
+        .05,
+        "triangle"
+    );
+
+
+    tone(
+        660,
+        .20,
+        .05,
+        "triangle",
+        .11
+    );
+
+
+    tone(
+        880,
+        .24,
+        .055,
+        "triangle",
+        .25
+    );
+
+
+    tone(
+        1180,
+        .55,
+        .045,
+        "sine",
+        .42
+    );
+}
+
+
+/* =========================================================
+   SOUND BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "soundBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        ()=>{
+
+            initAudio();
+
+
+            soundEnabled =
+                !soundEnabled;
+
+
+            document
+                .getElementById(
+                    "soundBtn"
+                )
+                .textContent =
+                soundEnabled
+                ?
+                "🔊"
+                :
+                "🔇";
+        }
+    );
+
+</script>
+
+</body>
+</html>
