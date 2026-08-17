@@ -2,31 +2,11 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
-content="width=device-width,
-initial-scale=1.0,
-maximum-scale=1.0,
-user-scalable=no">
-
-<title>VIP Private Game</title>
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Royal Quest 9.9</title>
 
 <style>
-:root{
-    --gold:#f3c64f;
-    --goldLight:#ffe58a;
-    --goldDark:#9c6609;
-
-    --blue:#38c5ff;
-    --blueDark:#076bb4;
-
-    --red:#ff4968;
-    --green:#40dda0;
-
-    --bg:#01050c;
-    --panel:#071322;
-}
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -36,1685 +16,709 @@ user-scalable=no">
 
 html,body{
     width:100%;
-    min-height:100%;
+    height:100%;
+    overflow:hidden;
     background:#01040a;
     font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-    overflow-x:hidden;
+    color:white;
+    touch-action:none;
 }
 
-body{
-    display:flex;
-    justify-content:center;
-}
-
-.app{
+#gameWrap{
     position:relative;
     width:100%;
-    max-width:500px;
-    min-height:100vh;
+    height:100%;
+    max-width:520px;
+    margin:auto;
     overflow:hidden;
-    padding:14px 13px 28px;
-
-    background:
-        radial-gradient(circle at 50% -5%,rgba(0,150,255,.23),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(255,200,60,.10),transparent 32%),
-        linear-gradient(180deg,#020611,#04101d 45%,#01040a);
+    background:#020713;
+    box-shadow:0 0 70px #000;
 }
 
-/* ===========================
-   HEADER
-=========================== */
+/* ===============================
+   CANVAS
+================================ */
 
-.header{
-    position:relative;
-    text-align:center;
-    padding:5px 0 13px;
-}
-
-.crown{
-    font-size:24px;
-    color:var(--goldLight);
-    filter:drop-shadow(0 0 9px rgba(255,205,70,.75));
-}
-
-.private-label{
-    margin-top:1px;
-    font-size:8px;
-    letter-spacing:4px;
-    color:#d2ae4d;
-    font-weight:900;
-}
-
-.title{
-    margin-top:4px;
-    font-size:29px;
-    line-height:1;
-    font-weight:950;
-
-    background:linear-gradient(
-        180deg,
-        #fff8d8,
-        #f4c94d 46%,
-        #a16909 100%
-    );
-
-    -webkit-background-clip:text;
-    color:transparent;
-
-    filter:drop-shadow(
-        0 0 12px
-        rgba(245,200,70,.16)
-    );
-}
-
-.subtitle{
-    margin-top:7px;
-    font-size:10px;
-    color:#7f97b0;
-}
-
-.sound-btn{
+#game{
     position:absolute;
-    right:4px;
-    top:8px;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+}
 
-    width:37px;
-    height:37px;
+/* ===============================
+   TOP HUD
+================================ */
 
+.topHud{
+    position:absolute;
+    z-index:20;
+    left:10px;
+    right:10px;
+    top:10px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    pointer-events:none;
+}
+
+.playerCard{
+    width:205px;
+    padding:9px 11px;
+    border-radius:13px;
+    border:1px solid rgba(244,196,70,.55);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8,20,37,.96),
+            rgba(2,7,14,.94)
+        );
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.05);
+}
+
+.playerRow{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
     border-radius:50%;
-    border:1px solid rgba(245,200,70,.35);
-
-    background:rgba(6,17,31,.8);
-    color:#f4d16c;
-
-    font-size:16px;
-    cursor:pointer;
-
     display:flex;
     align-items:center;
     justify-content:center;
+    border:2px solid #d7a935;
+    background:
+        radial-gradient(circle at 50% 35%,#263a55,#07111f 70%);
+    color:#ffd568;
+    font-weight:900;
+    font-size:13px;
+    box-shadow:0 0 12px rgba(255,204,75,.2);
 }
 
-/* ===========================
-   HUD
-=========================== */
+.playerName{
+    flex:1;
+}
 
-.hud{
-    display:grid;
-    grid-template-columns:1.3fr .75fr .75fr;
+.vipTag{
+    color:#f5cb5d;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.name{
+    margin-top:2px;
+    font-size:12px;
+    font-weight:900;
+}
+
+.level{
+    margin-top:2px;
+    font-size:8px;
+    color:#7088a0;
+}
+
+.hpOuter{
+    margin-top:7px;
+    width:100%;
+    height:8px;
+    border-radius:999px;
     overflow:hidden;
-    margin-bottom:11px;
-
-    border-radius:13px;
-    border:1px solid rgba(245,199,79,.35);
-
-    background:linear-gradient(
-        180deg,
-        rgba(9,22,39,.96),
-        rgba(3,9,18,.96)
-    );
-
-    box-shadow:0 14px 35px rgba(0,0,0,.45);
+    border:1px solid rgba(255,255,255,.11);
+    background:#171d27;
 }
 
-.hud-box{
-    min-height:57px;
+.hpInner{
+    width:100%;
+    height:100%;
+    background:
+        linear-gradient(90deg,#da304b,#ff5267);
+    box-shadow:0 0 7px rgba(255,69,95,.5);
+    transition:.2s;
+}
 
+/* objective */
+
+.objectiveCard{
+    width:135px;
+    padding:9px;
+    border-radius:13px;
+    border:1px solid rgba(244,196,70,.55);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8,20,37,.96),
+            rgba(2,7,14,.94)
+        );
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.5);
+}
+
+.objTitle{
+    font-size:7px;
+    color:#718aa4;
+    letter-spacing:1.4px;
+}
+
+.objNumber{
+    margin-top:2px;
+    font-size:23px;
+    font-weight:950;
+    color:#ffd55c;
+}
+
+.objText{
+    font-size:7px;
+    color:#a3b2c1;
+}
+
+/* ===============================
+   MINIMAP
+================================ */
+
+.minimapBox{
+    position:absolute;
+    z-index:20;
+    right:11px;
+    top:106px;
+    width:112px;
+    height:90px;
+    border-radius:11px;
+    overflow:hidden;
+    border:1px solid rgba(245,199,79,.43);
+    background:rgba(2,8,17,.85);
+    box-shadow:0 7px 20px rgba(0,0,0,.42);
+    pointer-events:none;
+}
+
+.minimapLabel{
+    position:absolute;
+    z-index:2;
+    left:0;
+    right:0;
+    top:0;
+    padding:5px;
+    font-size:7px;
+    text-align:center;
+    letter-spacing:1px;
+    color:#cdaa50;
+    background:rgba(0,0,0,.45);
+}
+
+#miniMap{
+    width:100%;
+    height:100%;
+}
+
+/* ===============================
+   MISSION
+================================ */
+
+.mission{
+    position:absolute;
+    z-index:20;
+    left:11px;
+    top:106px;
+    width:178px;
+    padding:10px 12px;
+    border-radius:12px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(6,17,32,.92),
+            rgba(2,8,16,.92)
+        );
+    border:1px solid rgba(245,199,79,.32);
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    pointer-events:none;
+}
+
+.missionTitle{
+    color:#efc858;
+    font-size:8px;
+    letter-spacing:1.3px;
+    font-weight:900;
+}
+
+.missionText{
+    margin-top:5px;
+    color:#b5c1cd;
+    font-size:9px;
+    line-height:1.45;
+}
+
+.missionText strong{
+    color:#ffd65c;
+}
+
+/* ===============================
+   MESSAGE
+================================ */
+
+.gameMessage{
+    position:absolute;
+    z-index:25;
+    left:50%;
+    top:205px;
+    transform:translateX(-50%) translateY(-10px);
+    padding:9px 17px;
+    border-radius:999px;
+    white-space:nowrap;
+    font-size:9px;
+    letter-spacing:.4px;
+    color:#fff0ad;
+    border:1px solid rgba(245,199,79,.42);
+    background:rgba(2,9,19,.91);
+    box-shadow:0 0 20px rgba(245,190,30,.12);
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+}
+
+.gameMessage.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* ===============================
+   JOYSTICK
+================================ */
+
+.joystickArea{
+    position:absolute;
+    z-index:30;
+    left:20px;
+    bottom:23px;
+    width:128px;
+    height:128px;
+    border-radius:50%;
+    touch-action:none;
+}
+
+.joyBase{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:1px solid rgba(245,199,79,.48);
+    background:
+        radial-gradient(circle,rgba(22,44,68,.68),rgba(2,8,16,.82));
+    box-shadow:
+        inset 0 0 25px rgba(40,160,240,.12),
+        0 8px 20px rgba(0,0,0,.45);
+}
+
+.joyBase::before,
+.joyBase::after{
+    content:"";
+    position:absolute;
+    background:rgba(255,255,255,.06);
+}
+
+.joyBase::before{
+    width:1px;
+    height:74%;
+    left:50%;
+    top:13%;
+}
+
+.joyBase::after{
+    height:1px;
+    width:74%;
+    top:50%;
+    left:13%;
+}
+
+.joyKnob{
+    position:absolute;
+    width:57px;
+    height:57px;
+    left:35.5px;
+    top:35.5px;
+    border-radius:50%;
+    border:1px solid rgba(255,216,98,.65);
+    background:
+        radial-gradient(circle at 40% 30%,#4a5870,#121c29 62%,#060a10);
+    box-shadow:
+        0 5px 16px rgba(0,0,0,.55),
+        inset 0 1px rgba(255,255,255,.15);
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+
+.actions{
+    position:absolute;
+    z-index:30;
+    right:15px;
+    bottom:22px;
+    width:175px;
+    height:165px;
+}
+
+.actionBtn{
+    position:absolute;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
-    border-right:1px solid rgba(255,255,255,.06);
-}
-
-.hud-box:last-child{
-    border-right:0;
-}
-
-.hud-label{
-    font-size:7px;
-    letter-spacing:1.3px;
-    color:#617b95;
-    font-weight:800;
-}
-
-.hud-value{
-    margin-top:4px;
-    font-size:14px;
-    color:#f4cd62;
-    font-weight:950;
-}
-
-#timer{
-    font-size:19px;
-    color:#52cbff;
-}
-
-/* ===========================
-   ARENA
-=========================== */
-
-.arena{
-    position:relative;
-    height:515px;
-    overflow:hidden;
-
-    border-radius:21px;
-    border:1px solid rgba(245,199,79,.47);
-
-    touch-action:none;
-
-    background:
-        radial-gradient(circle at 50% 88%,rgba(0,148,255,.18),transparent 28%),
-        radial-gradient(circle at 50% 12%,rgba(255,211,87,.07),transparent 35%),
-        linear-gradient(180deg,#020713 0%,#041427 52%,#020713 100%);
-
-    box-shadow:
-        inset 0 0 60px rgba(0,95,170,.08),
-        0 20px 60px rgba(0,0,0,.55);
-}
-
-/* background decor */
-
-.bg-vault,
-.bg-light,
-.bg-grid,
-.bg-particles{
-    position:absolute;
-    pointer-events:none;
-}
-
-.bg-vault{
-    width:330px;
-    height:330px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-51%);
     border-radius:50%;
-
-    z-index:1;
-    opacity:.92;
-
+    cursor:pointer;
+    user-select:none;
+    color:white;
     background:
-        radial-gradient(circle,
-            transparent 47%,
-            rgba(88,202,255,.13) 48%,
-            rgba(88,202,255,.04) 51%,
-            transparent 52%),
-
-        radial-gradient(circle,
-            transparent 61%,
-            rgba(255,208,92,.11) 62%,
-            rgba(255,208,92,.035) 65%,
-            transparent 66%),
-
-        repeating-conic-gradient(
-            from 0deg,
-            rgba(80,198,255,.08) 0deg 4deg,
-            transparent 4deg 15deg
-        ),
-
-        radial-gradient(circle at center,
-            rgba(56,197,255,.09),
-            rgba(6,22,40,.03) 45%,
-            transparent 72%);
-
+        radial-gradient(circle at 40% 28%,#173753,#071421 65%,#02070d);
+    border:2px solid rgba(245,199,79,.72);
     box-shadow:
-        0 0 50px rgba(52,192,255,.08),
-        inset 0 0 40px rgba(255,208,92,.04);
-
-    animation:vaultPulse 5s ease-in-out infinite alternate;
+        0 8px 18px rgba(0,0,0,.55),
+        inset 0 0 16px rgba(44,177,255,.14);
 }
 
-@keyframes vaultPulse{
-    from{
-        transform:translate(-50%,-51%) scale(.98);
-        opacity:.75;
-    }
-
-    to{
-        transform:translate(-50%,-51%) scale(1.03);
-        opacity:1;
-    }
+.actionBtn:active{
+    transform:scale(.93);
 }
 
-.bg-light{
-    top:0;
-    bottom:0;
-    width:130px;
-    z-index:1;
-    opacity:.45;
-    filter:blur(2px);
-}
-
-.bg-light.left{
-    left:-25px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(42,190,255,.05) 35%,
-            rgba(42,190,255,.13) 70%,
-            transparent
-        );
-
-    transform:skewX(-14deg);
-}
-
-.bg-light.right{
-    right:-25px;
-
-    background:
-        linear-gradient(
-            270deg,
-            transparent,
-            rgba(255,205,80,.04) 35%,
-            rgba(255,205,80,.10) 70%,
-            transparent
-        );
-
-    transform:skewX(14deg);
-}
-
-.bg-grid{
-    inset:0;
-    z-index:1;
-    opacity:.11;
-
-    background-image:
-        linear-gradient(rgba(92,201,255,.16) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(92,201,255,.16) 1px,transparent 1px);
-
-    background-size:44px 44px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0,0,0,.9) 15%,
-            rgba(0,0,0,.9) 85%,
-            transparent
-        );
-}
-
-.bg-particles{
-    inset:0;
-    z-index:1;
-    opacity:.45;
-
-    background-image:
-        radial-gradient(circle at 14% 22%,rgba(255,215,120,.65) 0 2px,transparent 3px),
-        radial-gradient(circle at 78% 18%,rgba(92,201,255,.75) 0 2px,transparent 3px),
-        radial-gradient(circle at 22% 72%,rgba(92,201,255,.55) 0 2px,transparent 3px),
-        radial-gradient(circle at 85% 63%,rgba(255,215,120,.55) 0 2px,transparent 3px),
-        radial-gradient(circle at 60% 35%,rgba(92,201,255,.45) 0 1.5px,transparent 3px),
-        radial-gradient(circle at 40% 18%,rgba(255,215,120,.45) 0 1.5px,transparent 3px);
-
-    animation:floatParticles 8s ease-in-out infinite alternate;
-}
-
-@keyframes floatParticles{
-    from{
-        transform:translateY(0);
-        opacity:.35;
-    }
-
-    to{
-        transform:translateY(9px);
-        opacity:.58;
-    }
-}
-
-/* ===========================
-   SCORE / COMBO
-=========================== */
-
-.top-status{
-    position:absolute;
-    z-index:18;
-    top:11px;
-    left:11px;
-    right:11px;
-
-    display:flex;
-    justify-content:space-between;
-}
-
-.score-pill,
-.combo-pill{
-    min-width:93px;
-    padding:7px 13px;
-
-    border-radius:999px;
-
-    background:rgba(1,10,24,.86);
-    backdrop-filter:blur(4px);
-
-    border:1px solid rgba(64,190,255,.35);
-
-    font-size:9px;
-    letter-spacing:.7px;
-    color:#708ba5;
-}
-
-.score-pill strong{
-    margin-left:6px;
-    font-size:18px;
-    color:#55ceff;
-}
-
-.combo-pill{
-    text-align:center;
-    border-color:rgba(245,199,79,.25);
-}
-
-.combo-pill b{
-    margin-left:4px;
-    color:#8297ab;
-}
-
-.combo-pill.active{
-    color:#f5ca59;
-    border-color:rgba(245,199,79,.75);
-
-    box-shadow:
-        0 0 18px
-        rgba(245,199,79,.13);
-}
-
-.combo-pill.active b{
-    color:#ffe06d;
-}
-
-/* ===========================
-   CRYSTAL
-=========================== */
-
-.crystal{
-    position:absolute;
-    z-index:10;
-
-    width:42px;
-    height:50px;
-
-    pointer-events:none;
-    transform-origin:center;
-}
-
-.crystal-core{
-    position:absolute;
-    width:100%;
-    height:100%;
-
-    clip-path:polygon(
-        50% 0%,
-        88% 24%,
-        74% 70%,
-        50% 100%,
-        26% 70%,
-        12% 24%
-    );
-
-    background:
-        linear-gradient(
-            135deg,
-            #e7fbff 0%,
-            #72ddff 16%,
-            #19aaf4 34%,
-            #0066be 58%,
-            #52d8ff 82%,
-            #e7fbff 100%
-        );
-
-    filter:
-        drop-shadow(0 0 5px #38c5ff)
-        drop-shadow(0 0 12px rgba(0,145,255,.75));
-}
-
-.crystal-core::before{
-    content:"";
-    position:absolute;
-    inset:3px;
-
-    clip-path:polygon(
-        50% 3%,
-        82% 27%,
-        68% 68%,
-        50% 92%,
-        33% 68%,
-        18% 27%
-    );
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.58),
-            transparent 27%,
-            rgba(0,35,100,.25),
-            rgba(255,255,255,.32),
-            transparent
-        );
-}
-
-.crystal-core::after{
-    content:"";
-    position:absolute;
-
-    top:7px;
-    bottom:7px;
-    left:49%;
-
-    width:1px;
-
-    background:rgba(255,255,255,.55);
-
-    transform:rotate(5deg);
-}
-
-.crystal.red .crystal-core{
-    background:
-        linear-gradient(
-            135deg,
-            #ffe7eb,
-            #ff7087 18%,
-            #e92349 40%,
-            #70071d 66%,
-            #ff4969 86%,
-            #ffe2e8
-        );
-
-    filter:
-        drop-shadow(0 0 6px #ff4968)
-        drop-shadow(0 0 14px rgba(255,40,75,.65));
-}
-
-.crystal.gold .crystal-core{
-    background:
-        linear-gradient(
-            135deg,
-            #fffbd5,
-            #ffe66d 18%,
-            #f1b417 40%,
-            #986000 67%,
-            #ffd95a 86%,
-            #fff9ce
-        );
-
-    filter:
-        drop-shadow(0 0 6px #ffd75d)
-        drop-shadow(0 0 15px rgba(255,200,50,.8));
-}
-
-.trail{
-    position:absolute;
-    z-index:-1;
-
-    left:50%;
-    top:-58px;
-
-    width:16px;
-    height:70px;
-
-    transform:translateX(-50%);
-    filter:blur(5px);
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(65,203,255,.07),
-            rgba(65,203,255,.45)
-        );
-}
-
-.red .trail{
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(255,70,100,.05),
-            rgba(255,70,100,.42)
-        );
-}
-
-.gold .trail{
-    background:
-        linear-gradient(
-            180deg,
-            transparent,
-            rgba(255,210,75,.06),
-            rgba(255,210,75,.45)
-        );
-}
-
-/* ===========================
-   REALISTIC COLLECTOR
-=========================== */
-
-.collector-wrap{
-    position:absolute;
-    z-index:15;
-
-    bottom:24px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:160px;
-    height:96px;
-}
-
-.collector-shadow{
-    position:absolute;
-
-    left:50%;
-    bottom:-10px;
-
-    transform:translateX(-50%);
-
-    width:165px;
-    height:30px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(0,0,0,.55),
-            rgba(0,0,0,.08) 60%,
-            transparent 75%
-        );
-
-    filter:blur(4px);
-}
-
-.collector-glow{
-    position:absolute;
-
-    left:50%;
-    bottom:-2px;
-
-    transform:translateX(-50%);
-
-    width:145px;
-    height:22px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(58,205,255,.42),
-            rgba(25,115,195,.10) 55%,
-            transparent 72%
-        );
-
-    filter:blur(5px);
-}
-
-.collector-body{
-    position:absolute;
-    inset:0;
-
-    border-radius:18px 18px 38px 38px;
-    overflow:visible;
-
-    background:
-        linear-gradient(
-            180deg,
-            #2b3747 0%,
-            #121c29 36%,
-            #050a11 100%
-        );
-
-    border:2px solid #c99824;
-
-    box-shadow:
-        0 0 20px rgba(20,150,255,.20),
-        inset 0 2px 1px rgba(255,255,255,.16),
-        inset 0 -18px 22px rgba(0,0,0,.72);
-}
-
-.collector-body::before{
-    content:"";
-    position:absolute;
-
-    inset:3px 8px 8px;
-
-    border-radius:14px 14px 28px 28px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.04);
-
-    pointer-events:none;
-}
-
-.collector-rim{
-    position:absolute;
-
-    left:5px;
-    right:5px;
-    top:-5px;
-
-    height:20px;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff4b0 0%,
-            #f7ce5d 27%,
-            #c78b16 69%,
-            #805000 100%
-        );
-
-    box-shadow:
-        0 2px 10px rgba(255,205,70,.25),
-        inset 0 1px 0 rgba(255,255,255,.72),
-        inset 0 -2px 2px rgba(78,44,0,.45);
-
-    z-index:5;
-}
-
-.collector-rim::after{
-    content:"";
-
-    position:absolute;
-
-    left:9px;
-    right:9px;
-    bottom:2px;
-
-    height:5px;
-
-    border-radius:50%;
-
-    background:
-        rgba(57,38,4,.35);
-}
-
-.collector-inner{
-    position:absolute;
-
-    left:12px;
-    right:12px;
-    top:9px;
-
-    height:29px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(84,217,255,.38) 0%,
-            rgba(19,65,106,.72) 38%,
-            rgba(3,11,20,.98) 78%
-        );
-
-    border:
-        1px solid
-        rgba(78,205,255,.42);
-
-    box-shadow:
-        inset 0 0 16px rgba(85,205,255,.58),
-        0 0 12px rgba(34,165,255,.16);
-
-    z-index:4;
-}
-
-.collector-inner::after{
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    width:70px;
-    height:12px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(115,225,255,.20),
-            transparent 70%
-        );
-
-    filter:blur(3px);
-}
-
-.collector-grid{
-    position:absolute;
-
-    left:14px;
-    right:14px;
-    top:28px;
-    bottom:10px;
-
-    border-radius:8px 8px 26px 26px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,.02) 0,
-            rgba(255,255,255,.02) 10px,
-            rgba(0,0,0,.16) 10px,
-            rgba(0,0,0,.16) 12px
-        ),
-
-        repeating-linear-gradient(
-            180deg,
-            rgba(255,255,255,.02) 0,
-            rgba(255,255,255,.02) 8px,
-            rgba(0,0,0,.18) 8px,
-            rgba(0,0,0,.18) 10px
-        ),
-
-        linear-gradient(
-            180deg,
-            #1d2734,
-            #080d14
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.05);
-
-    box-shadow:
-        inset 0 -12px 18px rgba(0,0,0,.45);
-
-    z-index:2;
-}
-
-.collector-side{
-    position:absolute;
-
-    top:32px;
-
-    width:20px;
-    height:37px;
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #f3cd66 0%,
-            #a06c0a 55%,
-            #5e3900 100%
-        );
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.45),
-        0 3px 10px rgba(0,0,0,.25);
-
-    z-index:1;
-}
-
-.collector-side.left{
-    left:-9px;
-    transform:rotate(-12deg);
-}
-
-.collector-side.right{
-    right:-9px;
-    transform:rotate(12deg);
-}
-
-.collector-front-plate{
-    position:absolute;
-
-    left:50%;
-    bottom:10px;
-
-    transform:translateX(-50%);
-
-    min-width:56px;
-    height:25px;
-
-    padding:0 12px;
-
-    border-radius:999px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        linear-gradient(
-            180deg,
-            #101e31 0%,
-            #07101a 100%
-        );
-
-    border:
-        1px solid
-        rgba(245,199,79,.65);
-
-    box-shadow:
-        0 0 8px rgba(255,203,80,.10),
-        inset 0 1px 0 rgba(255,255,255,.08);
-
-    z-index:6;
-}
-
-.collector-front-plate span{
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:2px;
-
-    color:#f4cb57;
-
-    text-shadow:
-        0 0 8px
-        rgba(244,203,87,.35);
-}
-
-.guide{
-    position:absolute;
-    z-index:12;
-
-    bottom:124px;
-
-    left:0;
+.attackBtn{
+    width:83px;
+    height:83px;
     right:0;
-
-    text-align:center;
-
-    font-size:9px;
-    color:#6d88a2;
-
-    transition:.3s;
+    bottom:0;
 }
 
-.guide span{
-    color:#e5bc4d;
+.dashBtn{
+    width:59px;
+    height:59px;
+    right:91px;
+    bottom:7px;
 }
 
-/* ===========================
+.interactBtn{
+    width:61px;
+    height:61px;
+    right:25px;
+    bottom:95px;
+}
+
+.btnIcon{
+    font-size:24px;
+    line-height:1;
+}
+
+.btnLabel{
+    font-size:7px;
+    margin-top:4px;
+    color:#f2cd63;
+    font-weight:900;
+}
+
+.cooldown{
+    opacity:.4;
+}
+
+/* ===============================
    INTRO
-=========================== */
+================================ */
 
 .overlay{
     position:absolute;
-    z-index:60;
-
+    z-index:100;
     inset:0;
-
     display:flex;
-    justify-content:center;
     align-items:center;
-
-    padding:22px;
-
+    justify-content:center;
+    padding:23px;
     background:
-        radial-gradient(circle at 50% 25%,rgba(0,145,255,.13),transparent 35%),
-        rgba(1,5,12,.95);
-
+        radial-gradient(circle at 50% 25%,rgba(0,128,255,.15),transparent 35%),
+        rgba(1,4,10,.96);
     backdrop-filter:blur(5px);
 }
 
-.access-card{
-    position:relative;
+.introCard{
     width:100%;
-    max-width:365px;
-
-    overflow:hidden;
+    max-width:380px;
+    padding:28px 22px 23px;
     text-align:center;
-
-    padding:29px 22px 24px;
-
-    border-radius:21px;
-
-    border:
-        1px solid
-        rgba(245,199,79,.58);
-
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(245,199,79,.62);
     background:
-        radial-gradient(circle at 50% 0%,rgba(245,199,79,.13),transparent 35%),
-        linear-gradient(180deg,#09172a,#030913);
-
-    box-shadow:
-        0 30px 70px
-        rgba(0,0,0,.72);
+        radial-gradient(circle at 50% 0%,rgba(245,199,79,.15),transparent 37%),
+        linear-gradient(180deg,#0a182c,#030912);
+    box-shadow:0 30px 70px rgba(0,0,0,.7);
 }
 
-.access-logo{
-    width:78px;
-    height:78px;
-
-    margin:0 auto 16px;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:
-        1px solid
-        rgba(245,199,79,.65);
-
-    background:
-        radial-gradient(
-            circle,
-            #253448,
-            #07101d 70%
-        );
-
-    box-shadow:
-        0 0 30px rgba(245,199,79,.14),
-        inset 0 0 18px rgba(255,255,255,.03);
-
-    color:#ffd667;
-
-    font-size:20px;
-    font-weight:950;
-    letter-spacing:2px;
+.smallCrown{
+    color:#ffd45f;
+    font-size:29px;
+    filter:drop-shadow(0 0 9px rgba(255,205,72,.5));
 }
 
-.access-status{
-    color:#48dda0;
-
+.event{
+    margin-top:6px;
     font-size:8px;
-    font-weight:900;
-    letter-spacing:2.8px;
+    letter-spacing:4px;
+    color:#cba94b;
 }
 
-.access-card h2{
-    margin-top:7px;
-
-    font-size:23px;
-    color:#f5d069;
-}
-
-.access-card p{
-    margin-top:8px;
-
-    font-size:11px;
-    line-height:1.55;
-
-    color:#8da2b8;
-}
-
-.rules{
-    display:flex;
-    justify-content:center;
-
-    gap:10px;
-
-    margin-top:16px;
-}
-
-.rule{
-    min-width:85px;
-
-    padding:9px 6px;
-
-    border-radius:10px;
-
+.gameTitle{
+    margin-top:5px;
+    font-size:31px;
+    font-weight:950;
     background:
-        rgba(6,18,34,.9);
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
+        linear-gradient(180deg,#fff8d6,#f4c94e 49%,#9c6609);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
-.rule strong{
+.gameSub{
+    margin-top:8px;
+    font-size:11px;
+    color:#8ca2b7;
+    line-height:1.55;
+}
+
+.questPreview{
+    margin-top:18px;
+    padding:13px;
+    border-radius:13px;
+    text-align:left;
+    border:1px solid rgba(65,190,255,.18);
+    background:#061324;
+}
+
+.questPreview strong{
+    color:#ffd25a;
+    font-size:10px;
+}
+
+.questPreview p{
+    margin-top:5px;
+    color:#899fb4;
+    font-size:9px;
+    line-height:1.5;
+}
+
+.controlPreview{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+}
+
+.controlItem{
+    padding:9px 4px;
+    border-radius:9px;
+    background:#071423;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.controlItem span{
     display:block;
     font-size:17px;
 }
 
-.rule.good strong{
-    color:#52ceff;
-}
-
-.rule.bad strong{
-    color:#ff6077;
-}
-
-.rule span{
+.controlItem b{
     display:block;
-    margin-top:3px;
-
+    margin-top:4px;
     font-size:7px;
-    color:#678096;
+    color:#8ca1b4;
 }
 
-.primary-btn{
+.startBtn{
     width:100%;
-
     margin-top:18px;
-
     padding:15px;
-
     border:0;
     border-radius:12px;
-
     cursor:pointer;
-
-    color:#181000;
-
-    font-size:13px;
-    letter-spacing:.8px;
+    color:#171000;
     font-weight:950;
-
+    letter-spacing:.7px;
     background:
         linear-gradient(
             180deg,
-            #fff3a9,
-            #f3c54b 48%,
-            #ad7308
+            #fff2a7,
+            #f5c64c 48%,
+            #ae7207
         );
-
     box-shadow:
-        0 0 24px rgba(245,199,79,.17),
+        0 0 23px rgba(245,198,71,.18),
         inset 0 1px rgba(255,255,255,.65);
 }
 
-.private-note{
-    margin-top:11px;
+/* ===============================
+   REWARD
+================================ */
 
-    font-size:7px;
-    color:#4e6982;
-
-    letter-spacing:1.4px;
-}
-
-/* ===========================
-   COUNTDOWN
-=========================== */
-
-.countdown-layer{
+.rewardOverlay{
     position:absolute;
-    z-index:70;
-
+    z-index:120;
     inset:0;
-
     display:none;
-
-    align-items:center;
     justify-content:center;
-
-    background:
-        rgba(0,5,13,.76);
-
-    backdrop-filter:
-        blur(2px);
-}
-
-.countdown-number{
-    font-size:91px;
-    line-height:1;
-
-    color:#ffd75d;
-
-    font-weight:950;
-
-    text-shadow:
-        0 0 20px rgba(255,210,70,.55),
-        0 0 55px rgba(245,190,35,.25);
-}
-
-/* ===========================
-   FX
-=========================== */
-
-.particle{
-    position:absolute;
-    z-index:30;
-
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    pointer-events:none;
-
-    box-shadow:
-        0 0 10px
-        currentColor;
-
-    animation:
-        burst .65s forwards;
-}
-
-@keyframes burst{
-    to{
-        transform:
-            translate(var(--x),var(--y))
-            scale(.1);
-
-        opacity:0;
-    }
-}
-
-.float-score{
-    position:absolute;
-    z-index:32;
-
-    font-size:22px;
-    font-weight:950;
-
-    pointer-events:none;
-
-    text-shadow:
-        0 0 14px
-        currentColor;
-
-    animation:
-        rise .75s forwards;
-}
-
-.float-score.blue{
-    color:#58cfff;
-}
-
-.float-score.gold{
-    color:#ffd85e;
-}
-
-.float-score.red{
-    color:#ff5870;
-}
-
-@keyframes rise{
-    0%{
-        transform:translateY(0) scale(.6);
-        opacity:0;
-    }
-
-    25%{
-        transform:translateY(-8px) scale(1.15);
-        opacity:1;
-    }
-
-    100%{
-        transform:translateY(-65px);
-        opacity:0;
-    }
-}
-
-.flash{
-    position:absolute;
-    z-index:25;
-
-    inset:0;
-
-    pointer-events:none;
-    opacity:0;
-}
-
-.flash.blue{
-    background:
-        radial-gradient(
-            circle,
-            rgba(70,205,255,.28),
-            transparent 53%
-        );
-
-    animation:flashAnim .22s;
-}
-
-.flash.red{
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,65,95,.28),
-            transparent 53%
-        );
-
-    animation:flashAnim .24s;
-}
-
-.flash.gold{
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,210,70,.33),
-            transparent 53%
-        );
-
-    animation:flashAnim .28s;
-}
-
-@keyframes flashAnim{
-    0%{opacity:0}
-    45%{opacity:1}
-    100%{opacity:0}
-}
-
-.shake{
-    animation:shake .25s;
-}
-
-@keyframes shake{
-    0%,100%{
-        transform:translateX(0);
-    }
-
-    25%{
-        transform:translateX(-5px);
-    }
-
-    50%{
-        transform:translateX(4px);
-    }
-
-    75%{
-        transform:translateX(-2px);
-    }
-}
-
-/* ===========================
-   RESULT
-=========================== */
-
-.result-overlay{
-    position:absolute;
-    z-index:80;
-
-    inset:0;
-
-    display:none;
-
     align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
+    padding:22px;
     background:
-        radial-gradient(circle at 50% 27%,rgba(245,199,79,.14),transparent 34%),
-        rgba(1,5,12,.96);
+        radial-gradient(circle at center,rgba(255,192,35,.17),transparent 40%),
+        rgba(0,4,10,.96);
 }
 
-.result-card{
+.rewardCard{
     width:100%;
-    max-width:370px;
-
+    max-width:380px;
+    padding:29px 21px 22px;
     text-align:center;
-
-    padding:27px 20px 22px;
-
-    border-radius:21px;
-
-    border:
-        1px solid
-        rgba(245,199,79,.64);
-
+    border-radius:22px;
+    border:1px solid rgba(245,199,79,.75);
     background:
-        radial-gradient(circle at 50% 0%,rgba(245,199,79,.17),transparent 35%),
-        linear-gradient(180deg,#09182b,#030912);
-
+        radial-gradient(circle at 50% 0%,rgba(255,211,78,.21),transparent 37%),
+        linear-gradient(180deg,#0b1b31,#030912);
     box-shadow:
-        0 30px 75px
-        rgba(0,0,0,.75);
+        0 0 60px rgba(255,184,20,.12),
+        0 30px 70px rgba(0,0,0,.8);
 }
 
-.result-status{
-    color:#49dfa1;
-
+.rewardStatus{
+    color:#49dd9e;
+    letter-spacing:2.8px;
     font-size:8px;
-    letter-spacing:2.7px;
     font-weight:900;
 }
 
-.result-card h2{
-    margin-top:7px;
-
-    font-size:23px;
-    color:#f6d168;
+.rewardCard h2{
+    margin-top:8px;
+    color:#ffd568;
+    font-size:25px;
 }
 
-.score-ring{
-    width:112px;
-    height:112px;
-
-    margin:18px auto 11px;
-
-    border-radius:50%;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    border:
-        1px solid
-        rgba(66,198,255,.52);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(31,168,250,.20),
-            rgba(4,13,25,.94) 65%
-        );
-
-    box-shadow:
-        0 0 35px rgba(25,165,245,.18),
-        inset 0 0 26px rgba(65,196,255,.13);
-}
-
-.score-ring strong{
-    font-size:40px;
-    line-height:1;
-
-    color:#5ad0ff;
-}
-
-.score-ring span{
-    margin-top:6px;
-
-    font-size:7px;
-    letter-spacing:1.3px;
-
-    color:#688097;
-}
-
-.reward-box{
+.bigChest{
     position:relative;
-
-    overflow:hidden;
-
-    margin-top:14px;
-
-    padding:18px 11px;
-
-    border-radius:14px;
-
-    border:
-        1px solid
-        rgba(245,199,79,.32);
-
-    background:
-        linear-gradient(
-            180deg,
-            #091d36,
-            #061325
-        );
+    width:150px;
+    height:105px;
+    margin:23px auto 13px;
 }
 
-.reward-box::before{
-    content:"";
-
+.chestGlow{
     position:absolute;
-
-    width:200px;
-    height:100px;
-
-    top:-65px;
     left:50%;
+    top:50%;
+    width:190px;
+    height:130px;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(ellipse,rgba(255,209,73,.42),transparent 67%);
+    filter:blur(8px);
+}
 
+.chestBody{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:4px;
+    height:60px;
+    border-radius:8px 8px 14px 14px;
+    border:2px solid #cb9220;
+    background:
+        linear-gradient(180deg,#704517,#2a1809);
+    box-shadow:
+        inset 0 0 14px rgba(255,209,74,.13);
+}
+
+.chestLid{
+    position:absolute;
+    left:11px;
+    right:11px;
+    top:12px;
+    height:45px;
+    border-radius:50% 50% 6px 6px;
+    border:2px solid #dfaa33;
+    background:
+        linear-gradient(180deg,#a9691e,#4b2b0d);
+    transform-origin:center bottom;
+    animation:openChest 1.1s forwards ease-out;
+}
+
+@keyframes openChest{
+    0%{transform:rotateX(0)}
+    60%,100%{transform:translateY(-22px) rotate(-8deg)}
+}
+
+.chestLock{
+    position:absolute;
+    z-index:3;
+    left:50%;
+    bottom:30px;
     transform:translateX(-50%);
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255,207,68,.38),
-            transparent 70%
-        );
+    width:27px;
+    height:30px;
+    border-radius:5px;
+    border:2px solid #ffe16e;
+    background:#c18a16;
 }
 
-.reward-label{
-    position:relative;
-    z-index:2;
-
-    color:#7389a0;
-
-    font-size:7px;
-    letter-spacing:1.7px;
-}
-
-.reward-name{
-    position:relative;
-    z-index:2;
-
-    display:block;
-
-    margin-top:7px;
-
-    color:#ffd760;
-
-    font-size:19px;
-    font-weight:950;
-}
-
-.reward-desc{
-    position:relative;
-    z-index:2;
-
-    margin-top:5px;
-
-    font-size:9px;
-    color:#8ca1b6;
-}
-
-.claim-btn{
-    width:100%;
-
-    margin-top:16px;
-
-    padding:14px;
-
-    border:0;
+.rewardBox{
+    margin-top:15px;
+    padding:15px;
     border-radius:12px;
-
-    background:
-        linear-gradient(
-            #fff0a1,
-            #f4c74e,
-            #a96d08
-        );
-
-    font-size:13px;
-    color:#181000;
-    font-weight:950;
-
-    cursor:pointer;
+    border:1px solid rgba(245,199,79,.31);
+    background:#07172a;
 }
 
-.demo-btn{
-    margin-top:10px;
+.rewardBox span{
+    font-size:8px;
+    color:#70869d;
+    letter-spacing:1.4px;
+}
 
+.rewardBox strong{
+    display:block;
+    margin-top:6px;
+    color:#ffd65d;
+    font-size:19px;
+}
+
+.claimBtn{
+    width:100%;
+    margin-top:16px;
+    padding:14px;
     border:0;
+    border-radius:11px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:950;
+    color:#191000;
+    background:
+        linear-gradient(#fff0a0,#f4c64c,#aa6e07);
+}
 
-    background:none;
+/* ===============================
+   SOUND
+================================ */
 
-    color:#657e95;
-    font-size:9px;
-
+.soundToggle{
+    position:absolute;
+    z-index:40;
+    left:12px;
+    bottom:170px;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:1px solid rgba(245,199,79,.38);
+    background:rgba(2,10,20,.8);
+    color:#ffd25c;
     cursor:pointer;
 }
 
-/* ===========================
-   REWARD PREVIEW
-=========================== */
-
-.reward-preview-panel{
-    margin-top:14px;
-
-    border-radius:14px;
-
-    padding:12px;
-
-    background:
-        rgba(5,14,28,.72);
-
-    border:
-        1px solid
-        rgba(245,199,79,.15);
-}
-
-.preview-title{
-    text-align:center;
-
-    font-size:8px;
-    color:#cbaa54;
-    letter-spacing:2.4px;
-
-    margin-bottom:10px;
-}
-
-.preview-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:7px;
-}
-
-.preview{
-    min-height:70px;
-
-    border-radius:10px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        linear-gradient(
-            180deg,
-            #071528,
-            #040c17
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.05);
-}
-
-.preview-shape{
-    width:25px;
-    height:25px;
-
-    margin-bottom:6px;
-}
-
-.preview-shape.diamond{
-    clip-path:
-        polygon(
-            50% 0,
-            100% 35%,
-            72% 100%,
-            28% 100%,
-            0 35%
-        );
-
-    background:
-        linear-gradient(
-            135deg,
-            #e0f9ff,
-            #3fc5ff,
-            #075eaf,
-            #8ae8ff
-        );
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(60,200,255,.6)
-        );
-}
-
-.preview-shape.gold{
-    clip-path:
-        polygon(
-            50% 0,
-            100% 35%,
-            72% 100%,
-            28% 100%,
-            0 35%
-        );
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffbd7,
-            #ffd85c,
-            #a96d00,
-            #ffe978
-        );
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(245,200,60,.6)
-        );
-}
-
-.preview-shape.mystery{
-    border-radius:7px;
-
-    border:
-        1px solid
-        #ca9b28;
-
-    background:#101828;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#ffd45c;
-
-    font-weight:950;
-}
-
-.preview-shape.mystery::before{
-    content:"?";
-}
-
-.preview b{
-    font-size:8px;
-    color:#dce6ef;
-}
-
-.preview span{
-    margin-top:3px;
-    font-size:7px;
-    color:#61788f;
-}
-
-.footer{
-    padding-top:13px;
-
-    text-align:center;
-
-    color:#30485e;
-
-    font-size:7px;
-    letter-spacing:1.5px;
-}
-
-@media(max-width:380px){
-    .arena{
-        height:480px;
-    }
-
-    .title{
-        font-size:25px;
-    }
-
-    .collector-wrap{
-        width:148px;
-        height:91px;
+@media(min-width:700px){
+    .joystickArea{
+        opacity:.75;
     }
 }
 </style>
@@ -1722,680 +726,3360 @@ body{
 
 <body>
 
-<div class="app">
+<div id="gameWrap">
 
-<header class="header">
+<canvas id="game"></canvas>
 
-    <button
-    class="sound-btn"
-    id="soundButton"
-    onclick="toggleSound()">
-        🔊
-    </button>
+<!-- HUD -->
+<div class="topHud">
 
-    <div class="crown">
-        ♛
+    <div class="playerCard">
+
+        <div class="playerRow">
+
+            <div class="avatar">
+                9.9
+            </div>
+
+            <div class="playerName">
+                <div class="vipTag">
+                    VIP ROYAL HUNTER
+                </div>
+
+                <div class="name">
+                    RoyaleHunter
+                </div>
+
+                <div class="level">
+                    EVENT CHARACTER
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hpOuter">
+            <div
+            class="hpInner"
+            id="hpBar">
+            </div>
+        </div>
+
     </div>
 
-    <div class="private-label">
-        PRIVATE VIP GAME
+
+    <div class="objectiveCard">
+
+        <div class="objTitle">
+            GOLDEN SIGIL
+        </div>
+
+        <div class="objNumber">
+            <span id="sigilCount">0</span>/9
+        </div>
+
+        <div class="objText">
+            Buka Royal Vault
+        </div>
+
     </div>
 
-    <div class="title">
-        ROYAL DIAMOND HUNT
+</div>
+
+
+<!-- MISSION -->
+
+<div class="mission">
+
+    <div class="missionTitle">
+        ROYAL QUEST 9.9
     </div>
 
-    <div class="subtitle">
-        Catch • Combo • Unlock
+    <div class="missionText">
+        Temukan <strong>9 Golden Sigil</strong>
+        dan buka Mystery Chest di Royal Vault.
     </div>
 
-</header>
+</div>
 
-<section class="hud">
 
-    <div class="hud-box">
-        <span class="hud-label">
-            MEMBER ACCESS
-        </span>
+<!-- MINIMAP -->
 
-        <span class="hud-value">
-            VIP****27
-        </span>
+<div class="minimapBox">
+
+    <div class="minimapLabel">
+        ROYAL VAULT
     </div>
 
-    <div class="hud-box">
-        <span class="hud-label">
-            CHANCE
-        </span>
+    <canvas id="miniMap"></canvas>
 
-        <span class="hud-value">
-            1X
-        </span>
-    </div>
+</div>
 
-    <div class="hud-box">
-        <span class="hud-label">
-            TIME
-        </span>
 
-        <span
-        class="hud-value"
-        id="timer">
-            15
-        </span>
-    </div>
+<div
+class="gameMessage"
+id="gameMessage">
+</div>
 
-</section>
 
-<main
-class="arena"
-id="arena">
+<!-- SOUND -->
 
-    <div class="bg-vault"></div>
-    <div class="bg-light left"></div>
-    <div class="bg-light right"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-particles"></div>
+<button
+class="soundToggle"
+id="soundToggle">
+🔊
+</button>
+
+
+<!-- JOYSTICK -->
+
+<div
+class="joystickArea"
+id="joystickArea">
+
+    <div class="joyBase"></div>
 
     <div
-    class="flash"
-    id="flash">
+    class="joyKnob"
+    id="joyKnob">
     </div>
 
-    <div class="top-status">
+</div>
 
-        <div class="score-pill">
-            CRYSTAL
-            <strong id="score">
-                0
+
+<!-- ACTION BUTTONS -->
+
+<div class="actions">
+
+    <div
+    class="actionBtn interactBtn"
+    id="interactBtn">
+
+        <div class="btnIcon">
+            ✦
+        </div>
+
+        <div class="btnLabel">
+            INTERACT
+        </div>
+
+    </div>
+
+
+    <div
+    class="actionBtn dashBtn"
+    id="dashBtn">
+
+        <div class="btnIcon">
+            ➤
+        </div>
+
+        <div class="btnLabel">
+            DASH
+        </div>
+
+    </div>
+
+
+    <div
+    class="actionBtn attackBtn"
+    id="attackBtn">
+
+        <div class="btnIcon">
+            ⚔
+        </div>
+
+        <div class="btnLabel">
+            ATTACK
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- INTRO -->
+
+<div
+class="overlay"
+id="intro">
+
+    <div class="introCard">
+
+        <div class="smallCrown">
+            ♛
+        </div>
+
+        <div class="event">
+            VIP EVENT 9.9
+        </div>
+
+        <div class="gameTitle">
+            ROYAL QUEST 9.9
+        </div>
+
+        <div class="gameSub">
+            Masuki Royal Vault, jelajahi dungeon,
+            lawan Crystal Guardian dan temukan
+            seluruh Golden Sigil.
+        </div>
+
+
+        <div class="questPreview">
+
+            <strong>
+                QUEST UTAMA
             </strong>
-        </div>
-
-        <div
-        class="combo-pill"
-        id="comboPill">
-
-            COMBO
-
-            <b id="comboText">
-                x1
-            </b>
-
-        </div>
-
-    </div>
-
-    <div
-    class="guide"
-    id="guide">
-
-        <span>←</span>
-        Geser collector
-        <span>→</span>
-
-    </div>
-
-    <div
-    class="collector-wrap"
-    id="collector">
-
-        <div class="collector-shadow"></div>
-        <div class="collector-glow"></div>
-
-        <div class="collector-body">
-
-            <div class="collector-rim"></div>
-
-            <div class="collector-inner"></div>
-
-            <div class="collector-grid"></div>
-
-            <div class="collector-side left"></div>
-            <div class="collector-side right"></div>
-
-            <div class="collector-front-plate">
-                <span>VIP</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- INTRO -->
-
-    <div
-    class="overlay"
-    id="intro">
-
-        <div class="access-card">
-
-            <div class="access-logo">
-                VIP
-            </div>
-
-            <div class="access-status">
-                ACCESS GRANTED
-            </div>
-
-            <h2>
-                Private Game Unlocked
-            </h2>
 
             <p>
-                Tangkap Blue Crystal sebanyak mungkin.
-                Hindari Red Crystal untuk menjaga skor kamu.
+                Kumpulkan 9 Golden Sigil.
+                Setelah lengkap, cari Mystery Chest
+                dan buka Royal Reward.
             </p>
 
-            <div class="rules">
+        </div>
 
-                <div class="rule good">
-                    <strong>
-                        +1
-                    </strong>
 
-                    <span>
-                        BLUE CRYSTAL
-                    </span>
-                </div>
+        <div class="controlPreview">
 
-                <div class="rule bad">
-                    <strong>
-                        -2
-                    </strong>
-
-                    <span>
-                        RED CRYSTAL
-                    </span>
-                </div>
-
+            <div class="controlItem">
+                <span>◉</span>
+                <b>JOYSTICK</b>
             </div>
 
-            <button
-            class="primary-btn"
-            onclick="enterGame()">
+            <div class="controlItem">
+                <span>⚔</span>
+                <b>ATTACK</b>
+            </div>
 
-                ENTER PRIVATE GAME
-
-            </button>
-
-            <div class="private-note">
-                EXCLUSIVE MEMBER ACCESS
+            <div class="controlItem">
+                <span>➤</span>
+                <b>DASH</b>
             </div>
 
         </div>
 
+
+        <button
+        class="startBtn"
+        id="startBtn">
+
+            START ROYAL QUEST
+
+        </button>
+
     </div>
 
-    <!-- COUNTDOWN -->
+</div>
 
-    <div
-    class="countdown-layer"
-    id="countdownLayer">
 
-        <div
-        class="countdown-number"
-        id="countdownNumber">
+<!-- REWARD -->
 
-            3
+<div
+class="rewardOverlay"
+id="rewardOverlay">
+
+    <div class="rewardCard">
+
+        <div class="rewardStatus">
+            ROYAL VAULT CLEARED
+        </div>
+
+        <h2>
+            VIP REWARD UNLOCKED
+        </h2>
+
+
+        <div class="bigChest">
+
+            <div class="chestGlow"></div>
+
+            <div class="chestBody"></div>
+
+            <div class="chestLid"></div>
+
+            <div class="chestLock"></div>
 
         </div>
 
-    </div>
 
-    <!-- RESULT -->
-
-    <div
-    class="result-overlay"
-    id="result">
-
-        <div class="result-card">
-
-            <div class="result-status">
-                PRIVATE SESSION COMPLETE
-            </div>
-
-            <h2>
-                VIP REWARD UNLOCKED
-            </h2>
-
-            <div class="score-ring">
-
-                <strong id="finalScore">
-                    0
-                </strong>
-
-                <span>
-                    FINAL SCORE
-                </span>
-
-            </div>
-
-            <div class="reward-box">
-
-                <div class="reward-label">
-                    YOUR PRIVATE REWARD
-                </div>
-
-                <span
-                class="reward-name"
-                id="rewardName">
-
-                    -
-
-                </span>
-
-                <div
-                class="reward-desc"
-                id="rewardDesc">
-
-                    -
-
-                </div>
-
-            </div>
-
-            <button
-            class="claim-btn"
-            onclick="claimReward()">
-
-                CLAIM MY REWARD
-
-            </button>
-
-            <button
-            class="demo-btn"
-            onclick="resetDemo()">
-
-                MAIN ULANG DEMO
-
-            </button>
-
-        </div>
-
-    </div>
-
-</main>
-
-<section class="reward-preview-panel">
-
-    <div class="preview-title">
-        POSSIBLE VIP REWARD
-    </div>
-
-    <div class="preview-grid">
-
-        <div class="preview">
-
-            <div
-            class="preview-shape diamond">
-            </div>
-
-            <b>
-                VIP POINT
-            </b>
+        <div class="rewardBox">
 
             <span>
-                Private reward
+                YOUR EVENT 9.9 REWARD
             </span>
+
+            <strong>
+                MYSTERY VIP REWARD
+            </strong>
 
         </div>
 
-        <div class="preview">
 
-            <div
-            class="preview-shape gold">
-            </div>
+        <button
+        class="claimBtn"
+        id="claimBtn">
 
-            <b>
-                EXCLUSIVE
-            </b>
+            CLAIM REWARD
 
-            <span>
-                Special benefit
-            </span>
-
-        </div>
-
-        <div class="preview">
-
-            <div
-            class="preview-shape mystery">
-            </div>
-
-            <b>
-                MYSTERY
-            </b>
-
-            <span>
-                Hidden reward
-            </span>
-
-        </div>
+        </button>
 
     </div>
 
-</section>
-
-<div class="footer">
-    PRIVATE VIP EVENT • MEMBER ACCESS
 </div>
 
 </div>
+
 
 <script>
 
-/* =========================================
-   ELEMENTS
-========================================= */
+/* =====================================================
+   CANVAS SETUP
+===================================================== */
 
-const arena =
-document.getElementById("arena");
+const canvas =
+document.getElementById("game");
 
-const collector =
-document.getElementById("collector");
+const ctx =
+canvas.getContext("2d");
 
-const scoreElement =
-document.getElementById("score");
+const wrap =
+document.getElementById("gameWrap");
 
-const timerElement =
-document.getElementById("timer");
+const miniCanvas =
+document.getElementById("miniMap");
 
-const comboPill =
-document.getElementById("comboPill");
-
-const comboText =
-document.getElementById("comboText");
-
-const intro =
-document.getElementById("intro");
-
-const result =
-document.getElementById("result");
-
-const finalScore =
-document.getElementById("finalScore");
-
-const rewardName =
-document.getElementById("rewardName");
-
-const rewardDesc =
-document.getElementById("rewardDesc");
-
-const guide =
-document.getElementById("guide");
-
-const flash =
-document.getElementById("flash");
-
-const countdownLayer =
-document.getElementById("countdownLayer");
-
-const countdownNumber =
-document.getElementById("countdownNumber");
-
-const soundButton =
-document.getElementById("soundButton");
+const miniCtx =
+miniCanvas.getContext("2d");
 
 
-/* =========================================
-   SETTINGS
-========================================= */
-
-const GAME_TIME = 15;
-const MAX_BLUE = 12;
-
-let score = 0;
-let timeLeft = GAME_TIME;
-
-let blueSpawned = 0;
-
-let gameActive = false;
-
-let streak = 0;
-let combo = 1;
-
-let collectorX = 0;
-
-let blueInterval;
-let redInterval;
-let goldInterval;
-let timerInterval;
+let DPR =
+Math.min(
+    window.devicePixelRatio || 1,
+    2
+);
 
 
-/* =========================================
-   AUDIO
-========================================= */
+let screenW = 0;
+let screenH = 0;
 
-let audioContext = null;
-let soundEnabled = true;
-let ambientTimer = null;
 
-function initAudio(){
+function resize(){
 
-    if(audioContext){
-        return;
-    }
+    screenW =
+    wrap.clientWidth;
 
-    const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
+    screenH =
+    wrap.clientHeight;
 
-    if(!AudioContext){
-        return;
-    }
 
-    audioContext =
-        new AudioContext();
+    canvas.width =
+    screenW * DPR;
+
+    canvas.height =
+    screenH * DPR;
+
+
+    canvas.style.width =
+    screenW + "px";
+
+    canvas.style.height =
+    screenH + "px";
+
+
+    ctx.setTransform(
+        DPR,0,0,DPR,0,0
+    );
+
+
+    miniCanvas.width =
+    224;
+
+    miniCanvas.height =
+    180;
 }
 
 
-function playTone(
-    frequency,
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+resize();
+
+
+/* =====================================================
+   WORLD
+===================================================== */
+
+const WORLD = {
+
+    width:1600,
+    height:1300
+};
+
+
+const camera = {
+    x:0,
+    y:0
+};
+
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+const player = {
+
+    x:800,
+    y:1080,
+
+    radius:19,
+
+    speed:3.25,
+
+    hp:100,
+
+    maxHp:100,
+
+    facingX:0,
+    facingY:-1,
+
+    attackTimer:0,
+
+    dashTimer:0,
+    dashCooldown:0,
+
+    invincible:0
+};
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+const input = {
+
+    x:0,
+    y:0
+};
+
+
+const keys = {};
+
+
+window.addEventListener(
+    "keydown",
+    e=>{
+
+        keys[e.key.toLowerCase()] =
+        true;
+
+        if(
+            e.key === " "
+        ){
+
+            attack();
+        }
+
+        if(
+            e.key.toLowerCase()
+            ===
+            "shift"
+        ){
+
+            dash();
+        }
+
+        if(
+            e.key.toLowerCase()
+            ===
+            "e"
+        ){
+
+            interact();
+        }
+    }
+);
+
+
+window.addEventListener(
+    "keyup",
+    e=>{
+
+        keys[e.key.toLowerCase()] =
+        false;
+    }
+);
+
+
+/* =====================================================
+   WALLS
+===================================================== */
+
+const walls = [
+
+    {
+        x:0,
+        y:0,
+        w:1600,
+        h:70
+    },
+
+    {
+        x:0,
+        y:1230,
+        w:1600,
+        h:70
+    },
+
+    {
+        x:0,
+        y:0,
+        w:70,
+        h:1300
+    },
+
+    {
+        x:1530,
+        y:0,
+        w:70,
+        h:1300
+    },
+
+
+    /* center ruins */
+
+    {
+        x:430,
+        y:530,
+        w:260,
+        h:45
+    },
+
+    {
+        x:910,
+        y:530,
+        w:260,
+        h:45
+    },
+
+
+    {
+        x:760,
+        y:280,
+        w:80,
+        h:210
+    },
+
+
+    /* left */
+
+    {
+        x:250,
+        y:760,
+        w:210,
+        h:45
+    },
+
+
+    /* right */
+
+    {
+        x:1140,
+        y:800,
+        w:220,
+        h:45
+    }
+];
+
+
+/* =====================================================
+   SIGILS
+===================================================== */
+
+const sigils = [
+
+    {x:230,y:1080,taken:false},
+
+    {x:400,y:900,taken:false},
+
+    {x:620,y:700,taken:false},
+
+    {x:310,y:380,taken:false},
+
+    {x:630,y:220,taken:false},
+
+    {x:970,y:220,taken:false},
+
+    {x:1280,y:390,taken:false},
+
+    {x:1190,y:690,taken:false},
+
+    {x:1320,y:1080,taken:false}
+];
+
+
+let collectedSigils = 0;
+
+
+/* =====================================================
+   CHEST
+===================================================== */
+
+const chest = {
+
+    x:800,
+    y:145,
+
+    radius:44,
+
+    opened:false
+};
+
+
+/* =====================================================
+   ENEMIES
+===================================================== */
+
+const enemies = [];
+
+
+function createEnemy(
+    x,
+    y,
+    level=1
+){
+
+    enemies.push({
+
+        x,
+        y,
+
+        radius:
+        24,
+
+        hp:
+        3 + level,
+
+        maxHp:
+        3 + level,
+
+        speed:
+        0.7 + level*.12,
+
+        hitFlash:0,
+
+        attackCooldown:0,
+
+        dead:false
+    });
+}
+
+
+createEnemy(
+    500,
+    970,
+    1
+);
+
+createEnemy(
+    780,
+    770,
+    1
+);
+
+createEnemy(
+    1050,
+    960,
+    2
+);
+
+createEnemy(
+    360,
+    590,
+    2
+);
+
+createEnemy(
+    1230,
+    540,
+    2
+);
+
+createEnemy(
+    840,
+    350,
+    3
+);
+
+
+/* =====================================================
+   DECOR
+===================================================== */
+
+const crystals = [];
+
+for(
+    let i=0;
+    i<35;
+    i++
+){
+
+    crystals.push({
+
+        x:
+        100
+        +
+        Math.random()
+        *
+        1400,
+
+        y:
+        100
+        +
+        Math.random()
+        *
+        1100,
+
+        size:
+        8
+        +
+        Math.random()
+        *
+        13
+    });
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particles = [];
+
+
+function particleBurst(
+    x,
+    y,
+    color,
+    amount=12
+){
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const angle =
+        Math.random()
+        *
+        Math.PI
+        *
+        2;
+
+
+        const speed =
+        1
+        +
+        Math.random()
+        *
+        3;
+
+
+        particles.push({
+
+            x,
+            y,
+
+            vx:
+            Math.cos(angle)
+            *
+            speed,
+
+            vy:
+            Math.sin(angle)
+            *
+            speed,
+
+            life:1,
+
+            color,
+
+            size:
+            2
+            +
+            Math.random()
+            *
+            3
+        });
+    }
+}
+
+
+/* =====================================================
+   COLLISION
+===================================================== */
+
+function circleRectCollision(
+    x,
+    y,
+    r,
+    rect
+){
+
+    const nearestX =
+    Math.max(
+        rect.x,
+        Math.min(
+            x,
+            rect.x
+            +
+            rect.w
+        )
+    );
+
+
+    const nearestY =
+    Math.max(
+        rect.y,
+        Math.min(
+            y,
+            rect.y
+            +
+            rect.h
+        )
+    );
+
+
+    const dx =
+    x
+    -
+    nearestX;
+
+
+    const dy =
+    y
+    -
+    nearestY;
+
+
+    return(
+        dx*dx
+        +
+        dy*dy
+        <
+        r*r
+    );
+}
+
+
+/* =====================================================
+   MOVE
+===================================================== */
+
+function movePlayer(
+    dx,
+    dy
+){
+
+    let newX =
+    player.x + dx;
+
+
+    let blocked =
+    walls.some(
+        wall=>
+        circleRectCollision(
+            newX,
+            player.y,
+            player.radius,
+            wall
+        )
+    );
+
+
+    if(!blocked){
+
+        player.x =
+        newX;
+    }
+
+
+    let newY =
+    player.y + dy;
+
+
+    blocked =
+    walls.some(
+        wall=>
+        circleRectCollision(
+            player.x,
+            newY,
+            player.radius,
+            wall
+        )
+    );
+
+
+    if(!blocked){
+
+        player.y =
+        newY;
+    }
+
+
+    player.x =
+    Math.max(
+        player.radius,
+        Math.min(
+            WORLD.width-player.radius,
+            player.x
+        )
+    );
+
+
+    player.y =
+    Math.max(
+        player.radius,
+        Math.min(
+            WORLD.height-player.radius,
+            player.y
+        )
+    );
+}
+
+
+/* =====================================================
+   ATTACK
+===================================================== */
+
+function attack(){
+
+    if(
+        player.attackTimer
+        >
+        0
+    ){
+        return;
+    }
+
+
+    player.attackTimer =
+    18;
+
+
+    soundAttack();
+
+
+    const reach =
+    72;
+
+
+    enemies.forEach(
+        enemy=>{
+
+            if(enemy.dead){
+                return;
+            }
+
+
+            const dx =
+            enemy.x
+            -
+            player.x;
+
+
+            const dy =
+            enemy.y
+            -
+            player.y;
+
+
+            const distance =
+            Math.hypot(
+                dx,
+                dy
+            );
+
+
+            if(
+                distance
+                <
+                reach
+            ){
+
+                enemy.hp--;
+
+                enemy.hitFlash =
+                8;
+
+
+                particleBurst(
+                    enemy.x,
+                    enemy.y,
+                    "#52cbff",
+                    10
+                );
+
+
+                if(
+                    enemy.hp
+                    <=
+                    0
+                ){
+
+                    enemy.dead =
+                    true;
+
+
+                    particleBurst(
+                        enemy.x,
+                        enemy.y,
+                        "#69d9ff",
+                        22
+                    );
+
+
+                    soundEnemyDead();
+                }
+            }
+        }
+    );
+}
+
+
+/* =====================================================
+   DASH
+===================================================== */
+
+function dash(){
+
+    if(
+        player.dashCooldown
+        >
+        0
+    ){
+        return;
+    }
+
+
+    player.dashCooldown =
+    90;
+
+
+    player.dashTimer =
+    12;
+
+
+    soundDash();
+
+
+    if(
+        navigator.vibrate
+    ){
+
+        navigator.vibrate(
+            25
+        );
+    }
+}
+
+
+/* =====================================================
+   INTERACT
+===================================================== */
+
+function interact(){
+
+    const distance =
+    Math.hypot(
+
+        player.x
+        -
+        chest.x,
+
+        player.y
+        -
+        chest.y
+    );
+
+
+    if(
+        distance
+        <
+        100
+    ){
+
+        if(
+            collectedSigils
+            <
+            9
+        ){
+
+            showMessage(
+                "Royal Vault terkunci • Kumpulkan 9 Golden Sigil"
+            );
+
+            soundLocked();
+
+        }
+        else if(
+            !chest.opened
+        ){
+
+            chest.opened =
+            true;
+
+
+            soundReward();
+
+
+            particleBurst(
+                chest.x,
+                chest.y,
+                "#ffd45b",
+                45
+            );
+
+
+            setTimeout(()=>{
+
+                document
+                .getElementById(
+                    "rewardOverlay"
+                )
+                .style
+                .display =
+                "flex";
+
+            },800);
+        }
+
+        return;
+    }
+
+
+    showMessage(
+        "Tidak ada objek untuk diinteraksi"
+    );
+}
+
+
+/* =====================================================
+   UPDATE PLAYER
+===================================================== */
+
+function updatePlayer(){
+
+    let dx =
+    input.x;
+
+    let dy =
+    input.y;
+
+
+    if(
+        keys["a"]
+        ||
+        keys["arrowleft"]
+    ){
+
+        dx -= 1;
+    }
+
+
+    if(
+        keys["d"]
+        ||
+        keys["arrowright"]
+    ){
+
+        dx += 1;
+    }
+
+
+    if(
+        keys["w"]
+        ||
+        keys["arrowup"]
+    ){
+
+        dy -= 1;
+    }
+
+
+    if(
+        keys["s"]
+        ||
+        keys["arrowdown"]
+    ){
+
+        dy += 1;
+    }
+
+
+    const length =
+    Math.hypot(
+        dx,
+        dy
+    );
+
+
+    if(length > 0){
+
+        dx /= length;
+        dy /= length;
+
+
+        player.facingX =
+        dx;
+
+        player.facingY =
+        dy;
+
+
+        let speed =
+        player.speed;
+
+
+        if(
+            player.dashTimer
+            >
+            0
+        ){
+
+            speed *= 3.2;
+        }
+
+
+        movePlayer(
+            dx*speed,
+            dy*speed
+        );
+    }
+
+
+    if(
+        player.attackTimer
+        >
+        0
+    ){
+
+        player.attackTimer--;
+    }
+
+
+    if(
+        player.dashTimer
+        >
+        0
+    ){
+
+        player.dashTimer--;
+    }
+
+
+    if(
+        player.dashCooldown
+        >
+        0
+    ){
+
+        player.dashCooldown--;
+    }
+
+
+    if(
+        player.invincible
+        >
+        0
+    ){
+
+        player.invincible--;
+    }
+}
+
+
+/* =====================================================
+   UPDATE SIGILS
+===================================================== */
+
+function updateSigils(){
+
+    sigils.forEach(
+        sigil=>{
+
+            if(
+                sigil.taken
+            ){
+                return;
+            }
+
+
+            const distance =
+            Math.hypot(
+
+                sigil.x
+                -
+                player.x,
+
+                sigil.y
+                -
+                player.y
+            );
+
+
+            if(
+                distance
+                <
+                37
+            ){
+
+                sigil.taken =
+                true;
+
+
+                collectedSigils++;
+
+
+                document
+                .getElementById(
+                    "sigilCount"
+                )
+                .textContent =
+                collectedSigils;
+
+
+                particleBurst(
+                    sigil.x,
+                    sigil.y,
+                    "#ffd45b",
+                    24
+                );
+
+
+                soundSigil();
+
+
+                showMessage(
+                    "Golden Sigil "
+                    +
+                    collectedSigils
+                    +
+                    "/9"
+                );
+
+
+                if(
+                    collectedSigils
+                    ===
+                    9
+                ){
+
+                    setTimeout(()=>{
+
+                        showMessage(
+                            "Semua Sigil ditemukan! Cari Mystery Chest."
+                        );
+
+                        soundQuestComplete();
+
+                    },500);
+                }
+            }
+        }
+    );
+}
+
+
+/* =====================================================
+   UPDATE ENEMIES
+===================================================== */
+
+function updateEnemies(){
+
+    enemies.forEach(
+        enemy=>{
+
+            if(enemy.dead){
+                return;
+            }
+
+
+            if(
+                enemy.hitFlash
+                >
+                0
+            ){
+
+                enemy.hitFlash--;
+            }
+
+
+            if(
+                enemy.attackCooldown
+                >
+                0
+            ){
+
+                enemy.attackCooldown--;
+            }
+
+
+            const dx =
+            player.x
+            -
+            enemy.x;
+
+
+            const dy =
+            player.y
+            -
+            enemy.y;
+
+
+            const distance =
+            Math.hypot(
+                dx,
+                dy
+            );
+
+
+            if(
+                distance
+                <
+                280
+                &&
+                distance
+                >
+                35
+            ){
+
+                const mx =
+                dx/distance
+                *
+                enemy.speed;
+
+
+                const my =
+                dy/distance
+                *
+                enemy.speed;
+
+
+                enemy.x += mx;
+                enemy.y += my;
+            }
+
+
+            if(
+                distance
+                <
+                39
+                &&
+                enemy.attackCooldown
+                <=
+                0
+                &&
+                player.invincible
+                <=
+                0
+            ){
+
+                enemy.attackCooldown =
+                55;
+
+
+                player.hp -= 12;
+
+
+                player.invincible =
+                45;
+
+
+                soundHit();
+
+
+                particleBurst(
+                    player.x,
+                    player.y,
+                    "#ff536d",
+                    15
+                );
+
+
+                updateHp();
+
+
+                if(
+                    player.hp
+                    <=
+                    0
+                ){
+
+                    player.hp =
+                    player.maxHp;
+
+
+                    player.x =
+                    800;
+
+                    player.y =
+                    1080;
+
+
+                    updateHp();
+
+
+                    showMessage(
+                        "Guardian mengalahkanmu • Kembali ke checkpoint"
+                    );
+                }
+            }
+        }
+    );
+}
+
+
+/* =====================================================
+   HP
+===================================================== */
+
+function updateHp(){
+
+    const percent =
+    Math.max(
+        0,
+        player.hp
+        /
+        player.maxHp
+        *
+        100
+    );
+
+
+    document
+    .getElementById(
+        "hpBar"
+    )
+    .style
+    .width =
+    percent
+    +
+    "%";
+}
+
+
+/* =====================================================
+   PARTICLE UPDATE
+===================================================== */
+
+function updateParticles(){
+
+    for(
+        let i=
+        particles.length-1;
+        i>=0;
+        i--
+    ){
+
+        const p =
+        particles[i];
+
+
+        p.x += p.vx;
+
+        p.y += p.vy;
+
+        p.vx *= .96;
+
+        p.vy *= .96;
+
+        p.life -= .025;
+
+
+        if(
+            p.life
+            <=
+            0
+        ){
+
+            particles.splice(
+                i,
+                1
+            );
+        }
+    }
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+function updateCamera(){
+
+    camera.x =
+    player.x
+    -
+    screenW/2;
+
+
+    camera.y =
+    player.y
+    -
+    screenH/2;
+
+
+    camera.x =
+    Math.max(
+        0,
+        Math.min(
+            WORLD.width
+            -
+            screenW,
+            camera.x
+        )
+    );
+
+
+    camera.y =
+    Math.max(
+        0,
+        Math.min(
+            WORLD.height
+            -
+            screenH,
+            camera.y
+        )
+    );
+}
+
+
+/* =====================================================
+   DRAW FLOOR
+===================================================== */
+
+function drawFloor(){
+
+    const gradient =
+    ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        screenH
+    );
+
+
+    gradient.addColorStop(
+        0,
+        "#081325"
+    );
+
+
+    gradient.addColorStop(
+        1,
+        "#020812"
+    );
+
+
+    ctx.fillStyle =
+    gradient;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        screenW,
+        screenH
+    );
+
+
+    const tile =
+    78;
+
+
+    const startX =
+    -(
+        camera.x
+        %
+        tile
+    );
+
+
+    const startY =
+    -(
+        camera.y
+        %
+        tile
+    );
+
+
+    ctx.strokeStyle =
+    "rgba(55,150,215,.075)";
+
+
+    ctx.lineWidth =
+    1;
+
+
+    for(
+        let x=startX;
+        x<screenW;
+        x+=tile
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            0
+        );
+
+        ctx.lineTo(
+            x,
+            screenH
+        );
+
+        ctx.stroke();
+    }
+
+
+    for(
+        let y=startY;
+        y<screenH;
+        y+=tile
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            screenW,
+            y
+        );
+
+        ctx.stroke();
+    }
+}
+
+
+/* =====================================================
+   WORLD CONVERSION
+===================================================== */
+
+function sx(x){
+
+    return(
+        x
+        -
+        camera.x
+    );
+}
+
+
+function sy(y){
+
+    return(
+        y
+        -
+        camera.y
+    );
+}
+
+
+/* =====================================================
+   DRAW WALLS
+===================================================== */
+
+function drawWalls(){
+
+    walls.forEach(
+        wall=>{
+
+            const x =
+            sx(
+                wall.x
+            );
+
+
+            const y =
+            sy(
+                wall.y
+            );
+
+
+            ctx.fillStyle =
+            "#08111d";
+
+
+            ctx.fillRect(
+                x,
+                y,
+                wall.w,
+                wall.h
+            );
+
+
+            ctx.fillStyle =
+            "rgba(231,181,63,.16)";
+
+
+            ctx.fillRect(
+                x,
+                y,
+                wall.w,
+                3
+            );
+
+
+            ctx.strokeStyle =
+            "rgba(58,161,220,.11)";
+
+
+            ctx.strokeRect(
+                x,
+                y,
+                wall.w,
+                wall.h
+            );
+        }
+    );
+}
+
+
+/* =====================================================
+   DRAW DECOR CRYSTALS
+===================================================== */
+
+function drawDecor(){
+
+    crystals.forEach(
+        crystal=>{
+
+            const x =
+            sx(
+                crystal.x
+            );
+
+
+            const y =
+            sy(
+                crystal.y
+            );
+
+
+            if(
+                x<-40
+                ||
+                y<-40
+                ||
+                x>screenW+40
+                ||
+                y>screenH+40
+            ){
+                return;
+            }
+
+
+            ctx.save();
+
+
+            ctx.translate(
+                x,
+                y
+            );
+
+
+            ctx.shadowColor =
+            "#20a7ff";
+
+
+            ctx.shadowBlur =
+            12;
+
+
+            ctx.fillStyle =
+            "#167dc1";
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                0,
+                -crystal.size
+            );
+
+
+            ctx.lineTo(
+                crystal.size*.55,
+                0
+            );
+
+
+            ctx.lineTo(
+                0,
+                crystal.size
+            );
+
+
+            ctx.lineTo(
+                -crystal.size*.55,
+                0
+            );
+
+
+            ctx.closePath();
+
+            ctx.fill();
+
+
+            ctx.restore();
+        }
+    );
+}
+
+
+/* =====================================================
+   DRAW SIGILS
+===================================================== */
+
+function drawSigils(){
+
+    sigils.forEach(
+        sigil=>{
+
+            if(
+                sigil.taken
+            ){
+                return;
+            }
+
+
+            const x =
+            sx(
+                sigil.x
+            );
+
+
+            const y =
+            sy(
+                sigil.y
+            );
+
+
+            const pulse =
+            1
+            +
+            Math.sin(
+                performance.now()
+                *
+                .005
+            )
+            *
+            .08;
+
+
+            ctx.save();
+
+
+            ctx.translate(
+                x,
+                y
+            );
+
+
+            ctx.scale(
+                pulse,
+                pulse
+            );
+
+
+            ctx.shadowColor =
+            "#ffd34f";
+
+
+            ctx.shadowBlur =
+            22;
+
+
+            ctx.strokeStyle =
+            "#ffd75b";
+
+
+            ctx.fillStyle =
+            "rgba(255,203,60,.15)";
+
+
+            ctx.lineWidth =
+            3;
+
+
+            ctx.beginPath();
+
+
+            for(
+                let i=0;
+                i<8;
+                i++
+            ){
+
+                const angle =
+                Math.PI/4*i
+                -
+                Math.PI/8;
+
+
+                const px =
+                Math.cos(angle)
+                *
+                23;
+
+
+                const py =
+                Math.sin(angle)
+                *
+                23;
+
+
+                if(i===0){
+
+                    ctx.moveTo(
+                        px,
+                        py
+                    );
+
+                }
+                else{
+
+                    ctx.lineTo(
+                        px,
+                        py
+                    );
+                }
+            }
+
+
+            ctx.closePath();
+
+            ctx.fill();
+
+            ctx.stroke();
+
+
+            ctx.fillStyle =
+            "#ffe474";
+
+
+            ctx.font =
+            "900 23px Arial";
+
+
+            ctx.textAlign =
+            "center";
+
+
+            ctx.textBaseline =
+            "middle";
+
+
+            ctx.fillText(
+                "9",
+                0,
+                1
+            );
+
+
+            ctx.restore();
+        }
+    );
+}
+
+
+/* =====================================================
+   DRAW CHEST
+===================================================== */
+
+function drawChest(){
+
+    const x =
+    sx(
+        chest.x
+    );
+
+
+    const y =
+    sy(
+        chest.y
+    );
+
+
+    ctx.save();
+
+
+    ctx.translate(
+        x,
+        y
+    );
+
+
+    ctx.shadowColor =
+    collectedSigils
+    ===
+    9
+    ?
+    "#ffd04f"
+    :
+    "#1b86c9";
+
+
+    ctx.shadowBlur =
+    20;
+
+
+    ctx.fillStyle =
+    collectedSigils
+    ===
+    9
+    ?
+    "#84551a"
+    :
+    "#15283b";
+
+
+    ctx.fillRect(
+        -38,
+        -12,
+        76,
+        46
+    );
+
+
+    ctx.fillStyle =
+    collectedSigils
+    ===
+    9
+    ?
+    "#d4a13a"
+    :
+    "#526575";
+
+
+    ctx.fillRect(
+        -42,
+        -27,
+        84,
+        22
+    );
+
+
+    ctx.fillStyle =
+    "#ffd861";
+
+
+    ctx.fillRect(
+        -6,
+        -10,
+        12,
+        22
+    );
+
+
+    ctx.fillStyle =
+    "#f7d46a";
+
+
+    ctx.font =
+    "900 10px Arial";
+
+
+    ctx.textAlign =
+    "center";
+
+
+    ctx.fillText(
+        collectedSigils
+        ===
+        9
+        ?
+        "ROYAL VAULT"
+        :
+        "LOCKED",
+        0,
+        53
+    );
+
+
+    ctx.restore();
+}
+
+
+/* =====================================================
+   DRAW ENEMY
+===================================================== */
+
+function drawEnemies(){
+
+    enemies.forEach(
+        enemy=>{
+
+            if(
+                enemy.dead
+            ){
+                return;
+            }
+
+
+            const x =
+            sx(
+                enemy.x
+            );
+
+
+            const y =
+            sy(
+                enemy.y
+            );
+
+
+            ctx.save();
+
+
+            ctx.translate(
+                x,
+                y
+            );
+
+
+            /* shadow */
+
+            ctx.fillStyle =
+            "rgba(0,0,0,.45)";
+
+
+            ctx.beginPath();
+
+
+            ctx.ellipse(
+                0,
+                18,
+                26,
+                10,
+                0,
+                0,
+                Math.PI*2
+            );
+
+
+            ctx.fill();
+
+
+            /* body */
+
+            ctx.shadowColor =
+            "#16a8ff";
+
+
+            ctx.shadowBlur =
+            15;
+
+
+            ctx.fillStyle =
+            enemy.hitFlash
+            >
+            0
+            ?
+            "#ffffff"
+            :
+            "#156cab";
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                0,
+                -27
+            );
+
+
+            ctx.lineTo(
+                26,
+                -4
+            );
+
+
+            ctx.lineTo(
+                20,
+                22
+            );
+
+
+            ctx.lineTo(
+                0,
+                31
+            );
+
+
+            ctx.lineTo(
+                -20,
+                22
+            );
+
+
+            ctx.lineTo(
+                -26,
+                -4
+            );
+
+
+            ctx.closePath();
+
+            ctx.fill();
+
+
+            /* face */
+
+            ctx.fillStyle =
+            "#020710";
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                -7,
+                0,
+                4,
+                0,
+                Math.PI*2
+            );
+
+
+            ctx.arc(
+                7,
+                0,
+                4,
+                0,
+                Math.PI*2
+            );
+
+
+            ctx.fill();
+
+
+            /* HP */
+
+            ctx.fillStyle =
+            "rgba(0,0,0,.6)";
+
+
+            ctx.fillRect(
+                -25,
+                -40,
+                50,
+                5
+            );
+
+
+            ctx.fillStyle =
+            "#ff5066";
+
+
+            ctx.fillRect(
+                -25,
+                -40,
+                50
+                *
+                enemy.hp
+                /
+                enemy.maxHp,
+                5
+            );
+
+
+            ctx.restore();
+        }
+    );
+}
+
+
+/* =====================================================
+   DRAW PLAYER
+===================================================== */
+
+function drawPlayer(){
+
+    const x =
+    sx(
+        player.x
+    );
+
+
+    const y =
+    sy(
+        player.y
+    );
+
+
+    ctx.save();
+
+
+    ctx.translate(
+        x,
+        y
+    );
+
+
+    /* shadow */
+
+    ctx.fillStyle =
+    "rgba(0,0,0,.5)";
+
+
+    ctx.beginPath();
+
+
+    ctx.ellipse(
+        0,
+        22,
+        24,
+        10,
+        0,
+        0,
+        Math.PI*2
+    );
+
+
+    ctx.fill();
+
+
+    /* cloak */
+
+    ctx.fillStyle =
+    "#070b12";
+
+
+    ctx.strokeStyle =
+    "#c6972d";
+
+
+    ctx.lineWidth =
+    2;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        0,
+        -24
+    );
+
+
+    ctx.lineTo(
+        20,
+        13
+    );
+
+
+    ctx.lineTo(
+        12,
+        28
+    );
+
+
+    ctx.lineTo(
+        0,
+        19
+    );
+
+
+    ctx.lineTo(
+        -12,
+        28
+    );
+
+
+    ctx.lineTo(
+        -20,
+        13
+    );
+
+
+    ctx.closePath();
+
+
+    ctx.fill();
+
+    ctx.stroke();
+
+
+    /* head */
+
+    ctx.fillStyle =
+    "#d7b08b";
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+        0,
+        -23,
+        11,
+        0,
+        Math.PI*2
+    );
+
+
+    ctx.fill();
+
+
+    /* hair */
+
+    ctx.fillStyle =
+    "#050608";
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+        -2,
+        -28,
+        12,
+        Math.PI,
+        Math.PI*2
+    );
+
+
+    ctx.fill();
+
+
+    /* VIP 9.9 */
+
+    ctx.fillStyle =
+    "#ffd35b";
+
+
+    ctx.font =
+    "900 7px Arial";
+
+
+    ctx.textAlign =
+    "center";
+
+
+    ctx.fillText(
+        "9.9",
+        0,
+        8
+    );
+
+
+    /* sword */
+
+    const fx =
+    player.facingX;
+
+    const fy =
+    player.facingY;
+
+
+    const angle =
+    Math.atan2(
+        fy,
+        fx
+    );
+
+
+    ctx.rotate(
+        angle
+    );
+
+
+    let swordLength =
+    31;
+
+
+    if(
+        player.attackTimer
+        >
+        8
+    ){
+
+        swordLength =
+        52;
+    }
+
+
+    ctx.strokeStyle =
+    "#77dcff";
+
+
+    ctx.shadowColor =
+    "#3acaff";
+
+
+    ctx.shadowBlur =
+    9;
+
+
+    ctx.lineWidth =
+    4;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        8,
+        0
+    );
+
+
+    ctx.lineTo(
+        swordLength,
+        0
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.restore();
+}
+
+
+/* =====================================================
+   DRAW PARTICLES
+===================================================== */
+
+function drawParticles(){
+
+    particles.forEach(
+        p=>{
+
+            ctx.save();
+
+
+            ctx.globalAlpha =
+            p.life;
+
+
+            ctx.fillStyle =
+            p.color;
+
+
+            ctx.shadowColor =
+            p.color;
+
+
+            ctx.shadowBlur =
+            8;
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                sx(p.x),
+                sy(p.y),
+                p.size,
+                0,
+                Math.PI*2
+            );
+
+
+            ctx.fill();
+
+
+            ctx.restore();
+        }
+    );
+}
+
+
+/* =====================================================
+   MINIMAP
+===================================================== */
+
+function drawMiniMap(){
+
+    const w =
+    miniCanvas.width;
+
+
+    const h =
+    miniCanvas.height;
+
+
+    miniCtx.clearRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    miniCtx.fillStyle =
+    "#04101d";
+
+
+    miniCtx.fillRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    const scaleX =
+    w
+    /
+    WORLD.width;
+
+
+    const scaleY =
+    h
+    /
+    WORLD.height;
+
+
+    /* walls */
+
+    miniCtx.fillStyle =
+    "rgba(93,125,150,.32)";
+
+
+    walls.forEach(
+        wall=>{
+
+            miniCtx.fillRect(
+
+                wall.x
+                *
+                scaleX,
+
+                wall.y
+                *
+                scaleY,
+
+                wall.w
+                *
+                scaleX,
+
+                wall.h
+                *
+                scaleY
+            );
+        }
+    );
+
+
+    /* sigils */
+
+    miniCtx.fillStyle =
+    "#ffd457";
+
+
+    sigils.forEach(
+        sigil=>{
+
+            if(
+                !sigil.taken
+            ){
+
+                miniCtx.beginPath();
+
+                miniCtx.arc(
+                    sigil.x*scaleX,
+                    sigil.y*scaleY,
+                    3,
+                    0,
+                    Math.PI*2
+                );
+
+                miniCtx.fill();
+            }
+        }
+    );
+
+
+    /* chest */
+
+    miniCtx.fillStyle =
+    "#f2b939";
+
+
+    miniCtx.fillRect(
+        chest.x*scaleX-3,
+        chest.y*scaleY-3,
+        7,
+        7
+    );
+
+
+    /* player */
+
+    miniCtx.fillStyle =
+    "#50caff";
+
+
+    miniCtx.beginPath();
+
+
+    miniCtx.arc(
+        player.x*scaleX,
+        player.y*scaleY,
+        4,
+        0,
+        Math.PI*2
+    );
+
+
+    miniCtx.fill();
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+let messageTimeout;
+
+
+function showMessage(
+    text
+){
+
+    const el =
+    document.getElementById(
+        "gameMessage"
+    );
+
+
+    el.textContent =
+    text;
+
+
+    el.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        messageTimeout
+    );
+
+
+    messageTimeout =
+    setTimeout(()=>{
+
+        el.classList.remove(
+            "show"
+        );
+
+    },1800);
+}
+
+
+/* =====================================================
+   JOYSTICK
+===================================================== */
+
+const joystickArea =
+document.getElementById(
+    "joystickArea"
+);
+
+
+const joyKnob =
+document.getElementById(
+    "joyKnob"
+);
+
+
+let joystickActive =
+false;
+
+
+let joyCenterX = 0;
+let joyCenterY = 0;
+
+
+function resetJoystick(){
+
+    input.x = 0;
+    input.y = 0;
+
+
+    joyKnob.style.transform =
+    "translate(0px,0px)";
+}
+
+
+function updateJoystick(
+    clientX,
+    clientY
+){
+
+    const rect =
+    joystickArea
+    .getBoundingClientRect();
+
+
+    joyCenterX =
+    rect.left
+    +
+    rect.width/2;
+
+
+    joyCenterY =
+    rect.top
+    +
+    rect.height/2;
+
+
+    let dx =
+    clientX
+    -
+    joyCenterX;
+
+
+    let dy =
+    clientY
+    -
+    joyCenterY;
+
+
+    const max =
+    36;
+
+
+    const distance =
+    Math.hypot(
+        dx,
+        dy
+    );
+
+
+    if(
+        distance
+        >
+        max
+    ){
+
+        dx =
+        dx
+        /
+        distance
+        *
+        max;
+
+
+        dy =
+        dy
+        /
+        distance
+        *
+        max;
+    }
+
+
+    joyKnob.style.transform =
+    `translate(${dx}px,${dy}px)`;
+
+
+    input.x =
+    dx/max;
+
+
+    input.y =
+    dy/max;
+}
+
+
+joystickArea.addEventListener(
+    "pointerdown",
+    e=>{
+
+        joystickActive =
+        true;
+
+
+        joystickArea
+        .setPointerCapture(
+            e.pointerId
+        );
+
+
+        updateJoystick(
+            e.clientX,
+            e.clientY
+        );
+    }
+);
+
+
+joystickArea.addEventListener(
+    "pointermove",
+    e=>{
+
+        if(
+            joystickActive
+        ){
+
+            updateJoystick(
+                e.clientX,
+                e.clientY
+            );
+        }
+    }
+);
+
+
+joystickArea.addEventListener(
+    "pointerup",
+    ()=>{
+
+        joystickActive =
+        false;
+
+
+        resetJoystick();
+    }
+);
+
+
+joystickArea.addEventListener(
+    "pointercancel",
+    ()=>{
+
+        joystickActive =
+        false;
+
+
+        resetJoystick();
+    }
+);
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+document
+.getElementById(
+    "attackBtn"
+)
+.addEventListener(
+    "pointerdown",
+    attack
+);
+
+
+document
+.getElementById(
+    "dashBtn"
+)
+.addEventListener(
+    "pointerdown",
+    dash
+);
+
+
+document
+.getElementById(
+    "interactBtn"
+)
+.addEventListener(
+    "pointerdown",
+    interact
+);
+
+
+/* =====================================================
+   AUDIO
+===================================================== */
+
+let audioCtx =
+null;
+
+
+let soundEnabled =
+true;
+
+
+function initAudio(){
+
+    if(audioCtx){
+        return;
+    }
+
+
+    const A =
+    window.AudioContext
+    ||
+    window.webkitAudioContext;
+
+
+    if(A){
+
+        audioCtx =
+        new A();
+    }
+}
+
+
+function tone(
+    freq,
     duration,
-    volume=.08,
+    volume=.04,
     type="sine",
     delay=0
 ){
 
     if(
-        !soundEnabled ||
-        !audioContext
+        !audioCtx
+        ||
+        !soundEnabled
     ){
         return;
     }
 
+
     const osc =
-        audioContext.createOscillator();
+    audioCtx
+    .createOscillator();
+
 
     const gain =
-        audioContext.createGain();
+    audioCtx
+    .createGain();
 
-    osc.type = type;
+
+    osc.type =
+    type;
+
 
     osc.frequency.value =
-        frequency;
+    freq;
 
-    gain.gain.setValueAtTime(
-        0,
-        audioContext.currentTime + delay
-    );
 
-    gain.gain.linearRampToValueAtTime(
+    const now =
+    audioCtx.currentTime
+    +
+    delay;
+
+
+    gain.gain
+    .setValueAtTime(
         volume,
-        audioContext.currentTime
-        + delay
-        + .015
+        now
     );
 
-    gain.gain.exponentialRampToValueAtTime(
+
+    gain.gain
+    .exponentialRampToValueAtTime(
         .001,
-        audioContext.currentTime
-        + delay
-        + duration
+        now
+        +
+        duration
     );
 
-    osc.connect(gain);
-    gain.connect(audioContext.destination);
+
+    osc.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioCtx.destination
+    );
+
 
     osc.start(
-        audioContext.currentTime + delay
+        now
     );
+
 
     osc.stop(
-        audioContext.currentTime
-        + delay
-        + duration
-        + .05
+        now
+        +
+        duration
     );
 }
 
 
-function soundEnter(){
+function soundAttack(){
 
-    playTone(320,.15,.07,"sine");
-
-    playTone(
-        480,
-        .16,
-        .06,
-        "sine",
-        .08
-    );
-
-    playTone(
-        720,
-        .26,
-        .055,
-        "triangle",
-        .17
-    );
-}
-
-
-function soundCountdown(){
-
-    playTone(
-        520,
-        .12,
-        .07,
-        "square"
-    );
-}
-
-
-function soundGo(){
-
-    playTone(
-        600,
-        .12,
+    tone(
+        220,
         .08,
-        "triangle"
+        .06,
+        "sawtooth"
     );
 
-    playTone(
-        900,
-        .24,
-        .07,
+
+    tone(
+        530,
+        .08,
+        .04,
         "triangle",
-        .08
-    );
-}
-
-
-function soundBlue(){
-
-    playTone(
-        650,
-        .10,
-        .055,
-        "sine"
-    );
-
-    playTone(
-        950,
-        .13,
-        .045,
-        "sine",
         .04
     );
 }
 
 
-function soundGold(){
+function soundDash(){
 
-    playTone(
-        620,
-        .12,
-        .07,
-        "triangle"
-    );
-
-    playTone(
-        900,
+    tone(
+        180,
         .18,
-        .065,
+        .04,
+        "sine"
+    );
+
+
+    tone(
+        500,
+        .1,
+        .035,
         "triangle",
-        .06
-    );
-
-    playTone(
-        1250,
-        .25,
-        .055,
-        "sine",
-        .12
+        .04
     );
 }
 
 
-function soundRed(){
+function soundSigil(){
 
-    playTone(
-        190,
-        .20,
-        .085,
-        "sawtooth"
-    );
-
-    playTone(
-        135,
-        .23,
-        .07,
-        "square",
-        .06
-    );
-}
-
-
-function soundCombo(){
-
-    playTone(
-        780,
-        .10,
+    tone(
+        650,
+        .12,
         .055,
-        "triangle"
+        "sine"
     );
 
-    playTone(
-        1050,
-        .13,
+
+    tone(
+        950,
+        .16,
         .05,
         "triangle",
-        .05
+        .07
+    );
+
+
+    tone(
+        1250,
+        .22,
+        .04,
+        "sine",
+        .13
+    );
+}
+
+
+function soundHit(){
+
+    tone(
+        120,
+        .16,
+        .07,
+        "sawtooth"
+    );
+}
+
+
+function soundEnemyDead(){
+
+    tone(
+        330,
+        .12,
+        .045,
+        "triangle"
+    );
+
+
+    tone(
+        600,
+        .20,
+        .045,
+        "triangle",
+        .08
+    );
+}
+
+
+function soundLocked(){
+
+    tone(
+        180,
+        .15,
+        .06,
+        "square"
+    );
+
+
+    tone(
+        130,
+        .18,
+        .055,
+        "square",
+        .08
+    );
+}
+
+
+function soundQuestComplete(){
+
+    tone(
+        440,
+        .17,
+        .05,
+        "triangle"
+    );
+
+
+    tone(
+        660,
+        .19,
+        .05,
+        "triangle",
+        .11
+    );
+
+
+    tone(
+        880,
+        .32,
+        .05,
+        "triangle",
+        .23
     );
 }
 
 
 function soundReward(){
 
-    playTone(
+    tone(
         440,
         .20,
         .055,
         "triangle"
     );
 
-    playTone(
+
+    tone(
         660,
         .20,
         .055,
@@ -2403,1282 +4087,190 @@ function soundReward(){
         .13
     );
 
-    playTone(
+
+    tone(
         880,
-        .22,
-        .06,
+        .25,
+        .055,
         "triangle",
         .27
     );
 
-    playTone(
-        1100,
+
+    tone(
+        1180,
         .55,
-        .055,
+        .045,
         "sine",
-        .41
+        .43
     );
 }
 
 
-/* ambience */
+document
+.getElementById(
+    "soundToggle"
+)
+.addEventListener(
+    "click",
+    ()=>{
 
-function startAmbient(){
-
-    stopAmbient();
-
-    if(
-        !soundEnabled ||
-        !audioContext
-    ){
-        return;
-    }
-
-    ambientTimer =
-        setInterval(()=>{
-
-            playTone(
-                90,
-                1.3,
-                .015,
-                "sine"
-            );
-
-            playTone(
-                135,
-                .9,
-                .009,
-                "sine",
-                .22
-            );
-
-        },1800);
-}
-
-
-function stopAmbient(){
-
-    if(ambientTimer){
-
-        clearInterval(
-            ambientTimer
-        );
-
-        ambientTimer = null;
-    }
-}
-
-
-function toggleSound(){
-
-    soundEnabled =
+        soundEnabled =
         !soundEnabled;
 
-    soundButton.textContent =
+
+        document
+        .getElementById(
+            "soundToggle"
+        )
+        .textContent =
         soundEnabled
-        ? "🔊"
-        : "🔇";
-
-    if(!soundEnabled){
-
-        stopAmbient();
-
+        ?
+        "🔊"
+        :
+        "🔇";
     }
-    else if(gameActive){
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+let started =
+false;
+
+
+document
+.getElementById(
+    "startBtn"
+)
+.addEventListener(
+    "click",
+    ()=>{
 
         initAudio();
-        startAmbient();
-    }
-}
-
-
-/* =========================================
-   VIBRATION
-========================================= */
-
-function vibrate(pattern){
-
-    if(navigator.vibrate){
-
-        navigator.vibrate(
-            pattern
-        );
-    }
-}
-
-
-/* =========================================
-   COLLECTOR POSITION
-========================================= */
-
-function centerCollector(){
-
-    const arenaWidth =
-        arena.clientWidth;
-
-    const collectorWidth =
-        collector.offsetWidth;
-
-    collectorX =
-        (
-            arenaWidth
-            -
-            collectorWidth
-        )
-        /
-        2;
-
-    collector.style.left =
-        collectorX + "px";
-
-    collector.style.transform =
-        "none";
-}
-
-
-window.addEventListener(
-    "load",
-    centerCollector
-);
-
-
-window.addEventListener(
-    "resize",
-    centerCollector
-);
-
-
-/* =========================================
-   ENTER GAME
-========================================= */
-
-function enterGame(){
-
-    initAudio();
-
-    if(
-        audioContext &&
-        audioContext.state
-        ===
-        "suspended"
-    ){
-        audioContext.resume();
-    }
-
-    soundEnter();
-
-    intro.style.display =
-        "none";
-
-    countdownLayer.style.display =
-        "flex";
-
-    let number = 3;
-
-    countdownNumber.textContent =
-        number;
-
-    soundCountdown();
-
-    const count =
-        setInterval(()=>{
-
-            number--;
-
-            if(number > 0){
-
-                countdownNumber.textContent =
-                    number;
-
-                soundCountdown();
-
-            }
-            else{
-
-                clearInterval(count);
-
-                countdownNumber.textContent =
-                    "GO!";
-
-                countdownNumber.style.color =
-                    "#59d2ff";
-
-                soundGo();
-
-                setTimeout(()=>{
-
-                    countdownLayer.style.display =
-                        "none";
-
-                    countdownNumber.style.color =
-                        "#ffd75d";
-
-                    startGame();
-
-                },650);
-            }
-
-        },800);
-}
-
-
-/* =========================================
-   START GAME
-========================================= */
-
-function startGame(){
-
-    score = 0;
-
-    timeLeft =
-        GAME_TIME;
-
-    blueSpawned = 0;
-
-    streak = 0;
-    combo = 1;
-
-    gameActive = true;
-
-    scoreElement.textContent =
-        score;
-
-    timerElement.textContent =
-        timeLeft;
-
-    timerElement.style.color =
-        "#52cbff";
-
-    comboText.textContent =
-        "x1";
-
-    comboPill.classList.remove(
-        "active"
-    );
-
-    guide.style.opacity =
-        "1";
-
-    centerCollector();
-
-    startAmbient();
-
-
-    blueInterval =
-        setInterval(()=>{
-
-            spawnBlue();
-
-        },950);
-
-
-    redInterval =
-        setInterval(()=>{
-
-            if(
-                Math.random()
-                <
-                .60
-            ){
-
-                createCrystal(
-                    "red"
-                );
-            }
-
-        },2200);
-
-
-    goldInterval =
-        setInterval(()=>{
-
-            if(
-                Math.random()
-                <
-                .30
-            ){
-
-                createCrystal(
-                    "gold"
-                );
-            }
-
-        },4500);
-
-
-    timerInterval =
-        setInterval(()=>{
-
-            timeLeft--;
-
-            timerElement.textContent =
-                timeLeft;
-
-            if(timeLeft <= 5){
-
-                timerElement.style.color =
-                    "#ffd05e";
-
-                playTone(
-                    350,
-                    .06,
-                    .025,
-                    "square"
-                );
-            }
-
-            if(timeLeft <= 0){
-
-                endGame();
-            }
-
-        },1000);
-
-
-    setTimeout(()=>{
-
-        guide.style.opacity =
-            ".20";
-
-    },2700);
-}
-
-
-/* =========================================
-   SPAWN BLUE
-========================================= */
-
-function spawnBlue(){
-
-    if(!gameActive){
-        return;
-    }
-
-    if(
-        blueSpawned
-        >=
-        MAX_BLUE
-    ){
-        return;
-    }
-
-    blueSpawned++;
-
-    createCrystal(
-        "blue"
-    );
-}
-
-
-/* =========================================
-   CREATE CRYSTAL
-========================================= */
-
-function createCrystal(type){
-
-    if(!gameActive){
-        return;
-    }
-
-    const crystal =
-        document.createElement(
-            "div"
-        );
-
-    crystal.className =
-        "crystal";
-
-    if(type !== "blue"){
-
-        crystal.classList.add(
-            type
-        );
-    }
-
-    crystal.innerHTML =
-        `
-        <div class="trail"></div>
-        <div class="crystal-core"></div>
-        `;
-
-    const size = 42;
-
-    const maxX =
-        arena.clientWidth
-        -
-        size
-        -
-        10;
-
-    const x =
-        5
-        +
-        Math.random()
-        *
-        maxX;
-
-    crystal.style.left =
-        x + "px";
-
-    crystal.style.top =
-        "-75px";
-
-    arena.appendChild(
-        crystal
-    );
-
-    let y =
-        -75;
-
-    let speed;
-
-    if(type === "red"){
-
-        speed =
-            4.2
-            +
-            Math.random()
-            *
-            1.4;
-
-    }
-    else if(type === "gold"){
-
-        speed =
-            4
-            +
-            Math.random()
-            *
-            1.2;
-
-    }
-    else{
-
-        speed =
-            3
-            +
-            Math.random()
-            *
-            1.5;
-    }
-
-
-    function fall(){
-
-        if(!gameActive){
-
-            crystal.remove();
-
-            return;
-        }
-
-        y += speed;
-
-        crystal.style.top =
-            y + "px";
-
-        const crystalRect =
-            crystal.getBoundingClientRect();
-
-        const collectorRect =
-            collector.getBoundingClientRect();
-
-        const caught =
-
-            crystalRect.bottom
-            >=
-            collectorRect.top + 12
-
-            &&
-
-            crystalRect.top
-            <=
-            collectorRect.bottom
-
-            &&
-
-            crystalRect.right
-            >=
-            collectorRect.left + 8
-
-            &&
-
-            crystalRect.left
-            <=
-            collectorRect.right - 8;
-
-
-        if(caught){
-
-            crystalCaught(
-                type,
-                crystalRect.left,
-                crystalRect.top
-            );
-
-            crystal.remove();
-
-            return;
-        }
 
 
         if(
-            y
-            >
-            arena.clientHeight
+            audioCtx
+            &&
+            audioCtx.state
+            ===
+            "suspended"
         ){
 
-            crystal.remove();
-
-            if(
-                type
-                ===
-                "blue"
-            ){
-
-                resetCombo();
-            }
-
-            return;
+            audioCtx.resume();
         }
 
-        requestAnimationFrame(
-            fall
+
+        document
+        .getElementById(
+            "intro"
+        )
+        .style
+        .display =
+        "none";
+
+
+        started =
+        true;
+
+
+        soundQuestComplete();
+
+
+        showMessage(
+            "Quest dimulai • Temukan 9 Golden Sigil"
         );
     }
+);
+
+
+/* =====================================================
+   CLAIM
+===================================================== */
+
+document
+.getElementById(
+    "claimBtn"
+)
+.addEventListener(
+    "click",
+    ()=>{
+
+        alert(
+            "ROYAL QUEST 9.9\n\n"
+            +
+            "Reward berhasil dibuka.\n\n"
+            +
+            "Versi demo: tombol ini nanti bisa diarahkan ke Admin VIP atau sistem claim."
+        );
+    }
+);
+
+
+/* =====================================================
+   LOOP
+===================================================== */
+
+function update(){
+
+    if(
+        !started
+    ){
+        return;
+    }
+
+
+    updatePlayer();
+
+    updateSigils();
+
+    updateEnemies();
+
+    updateParticles();
+
+    updateCamera();
+}
+
+
+function render(){
+
+    drawFloor();
+
+    drawDecor();
+
+    drawWalls();
+
+    drawSigils();
+
+    drawChest();
+
+    drawEnemies();
+
+    drawParticles();
+
+    drawPlayer();
+
+    drawMiniMap();
+}
+
+
+function loop(){
+
+    update();
+
+    render();
+
 
     requestAnimationFrame(
-        fall
+        loop
     );
 }
 
 
-/* =========================================
-   CATCH
-========================================= */
-
-function crystalCaught(
-    type,
-    x,
-    y
-){
-
-    if(type === "red"){
-
-        score -= 2;
-
-        if(score < 0){
-
-            score = 0;
-        }
-
-        resetCombo();
-
-        soundRed();
-
-        vibrate(
-            [60,35,80]
-        );
-
-        createParticles(
-            x,
-            y,
-            "#ff516d"
-        );
-
-        showFloat(
-            "-2",
-            x,
-            y,
-            "red"
-        );
-
-        flashEffect(
-            "red"
-        );
-
-        arena.classList.remove(
-            "shake"
-        );
-
-        void arena.offsetWidth;
-
-        arena.classList.add(
-            "shake"
-        );
-    }
-
-
-    else if(type === "gold"){
-
-        score += 2;
-
-        streak++;
-
-        updateCombo();
-
-        soundGold();
-
-        vibrate(
-            35
-        );
-
-        createParticles(
-            x,
-            y,
-            "#ffd75d"
-        );
-
-        showFloat(
-            "+2",
-            x,
-            y,
-            "gold"
-        );
-
-        flashEffect(
-            "gold"
-        );
-    }
-
-
-    else{
-
-        streak++;
-
-        updateCombo();
-
-        let gain = 1;
-
-        if(
-            combo >= 2
-            &&
-            Math.random()
-            <
-            .30
-        ){
-
-            gain = 2;
-        }
-
-        score += gain;
-
-        soundBlue();
-
-        vibrate(
-            18
-        );
-
-        createParticles(
-            x,
-            y,
-            "#58cfff"
-        );
-
-        showFloat(
-            "+" + gain,
-            x,
-            y,
-            "blue"
-        );
-
-        flashEffect(
-            "blue"
-        );
-    }
-
-    scoreElement.textContent =
-        score;
-}
-
-
-/* =========================================
-   COMBO
-========================================= */
-
-function updateCombo(){
-
-    const oldCombo =
-        combo;
-
-    if(streak >= 7){
-
-        combo = 3;
-
-    }
-    else if(streak >= 4){
-
-        combo = 2;
-
-    }
-    else{
-
-        combo = 1;
-    }
-
-    comboText.textContent =
-        "x" + combo;
-
-    if(combo > 1){
-
-        comboPill.classList.add(
-            "active"
-        );
-
-    }
-    else{
-
-        comboPill.classList.remove(
-            "active"
-        );
-    }
-
-    if(
-        combo
-        >
-        oldCombo
-    ){
-
-        soundCombo();
-
-        vibrate(
-            25
-        );
-    }
-}
-
-
-function resetCombo(){
-
-    streak = 0;
-    combo = 1;
-
-    comboText.textContent =
-        "x1";
-
-    comboPill.classList.remove(
-        "active"
-    );
-}
-
-
-/* =========================================
-   PARTICLES
-========================================= */
-
-function createParticles(
-    x,
-    y,
-    color
-){
-
-    const rect =
-        arena.getBoundingClientRect();
-
-    for(
-        let i = 0;
-        i < 9;
-        i++
-    ){
-
-        const particle =
-            document.createElement(
-                "div"
-            );
-
-        particle.className =
-            "particle";
-
-        particle.style.color =
-            color;
-
-        particle.style.background =
-            color;
-
-        particle.style.left =
-            (
-                x
-                -
-                rect.left
-                +
-                20
-            )
-            +
-            "px";
-
-        particle.style.top =
-            (
-                y
-                -
-                rect.top
-                +
-                20
-            )
-            +
-            "px";
-
-        particle.style.setProperty(
-            "--x",
-            (
-                (
-                    Math.random()
-                    -
-                    .5
-                )
-                *
-                100
-            )
-            +
-            "px"
-        );
-
-        particle.style.setProperty(
-            "--y",
-            (
-                (
-                    Math.random()
-                    -
-                    .5
-                )
-                *
-                100
-            )
-            +
-            "px"
-        );
-
-        arena.appendChild(
-            particle
-        );
-
-        setTimeout(()=>{
-
-            particle.remove();
-
-        },700);
-    }
-}
-
-
-/* =========================================
-   FLOAT SCORE
-========================================= */
-
-function showFloat(
-    text,
-    x,
-    y,
-    type
-){
-
-    const rect =
-        arena.getBoundingClientRect();
-
-    const floating =
-        document.createElement(
-            "div"
-        );
-
-    floating.className =
-        "float-score "
-        +
-        type;
-
-    floating.textContent =
-        text;
-
-    floating.style.left =
-        (
-            x
-            -
-            rect.left
-            +
-            10
-        )
-        +
-        "px";
-
-    floating.style.top =
-        (
-            y
-            -
-            rect.top
-        )
-        +
-        "px";
-
-    arena.appendChild(
-        floating
-    );
-
-    setTimeout(()=>{
-
-        floating.remove();
-
-    },800);
-}
-
-
-/* =========================================
-   FLASH
-========================================= */
-
-function flashEffect(type){
-
-    flash.className =
-        "flash";
-
-    void flash.offsetWidth;
-
-    flash.className =
-        "flash "
-        +
-        type;
-}
-
-
-/* =========================================
-   MOVE COLLECTOR
-========================================= */
-
-function moveCollector(
-    clientX
-){
-
-    if(!gameActive){
-        return;
-    }
-
-    const rect =
-        arena.getBoundingClientRect();
-
-    const width =
-        collector.offsetWidth;
-
-    let x =
-        clientX
-        -
-        rect.left
-        -
-        width / 2;
-
-    if(x < 2){
-
-        x = 2;
-    }
-
-    if(
-        x
-        >
-        rect.width
-        -
-        width
-        -
-        2
-    ){
-
-        x =
-            rect.width
-            -
-            width
-            -
-            2;
-    }
-
-    collectorX =
-        x;
-
-    collector.style.left =
-        collectorX
-        +
-        "px";
-
-    collector.style.transform =
-        "none";
-}
-
-
-/* TOUCH */
-
-arena.addEventListener(
-
-    "touchstart",
-
-    function(e){
-
-        if(!gameActive){
-            return;
-        }
-
-        moveCollector(
-            e.touches[0]
-            .clientX
-        );
-
-    },
-
-    {
-        passive:true
-    }
-);
-
-
-arena.addEventListener(
-
-    "touchmove",
-
-    function(e){
-
-        if(!gameActive){
-            return;
-        }
-
-        e.preventDefault();
-
-        moveCollector(
-            e.touches[0]
-            .clientX
-        );
-
-    },
-
-    {
-        passive:false
-    }
-);
-
-
-/* MOUSE */
-
-let mouseDown =
-    false;
-
-
-arena.addEventListener(
-
-    "mousedown",
-
-    function(e){
-
-        if(!gameActive){
-            return;
-        }
-
-        mouseDown =
-            true;
-
-        moveCollector(
-            e.clientX
-        );
-
-    }
-);
-
-
-window.addEventListener(
-
-    "mouseup",
-
-    function(){
-
-        mouseDown =
-            false;
-
-    }
-);
-
-
-arena.addEventListener(
-
-    "mousemove",
-
-    function(e){
-
-        if(mouseDown){
-
-            moveCollector(
-                e.clientX
-            );
-        }
-
-    }
-);
-
-
-/* =========================================
-   END GAME
-========================================= */
-
-function endGame(){
-
-    if(!gameActive){
-        return;
-    }
-
-    gameActive =
-        false;
-
-    clearInterval(
-        blueInterval
-    );
-
-    clearInterval(
-        redInterval
-    );
-
-    clearInterval(
-        goldInterval
-    );
-
-    clearInterval(
-        timerInterval
-    );
-
-    stopAmbient();
-
-    document
-        .querySelectorAll(
-            ".crystal"
-        )
-        .forEach(
-            item => item.remove()
-        );
-
-    timerElement.textContent =
-        "0";
-
-    finalScore.textContent =
-        score;
-
-    let name;
-    let desc;
-
-    if(score >= 12){
-
-        name =
-            "ROYAL MYSTERY REWARD";
-
-        desc =
-            "High-tier VIP reward berhasil terbuka.";
-
-    }
-    else if(score >= 8){
-
-        name =
-            "VIP EXCLUSIVE REWARD";
-
-        desc =
-            "Exclusive member reward berhasil terbuka.";
-
-    }
-    else if(score >= 5){
-
-        name =
-            "VIP POINT REWARD";
-
-        desc =
-            "VIP reward kamu sudah siap diklaim.";
-
-    }
-    else{
-
-        name =
-            "PRIVATE MEMBER REWARD";
-
-        desc =
-            "Reward partisipasi khusus member berhasil terbuka.";
-    }
-
-    rewardName.textContent =
-        name;
-
-    rewardDesc.textContent =
-        desc;
-
-    result.style.display =
-        "flex";
-
-    soundReward();
-
-    vibrate(
-        [40,50,40,50,100]
-    );
-}
-
-
-/* =========================================
-   CLAIM
-========================================= */
-
-function claimReward(){
-
-    initAudio();
-
-    playTone(
-        750,
-        .12,
-        .06,
-        "triangle"
-    );
-
-    playTone(
-        1050,
-        .25,
-        .05,
-        "triangle",
-        .08
-    );
-
-    alert(
-        "VIP Reward\n\n"
-        +
-        "Ini masih versi demo.\n"
-        +
-        "Nanti tombol ini bisa diarahkan langsung ke Admin VIP."
-    );
-}
-
-
-/* =========================================
-   RESET DEMO
-========================================= */
-
-function resetDemo(){
-
-    stopAmbient();
-
-    result.style.display =
-        "none";
-
-    intro.style.display =
-        "flex";
-
-    score = 0;
-    timeLeft = GAME_TIME;
-
-    blueSpawned = 0;
-
-    streak = 0;
-    combo = 1;
-
-    scoreElement.textContent =
-        "0";
-
-    timerElement.textContent =
-        GAME_TIME;
-
-    timerElement.style.color =
-        "#52cbff";
-
-    comboText.textContent =
-        "x1";
-
-    comboPill.classList.remove(
-        "active"
-    );
-
-    centerCollector();
-}
+loop();
 
 </script>
 
