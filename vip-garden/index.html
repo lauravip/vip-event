@@ -15,8 +15,6 @@
   --green:#4fe59a;
   --text:#f7fbff;
   --muted:#9bb3cf;
-  --navy:#061427;
-  --navy2:#081c36;
 }
 
 *{
@@ -30,9 +28,18 @@ html,body{
   overflow-x:hidden;
   font-family:Arial,sans-serif;
   color:var(--text);
+
   background:
-    radial-gradient(circle at top,rgba(26,123,255,.18),transparent 30%),
-    linear-gradient(180deg,#020813,#01040a);
+    radial-gradient(
+      circle at top,
+      rgba(26,123,255,.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #020813,
+      #01040a
+    );
 }
 
 body{
@@ -47,44 +54,62 @@ body{
 .game-card{
   position:relative;
   overflow:hidden;
+
   border-radius:28px;
   border:2px solid rgba(246,201,79,.88);
+
   background:
-    radial-gradient(circle at 50% 10%,rgba(28,115,240,.10),transparent 28%),
-    linear-gradient(180deg,#07172d,#020813);
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(28,115,240,.10),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #07172d,
+      #020813
+    );
+
   box-shadow:
     0 24px 80px rgba(0,0,0,.55),
-    0 0 28px rgba(246,201,79,.16),
-    inset 0 0 0 1px rgba(255,255,255,.02);
+    0 0 28px rgba(246,201,79,.16);
 }
 
 .game-card:before{
   content:"";
   position:absolute;
   inset:8px;
+
   border-radius:22px;
   border:1px solid rgba(246,201,79,.34);
+
   pointer-events:none;
 }
 
-/* HEADER */
+
+/* =====================
+   HEADER
+===================== */
 
 .header{
   text-align:center;
   padding:20px 18px 10px;
-  position:relative;
-  z-index:2;
 }
 
 .brand{
   display:inline-flex;
   align-items:center;
   gap:8px;
+
   padding:7px 13px;
+
   border-radius:999px;
   border:1px solid rgba(246,201,79,.38);
+
   background:rgba(246,201,79,.05);
+
   color:var(--gold2);
+
   font-size:10px;
   font-weight:900;
   letter-spacing:.16em;
@@ -92,81 +117,124 @@ body{
 
 .title{
   margin:12px 0 4px;
+
   font-size:36px;
   font-weight:1000;
   line-height:1;
-  background:linear-gradient(
-    180deg,
-    #f4fcff 0%,
-    #6ee0ff 28%,
-    #1a83ff 51%,
-    #ffe684 56%,
-    #e6a81d 100%
-  );
+
+  background:
+    linear-gradient(
+      180deg,
+      #f4fcff 0%,
+      #6ee0ff 28%,
+      #1a83ff 51%,
+      #ffe684 56%,
+      #e6a81d 100%
+    );
+
   -webkit-background-clip:text;
   background-clip:text;
+
   color:transparent;
-  filter:drop-shadow(0 0 12px rgba(22,132,255,.24));
+
+  filter:
+    drop-shadow(
+      0 0 12px
+      rgba(22,132,255,.24)
+    );
 }
 
 .subtitle{
   max-width:340px;
   margin:8px auto 0;
+
   color:var(--muted);
+
   font-size:12px;
   line-height:1.5;
 }
 
-/* STATS */
+
+/* =====================
+   STATS
+===================== */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
+
   gap:8px;
+
   padding:12px 14px 6px;
 }
 
 .stat{
-  position:relative;
   text-align:center;
+
   padding:11px 6px;
+
   border-radius:16px;
-  border:1px solid rgba(73,160,255,.34);
-  background:linear-gradient(180deg,#0a2a54,#06152a);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.03),
-    0 0 16px rgba(22,132,255,.06);
+
+  border:
+    1px solid rgba(73,160,255,.34);
+
+  background:
+    linear-gradient(
+      180deg,
+      #0a2a54,
+      #06152a
+    );
 }
 
 .stat small{
   display:block;
+
   color:#88a5c9;
+
   font-size:9px;
-  letter-spacing:.13em;
   font-weight:900;
+
+  letter-spacing:.11em;
 }
 
 .stat strong{
   display:block;
+
   margin-top:5px;
+
   color:var(--gold2);
-  font-size:21px;
-  text-shadow:0 0 12px rgba(246,201,79,.18);
+
+  font-size:20px;
+
+  text-shadow:
+    0 0 12px
+    rgba(246,201,79,.18);
 }
 
-/* GARDEN */
+
+/* =====================
+   GARDEN
+===================== */
 
 .garden-stage{
   position:relative;
+
   margin:10px 14px 0;
+
   height:420px;
+
   overflow:hidden;
+
   border-radius:24px;
-  border:2px solid rgba(246,201,79,.82);
+
+  border:
+    2px solid rgba(246,201,79,.82);
+
   background:
     url("./asset/bg-vip-garden.png")
     center center / cover
     no-repeat;
+
   box-shadow:
     inset 0 0 36px rgba(0,0,0,.16),
     0 0 24px rgba(246,201,79,.10);
@@ -174,74 +242,126 @@ body{
 
 .garden-stage:before{
   content:"";
+
   position:absolute;
   inset:0;
+
   background:
-    linear-gradient(180deg,rgba(4,13,28,.03),rgba(3,8,16,.08)),
-    radial-gradient(circle at 50% 64%,rgba(255,207,78,.18),transparent 30%);
+    radial-gradient(
+      circle at 50% 64%,
+      rgba(255,207,78,.18),
+      transparent 32%
+    );
+
   pointer-events:none;
 }
 
 .garden-stage:after{
   content:"";
+
   position:absolute;
+
   left:50%;
-  bottom:46px;
-  transform:translateX(-50%);
+  bottom:38px;
+
+  transform:
+    translateX(-50%);
+
   width:280px;
-  height:190px;
+  height:180px;
+
   border-radius:50%;
-  background:radial-gradient(
-    ellipse at center,
-    rgba(255,211,85,.22) 0%,
-    rgba(61,214,132,.10) 34%,
-    transparent 70%
-  );
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255,211,85,.20),
+      rgba(61,214,132,.08) 38%,
+      transparent 70%
+    );
+
   filter:blur(14px);
+
   pointer-events:none;
 }
 
 .stage-label{
   position:absolute;
+
   top:16px;
   left:16px;
+
   z-index:10;
+
   padding:8px 13px;
+
   border-radius:999px;
-  border:1px solid rgba(246,201,79,.70);
-  background:linear-gradient(180deg,rgba(7,24,48,.94),rgba(3,12,26,.92));
+
+  border:
+    1px solid rgba(246,201,79,.70);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7,24,48,.94),
+      rgba(3,12,26,.92)
+    );
+
   color:var(--gold2);
+
   font-size:10px;
   font-weight:1000;
+
   letter-spacing:.08em;
+
   box-shadow:
-    0 0 12px rgba(246,201,79,.12),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    0 0 12px rgba(246,201,79,.12);
 }
+
+
+/* =====================
+   PLANT
+===================== */
 
 .plant-wrap{
   position:absolute;
+
   z-index:4;
+
   left:8px;
   right:8px;
+
   top:62px;
   bottom:10px;
+
   display:flex;
+
   align-items:flex-end;
   justify-content:center;
 }
 
 .plant-image{
   display:block;
+
   width:auto;
   height:auto;
+
   max-width:96%;
   max-height:330px;
+
   object-fit:contain;
   object-position:center bottom;
+
   filter:
-    drop-shadow(0 18px 22px rgba(0,0,0,.40))
-    drop-shadow(0 0 18px rgba(66,225,147,.12));
+    drop-shadow(
+      0 18px 22px
+      rgba(0,0,0,.40)
+    )
+    drop-shadow(
+      0 0 18px
+      rgba(66,225,147,.12)
+    );
+
   transition:
     opacity .35s ease,
     transform .35s ease,
@@ -251,136 +371,240 @@ body{
 .plant-image.reward{
   max-width:98%;
   max-height:345px;
+
   filter:
-    drop-shadow(0 18px 24px rgba(0,0,0,.42))
-    drop-shadow(0 0 34px rgba(255,205,69,.38))
-    drop-shadow(0 0 70px rgba(255,185,32,.10));
+    drop-shadow(
+      0 18px 24px
+      rgba(0,0,0,.42)
+    )
+    drop-shadow(
+      0 0 34px
+      rgba(255,205,69,.38)
+    );
 }
 
 .plant-image.grow{
-  animation:growEffect .8s ease;
+  animation:
+    growEffect
+    .8s
+    ease;
 }
 
 @keyframes growEffect{
+
   0%{
     opacity:.18;
     transform:scale(.88);
     filter:brightness(1.7);
   }
+
   55%{
     opacity:1;
     transform:scale(1.04);
   }
+
   100%{
     opacity:1;
     transform:scale(1);
   }
+
 }
 
-/* AMBIENT PARTICLES */
+
+/* =====================
+   AMBIENT
+===================== */
 
 .ambient{
   position:absolute;
   inset:0;
+
   z-index:8;
+
   pointer-events:none;
 }
 
 .ambient span{
   position:absolute;
+
   width:5px;
   height:5px;
+
   border-radius:50%;
+
   background:#ffe590;
-  box-shadow:0 0 10px #ffe590;
+
+  box-shadow:
+    0 0 10px #ffe590;
+
   opacity:.75;
-  animation:floatSpark 4s linear infinite;
+
+  animation:
+    floatSpark
+    4s
+    linear
+    infinite;
 }
 
 @keyframes floatSpark{
+
   0%{
-    transform:translateY(20px) scale(.6);
+    transform:
+      translateY(20px)
+      scale(.6);
+
     opacity:0;
   }
-  20%{opacity:.8}
+
+  20%{
+    opacity:.8;
+  }
+
   100%{
-    transform:translateY(-120px) scale(1.2);
+    transform:
+      translateY(-120px)
+      scale(1.2);
+
     opacity:0;
   }
+
 }
 
-/* WATER */
+
+/* =====================
+   WATER
+===================== */
 
 .water-fx{
   position:absolute;
   inset:0;
+
   z-index:20;
+
   pointer-events:none;
 }
 
 .drop{
   position:absolute;
+
   width:9px;
   height:18px;
-  border-radius:50% 50% 60% 60%;
-  background:linear-gradient(#effcff,#4dc8ff);
-  box-shadow:0 0 10px rgba(76,199,255,.58);
-  animation:waterFall .95s ease-in forwards;
+
+  border-radius:
+    50% 50% 60% 60%;
+
+  background:
+    linear-gradient(
+      #effcff,
+      #4dc8ff
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(76,199,255,.58);
+
+  animation:
+    waterFall
+    .95s
+    ease-in
+    forwards;
 }
 
 @keyframes waterFall{
+
   from{
-    transform:translateY(-25px);
+    transform:
+      translateY(-25px);
+
     opacity:0;
   }
-  15%{opacity:1}
+
+  15%{
+    opacity:1;
+  }
+
   to{
-    transform:translateY(250px);
+    transform:
+      translateY(250px);
+
     opacity:0;
   }
+
 }
 
 .spark{
   position:absolute;
+
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:#ffe27d;
-  box-shadow:0 0 12px #ffe27d;
-  animation:sparkUp 1.25s ease-out forwards;
+
+  box-shadow:
+    0 0 12px
+    #ffe27d;
+
+  animation:
+    sparkUp
+    1.25s
+    ease-out
+    forwards;
 }
 
 @keyframes sparkUp{
+
   from{
     transform:translateY(0);
     opacity:0;
   }
-  20%{opacity:1}
+
+  20%{
+    opacity:1;
+  }
+
   to{
     transform:translateY(-100px);
     opacity:0;
   }
+
 }
 
-/* PROGRESS PREMIUM */
+
+/* =====================
+   GROWTH PROGRESS
+===================== */
 
 .progress-box{
   margin:12px 14px 0;
+
   padding:14px 14px 15px;
+
   border-radius:20px;
-  border:1px solid rgba(246,201,79,.50);
+
+  border:
+    1px solid rgba(246,201,79,.50);
+
   background:
-    radial-gradient(circle at 80% 10%,rgba(22,132,255,.08),transparent 25%),
-    linear-gradient(180deg,#07182f,#041022);
-  box-shadow:
-    inset 0 0 22px rgba(22,132,255,.03),
-    0 0 20px rgba(246,201,79,.05);
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(22,132,255,.08),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      #07182f,
+      #041022
+    );
 }
 
 .progress-head{
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   gap:10px;
 }
 
@@ -396,165 +620,290 @@ body{
 
 .progress-head strong{
   color:var(--gold2);
+
   font-size:14px;
 }
 
-.progress-head span{
+.progress-head > span{
   color:#7df3bb;
+
   font-size:16px;
   font-weight:1000;
-  text-shadow:0 0 10px rgba(76,231,158,.28);
 }
 
 .progress{
   position:relative;
+
   margin-top:10px;
+
   height:12px;
+
   border-radius:999px;
+
   background:#0c2038;
+
   overflow:visible;
-  border:1px solid rgba(255,255,255,.03);
 }
 
 .progress-bar{
   display:block;
+
   width:0;
   height:100%;
+
   border-radius:999px;
-  background:linear-gradient(
-    90deg,
-    #0d6cff 0%,
-    #45d9ff 36%,
-    #5ee6a0 66%,
-    #ffe66e 100%
-  );
+
+  background:
+    linear-gradient(
+      90deg,
+      #0d6cff 0%,
+      #45d9ff 36%,
+      #5ee6a0 66%,
+      #ffe66e 100%
+    );
+
   box-shadow:
-    0 0 14px rgba(84,215,255,.35),
-    0 0 22px rgba(246,201,79,.16);
-  transition:width .45s ease;
+    0 0 14px
+    rgba(84,215,255,.35);
+
+  transition:
+    width .45s ease;
 }
 
 .progress-tip{
   position:absolute;
+
   top:50%;
+  left:0;
+
   width:18px;
   height:18px;
-  transform:translate(-50%,-50%);
+
+  transform:
+    translate(-50%,-50%);
+
   border-radius:50%;
-  border:2px solid #ffe486;
+
+  border:
+    2px solid #ffe486;
+
   background:#fff7c8;
+
   box-shadow:
     0 0 10px #ffe486,
     0 0 20px rgba(255,223,98,.35);
-  transition:left .45s ease;
+
+  transition:
+    left .45s ease;
 }
 
-/* DAY TRACK */
+
+/* =====================
+   GROWTH STAGES
+===================== */
 
 .days{
-  position:relative;
   display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:7px;
-  margin-top:16px;
+
+  grid-template-columns:
+    repeat(7,1fr);
+
+  gap:6px;
+
+  margin-top:18px;
 }
 
 .day{
   min-width:0;
+
   text-align:center;
+
   color:#7896ba;
 }
 
-.day-dot{
-  width:38px;
-  height:38px;
-  margin:0 auto;
-  border-radius:50%;
+.day-icon{
+  position:relative;
+
+  width:40px;
+  height:40px;
+
+  margin:auto;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
-  border:2px solid rgba(75,151,233,.42);
-  background:#07182b;
-  color:#8ca7c7;
-  font-size:15px;
-  font-weight:1000;
-  box-shadow:0 0 10px rgba(22,132,255,.05);
+
+  border-radius:14px;
+
+  border:
+    1px solid rgba(75,151,233,.34);
+
+  background:
+    linear-gradient(
+      180deg,
+      #0a2444,
+      #061427
+    );
+
+  font-size:19px;
+
+  filter:grayscale(.45);
+
+  transition:.25s;
 }
 
 .day small{
   display:block;
+
   margin-top:5px;
-  font-size:9px;
+
+  font-size:8px;
   font-weight:900;
+
+  color:#7894b6;
 }
 
-.day.done .day-dot{
-  background:linear-gradient(180deg,#4ee29a,#1eb86f);
-  border-color:#ffe27b;
-  color:#062414;
+.day.done .day-icon{
+  filter:none;
+
+  border-color:
+    rgba(78,226,154,.50);
+
+  background:
+    linear-gradient(
+      180deg,
+      #123b39,
+      #07231d
+    );
+
   box-shadow:
-    0 0 14px rgba(78,226,154,.26),
-    0 0 10px rgba(246,201,79,.14);
+    0 0 12px
+    rgba(78,226,154,.14);
 }
 
-.day.active .day-dot{
+.day.done .day-icon:after{
+  content:"✓";
+
+  position:absolute;
+
+  right:-4px;
+  top:-5px;
+
+  width:15px;
+  height:15px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  background:#55e69c;
+
+  color:#062114;
+
+  font-size:9px;
+  font-weight:1000;
+
+  border:
+    1px solid #ffe47a;
+}
+
+.day.active .day-icon{
+  filter:none;
+
   border-color:#ffe27d;
-  color:#ffe27d;
-  background:linear-gradient(180deg,#123660,#091b31);
+
+  background:
+    linear-gradient(
+      180deg,
+      #123660,
+      #091b31
+    );
+
   box-shadow:
-    0 0 18px rgba(246,201,79,.28);
+    0 0 18px
+    rgba(246,201,79,.28);
+
+  transform:
+    translateY(-2px);
 }
 
-.day.reward-day.active .day-dot,
-.day.reward-day.done .day-dot{
-  border-color:#ffe27d;
-  color:#ffe27d;
-  background:radial-gradient(circle at 35% 35%,#315b8c,#09182b);
-  box-shadow:
-    0 0 18px rgba(246,201,79,.35),
-    inset 0 0 12px rgba(246,201,79,.06);
+.day.active small{
+  color:var(--gold2);
 }
 
-/* STATUS */
+.day.reward-day .day-icon{
+  border-color:
+    rgba(246,201,79,.40);
+}
+
+
+/* =====================
+   STATUS
+===================== */
 
 .status-box{
   margin:12px 14px 0;
+
   padding:15px 16px;
+
   border-radius:18px;
-  border:1px solid rgba(246,201,79,.42);
+
+  border:
+    1px solid rgba(246,201,79,.42);
+
   background:
-    radial-gradient(circle at 8% 50%,rgba(246,201,79,.06),transparent 20%),
-    linear-gradient(180deg,#08182f,#041022);
-  color:#d5e3f3;
-  font-size:12px;
-  line-height:1.5;
-  box-shadow:inset 0 0 20px rgba(22,132,255,.025);
+    radial-gradient(
+      circle at 8% 50%,
+      rgba(246,201,79,.06),
+      transparent 20%
+    ),
+    linear-gradient(
+      180deg,
+      #08182f,
+      #041022
+    );
 }
 
 .status-special{
   display:flex;
+
   gap:12px;
+
   align-items:center;
 }
 
 .status-icon{
   font-size:30px;
+
   flex:0 0 auto;
-  filter:drop-shadow(0 0 10px rgba(246,201,79,.24));
 }
 
 .status-copy strong{
   display:block;
+
   color:#fff;
-  font-size:18px;
-  margin-bottom:2px;
+
+  font-size:17px;
+
+  margin-bottom:3px;
 }
 
 .status-copy span{
   color:#bcd0e6;
+
+  font-size:12px;
+
+  line-height:1.45;
 }
 
-/* ACTION */
+
+/* =====================
+   BUTTON
+===================== */
 
 .actions{
   padding:12px 14px 15px;
@@ -562,12 +911,19 @@ body{
 
 button{
   width:100%;
+
   border:0;
+
   border-radius:18px;
+
   padding:15px 12px;
+
   font-size:14px;
+
   font-weight:1000;
+
   cursor:pointer;
+
   transition:.18s ease;
 }
 
@@ -578,114 +934,196 @@ button:active{
 .water-btn,
 .harvest-btn{
   position:relative;
+
   overflow:hidden;
-  background:linear-gradient(
-    180deg,
-    #fff0a3 0%,
-    #ffd75b 38%,
-    #e7a91c 100%
-  );
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff0a3 0%,
+      #ffd75b 38%,
+      #e7a91c 100%
+    );
+
   color:#071225;
-  border:1px solid #ffe487;
+
+  border:
+    1px solid #ffe487;
+
   box-shadow:
-    0 0 18px rgba(246,201,79,.22),
-    inset 0 1px 0 rgba(255,255,255,.62);
+    0 0 18px rgba(246,201,79,.22);
 }
 
 .water-btn:before,
 .harvest-btn:before{
   content:"";
+
   position:absolute;
+
   top:-50%;
   left:-35%;
+
   width:40%;
   height:200%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-  transform:rotate(20deg);
-  animation:shine 3.8s infinite;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.55),
+      transparent
+    );
+
+  transform:
+    rotate(20deg);
+
+  animation:
+    shine
+    3.8s
+    infinite;
 }
 
 @keyframes shine{
-  0%,65%{left:-45%}
-  100%{left:125%}
+
+  0%,65%{
+    left:-45%;
+  }
+
+  100%{
+    left:125%;
+  }
+
 }
 
 .harvest-btn{
   display:none;
+
   font-size:16px;
-  letter-spacing:.03em;
 }
 
 .water-btn:disabled{
   opacity:.46;
+
   cursor:not-allowed;
 }
 
 .demo-tools{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap:8px;
+
   margin-top:9px;
 }
 
 .demo-btn{
-  background:linear-gradient(180deg,#0b2c58,#06172b);
-  border:1px solid rgba(84,215,255,.28);
+  background:
+    linear-gradient(
+      180deg,
+      #0b2c58,
+      #06172b
+    );
+
+  border:
+    1px solid rgba(84,215,255,.28);
+
   color:#cfe7ff;
+
   font-size:12px;
 }
 
 .demo-btn:disabled{
   opacity:.4;
+
   cursor:not-allowed;
 }
 
 .note{
-  padding:0 15px 18px;
+  padding:
+    0 15px 18px;
+
   text-align:center;
+
   color:#6f8eb2;
+
   font-size:10px;
+
   line-height:1.45;
 }
 
-/* TOAST */
+
+/* =====================
+   TOAST
+===================== */
 
 .toast{
   position:absolute;
+
   left:50%;
   bottom:18px;
+
   z-index:50;
-  transform:translateX(-50%) translateY(20px);
+
+  transform:
+    translateX(-50%)
+    translateY(20px);
+
   max-width:86%;
+
   padding:10px 14px;
+
   border-radius:999px;
-  background:rgba(3,14,29,.96);
-  border:1px solid rgba(246,201,79,.65);
+
+  background:
+    rgba(3,14,29,.96);
+
+  border:
+    1px solid rgba(246,201,79,.65);
+
   color:var(--gold2);
+
   font-size:11px;
   font-weight:900;
-  text-align:center;
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.25s;
 }
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+
+  transform:
+    translateX(-50%)
+    translateY(0);
 }
 
-/* MODAL */
+
+/* =====================
+   MODAL
+===================== */
 
 .modal{
   position:fixed;
+
   inset:0;
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   padding:18px;
+
   z-index:100;
-  background:rgba(0,5,13,.86);
+
+  background:
+    rgba(0,5,13,.86);
+
   backdrop-filter:blur(8px);
 }
 
@@ -695,16 +1133,28 @@ button:active{
 
 .modal-card{
   width:min(390px,100%);
-  padding:26px 20px 20px;
+
+  padding:
+    26px 20px 20px;
+
   text-align:center;
+
   border-radius:26px;
-  border:1px solid rgba(246,201,79,.75);
+
+  border:
+    1px solid rgba(246,201,79,.75);
+
   background:
-    radial-gradient(circle at top,rgba(22,132,255,.20),transparent 36%),
-    linear-gradient(180deg,#082655,#041024);
-  box-shadow:
-    0 0 56px rgba(22,132,255,.25),
-    0 0 30px rgba(246,201,79,.08);
+    radial-gradient(
+      circle at top,
+      rgba(22,132,255,.20),
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      #082655,
+      #041024
+    );
 }
 
 .reward-icon{
@@ -713,29 +1163,41 @@ button:active{
 
 .modal-card h2{
   margin:8px 0 4px;
+
   color:var(--gold2);
+
   font-size:27px;
 }
 
 .modal-card p{
   color:#c1d3e8;
+
   font-size:13px;
+
   line-height:1.55;
 }
 
 .close-btn{
   margin-top:10px;
-  background:linear-gradient(#ffe98c,#e5aa20);
+
+  background:
+    linear-gradient(
+      #ffe98c,
+      #e5aa20
+    );
+
   color:#071225;
 }
 
-/* MOBILE */
+
+/* =====================
+   MOBILE
+===================== */
 
 @media(max-width:390px){
-  body{padding:7px}
 
-  .game-card{
-    border-radius:24px;
+  body{
+    padding:7px;
   }
 
   .title{
@@ -764,885 +1226,1477 @@ button:active{
   }
 
   .days{
-    gap:4px;
+    gap:3px;
   }
 
-  .day-dot{
-    width:34px;
-    height:34px;
+  .day-icon{
+    width:35px;
+    height:35px;
+
+    font-size:16px;
   }
 
   .day small{
-    font-size:8px;
+    font-size:7px;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="app">
-  <div class="game-card">
 
-    <div class="header">
-      <div class="brand">🌱 MAUSLOT • VIP DAILY GAME</div>
-      <div class="title">VIP GARDEN</div>
-      <div class="subtitle">
-        Rawat tanamanmu setiap hari selama
-        <b style="color:#ffe28a">7 hari</b>
-        dan panen hadiah spesial saat pertumbuhan selesai.
-      </div>
-    </div>
+<div class="game-card">
 
-    <div class="stats">
-      <div class="stat">
-        <small>HARI</small>
-        <strong id="dayValue">1 / 7</strong>
-      </div>
 
-      <div class="stat">
-        <small>STREAK</small>
-        <strong id="streakValue">0</strong>
-      </div>
+<!-- HEADER -->
 
-      <div class="stat">
-        <small>STATUS</small>
-        <strong id="statusValue">AKTIF</strong>
-      </div>
-    </div>
+<div class="header">
 
-    <div class="garden-stage">
-
-      <div class="stage-label" id="stageLabel">
-        HARI 1 • TANAM BENIH
-      </div>
-
-      <div class="ambient">
-        <span style="left:14%;bottom:16%;animation-delay:.2s"></span>
-        <span style="left:25%;bottom:30%;animation-delay:1.2s"></span>
-        <span style="left:38%;bottom:12%;animation-delay:2.2s"></span>
-        <span style="left:53%;bottom:24%;animation-delay:.8s"></span>
-        <span style="left:66%;bottom:16%;animation-delay:1.8s"></span>
-        <span style="left:78%;bottom:30%;animation-delay:2.8s"></span>
-        <span style="left:87%;bottom:14%;animation-delay:1.4s"></span>
-      </div>
-
-      <div class="plant-wrap">
-        <img
-          id="plantImage"
-          class="plant-image"
-          src="asset/hari1-benih.png"
-          alt="VIP Garden">
-      </div>
-
-      <div class="water-fx" id="waterFx"></div>
-      <div class="toast" id="toast"></div>
-    </div>
-
-    <div class="progress-box">
-
-      <div class="progress-head">
-
-        <div class="progress-title">
-          <span class="leaf">🌿</span>
-          <strong>Progres Taman Hadiah</strong>
-        </div>
-
-        <span id="progressText">0%</span>
-      </div>
-
-      <div class="progress">
-        <span class="progress-bar" id="progressBar"></span>
-        <span class="progress-tip" id="progressTip" style="left:0%"></span>
-      </div>
-
-      <div class="days" id="days"></div>
-    </div>
-
-    <div class="status-box">
-
-      <div class="status-special">
-        <div class="status-icon" id="statusIcon">🌱</div>
-
-        <div class="status-copy">
-          <strong id="statusTitle">Rawat Tanamanmu</strong>
-          <span id="statusBox">Tanamanmu siap dirawat hari ini.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="actions">
-
-      <button id="waterBtn" class="water-btn">
-        💧 SIRAM HARI INI
-      </button>
-
-      <button id="harvestBtn" class="harvest-btn">
-        🎁 KLAIM HADIAH ›
-      </button>
-
-      <div class="demo-tools">
-        <button id="nextDayBtn" class="demo-btn">
-          ⏭ DEMO BESOK
-        </button>
-
-        <button id="resetBtn" class="demo-btn">
-          🔄 RESET DEMO
-        </button>
-      </div>
-
-    </div>
-
-    <div class="note">
-      DEMO BESOK hanya untuk testing. Versi final nanti mengikuti tanggal asli dan hanya dapat disiram 1x per hari.
-    </div>
-
-  </div>
+<div class="brand">
+🌱 MAUSLOT • VIP DAILY GAME
 </div>
 
-<div class="modal" id="rewardModal">
-  <div class="modal-card">
-
-    <div class="reward-icon" id="rewardIcon">🎁</div>
-
-    <h2>PANEN BERHASIL!</h2>
-
-    <p id="rewardText">
-      Hadiah berhasil diperoleh.
-    </p>
-
-    <button id="closeReward" class="close-btn">
-      TUTUP
-    </button>
-
-  </div>
+<div class="title">
+VIP GARDEN
 </div>
+
+<div class="subtitle">
+
+Rawat tanamanmu setiap hari.
+
+Lengkapi
+
+<b style="color:#ffe28a">
+7 tahap pertumbuhan
+</b>
+
+dan panen hadiah saat tanaman tumbuh sempurna.
+
+</div>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+
+<small>
+HARI
+</small>
+
+<strong id="dayValue">
+1 / 7
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+PERAWATAN
+</small>
+
+<strong id="careValue">
+0 / 7
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+STATUS
+</small>
+
+<strong id="statusValue">
+AKTIF
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- GARDEN -->
+
+<div class="garden-stage">
+
+<div
+class="stage-label"
+id="stageLabel">
+
+HARI 1 • TANAM BENIH
+
+</div>
+
+
+<div class="ambient">
+
+<span style="left:14%;bottom:16%;animation-delay:.2s"></span>
+
+<span style="left:25%;bottom:30%;animation-delay:1.2s"></span>
+
+<span style="left:38%;bottom:12%;animation-delay:2.2s"></span>
+
+<span style="left:53%;bottom:24%;animation-delay:.8s"></span>
+
+<span style="left:66%;bottom:16%;animation-delay:1.8s"></span>
+
+<span style="left:78%;bottom:30%;animation-delay:2.8s"></span>
+
+<span style="left:87%;bottom:14%;animation-delay:1.4s"></span>
+
+</div>
+
+
+<div class="plant-wrap">
+
+<img
+id="plantImage"
+class="plant-image"
+src="asset/hari1-benih.png"
+alt="VIP Garden">
+
+</div>
+
+
+<div
+class="water-fx"
+id="waterFx">
+</div>
+
+
+<div
+class="toast"
+id="toast">
+</div>
+
+</div>
+
+
+<!-- GROWTH -->
+
+<div class="progress-box">
+
+<div class="progress-head">
+
+<div class="progress-title">
+
+<span class="leaf">
+🌿
+</span>
+
+<strong>
+Pertumbuhan Tanaman
+</strong>
+
+</div>
+
+<span id="progressText">
+0%
+</span>
+
+</div>
+
+
+<div class="progress">
+
+<span
+class="progress-bar"
+id="progressBar">
+</span>
+
+<span
+class="progress-tip"
+id="progressTip"
+style="left:0%">
+</span>
+
+</div>
+
+
+<div
+class="days"
+id="days">
+</div>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="status-box">
+
+<div class="status-special">
+
+<div
+class="status-icon"
+id="statusIcon">
+
+🌱
+
+</div>
+
+<div class="status-copy">
+
+<strong
+id="statusTitle">
+
+Rawat Tanamanmu
+
+</strong>
+
+<span
+id="statusBox">
+
+Tanamanmu siap dirawat hari ini.
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ACTION -->
+
+<div class="actions">
+
+<button
+id="waterBtn"
+class="water-btn">
+
+💧 SIRAM TANAMAN
+
+</button>
+
+
+<button
+id="harvestBtn"
+class="harvest-btn">
+
+🎁 PANEN HADIAH ›
+
+</button>
+
+
+<div class="demo-tools">
+
+<button
+id="nextDayBtn"
+class="demo-btn">
+
+⏭ DEMO BESOK
+
+</button>
+
+<button
+id="resetBtn"
+class="demo-btn">
+
+🔄 RESET DEMO
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="note">
+
+DEMO BESOK hanya untuk testing.
+
+Versi final nanti menggunakan tanggal asli dan perawatan hanya dapat dilakukan 1x per hari.
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+class="modal"
+id="rewardModal">
+
+<div class="modal-card">
+
+<div
+class="reward-icon"
+id="rewardIcon">
+
+🎁
+
+</div>
+
+<h2>
+PANEN BERHASIL!
+</h2>
+
+<p id="rewardText">
+Hadiah berhasil diperoleh.
+</p>
+
+<button
+id="closeReward"
+class="close-btn">
+
+TUTUP
+
+</button>
+
+</div>
+
+</div>
+
 
 <script>
 
+
 const STORAGE_KEY =
-"mauslot_vip_garden_premium_v1";
+"mauslot_vip_garden_growth_v2";
+
 
 const stages = [
-  {
-    image:"asset/hari1-benih.png",
-    label:"HARI 1 • TANAM BENIH"
-  },
-  {
-    image:"asset/hari2-tunas.png",
-    label:"HARI 2 • TUNAS MUNCUL"
-  },
-  {
-    image:"asset/hari3-daun-bertambah.png",
-    label:"HARI 3 • DAUN BERTAMBAH"
-  },
-  {
-    image:"asset/hari4-tanaman-berkembang.png",
-    label:"HARI 4 • TANAMAN BERKEMBANG"
-  },
-  {
-    image:"asset/hari5-kuncup-mekar.png",
-    label:"HARI 5 • KUNCUP MEKAR"
-  },
-  {
-    image:"asset/hari6-bunga-mekar.png",
-    label:"HARI 6 • BUNGA MEKAR"
-  },
-  {
-    image:"asset/hari7-panen-hadiah.png",
-    label:"HARI 7 • PANEN HADIAH"
-  }
+
+{
+image:"asset/hari1-benih.png",
+label:"HARI 1 • TANAM BENIH",
+icon:"🌱"
+},
+
+{
+image:"asset/hari2-tunas.png",
+label:"HARI 2 • TUNAS MUNCUL",
+icon:"🌿"
+},
+
+{
+image:"asset/hari3-daun-bertambah.png",
+label:"HARI 3 • DAUN BERTAMBAH",
+icon:"🍃"
+},
+
+{
+image:"asset/hari4-tanaman-berkembang.png",
+label:"HARI 4 • TANAMAN BERKEMBANG",
+icon:"🪴"
+},
+
+{
+image:"asset/hari5-kuncup-mekar.png",
+label:"HARI 5 • KUNCUP MEKAR",
+icon:"🌷"
+},
+
+{
+image:"asset/hari6-bunga-mekar.png",
+label:"HARI 6 • BUNGA MEKAR",
+icon:"🌸"
+},
+
+{
+image:"asset/hari7-panen-hadiah.png",
+label:"HARI 7 • PANEN HADIAH",
+icon:"👑"
+}
+
 ];
+
 
 const rewards = [
-  {
-    icon:"💎",
-    text:"Selamat! Kamu mendapatkan VIP Point."
-  },
-  {
-    icon:"🎁",
-    text:"Selamat! Kamu mendapatkan Mystery Reward."
-  },
-  {
-    icon:"🎫",
-    text:"Selamat! Kamu mendapatkan tiket reward spesial."
-  }
+
+{
+icon:"💎",
+text:"Selamat! Kamu mendapatkan VIP Point."
+},
+
+{
+icon:"🎁",
+text:"Selamat! Kamu mendapatkan Mystery Reward."
+},
+
+{
+icon:"🎫",
+text:"Selamat! Kamu mendapatkan tiket reward spesial."
+}
+
 ];
 
+
 function defaultState(){
-  return{
-    day:1,
-    wateredToday:false,
-    streak:0,
-    harvested:false,
-    rewardIndex:null
-  };
+
+return{
+
+day:1,
+
+wateredToday:false,
+
+care:0,
+
+harvested:false,
+
+rewardIndex:null
+
+};
+
 }
+
 
 function loadState(){
-  const raw =
-    localStorage.getItem(
-      STORAGE_KEY
-    );
 
-  if(!raw){
-    return defaultState();
-  }
+const raw =
+localStorage.getItem(
+STORAGE_KEY
+);
 
-  try{
-    const saved =
-      JSON.parse(raw);
 
-    return{
-      day:
-        Math.max(
-          1,
-          Math.min(
-            7,
-            Number(saved.day) || 1
-          )
-        ),
+if(!raw){
 
-      wateredToday:
-        Boolean(saved.wateredToday),
+return defaultState();
 
-      streak:
-        Math.max(
-          0,
-          Math.min(
-            7,
-            Number(saved.streak) || 0
-          )
-        ),
-
-      harvested:
-        Boolean(saved.harvested),
-
-      rewardIndex:
-        saved.rewardIndex ?? null
-    };
-  }
-
-  catch{
-    return defaultState();
-  }
 }
+
+
+try{
+
+const saved =
+JSON.parse(raw);
+
+
+return{
+
+day:
+Math.max(
+1,
+Math.min(
+7,
+Number(saved.day) || 1
+)
+),
+
+wateredToday:
+Boolean(
+saved.wateredToday
+),
+
+care:
+Math.max(
+0,
+Math.min(
+7,
+Number(saved.care) || 0
+)
+),
+
+harvested:
+Boolean(
+saved.harvested
+),
+
+rewardIndex:
+saved.rewardIndex ?? null
+
+};
+
+}
+
+catch{
+
+return defaultState();
+
+}
+
+}
+
 
 let state =
-  loadState();
+loadState();
+
 
 function saveState(){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(state)
-  );
+
+localStorage.setItem(
+
+STORAGE_KEY,
+
+JSON.stringify(
+state
+)
+
+);
+
 }
+
+
+/* =====================
+   VISUAL STAGE
+===================== */
 
 function getVisualStageIndex(){
 
-  if(state.streak <= 1){
-    return 0;
-  }
-
-  return Math.min(
-    state.streak - 1,
-    6
-  );
-}
-
-function renderDays(){
-
-  const container =
-    document.getElementById(
-      "days"
-    );
-
-  container.innerHTML = "";
-
-  for(let i=1;i<=7;i++){
-
-    const item =
-      document.createElement(
-        "div"
-      );
-
-    item.className =
-      "day";
-
-    if(i === 7){
-      item.classList.add(
-        "reward-day"
-      );
-    }
-
-    if(i <= state.streak){
-      item.classList.add(
-        "done"
-      );
-    }
-
-    else if(i === state.day){
-      item.classList.add(
-        "active"
-      );
-    }
-
-    let symbol =
-      "○";
-
-    if(i <= state.streak){
-      symbol =
-        "✓";
-    }
-
-    else if(i === state.day){
-      symbol =
-        i === 7
-          ? "♛"
-          : "●";
-    }
-
-    item.innerHTML =
-      '<div class="day-dot">' +
-      symbol +
-      '</div>' +
-      '<small>H' +
-      i +
-      '</small>';
-
-    container.appendChild(
-      item
-    );
-  }
-}
-
-function updateUI(
-  animate=false
+if(
+state.care <= 1
 ){
 
-  const visualIndex =
-    getVisualStageIndex();
+return 0;
 
-  const stage =
-    stages[visualIndex];
-
-  const image =
-    document.getElementById(
-      "plantImage"
-    );
-
-  image.className =
-    "plant-image";
-
-  image.src =
-    stage.image;
-
-  if(visualIndex === 6){
-    image.classList.add(
-      "reward"
-    );
-  }
-
-  if(animate){
-
-    image.classList.remove(
-      "grow"
-    );
-
-    void image.offsetWidth;
-
-    image.classList.add(
-      "grow"
-    );
-  }
-
-  document.getElementById(
-    "stageLabel"
-  ).textContent =
-    stage.label;
-
-  document.getElementById(
-    "dayValue"
-  ).textContent =
-    state.day +
-    " / 7";
-
-  document.getElementById(
-    "streakValue"
-  ).textContent =
-    state.streak;
-
-  const percent =
-    Math.round(
-      (state.streak / 7) * 100
-    );
-
-  document.getElementById(
-    "progressText"
-  ).textContent =
-    percent + "%";
-
-  document.getElementById(
-    "progressBar"
-  ).style.width =
-    percent + "%";
-
-  document.getElementById(
-    "progressTip"
-  ).style.left =
-    percent + "%";
-
-  renderDays();
-
-  const waterBtn =
-    document.getElementById(
-      "waterBtn"
-    );
-
-  const harvestBtn =
-    document.getElementById(
-      "harvestBtn"
-    );
-
-  const nextDayBtn =
-    document.getElementById(
-      "nextDayBtn"
-    );
-
-  const statusValue =
-    document.getElementById(
-      "statusValue"
-    );
-
-  const statusIcon =
-    document.getElementById(
-      "statusIcon"
-    );
-
-  const statusTitle =
-    document.getElementById(
-      "statusTitle"
-    );
-
-  const statusBox =
-    document.getElementById(
-      "statusBox"
-    );
-
-  waterBtn.style.display =
-    "block";
-
-  harvestBtn.style.display =
-    "none";
-
-  if(state.harvested){
-
-    statusValue.textContent =
-      "SELESAI";
-
-    statusIcon.textContent =
-      "👑";
-
-    statusTitle.textContent =
-      "Hadiah Telah Diklaim";
-
-    statusBox.textContent =
-      "Semua tahap sudah selesai dan reward berhasil dipanen.";
-
-    waterBtn.disabled =
-      true;
-
-    nextDayBtn.disabled =
-      true;
-
-    waterBtn.textContent =
-      "✅ SUDAH DIPANEN";
-
-    return;
-  }
-
-  if(
-    state.day === 7 &&
-    state.wateredToday &&
-    state.streak === 7
-  ){
-
-    statusValue.textContent =
-      "PANEN";
-
-    statusIcon.textContent =
-      "🎁";
-
-    statusTitle.textContent =
-      "Selamat!";
-
-    statusBox.textContent =
-      "Semua hari telah selesai. Klaim hadiah spesialmu sekarang!";
-
-    waterBtn.style.display =
-      "none";
-
-    harvestBtn.style.display =
-      "block";
-
-    nextDayBtn.disabled =
-      true;
-
-    return;
-  }
-
-  if(state.wateredToday){
-
-    statusValue.textContent =
-      "SUDAH";
-
-    statusIcon.textContent =
-      "✨";
-
-    statusTitle.textContent =
-      "Perawatan Selesai";
-
-    statusBox.innerHTML =
-      "Hari " +
-      state.day +
-      " selesai dirawat. Kembali lagi besok untuk melanjutkan pertumbuhan.";
-
-    waterBtn.disabled =
-      true;
-
-    waterBtn.textContent =
-      "💧 SUDAH DISIRAM HARI INI";
-
-    nextDayBtn.disabled =
-      false;
-
-    return;
-  }
-
-  statusValue.textContent =
-    "AKTIF";
-
-  statusIcon.textContent =
-    "🌱";
-
-  statusTitle.textContent =
-    "Rawat Tanamanmu";
-
-  if(state.day === 1){
-    statusBox.textContent =
-      "Mulai perjalanan dengan menyiram tanaman Hari 1.";
-  }
-
-  else{
-    statusBox.textContent =
-      "Tanaman Hari " +
-      state.day +
-      " belum dirawat. Siram untuk melanjutkan progress.";
-  }
-
-  waterBtn.disabled =
-    false;
-
-  waterBtn.textContent =
-    "💧 SIRAM HARI INI";
-
-  nextDayBtn.disabled =
-    true;
 }
+
+
+return Math.min(
+
+state.care - 1,
+
+6
+
+);
+
+}
+
+
+/* =====================
+   GROWTH TRACK
+===================== */
+
+function renderGrowthStages(){
+
+const container =
+document.getElementById(
+"days"
+);
+
+
+container.innerHTML =
+"";
+
+
+for(
+let i=1;
+i<=7;
+i++
+){
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"day";
+
+
+if(
+i === 7
+){
+
+item.classList.add(
+"reward-day"
+);
+
+}
+
+
+if(
+i <= state.care
+){
+
+item.classList.add(
+"done"
+);
+
+}
+
+else if(
+i === state.day
+){
+
+item.classList.add(
+"active"
+);
+
+}
+
+
+item.innerHTML =
+
+'<div class="day-icon">' +
+
+stages[
+i-1
+].icon +
+
+'</div>' +
+
+'<small>TAHAP ' +
+
+i +
+
+'</small>';
+
+
+container.appendChild(
+item
+);
+
+}
+
+}
+
+
+/* =====================
+   UI
+===================== */
+
+function updateUI(
+animate=false
+){
+
+const visualIndex =
+getVisualStageIndex();
+
+
+const stage =
+stages[
+visualIndex
+];
+
+
+const image =
+document.getElementById(
+"plantImage"
+);
+
+
+image.className =
+"plant-image";
+
+
+image.src =
+stage.image;
+
+
+if(
+visualIndex === 6
+){
+
+image.classList.add(
+"reward"
+);
+
+}
+
+
+if(
+animate
+){
+
+image.classList.remove(
+"grow"
+);
+
+
+void image.offsetWidth;
+
+
+image.classList.add(
+"grow"
+);
+
+}
+
+
+/* LABEL */
+
+document.getElementById(
+"stageLabel"
+).textContent =
+stage.label;
+
+
+/* HARI */
+
+document.getElementById(
+"dayValue"
+).textContent =
+
+state.day +
+" / 7";
+
+
+/* PERAWATAN */
+
+document.getElementById(
+"careValue"
+).textContent =
+
+state.care +
+" / 7";
+
+
+/* PROGRESS */
+
+const percent =
+
+Math.round(
+
+(
+state.care
+/
+7
+)
+*
+100
+
+);
+
+
+document.getElementById(
+"progressText"
+).textContent =
+
+percent +
+"%";
+
+
+document.getElementById(
+"progressBar"
+).style.width =
+
+percent +
+"%";
+
+
+document.getElementById(
+"progressTip"
+).style.left =
+
+percent +
+"%";
+
+
+renderGrowthStages();
+
+
+const waterBtn =
+document.getElementById(
+"waterBtn"
+);
+
+
+const harvestBtn =
+document.getElementById(
+"harvestBtn"
+);
+
+
+const nextDayBtn =
+document.getElementById(
+"nextDayBtn"
+);
+
+
+const statusValue =
+document.getElementById(
+"statusValue"
+);
+
+
+const statusIcon =
+document.getElementById(
+"statusIcon"
+);
+
+
+const statusTitle =
+document.getElementById(
+"statusTitle"
+);
+
+
+const statusBox =
+document.getElementById(
+"statusBox"
+);
+
+
+waterBtn.style.display =
+"block";
+
+
+harvestBtn.style.display =
+"none";
+
+
+/* FINISHED */
+
+if(
+state.harvested
+){
+
+statusValue.textContent =
+"SELESAI";
+
+
+statusIcon.textContent =
+"👑";
+
+
+statusTitle.textContent =
+"Panen Selesai";
+
+
+statusBox.textContent =
+"Tanaman sudah tumbuh sempurna dan hadiah telah dipanen.";
+
+
+waterBtn.disabled =
+true;
+
+
+nextDayBtn.disabled =
+true;
+
+
+waterBtn.textContent =
+"✅ SUDAH DIPANEN";
+
+
+return;
+
+}
+
+
+/* HARVEST READY */
+
+if(
+state.day === 7
+&&
+state.wateredToday
+&&
+state.care === 7
+){
+
+statusValue.textContent =
+"PANEN";
+
+
+statusIcon.textContent =
+"🎁";
+
+
+statusTitle.textContent =
+"Tanaman Tumbuh Sempurna!";
+
+
+statusBox.textContent =
+"Semua tahap pertumbuhan telah selesai. Hadiah spesial siap dipanen.";
+
+
+waterBtn.style.display =
+"none";
+
+
+harvestBtn.style.display =
+"block";
+
+
+nextDayBtn.disabled =
+true;
+
+
+return;
+
+}
+
+
+/* ALREADY CARED */
+
+if(
+state.wateredToday
+){
+
+statusValue.textContent =
+"SUDAH";
+
+
+statusIcon.textContent =
+"✨";
+
+
+statusTitle.textContent =
+"Perawatan Hari Ini Selesai";
+
+
+statusBox.textContent =
+
+"Tanaman sudah dirawat. Pertumbuhan akan dilanjutkan pada hari berikutnya.";
+
+
+waterBtn.disabled =
+true;
+
+
+waterBtn.textContent =
+"💧 SUDAH DIRAWAT HARI INI";
+
+
+nextDayBtn.disabled =
+false;
+
+
+return;
+
+}
+
+
+/* READY CARE */
+
+statusValue.textContent =
+"AKTIF";
+
+
+statusIcon.textContent =
+stages[
+Math.min(
+state.day - 1,
+6
+)
+].icon;
+
+
+statusTitle.textContent =
+"Tanaman Menunggu Perawatan";
+
+
+if(
+state.day === 1
+){
+
+statusBox.textContent =
+"Tanam dan siram benih untuk memulai pertumbuhan VIP Garden.";
+
+}
+
+else{
+
+statusBox.textContent =
+
+"Tanaman siap dirawat pada Tahap " +
+
+state.day +
+
+". Siram tanaman untuk melanjutkan pertumbuhan.";
+
+}
+
+
+waterBtn.disabled =
+false;
+
+
+waterBtn.textContent =
+"💧 SIRAM TANAMAN";
+
+
+nextDayBtn.disabled =
+true;
+
+}
+
+
+/* =====================
+   WATER FX
+===================== */
 
 function createWaterEffect(){
 
-  const fx =
-    document.getElementById(
-      "waterFx"
-    );
+const fx =
+document.getElementById(
+"waterFx"
+);
 
-  fx.innerHTML = "";
 
-  for(let i=0;i<18;i++){
+fx.innerHTML =
+"";
 
-    const drop =
-      document.createElement(
-        "span"
-      );
 
-    drop.className =
-      "drop";
+for(
+let i=0;
+i<18;
+i++
+){
 
-    drop.style.left =
-      (
-        34 +
-        Math.random()*32
-      )
-      + "%";
+const drop =
+document.createElement(
+"span"
+);
 
-    drop.style.top =
-      (
-        15 +
-        Math.random()*38
-      )
-      + "px";
 
-    drop.style.animationDelay =
-      (
-        Math.random()*.25
-      )
-      + "s";
+drop.className =
+"drop";
 
-    fx.appendChild(
-      drop
-    );
-  }
 
-  for(let i=0;i<16;i++){
+drop.style.left =
 
-    const spark =
-      document.createElement(
-        "span"
-      );
+(
+34 +
+Math.random()*32
+)
++
+"%";
 
-    spark.className =
-      "spark";
 
-    spark.style.left =
-      (
-        26 +
-        Math.random()*48
-      )
-      + "%";
+drop.style.top =
 
-    spark.style.bottom =
-      (
-        45 +
-        Math.random()*125
-      )
-      + "px";
+(
+15 +
+Math.random()*38
+)
++
+"px";
 
-    spark.style.animationDelay =
-      (
-        .25 +
-        Math.random()*.5
-      )
-      + "s";
 
-    fx.appendChild(
-      spark
-    );
-  }
+drop.style.animationDelay =
 
-  setTimeout(
-    function(){
-      fx.innerHTML = "";
-    },
-    1700
-  );
+(
+Math.random()*.25
+)
++
+"s";
+
+
+fx.appendChild(
+drop
+);
+
 }
+
+
+/* SPARK */
+
+for(
+let i=0;
+i<16;
+i++
+){
+
+const spark =
+document.createElement(
+"span"
+);
+
+
+spark.className =
+"spark";
+
+
+spark.style.left =
+
+(
+26 +
+Math.random()*48
+)
++
+"%";
+
+
+spark.style.bottom =
+
+(
+45 +
+Math.random()*125
+)
++
+"px";
+
+
+spark.style.animationDelay =
+
+(
+.25 +
+Math.random()*.5
+)
++
+"s";
+
+
+fx.appendChild(
+spark
+);
+
+}
+
+
+setTimeout(
+
+function(){
+
+fx.innerHTML =
+"";
+
+},
+
+1700
+
+);
+
+}
+
+
+/* =====================
+   TOAST
+===================== */
 
 let toastTimer;
 
-function showToast(message){
 
-  const toast =
-    document.getElementById(
-      "toast"
-    );
+function showToast(
+message
+){
 
-  toast.textContent =
-    message;
+const toast =
+document.getElementById(
+"toast"
+);
 
-  toast.classList.add(
-    "show"
-  );
 
-  clearTimeout(
-    toastTimer
-  );
+toast.textContent =
+message;
 
-  toastTimer =
-    setTimeout(
-      function(){
-        toast.classList.remove(
-          "show"
-        );
-      },
-      1700
-    );
+
+toast.classList.add(
+"show"
+);
+
+
+clearTimeout(
+toastTimer
+);
+
+
+toastTimer =
+setTimeout(
+
+function(){
+
+toast.classList.remove(
+"show"
+);
+
+},
+
+1700
+
+);
+
 }
+
+
+/* =====================
+   WATER
+===================== */
 
 function waterPlant(){
 
-  if(
-    state.wateredToday ||
-    state.harvested
-  ){
-    return;
-  }
+if(
+state.wateredToday
+||
+state.harvested
+){
 
-  state.wateredToday =
-    true;
+return;
 
-  state.streak =
-    Math.min(
-      7,
-      state.streak + 1
-    );
-
-  saveState();
-
-  createWaterEffect();
-
-  showToast(
-    "Tanaman berhasil disiram 💧"
-  );
-
-  setTimeout(
-    function(){
-      updateUI(true);
-    },
-    450
-  );
 }
+
+
+state.wateredToday =
+true;
+
+
+state.care =
+Math.min(
+
+7,
+
+state.care + 1
+
+);
+
+
+saveState();
+
+
+createWaterEffect();
+
+
+showToast(
+"Tanaman berhasil dirawat 🌱"
+);
+
+
+setTimeout(
+
+function(){
+
+updateUI(
+true
+);
+
+},
+
+450
+
+);
+
+}
+
+
+/* =====================
+   NEXT DAY DEMO
+===================== */
 
 function nextDemoDay(){
 
-  if(state.harvested){
-    return;
-  }
+if(
+state.harvested
+){
 
-  if(!state.wateredToday){
+return;
 
-    showToast(
-      "Siram tanaman dulu hari ini."
-    );
-
-    return;
-  }
-
-  if(state.day >= 7){
-    return;
-  }
-
-  state.day += 1;
-
-  state.wateredToday =
-    false;
-
-  saveState();
-
-  updateUI();
-
-  showToast(
-    "Selamat datang di Hari " +
-    state.day
-  );
 }
+
+
+if(
+!state.wateredToday
+){
+
+showToast(
+"Rawat tanaman terlebih dahulu."
+);
+
+return;
+
+}
+
+
+if(
+state.day >= 7
+){
+
+return;
+
+}
+
+
+state.day +=
+1;
+
+
+state.wateredToday =
+false;
+
+
+saveState();
+
+
+updateUI();
+
+
+showToast(
+
+"Tahap pertumbuhan " +
+state.day +
+" dimulai"
+
+);
+
+}
+
+
+/* =====================
+   HARVEST
+===================== */
 
 function harvestReward(){
 
-  if(
-    state.day !== 7 ||
-    state.streak !== 7 ||
-    !state.wateredToday ||
-    state.harvested
-  ){
-    return;
-  }
+if(
+state.day !== 7
+||
+state.care !== 7
+||
+!state.wateredToday
+||
+state.harvested
+){
 
-  state.harvested =
-    true;
+return;
 
-  if(state.rewardIndex === null){
-
-    state.rewardIndex =
-      Math.floor(
-        Math.random() *
-        rewards.length
-      );
-  }
-
-  saveState();
-
-  const reward =
-    rewards[
-      state.rewardIndex
-    ];
-
-  document.getElementById(
-    "rewardIcon"
-  ).textContent =
-    reward.icon;
-
-  document.getElementById(
-    "rewardText"
-  ).textContent =
-    reward.text;
-
-  document.getElementById(
-    "rewardModal"
-  ).classList.add(
-    "show"
-  );
-
-  updateUI();
 }
+
+
+state.harvested =
+true;
+
+
+if(
+state.rewardIndex === null
+){
+
+state.rewardIndex =
+
+Math.floor(
+
+Math.random()
+*
+rewards.length
+
+);
+
+}
+
+
+saveState();
+
+
+const reward =
+rewards[
+state.rewardIndex
+];
+
+
+document.getElementById(
+"rewardIcon"
+).textContent =
+reward.icon;
+
+
+document.getElementById(
+"rewardText"
+).textContent =
+reward.text;
+
+
+document.getElementById(
+"rewardModal"
+).classList.add(
+"show"
+);
+
+
+updateUI();
+
+}
+
+
+/* =====================
+   RESET
+===================== */
 
 function resetDemo(){
 
-  localStorage.removeItem(
-    STORAGE_KEY
-  );
+localStorage.removeItem(
+STORAGE_KEY
+);
 
-  state =
-    defaultState();
 
-  updateUI(true);
+state =
+defaultState();
 
-  showToast(
-    "Demo berhasil direset."
-  );
+
+updateUI(
+true
+);
+
+
+showToast(
+"VIP Garden berhasil direset."
+);
+
 }
 
-document.getElementById(
-  "waterBtn"
-).addEventListener(
-  "click",
-  waterPlant
-);
+
+/* =====================
+   EVENTS
+===================== */
 
 document.getElementById(
-  "nextDayBtn"
+"waterBtn"
 ).addEventListener(
-  "click",
-  nextDemoDay
+
+"click",
+
+waterPlant
+
 );
+
 
 document.getElementById(
-  "harvestBtn"
+"nextDayBtn"
 ).addEventListener(
-  "click",
-  harvestReward
+
+"click",
+
+nextDemoDay
+
 );
+
 
 document.getElementById(
-  "resetBtn"
+"harvestBtn"
 ).addEventListener(
-  "click",
-  resetDemo
+
+"click",
+
+harvestReward
+
 );
+
 
 document.getElementById(
-  "closeReward"
+"resetBtn"
 ).addEventListener(
-  "click",
-  function(){
 
-    document.getElementById(
-      "rewardModal"
-    ).classList.remove(
-      "show"
-    );
-  }
+"click",
+
+resetDemo
+
 );
+
+
+document.getElementById(
+"closeReward"
+).addEventListener(
+
+"click",
+
+function(){
+
+document.getElementById(
+"rewardModal"
+).classList.remove(
+"show"
+);
+
+}
+
+);
+
 
 updateUI();
 
