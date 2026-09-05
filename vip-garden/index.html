@@ -154,23 +154,6 @@ body{
     );
 }
 
-.garden-stage::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  width:260px;
-  height:45px;
-  border-radius:50%;
-  background:radial-gradient(
-    ellipse,
-    rgba(76,220,139,.20),
-    transparent 68%
-  );
-  filter:blur(8px);
-}
-
 .stage-label{
   position:absolute;
   z-index:10;
@@ -217,22 +200,16 @@ body{
   to{opacity:1;transform:scale(1.3)}
 }
 
-/* IMPORTANT:
-   semua asset sekarang CENTER + CONTAIN,
-   tanpa crop dan tanpa translate */
-
 .plant-wrap{
   position:absolute;
   z-index:4;
-  left:15px;
-  right:15px;
+  left:10px;
+  right:10px;
   top:58px;
   bottom:12px;
-
   display:flex;
   justify-content:center;
   align-items:flex-end;
-
   overflow:visible;
 }
 
@@ -240,31 +217,21 @@ body{
   display:block;
   width:auto;
   height:auto;
-
   max-width:96%;
   max-height:310px;
-
   object-fit:contain;
   object-position:center bottom;
-
-  transform:none;
-
   filter:
     drop-shadow(0 18px 22px rgba(0,0,0,.34))
     drop-shadow(0 0 16px rgba(57,213,134,.10));
-
   transition:
     opacity .35s ease,
     filter .35s ease;
 }
 
-/* Hari 7 boleh glow lebih kuat,
-   tapi ukuran dan posisi tetap CENTER */
-
 .plant-image.reward{
   max-width:96%;
   max-height:315px;
-
   filter:
     drop-shadow(0 18px 24px rgba(0,0,0,.34))
     drop-shadow(0 0 24px rgba(255,201,63,.26));
@@ -804,7 +771,7 @@ button{
 <script>
 
 const STORAGE_KEY =
-  "mauslot_vip_garden_demo_v4";
+  "mauslot_vip_garden_demo_v5";
 
 
 /* =======================
@@ -844,22 +811,14 @@ const stages = [
   },
 
   {
-    /* FILE BARU HARI 6 */
-
-    image:"asset/hari6-bunga-mekar-baru.png",
-
+    image:"asset/hari6-bunga-mekar.png",
     label:"HARI 6 • BUNGA MEKAR",
-
     type:"plant"
   },
 
   {
-    /* FILE BARU HARI 7 */
-
-    image:"asset/hari7-panen-hadiah-baru.png",
-
+    image:"asset/hari7-panen-hadiah.png",
     label:"HARI 7 • PANEN HADIAH",
-
     type:"reward"
   }
 
@@ -1031,7 +990,6 @@ function renderDays(){
 
 
     item.innerHTML =
-
       "H" +
       i +
       "<br>" +
@@ -1056,19 +1014,12 @@ function updateUI(
 ){
 
   const index =
-
     Math.max(
-
       0,
-
       Math.min(
-
         stages.length-1,
-
         state.day-1
-
       )
-
     );
 
 
@@ -1082,25 +1033,13 @@ function updateUI(
     );
 
 
-  /*
-     RESET CLASS
-  */
-
   image.className =
     "plant-image";
 
 
-  /*
-     ASSET
-  */
-
   image.src =
     stage.image;
 
-
-  /*
-     HARI 7
-  */
 
   if(
     stage.type ===
@@ -1113,10 +1052,6 @@ function updateUI(
 
   }
 
-
-  /*
-     ANIMATION
-  */
 
   if(animate){
 
@@ -1135,31 +1070,18 @@ function updateUI(
   }
 
 
-  /*
-     LABEL
-  */
-
   document.getElementById(
     "stageLabel"
   ).textContent =
     stage.label;
 
 
-  /*
-     DAY
-  */
-
   document.getElementById(
     "dayValue"
   ).textContent =
-
     state.day +
     " / 7";
 
-
-  /*
-     STREAK
-  */
 
   document.getElementById(
     "streakValue"
@@ -1167,14 +1089,8 @@ function updateUI(
     state.streak;
 
 
-  /*
-     PROGRESS
-  */
-
   const percent =
-
     Math.round(
-
       (
         (state.day-1)
         /
@@ -1182,14 +1098,12 @@ function updateUI(
       )
       *
       100
-
     );
 
 
   document.getElementById(
     "progressText"
   ).textContent =
-
     percent +
     "%";
 
@@ -1197,17 +1111,12 @@ function updateUI(
   document.getElementById(
     "progressBar"
   ).style.width =
-
     percent +
     "%";
 
 
   renderDays();
 
-
-  /*
-     BUTTONS
-  */
 
   const waterBtn =
     document.getElementById(
@@ -1241,10 +1150,6 @@ function updateUI(
     "none";
 
 
-  /*
-     COMPLETED
-  */
-
   if(state.harvested){
 
     statusValue.textContent =
@@ -1267,10 +1172,6 @@ function updateUI(
 
   }
 
-
-  /*
-     READY HARVEST
-  */
 
   if(
     state.day === 7
@@ -1298,10 +1199,6 @@ function updateUI(
 
   }
 
-
-  /*
-     WATERED
-  */
 
   if(state.wateredToday){
 
@@ -1377,7 +1274,6 @@ function createWaterEffect(){
 
 
     drop.style.left =
-
       (
         35
         +
@@ -1388,7 +1284,6 @@ function createWaterEffect(){
 
 
     drop.style.top =
-
       (
         15
         +
@@ -1399,7 +1294,6 @@ function createWaterEffect(){
 
 
     drop.style.animationDelay =
-
       (
         Math.random()*.2
       )
@@ -1431,7 +1325,6 @@ function createWaterEffect(){
 
 
     spark.style.left =
-
       (
         28
         +
@@ -1442,7 +1335,6 @@ function createWaterEffect(){
 
 
     spark.style.bottom =
-
       (
         45
         +
@@ -1453,7 +1345,6 @@ function createWaterEffect(){
 
 
     spark.style.animationDelay =
-
       (
         .3
         +
@@ -1471,16 +1362,13 @@ function createWaterEffect(){
 
 
   setTimeout(
-
     function(){
 
       fx.innerHTML =
         "";
 
     },
-
     1600
-
   );
 
 }
@@ -1518,15 +1406,12 @@ function waterPlant(){
 
 
   setTimeout(
-
     function(){
 
       updateUI(true);
 
     },
-
     450
-
   );
 
 }
@@ -1591,13 +1476,10 @@ function harvestReward(){
   ){
 
     state.rewardIndex =
-
       Math.floor(
-
         Math.random()
         *
         rewards.length
-
       );
 
   }
@@ -1607,7 +1489,6 @@ function harvestReward(){
 
 
   const reward =
-
     rewards[
       state.rewardIndex
     ];
@@ -1697,7 +1578,6 @@ document.getElementById(
   "closeReward"
 ).addEventListener(
   "click",
-
   function(){
 
     document.getElementById(
@@ -1707,11 +1587,8 @@ document.getElementById(
     );
 
   }
-
 );
 
-
-/* START */
 
 updateUI();
 
